@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A1-index</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<style type="text/css">
+	.tc{
+		position: relative;
+		top: 0px;
+		left: 0px;
+		bottom: 0px;
+		right: 0px;
+		margin: auto;
+	}
+	.ft{
+		white-space: nowrap;
+		/*text-align: left;*/
+		font-size: 20px;
+		font-weight: 400;
+		font-style: normal;
+		text-decoration: underline;
+		font-family: 微软雅黑;
+	}
+	.ClassyCountdownDemo { margin:0 auto 30px auto; max-width:800px; width:calc(100%); padding:30px; display:block }
+	#countdown2 { background:#FFF }
+	#countdown3 { background:rgb(52, 73, 94) }
+	#countdown4 { background:#222 }
+	#countdown5 { background:#222 }
+	#countdown6 { background:#222 }
+	#countdown7 { background:#222 }
+	#countdown8 { background:#222 }
+	#countdown9 { background:#FFF }
+	#countdown10 { background:#3498db }
+
+	.circleprogress{
+		width: 160px;
+		height: 160px;
+		border:20px solid transparent;
+		border-radius: 50%;
+		position: absolute;
+		top:0;
+		-webkit-transform: rotate(45deg);
+	}
+</style>
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div id="app" class="section pdl0 pdr40 pdt32 pdb64">
+	<div class="ovh">
+		<div class="ww49 fl">
+			<div class="ovh t-c">
+				<div class="fr bord9 ww30 fs16 cor595959 ovh">
+					<span class="mgr15"><img src="/images/17-2.png" alt=""></span>
+					<span class="h110 lh110 mgr45" th:text="#{primaryPage.lastMonthGoneDog}">上月死亡犬只 </span>
+					<span class="fs30 h110 lh110 fb" v-text="deadDogs"></span>
+				</div>
+				<div class="fr bord9 ww34 fs16 cor595959 ovh">
+					<span class="mgr15"><img src="/images/17-2.png" alt=""></span>
+					<span class="h110 lh110 mgr45" th:text="#{primaryPage.lastMonthCancelDog}">上月注销犬只 </span>
+					<span class="fs30 h110 lh110 fb" v-text="cancelDogs"></span>
+				</div>
+				<div class="fr bord9 ww36 fs16 cor595959 ovh">
+					<span class="mgr15"><img src="/images/17-2.png" alt=""></span>
+					<span class="h110 lh110 mgr45" th:text="#{primaryPage.lastMonthAddDog}">上月新增犬只 </span>
+					<span class="fs30 h110 lh110 fb" v-text="newAddedDogs"></span>
+				</div>
+			</div>
+			<div class="mgt18 bord9 h337">
+				<!--<div class="h50 lh50 bgf0f0f0 pdl47 fs16 cor3 bor-bd9 pic1">上月使用次数前十的药品</div>-->
+				<!--<div>-->
+					<!--<div id="main" style="max-width: 100%;height:287px;"></div>-->
+				<!--</div>-->
+				<div class="h50 lh50 bgf0f0f0 pdl47 fs16 cor3 bor-bd9 pic1" th:text="#{primaryPage.statisticsAntiepidemic}">防疫统计</div>
+				<div class="fr bord9 ww33 fs16 cor595959 ovh t-c">
+					<span style="position: relative;top:21px;" th:text="#{primaryPage.unAntiepidemicDog}">未防疫犬只</span><br/>
+					<div class="h110 lh110 mgr45 tc ft" ><a style="color:rgb(255, 0, 0)" href="/biz/homePage/toDogPage?type=2" th:text="${res.unAntiAmount}"></a></div>
+					<div class="h153 lh110 mgr45 tc" id="chart3"></div>
+				</div>
+				<div class="fr bord9 ww34 fs16 cor595959 ovh t-c">
+					<span style="position: relative;top:21px;" th:text="#{primaryPage.antiepidemicDog}">已防疫犬只</span><br/>
+					<div class="h110 lh110 mgr45 tc ft"><a style="color: rgb(0, 153, 0)" href="/biz/homePage/toDogPage?type=1" th:text="${res.antiAmount}"></a></div>
+					<div class="h153 lh110 mgr45 tc" id="chart2"></div>
+				</div>
+				<div class="fr bord9 ww33 fs16 cor595959 ovh t-c">
+					<span style="position: relative;top:21px;" th:text="#{primaryPage.totalDog}">犬只总数</span>
+					<div class="h110 lh110 mgr45 tc ft" ><a style="color: rgb(51, 67, 165)" href="/biz/homePage/toDogPage?type=0" th:text="${res.totalAmount}"></a></div>
+					<div class="h153 lh110 mgr45 tc" id="chart1"></div>
+				</div>
+			</div>
+		</div>
+		<div class="ww49 fr bord9 h465">
+			<div class="h50 lh50 bgf0f0f0 pdl47 fs16 cor3 bor-bd9 pic4 pdr30" th:text="#{primaryPage.message}">消息 <a href="###" class="dinb fr"><img src="/images/31.png" alt=""></a></div>
+			<div class="pdl25 pdr25 pdt10">
+				<ul class="ul08" >
+					<li v-for="(item,index) in homePageList" :key="index" >
+						<a  class="db h43 lh43 cor6 hov8" href="###" ><span v-text="item.title"></span><span class="fr" v-text="item.createDate"></span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="mgt18 ovh">
+		<div class="ww49 fl bord9 h377">
+			<div class="h50 lh50 bgf0f0f0 pdl47 fs16 cor3 bor-bd9 pic5 pdr30 mgb20" th:text="#{primaryPage.antiepidemicTendency}">防疫次数趋势 </a></div>
+			<div id="main2" style="max-width: 100%;height:307px;"></div>
+		</div>
+		<div class="ww49 fr bord9 h377">
+			<div class="h50 lh50 bgf0f0f0 pdl47 fs16 cor3 bor-bd9 pic5 pdr30 mgb20" th:text="#{primaryPage.managerDogTendency}">管理犬只数量趋势 </a></div>
+			<div id="main3" style="max-width: 100%;height:307px;"></div>
+		</div>
+	</div>
+</div>
+
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<link rel="stylesheet" type="text/css" href="/css/default.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery.classycountdown.css" />
+<script src="/statisanalysis/homePage.js"></script>
+<!--<script src="js/jquery.min.js"></script>-->
+	<script src="/js/circleChart.min.js"></script>
+</body>
+</html>
+
+
+<script th:inline="javascript">
+    let totalAmount = [[${res.totalAmount}]];
+    let unAntiAmount = [[${res.unAntiAmount}]];
+    let antiAmount = [[${res.antiAmount}]];
+    var dogCount5=[[#{primaryPage.dogCount}]];
+    var antiepidemicCount5=[[#{primaryPage.antiepidemicCount}]];
+</script>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A31-统计分析-防疫统计</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{statistical.analysis}">统计分析</a>></li>
+			<li class="fl" th:text="#{statistical.epidemicStatistics}">防疫统计</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div id="app"  class="pdl0 pdr50 pdt25 pdb75" >
+		<div class="ovh">
+			<form class="db ovh">
+				<div class="fl ovh">
+					<div class="fl mgr25">
+						<input id="startEndTime"  class="w160 h40 lh40 pdl10 cor9 bord9 pic3 ras4" >
+					</div>
+					<!--<div class="fl mgr20">
+						<input id="inp2" class="w160 h40 lh40 pdl10 cor9 bord9 pic3 ras4" placeholder="2018-08">
+					</div>-->
+				</div>
+				<a @click="reload" class="fl a2 corw hov8" th:text="#{determine}">确定</a>
+				<!--<div class="fr">
+					<input type="text" class="db input1 w310 h40 lh40 pdl15 fl" placeholder="项圈编号">
+					<input type="submit" class="db fl pc5 hov8" value="">
+				</div>-->
+			</form>
+		</div>
+		<script>
+
+		// (function(){
+		// 	calender('#inp').init(function(date){
+		// 		this.value= date
+		// 	});
+		// 	calender('#inp2').init(function(date){
+		// 		this.value= date
+		// 	});
+		// })();
+		</script>
+		<div class="mgt20">
+			<div class="bord9 rel">
+				<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+				<a href="###" class="db abs z100 a4"></a>
+				<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.immunizationFrequency}">防疫次数趋势</p>
+				<div id="main1" class="h350 max-w1511"></div>
+			</div>
+		</div>
+		
+		<div class="mgt20">
+			<div class="bord9 rel">
+				<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+				<a href="###" class="db abs z100 a4"></a>
+				<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.firstTenDrug}">使用前十的药品</p>
+				<div id="main2" class="h350 max-w1511">
+					
+				</div>
+			</div>
+		</div>
+		<div class="mgt20">
+			<div class="bord9 rel">
+				<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+				<a href="###" class="db abs z100 a4"></a>
+				<div class="mgt20">
+					<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.drugUseStatistics}">药品使用情况统计</p>
+					<table class="table17" width="100%" border="1">
+						<tbody>
+							<tr v-for="(item,index) in drugUsageInfo">
+								<template v-for='items in item'>
+									<td>{{items}}</td>
+								</template>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--内容区END-->
+
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script th:inline="javascript">
+    var time = [[#{binformation.name}]];
+    var praziquantel = [[#{statistical.praziquantel}]];
+    var antiepidemicCount = [[#{primaryPage.antiepidemicCount}]];
+    var drugDosage = [[#{statistical.drugDosage}]];//药品用量
+    var useTheNumber = [[#{statistical.useTheNumber}]];//使用数量
+</script>
+<script src="/statisanalysis/antiepidemicCount.js"></script>
+</body>
+</html>

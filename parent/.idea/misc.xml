@@ -2,12 +2,14 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/../callback" />
+    <file type="web" url="file://$PROJECT_DIR$/../callback-fit" />
     <file type="web" url="file://$PROJECT_DIR$/../sms" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../callback-fit/pom.xml" />
       </list>
     </option>
   </component>

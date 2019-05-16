@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: shl@CXZ1104
+    url: jdbc:mysql://120.78.137.116:3306/nm?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+logging:
+  level: INFO
+  com.soholy.cb: INFO

@@ -1,0 +1,4035 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.utils.FileUpload",
+      "name": "dfs",
+      "type": "com.utils.FileUpload"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO",
+      "type": "com.wxmultilang.ZhBOLangProp"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN",
+      "type": "com.wxmultilang.ZhCNLangProp"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN",
+      "type": "com.wxmultilang.ZhMNLangProp"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.bangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.biaoti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.binbianzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.binbianzangqichulishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.bingdinchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.bingdinshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.caiyurenshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.cancel",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.caochangmianji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.caozuoshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chakanxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chongxindenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chulifangshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chulifnagfa",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chuliren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chulirenyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chulishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.chushengriqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.cishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.daodile",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.day",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.denglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.denglvchaoshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dianhuahaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dianhuahaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dianziweilan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.diaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.didian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dinweichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.dinweiguiji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fafangdanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fafangneirongshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fafangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fafangshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangchanzhe",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangfashuoming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fanghuwuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyidengji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyileixin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyishijan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyitongji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyiyaopin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyiyuandianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyiyuanxingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangyizhouqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fangzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fasongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fenbianchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fenbianchulixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.fengbianchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gaishebeibucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gaishebeiweibangdinquanzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gaishebeiyibeibangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gaisuyuanidbucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.ganranshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.ganranshubixuxiaoyutiaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.genghuanchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.genghuanmimachengg",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.genghuanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.genghuanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.genghuanyuanyin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gerenxinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gong-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.gongjin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.guanbi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.guijichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.hegelv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.hegeshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.huodongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jiancedanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jianceshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jianceshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jiazaizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jibandanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jieshoudanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jieshouren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jieshushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jiumima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jiuquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jiushebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.jubanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.juminghukoubo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.kaiqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.kaishishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.language",
+      "description": "language : 语言\n quanfangyi : 犬防疫\n daodile : 到底了\n weizhi : 未知\n mu : 亩\n xialagengduo : 下拉显示更多\n gongjin : 公斤\n year : 年\n month : 月\n day : 日\n sui : 岁\n pl_username : 请输入用户名\n pl_passwrod : 请输入密码\n submit : 提交\n save : 保存\n reset : 重置\n cancel : 取消\n quanzhi_quanzhu : 犬只犬主\n quanzhu_guanli : 犬主管理\n quanzhi_guanli : 犬只管理\n liulangquan_guanli : 流浪犬管理\n tongjixinxi : 统计信息\n quanzhi_zhoubian : 周边犬只\n fangzhi_guanli : 防治管理\n quanzhi_fangyi : 犬只防疫\n quanfen_chuli : 犬粪处理\n quanshi_chuli : 犬尸处理\n quanfenkangyuan_jiance : 犬粪抗原检测\n quanhzi_jiepao : 犬只解刨\n niuyangkangti_jiance : 牛羊抗体检测\n niuyangzangqi_chuli : 牛羊脏器处理\n tongji_xinxi : 统计信息\n wuzi_guanli : 物资管理\n fanghuwuzi : 防护物资\n quanzhu_xianquan : 犬只项圈\n xuanchuan_peixun : 宣传培训\n xuanchuan_huodong : 宣传活动\n peixunhuodong : 培训活动\n quanzhu_xinxi : 犬主信息\n quanzhu_xingming : 犬主姓名\n xingbie : 性别\n nan : 男\n nv : 女\n chushengriqi : 出生日期\n mingzu : 名族\n wenhuachengdu : 文化程度\n lianxidianhua : 联系电话\n zhengjian_leix : 证件类型\n zhengjian_haoma : 证件号码\n caochangmianji : 草场面积\n suoshuxiangzhen : 所属乡镇\n suoshucunweihui : 所属村委会\n menpaihao : 门牌号\n fangyiyuan : 防疫员\n lvrushijian : 录入时间\n zhaopian : 照片\n miaoshu : 描述\n quanzhi_xinxi : 犬只信息\n weibangdxiangquan : 未绑定项圈\n yangxinglv : 阳性率\n jianceshijian : 检测时间\n jiancedanwei : 检测单位\n jianceshu : 检测数\n yangxingshu : 阳性数\n wuhaihua : 无害化\n tupuai : 图片\n shipin : 视频\n fangyishijan : 防疫时间\n quanming : 犬名\n quanzhu : 犬主\n suyuan_ID : 溯源ID\n xiangquanbianhao : 项圈编号\n quanzhudianhua : 犬主电话\n quanzhushengfengzheng : 犬主身份证\n shusuoxiangzheng : 所属乡镇\n xiangxidizhi : 详细地址\n fangyileixin : 防疫类型\n fangyiyaopin : 防疫药品\n fangyizhouqi : 防疫周期\n fangyiyuandianhua : 防疫员电话\n hegeshu : 合格数\n hegelv : 合格率\n chulishijian : 处理时间\n siwangshijian : 死亡原因\n chulifnagfa : 处理方法\n fangfashuoming : 方法说明\n chulirenyuan : 处理人员\n jieshoudanwei : 接收单位\n jieshouren : 接收人\n fafangdanwei : 发放单位\n fafang : 发放\n fafangshuliang : 发放数量\n fafangshijian : 发放时间\n rulanshijian : 入栏时间\n tizhong : 体重\n maose : 毛色\n quanling : 犬龄\n quanzhong : 犬种\n quanzhicunlanshuliang : 犬只存栏数量\n suoshuzhou : 所属州\n suoshuxian : 所属县\n suoshuxiang : 所属乡\n suoshufangyiyuan : 所属防疫员\n shuliang : 数量\n quanzhushuliang : 犬主数量\n liulangquanchulishuliang : 流浪犬处理数量\n fangyicishu : 防疫次数\n shitichulicishu : 犬尸处理次数\n quanfenchulicishu : 犬粪处理次数\n quanfenkangyuancishu : 犬粪抗原检测次数\n quanzhijiepaocishu : 犬只解剖次数\n niuyangjiancecishu : 牛羊抗体检测次数\n niuyangzangqichulicishu : 牛羊脏器处理次数\n cishu : 次数\n shebeibianhao : 设备编号\n shenfengzhenghaoma : 身份证号码\n wuzileixing : 物资类型\n wuzimingcheng : 物资名称\n fasongshijian : 发送时间\n qumingshengfengzheng : 居民身份证\n juminghukoubo : 居民户口簿\n fenbianchulixinxi : 粪便处理信息\n suoshumoweihui : 所属牧委会\n dianziweilan : 电子围栏\n huodongshijian : 活动时间\n jibandanwei : 举办单位\n neirong : 内容\n fafangneirongshuliang : 发放宣传品数量\n zhuti : 主题\n didian : 地点\n shijian : 时间\n tuichudenglu : 退出登录\n miamashezhi : 密码设置\n gerenxinxi : 个人信息\n querenmima : 确认密码\n xinmima : 新密码\n jiumima : 旧密码\n quanzhishu : 犬只数\n yifangyi : 已防疫\n weifangyi : 未防疫\n chulifangshi : 处理方式\n gong_sex : 公\n mu_sex : 母\n chuliren : 处理人\n pingzhong : 品种\n liulangquanbianhao : 流浪犬编号\n caiyurenshu : 参与人数\n peixunduixiang : 培训对象\n yonghuming : 用户名\n xingming : 姓名\n suoshuquyu : 所属区域\n suoshuzuzhi : 所属组织\n binbianzangqichuli : 病变脏器处理\n binbianzangqichulishu : 病变脏器处理数\n ganranshu : 感染数\n diaochashu : 调查数\n xiangquanchuli : 项圈处理\n dianhua : 电话\n dianhuahaoma : 电话号码\n zhuxiaoshijian : 注销时间\n zhuxiaoyuanyin : 注销原因\n fangyiyuanxingming : 防疫员姓名\n querenbangdin : 确认绑定\n weidin : 未定\n scan_bind_device : 请扫描二维码绑定项圈\n zanbubangdin : 暂不绑定\n dinweichaxun : 定位查询\n guijichaxun : 轨迹查询\n riqi : 日期\n weiduxiaoxi : 未读消息\n yiduxiaoxi : 已读消息\n xiangqing : 详情\n biaoti : 标题\n genghuanwei : 更换为\n genghuanshijian : 更换时间\n genghuanyuanyin : 更换原因\n xinshebeibianhao : 新设备编号\n jiushebeibianhao : 旧设备编号\n yuanxiangquanchuli : 原项圈处理\n xinxiangquan : 新项圈\n xinquanzhu : 新犬主\n jiuquanzhu : 旧犬主\n yuyanshezhi : 语言设置\n kaiqi : 开启\n guanbi : 关闭\n xiangquangenghuancishu : 项圈更换次数\n fengbianchulicishu : 粪便处理次数\n quanshichulishuliang : 犬尸处理数量\n xinzengquanzhushuliang : 新增犬主数量\n zhuxiaoquanzhishuliang : 注销犬只数量\n xinzengquanzhishuliang : 新增犬只数量\n chaxun : 查询\n zhi : 至\n fangchanzhe : 房产证\n wodexiaoxi : 我的消息\n dinweiguiji : 定位轨迹\n quanzhizhuxiao : 犬只注销\n xiangquangenghuan : 项圈更换\n liulangquanchuli : 流浪犬处理\n fenbianchuli : 粪便处理\n quedin : 确定\n jubanshijian : 举办时间\n gengduo : 更多\n xuanzhequyu : 选择区域\n nianling : 年龄\n shoujihao : 手机号\n fangyidengji : 防疫登记\n xinzengquanzhu : 新增犬主\n xiangquanbangdin : 项圈绑定\n xinzengquanzxhi : 新增犬只\n chakanxiangqing : 查看详情\n quanzhuxiangqing : 犬主详情\n quanzhuxinxilvru : 犬主信息录入\n quanzhixinxilvru : 犬只信息录入\n bangdinxiangquan : 绑定项圈\n fangyixinxilvru : 防疫信息录入\n shitiwuhaihuachuli : 尸体无害化处理\n kaishishijian : 开始时间\n jieshushijian : 结束时间\n liulangquanchulilvru : 流浪犬处理录入\n denglv : 登录\n weinengshibieerweima : 未能识别二维码\n tishi : 提示\n gaisuyuanidbucunzai : 该溯源Id不存在\n gaishebeiweibangdinquanzhi : 该设备未绑定任何犬只\n tianjiachenggong : 添加成功\n quanzhijiepao : 犬只解剖\n xinzengquanzhijiepao : 新增犬只解剖\n xinzengquanfenkanyuanjiance : 新增犬粪抗原检测\n xinzengniuyangkanyuanjiance : 新增牛羊抗体检测\n xiangquanfafang : 项圈发放\n xinzengxuanchuanhuodong : 新增宣传活动\n shezhi : 设置\n xinzengpeixunhuodong : 新增培训活动\n xinzengniuyangzangqichuli : 新增牛羊脏器处理\n fangyitongji : 防疫统计\n xinzeng : 新增\n jiazaizhong : 加载中\n denglvchaoshi : 登录超时\n chongxindenglv : 请重新登录\n qingshuruyouxiaoshuzi : 请输入有效的数字\n qingshuruzhegnqueshuzi : 请输入正确的数字\n qingshurushujucanshu : 请正确输入数据参数\n wodeweizhi : 我的位置\n genghuanmimachengg : 更改密码成功\n qingchongxdenglv : 请重新登录\n liangcimimabuyizhi : 两次输入密码不一致\n qingchongxinshuru : 请重新输入\n ganranshubixuxiaoyutiaochashu : 感染数必须小于调查数\n xiugaichenggong : 修改成功\n xiugaishibai : 修改失败\n gaishebeibucunzai : 该设备不存在\n gaishebeiyibeibangdin : 该设备已被绑定\n qingbangdinxiangquan : 请绑定项圈\n bingdinchenggong : 绑定成功\n bingdinshibai : 绑定失败\n wuquanzhidinweixinxi : 无犬只定位信息\n wudangtianshuju : 当天无数据\n wuduiyinquanzhiquanzhu : 无对应犬只或者犬主\n tianjiashibai : 添加失败\n qingshaohouzaishi : 请稍后再试\n shibai : 失败\n genghuanchenggong : 更换成功\n zhengjianhaomayicunzai : 证件号码已存在\n dianhuahaomayicunzai : 电话号码已存在\n caozuoshibai : 操作失败\n yonghudianhuahaomachongfu : 用户电话或证书号码重复",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liangcimimabuyizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.lianxidianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liulangquan-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liulangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liulangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liulangquanchulilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.liulangquanchulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.lvrushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.maose",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.menpaihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.miamashezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.miaoshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.mingzu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.month",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.mu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.mu-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.nan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.neirong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.nianling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.niuyangjiancecishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.niuyangkangti-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.niuyangzangqi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.niuyangzangqichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.nv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.peixunduixiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.peixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.pingzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.pl-passwrod",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.pl-username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingbangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingchongxdenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingchongxinshuru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingshaohouzaishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingshurushujucanshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingshuruyouxiaoshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qingshuruzhegnqueshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanfangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanfen-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanfenchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanfenkangyuan-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanfenkangyuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanhzi-jiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanshi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanshichulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhi-fangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhi-quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhi-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhi-zhoubian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhicunlanshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhijiepaocishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhizhuxiao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhu-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhu-xianquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhu-xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhu-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhudianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhushengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhuxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quanzhuxinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.quedin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.querenbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.querenmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.qumingshengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.reset",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.riqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.rulanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.save",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.scan-bind-device",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shenfengzhenghaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shipin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shitichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shitiwuhaihuachuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shoujihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.shusuoxiangzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.siwangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.submit",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.sui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshucunweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshufangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshumoweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuquyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuxian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuxiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuxiangzhen",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuzhou",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suoshuzuzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.suyuan-i-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tianjiachenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tianjiashibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tongji-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tongjixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tuichudenglu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.tupuai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weibangdxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weidin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weinengshibieerweima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.weizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wenhuachengdu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wodeweizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wodexiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wudangtianshuju",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuduiyinquanzhiquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuhaihua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuquanzhidinweixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuzi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuzileixing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.wuzimingcheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xialagengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquanbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquanfafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquangenghuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangquangenghuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiangxidizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xingbie",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinshebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzeng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengniuyangkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengniuyangzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengpeixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanfenkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengquanzxhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xinzengxuanchuanhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiugaichenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xiugaishibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xuanchuan-huodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xuanchuan-peixun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.xuanzhequyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yangxinglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yangxingshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.year",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yonghudianhuahaomachongfu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yonghuming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yuanxiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.yuyanshezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zanbubangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhaopian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhengjian-haoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhengjian-leix",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhengjianhaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhuti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhuxiaoquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhuxiaoshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhBOLangProp",
+      "name": "zh_BO.zhuxiaoyuanyin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.bangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.biaoti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.binbianzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.binbianzangqichulishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.bingdinchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.bingdinshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.caiyurenshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.cancel",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.caochangmianji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.caozuoshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chakanxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chongxindenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chulifangshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chulifnagfa",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chuliren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chulirenyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chulishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.chushengriqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.cishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.daodile",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.day",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.denglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.denglvchaoshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dianhuahaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dianhuahaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dianziweilan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.diaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.didian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dinweichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.dinweiguiji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fafangdanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fafangneirongshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fafangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fafangshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangchanzhe",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangfashuoming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fanghuwuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyidengji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyileixin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyishijan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyitongji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyiyaopin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyiyuandianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyiyuanxingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangyizhouqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fangzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fasongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fenbianchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fenbianchulixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.fengbianchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gaishebeibucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gaishebeiweibangdinquanzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gaishebeiyibeibangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gaisuyuanidbucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.ganranshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.ganranshubixuxiaoyutiaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.genghuanchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.genghuanmimachengg",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.genghuanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.genghuanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.genghuanyuanyin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gerenxinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gong-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.gongjin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.guanbi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.guijichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.hegelv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.hegeshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.huodongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jiancedanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jianceshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jianceshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jiazaizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jibandanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jieshoudanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jieshouren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jieshushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jiumima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jiuquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jiushebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.jubanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.juminghukoubo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.kaiqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.kaishishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.language",
+      "description": "language : 语言\n quanfangyi : 犬防疫\n daodile : 到底了\n weizhi : 未知\n mu : 亩\n xialagengduo : 下拉显示更多\n gongjin : 公斤\n year : 年\n month : 月\n day : 日\n sui : 岁\n pl_username : 请输入用户名\n pl_passwrod : 请输入密码\n submit : 提交\n save : 保存\n reset : 重置\n cancel : 取消\n quanzhi_quanzhu : 犬只犬主\n quanzhu_guanli : 犬主管理\n quanzhi_guanli : 犬只管理\n liulangquan_guanli : 流浪犬管理\n tongjixinxi : 统计信息\n quanzhi_zhoubian : 周边犬只\n fangzhi_guanli : 防治管理\n quanzhi_fangyi : 犬只防疫\n quanfen_chuli : 犬粪处理\n quanshi_chuli : 犬尸处理\n quanfenkangyuan_jiance : 犬粪抗原检测\n quanhzi_jiepao : 犬只解刨\n niuyangkangti_jiance : 牛羊抗体检测\n niuyangzangqi_chuli : 牛羊脏器处理\n tongji_xinxi : 统计信息\n wuzi_guanli : 物资管理\n fanghuwuzi : 防护物资\n quanzhu_xianquan : 犬只项圈\n xuanchuan_peixun : 宣传培训\n xuanchuan_huodong : 宣传活动\n peixunhuodong : 培训活动\n quanzhu_xinxi : 犬主信息\n quanzhu_xingming : 犬主姓名\n xingbie : 性别\n nan : 男\n nv : 女\n chushengriqi : 出生日期\n mingzu : 名族\n wenhuachengdu : 文化程度\n lianxidianhua : 联系电话\n zhengjian_leix : 证件类型\n zhengjian_haoma : 证件号码\n caochangmianji : 草场面积\n suoshuxiangzhen : 所属乡镇\n suoshucunweihui : 所属村委会\n menpaihao : 门牌号\n fangyiyuan : 防疫员\n lvrushijian : 录入时间\n zhaopian : 照片\n miaoshu : 描述\n quanzhi_xinxi : 犬只信息\n weibangdxiangquan : 未绑定项圈\n yangxinglv : 阳性率\n jianceshijian : 检测时间\n jiancedanwei : 检测单位\n jianceshu : 检测数\n yangxingshu : 阳性数\n wuhaihua : 无害化\n tupuai : 图片\n shipin : 视频\n fangyishijan : 防疫时间\n quanming : 犬名\n quanzhu : 犬主\n suyuan_ID : 溯源ID\n xiangquanbianhao : 项圈编号\n quanzhudianhua : 犬主电话\n quanzhushengfengzheng : 犬主身份证\n shusuoxiangzheng : 所属乡镇\n xiangxidizhi : 详细地址\n fangyileixin : 防疫类型\n fangyiyaopin : 防疫药品\n fangyizhouqi : 防疫周期\n fangyiyuandianhua : 防疫员电话\n hegeshu : 合格数\n hegelv : 合格率\n chulishijian : 处理时间\n siwangshijian : 死亡原因\n chulifnagfa : 处理方法\n fangfashuoming : 方法说明\n chulirenyuan : 处理人员\n jieshoudanwei : 接收单位\n jieshouren : 接收人\n fafangdanwei : 发放单位\n fafang : 发放\n fafangshuliang : 发放数量\n fafangshijian : 发放时间\n rulanshijian : 入栏时间\n tizhong : 体重\n maose : 毛色\n quanling : 犬龄\n quanzhong : 犬种\n quanzhicunlanshuliang : 犬只存栏数量\n suoshuzhou : 所属州\n suoshuxian : 所属县\n suoshuxiang : 所属乡\n suoshufangyiyuan : 所属防疫员\n shuliang : 数量\n quanzhushuliang : 犬主数量\n liulangquanchulishuliang : 流浪犬处理数量\n fangyicishu : 防疫次数\n shitichulicishu : 犬尸处理次数\n quanfenchulicishu : 犬粪处理次数\n quanfenkangyuancishu : 犬粪抗原检测次数\n quanzhijiepaocishu : 犬只解剖次数\n niuyangjiancecishu : 牛羊抗体检测次数\n niuyangzangqichulicishu : 牛羊脏器处理次数\n cishu : 次数\n shebeibianhao : 设备编号\n shenfengzhenghaoma : 身份证号码\n wuzileixing : 物资类型\n wuzimingcheng : 物资名称\n fasongshijian : 发送时间\n qumingshengfengzheng : 居民身份证\n juminghukoubo : 居民户口簿\n fenbianchulixinxi : 粪便处理信息\n suoshumoweihui : 所属牧委会\n dianziweilan : 电子围栏\n huodongshijian : 活动时间\n jibandanwei : 举办单位\n neirong : 内容\n fafangneirongshuliang : 发放宣传品数量\n zhuti : 主题\n didian : 地点\n shijian : 时间\n tuichudenglu : 退出登录\n miamashezhi : 密码设置\n gerenxinxi : 个人信息\n querenmima : 确认密码\n xinmima : 新密码\n jiumima : 旧密码\n quanzhishu : 犬只数\n yifangyi : 已防疫\n weifangyi : 未防疫\n chulifangshi : 处理方式\n gong_sex : 公\n mu_sex : 母\n chuliren : 处理人\n pingzhong : 品种\n liulangquanbianhao : 流浪犬编号\n caiyurenshu : 参与人数\n peixunduixiang : 培训对象\n yonghuming : 用户名\n xingming : 姓名\n suoshuquyu : 所属区域\n suoshuzuzhi : 所属组织\n binbianzangqichuli : 病变脏器处理\n binbianzangqichulishu : 病变脏器处理数\n ganranshu : 感染数\n diaochashu : 调查数\n xiangquanchuli : 项圈处理\n dianhua : 电话\n dianhuahaoma : 电话号码\n zhuxiaoshijian : 注销时间\n zhuxiaoyuanyin : 注销原因\n fangyiyuanxingming : 防疫员姓名\n querenbangdin : 确认绑定\n weidin : 未定\n scan_bind_device : 请扫描二维码绑定项圈\n zanbubangdin : 暂不绑定\n dinweichaxun : 定位查询\n guijichaxun : 轨迹查询\n riqi : 日期\n weiduxiaoxi : 未读消息\n yiduxiaoxi : 已读消息\n xiangqing : 详情\n biaoti : 标题\n genghuanwei : 更换为\n genghuanshijian : 更换时间\n genghuanyuanyin : 更换原因\n xinshebeibianhao : 新设备编号\n jiushebeibianhao : 旧设备编号\n yuanxiangquanchuli : 原项圈处理\n xinxiangquan : 新项圈\n xinquanzhu : 新犬主\n jiuquanzhu : 旧犬主\n yuyanshezhi : 语言设置\n kaiqi : 开启\n guanbi : 关闭\n xiangquangenghuancishu : 项圈更换次数\n fengbianchulicishu : 粪便处理次数\n quanshichulishuliang : 犬尸处理数量\n xinzengquanzhushuliang : 新增犬主数量\n zhuxiaoquanzhishuliang : 注销犬只数量\n xinzengquanzhishuliang : 新增犬只数量\n chaxun : 查询\n zhi : 至\n fangchanzhe : 房产证\n wodexiaoxi : 我的消息\n dinweiguiji : 定位轨迹\n quanzhizhuxiao : 犬只注销\n xiangquangenghuan : 项圈更换\n liulangquanchuli : 流浪犬处理\n fenbianchuli : 粪便处理\n quedin : 确定\n jubanshijian : 举办时间\n gengduo : 更多\n xuanzhequyu : 选择区域\n nianling : 年龄\n shoujihao : 手机号\n fangyidengji : 防疫登记\n xinzengquanzhu : 新增犬主\n xiangquanbangdin : 项圈绑定\n xinzengquanzxhi : 新增犬只\n chakanxiangqing : 查看详情\n quanzhuxiangqing : 犬主详情\n quanzhuxinxilvru : 犬主信息录入\n quanzhixinxilvru : 犬只信息录入\n bangdinxiangquan : 绑定项圈\n fangyixinxilvru : 防疫信息录入\n shitiwuhaihuachuli : 尸体无害化处理\n kaishishijian : 开始时间\n jieshushijian : 结束时间\n liulangquanchulilvru : 流浪犬处理录入\n denglv : 登录\n weinengshibieerweima : 未能识别二维码\n tishi : 提示\n gaisuyuanidbucunzai : 该溯源Id不存在\n gaishebeiweibangdinquanzhi : 该设备未绑定任何犬只\n tianjiachenggong : 添加成功\n quanzhijiepao : 犬只解剖\n xinzengquanzhijiepao : 新增犬只解剖\n xinzengquanfenkanyuanjiance : 新增犬粪抗原检测\n xinzengniuyangkanyuanjiance : 新增牛羊抗体检测\n xiangquanfafang : 项圈发放\n xinzengxuanchuanhuodong : 新增宣传活动\n shezhi : 设置\n xinzengpeixunhuodong : 新增培训活动\n xinzengniuyangzangqichuli : 新增牛羊脏器处理\n fangyitongji : 防疫统计\n xinzeng : 新增\n jiazaizhong : 加载中\n denglvchaoshi : 登录超时\n chongxindenglv : 请重新登录\n qingshuruyouxiaoshuzi : 请输入有效的数字\n qingshuruzhegnqueshuzi : 请输入正确的数字\n qingshurushujucanshu : 请正确输入数据参数\n wodeweizhi : 我的位置\n genghuanmimachengg : 更改密码成功\n qingchongxdenglv : 请重新登录\n liangcimimabuyizhi : 两次输入密码不一致\n qingchongxinshuru : 请重新输入\n ganranshubixuxiaoyutiaochashu : 感染数必须小于调查数\n xiugaichenggong : 修改成功\n xiugaishibai : 修改失败\n gaishebeibucunzai : 该设备不存在\n gaishebeiyibeibangdin : 该设备已被绑定\n qingbangdinxiangquan : 请绑定项圈\n bingdinchenggong : 绑定成功\n bingdinshibai : 绑定失败\n wuquanzhidinweixinxi : 无犬只定位信息\n wudangtianshuju : 当天无数据\n wuduiyinquanzhiquanzhu : 无对应犬只或者犬主\n tianjiashibai : 添加失败\n qingshaohouzaishi : 请稍后再试\n shibai : 失败\n genghuanchenggong : 更换成功\n zhengjianhaomayicunzai : 证件号码已存在\n dianhuahaomayicunzai : 电话号码已存在\n caozuoshibai : 操作失败\n yonghudianhuahaomachongfu : 用户电话或证书号码重复",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liangcimimabuyizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.lianxidianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liulangquan-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liulangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liulangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liulangquanchulilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.liulangquanchulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.lvrushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.maose",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.menpaihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.miamashezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.miaoshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.mingzu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.month",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.mu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.mu-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.nan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.neirong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.nianling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.niuyangjiancecishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.niuyangkangti-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.niuyangzangqi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.niuyangzangqichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.nv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.peixunduixiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.peixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.pingzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.pl-passwrod",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.pl-username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingbangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingchongxdenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingchongxinshuru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingshaohouzaishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingshurushujucanshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingshuruyouxiaoshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qingshuruzhegnqueshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanfangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanfen-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanfenchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanfenkangyuan-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanfenkangyuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanhzi-jiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanshi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanshichulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhi-fangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhi-quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhi-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhi-zhoubian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhicunlanshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhijiepaocishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhizhuxiao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhu-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhu-xianquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhu-xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhu-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhudianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhushengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhuxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quanzhuxinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.quedin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.querenbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.querenmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.qumingshengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.reset",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.riqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.rulanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.save",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.scan-bind-device",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shenfengzhenghaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shipin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shitichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shitiwuhaihuachuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shoujihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.shusuoxiangzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.siwangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.submit",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.sui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshucunweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshufangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshumoweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuquyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuxian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuxiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuxiangzhen",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuzhou",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suoshuzuzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.suyuan-i-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tianjiachenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tianjiashibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tongji-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tongjixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tuichudenglu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.tupuai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weibangdxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weidin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weinengshibieerweima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.weizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wenhuachengdu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wodeweizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wodexiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wudangtianshuju",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuduiyinquanzhiquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuhaihua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuquanzhidinweixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuzi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuzileixing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.wuzimingcheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xialagengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquanbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquanfafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquangenghuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangquangenghuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiangxidizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xingbie",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinshebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzeng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengniuyangkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengniuyangzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengpeixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanfenkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengquanzxhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xinzengxuanchuanhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiugaichenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xiugaishibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xuanchuan-huodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xuanchuan-peixun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.xuanzhequyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yangxinglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yangxingshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.year",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yonghudianhuahaomachongfu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yonghuming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yuanxiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.yuyanshezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zanbubangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhaopian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhengjian-haoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhengjian-leix",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhengjianhaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhuti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhuxiaoquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhuxiaoshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhCNLangProp",
+      "name": "zh_CN.zhuxiaoyuanyin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.bangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.biaoti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.binbianzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.binbianzangqichulishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.bingdinchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.bingdinshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.caiyurenshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.cancel",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.caochangmianji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.caozuoshibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chakanxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chongxindenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chulifangshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chulifnagfa",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chuliren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chulirenyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chulishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.chushengriqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.cishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.daodile",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.day",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.denglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.denglvchaoshi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dianhuahaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dianhuahaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dianziweilan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.diaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.didian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dinweichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.dinweiguiji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fafangdanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fafangneirongshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fafangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fafangshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangchanzhe",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangfashuoming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fanghuwuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyidengji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyileixin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyishijan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyitongji",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyiyaopin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyiyuandianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyiyuanxingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangyizhouqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fangzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fasongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fenbianchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fenbianchulixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.fengbianchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gaishebeibucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gaishebeiweibangdinquanzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gaishebeiyibeibangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gaisuyuanidbucunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.ganranshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.ganranshubixuxiaoyutiaochashu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.genghuanchenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.genghuanmimachengg",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.genghuanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.genghuanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.genghuanyuanyin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gerenxinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gong-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.gongjin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.guanbi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.guijichaxun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.hegelv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.hegeshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.huodongshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jiancedanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jianceshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jianceshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jiazaizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jibandanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jieshoudanwei",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jieshouren",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jieshushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jiumima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jiuquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jiushebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.jubanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.juminghukoubo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.kaiqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.kaishishijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.language",
+      "description": "language : 语言\n quanfangyi : 犬防疫\n daodile : 到底了\n weizhi : 未知\n mu : 亩\n xialagengduo : 下拉显示更多\n gongjin : 公斤\n year : 年\n month : 月\n day : 日\n sui : 岁\n pl_username : 请输入用户名\n pl_passwrod : 请输入密码\n submit : 提交\n save : 保存\n reset : 重置\n cancel : 取消\n quanzhi_quanzhu : 犬只犬主\n quanzhu_guanli : 犬主管理\n quanzhi_guanli : 犬只管理\n liulangquan_guanli : 流浪犬管理\n tongjixinxi : 统计信息\n quanzhi_zhoubian : 周边犬只\n fangzhi_guanli : 防治管理\n quanzhi_fangyi : 犬只防疫\n quanfen_chuli : 犬粪处理\n quanshi_chuli : 犬尸处理\n quanfenkangyuan_jiance : 犬粪抗原检测\n quanhzi_jiepao : 犬只解刨\n niuyangkangti_jiance : 牛羊抗体检测\n niuyangzangqi_chuli : 牛羊脏器处理\n tongji_xinxi : 统计信息\n wuzi_guanli : 物资管理\n fanghuwuzi : 防护物资\n quanzhu_xianquan : 犬只项圈\n xuanchuan_peixun : 宣传培训\n xuanchuan_huodong : 宣传活动\n peixunhuodong : 培训活动\n quanzhu_xinxi : 犬主信息\n quanzhu_xingming : 犬主姓名\n xingbie : 性别\n nan : 男\n nv : 女\n chushengriqi : 出生日期\n mingzu : 名族\n wenhuachengdu : 文化程度\n lianxidianhua : 联系电话\n zhengjian_leix : 证件类型\n zhengjian_haoma : 证件号码\n caochangmianji : 草场面积\n suoshuxiangzhen : 所属乡镇\n suoshucunweihui : 所属村委会\n menpaihao : 门牌号\n fangyiyuan : 防疫员\n lvrushijian : 录入时间\n zhaopian : 照片\n miaoshu : 描述\n quanzhi_xinxi : 犬只信息\n weibangdxiangquan : 未绑定项圈\n yangxinglv : 阳性率\n jianceshijian : 检测时间\n jiancedanwei : 检测单位\n jianceshu : 检测数\n yangxingshu : 阳性数\n wuhaihua : 无害化\n tupuai : 图片\n shipin : 视频\n fangyishijan : 防疫时间\n quanming : 犬名\n quanzhu : 犬主\n suyuan_ID : 溯源ID\n xiangquanbianhao : 项圈编号\n quanzhudianhua : 犬主电话\n quanzhushengfengzheng : 犬主身份证\n shusuoxiangzheng : 所属乡镇\n xiangxidizhi : 详细地址\n fangyileixin : 防疫类型\n fangyiyaopin : 防疫药品\n fangyizhouqi : 防疫周期\n fangyiyuandianhua : 防疫员电话\n hegeshu : 合格数\n hegelv : 合格率\n chulishijian : 处理时间\n siwangshijian : 死亡原因\n chulifnagfa : 处理方法\n fangfashuoming : 方法说明\n chulirenyuan : 处理人员\n jieshoudanwei : 接收单位\n jieshouren : 接收人\n fafangdanwei : 发放单位\n fafang : 发放\n fafangshuliang : 发放数量\n fafangshijian : 发放时间\n rulanshijian : 入栏时间\n tizhong : 体重\n maose : 毛色\n quanling : 犬龄\n quanzhong : 犬种\n quanzhicunlanshuliang : 犬只存栏数量\n suoshuzhou : 所属州\n suoshuxian : 所属县\n suoshuxiang : 所属乡\n suoshufangyiyuan : 所属防疫员\n shuliang : 数量\n quanzhushuliang : 犬主数量\n liulangquanchulishuliang : 流浪犬处理数量\n fangyicishu : 防疫次数\n shitichulicishu : 犬尸处理次数\n quanfenchulicishu : 犬粪处理次数\n quanfenkangyuancishu : 犬粪抗原检测次数\n quanzhijiepaocishu : 犬只解剖次数\n niuyangjiancecishu : 牛羊抗体检测次数\n niuyangzangqichulicishu : 牛羊脏器处理次数\n cishu : 次数\n shebeibianhao : 设备编号\n shenfengzhenghaoma : 身份证号码\n wuzileixing : 物资类型\n wuzimingcheng : 物资名称\n fasongshijian : 发送时间\n qumingshengfengzheng : 居民身份证\n juminghukoubo : 居民户口簿\n fenbianchulixinxi : 粪便处理信息\n suoshumoweihui : 所属牧委会\n dianziweilan : 电子围栏\n huodongshijian : 活动时间\n jibandanwei : 举办单位\n neirong : 内容\n fafangneirongshuliang : 发放宣传品数量\n zhuti : 主题\n didian : 地点\n shijian : 时间\n tuichudenglu : 退出登录\n miamashezhi : 密码设置\n gerenxinxi : 个人信息\n querenmima : 确认密码\n xinmima : 新密码\n jiumima : 旧密码\n quanzhishu : 犬只数\n yifangyi : 已防疫\n weifangyi : 未防疫\n chulifangshi : 处理方式\n gong_sex : 公\n mu_sex : 母\n chuliren : 处理人\n pingzhong : 品种\n liulangquanbianhao : 流浪犬编号\n caiyurenshu : 参与人数\n peixunduixiang : 培训对象\n yonghuming : 用户名\n xingming : 姓名\n suoshuquyu : 所属区域\n suoshuzuzhi : 所属组织\n binbianzangqichuli : 病变脏器处理\n binbianzangqichulishu : 病变脏器处理数\n ganranshu : 感染数\n diaochashu : 调查数\n xiangquanchuli : 项圈处理\n dianhua : 电话\n dianhuahaoma : 电话号码\n zhuxiaoshijian : 注销时间\n zhuxiaoyuanyin : 注销原因\n fangyiyuanxingming : 防疫员姓名\n querenbangdin : 确认绑定\n weidin : 未定\n scan_bind_device : 请扫描二维码绑定项圈\n zanbubangdin : 暂不绑定\n dinweichaxun : 定位查询\n guijichaxun : 轨迹查询\n riqi : 日期\n weiduxiaoxi : 未读消息\n yiduxiaoxi : 已读消息\n xiangqing : 详情\n biaoti : 标题\n genghuanwei : 更换为\n genghuanshijian : 更换时间\n genghuanyuanyin : 更换原因\n xinshebeibianhao : 新设备编号\n jiushebeibianhao : 旧设备编号\n yuanxiangquanchuli : 原项圈处理\n xinxiangquan : 新项圈\n xinquanzhu : 新犬主\n jiuquanzhu : 旧犬主\n yuyanshezhi : 语言设置\n kaiqi : 开启\n guanbi : 关闭\n xiangquangenghuancishu : 项圈更换次数\n fengbianchulicishu : 粪便处理次数\n quanshichulishuliang : 犬尸处理数量\n xinzengquanzhushuliang : 新增犬主数量\n zhuxiaoquanzhishuliang : 注销犬只数量\n xinzengquanzhishuliang : 新增犬只数量\n chaxun : 查询\n zhi : 至\n fangchanzhe : 房产证\n wodexiaoxi : 我的消息\n dinweiguiji : 定位轨迹\n quanzhizhuxiao : 犬只注销\n xiangquangenghuan : 项圈更换\n liulangquanchuli : 流浪犬处理\n fenbianchuli : 粪便处理\n quedin : 确定\n jubanshijian : 举办时间\n gengduo : 更多\n xuanzhequyu : 选择区域\n nianling : 年龄\n shoujihao : 手机号\n fangyidengji : 防疫登记\n xinzengquanzhu : 新增犬主\n xiangquanbangdin : 项圈绑定\n xinzengquanzxhi : 新增犬只\n chakanxiangqing : 查看详情\n quanzhuxiangqing : 犬主详情\n quanzhuxinxilvru : 犬主信息录入\n quanzhixinxilvru : 犬只信息录入\n bangdinxiangquan : 绑定项圈\n fangyixinxilvru : 防疫信息录入\n shitiwuhaihuachuli : 尸体无害化处理\n kaishishijian : 开始时间\n jieshushijian : 结束时间\n liulangquanchulilvru : 流浪犬处理录入\n denglv : 登录\n weinengshibieerweima : 未能识别二维码\n tishi : 提示\n gaisuyuanidbucunzai : 该溯源Id不存在\n gaishebeiweibangdinquanzhi : 该设备未绑定任何犬只\n tianjiachenggong : 添加成功\n quanzhijiepao : 犬只解剖\n xinzengquanzhijiepao : 新增犬只解剖\n xinzengquanfenkanyuanjiance : 新增犬粪抗原检测\n xinzengniuyangkanyuanjiance : 新增牛羊抗体检测\n xiangquanfafang : 项圈发放\n xinzengxuanchuanhuodong : 新增宣传活动\n shezhi : 设置\n xinzengpeixunhuodong : 新增培训活动\n xinzengniuyangzangqichuli : 新增牛羊脏器处理\n fangyitongji : 防疫统计\n xinzeng : 新增\n jiazaizhong : 加载中\n denglvchaoshi : 登录超时\n chongxindenglv : 请重新登录\n qingshuruyouxiaoshuzi : 请输入有效的数字\n qingshuruzhegnqueshuzi : 请输入正确的数字\n qingshurushujucanshu : 请正确输入数据参数\n wodeweizhi : 我的位置\n genghuanmimachengg : 更改密码成功\n qingchongxdenglv : 请重新登录\n liangcimimabuyizhi : 两次输入密码不一致\n qingchongxinshuru : 请重新输入\n ganranshubixuxiaoyutiaochashu : 感染数必须小于调查数\n xiugaichenggong : 修改成功\n xiugaishibai : 修改失败\n gaishebeibucunzai : 该设备不存在\n gaishebeiyibeibangdin : 该设备已被绑定\n qingbangdinxiangquan : 请绑定项圈\n bingdinchenggong : 绑定成功\n bingdinshibai : 绑定失败\n wuquanzhidinweixinxi : 无犬只定位信息\n wudangtianshuju : 当天无数据\n wuduiyinquanzhiquanzhu : 无对应犬只或者犬主\n tianjiashibai : 添加失败\n qingshaohouzaishi : 请稍后再试\n shibai : 失败\n genghuanchenggong : 更换成功\n zhengjianhaomayicunzai : 证件号码已存在\n dianhuahaomayicunzai : 电话号码已存在\n caozuoshibai : 操作失败\n yonghudianhuahaomachongfu : 用户电话或证书号码重复",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liangcimimabuyizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.lianxidianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liulangquan-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liulangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liulangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liulangquanchulilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.liulangquanchulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.lvrushijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.maose",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.menpaihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.miamashezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.miaoshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.mingzu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.month",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.mu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.mu-sex",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.nan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.neirong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.nianling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.niuyangjiancecishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.niuyangkangti-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.niuyangzangqi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.niuyangzangqichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.nv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.peixunduixiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.peixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.pingzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.pl-passwrod",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.pl-username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingbangdinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingchongxdenglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingchongxinshuru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingshaohouzaishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingshurushujucanshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingshuruyouxiaoshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qingshuruzhegnqueshuzi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanfangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanfen-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanfenchulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanfenkangyuan-jiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanfenkangyuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanhzi-jiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanling",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanshi-chuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanshichulishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhi-fangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhi-quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhi-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhi-zhoubian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhicunlanshuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhijiepaocishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhixinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhizhuxiao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhu-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhu-xianquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhu-xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhu-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhudianhua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhushengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhuxiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quanzhuxinxilvru",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.quedin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.querenbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.querenmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.qumingshengfengzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.reset",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.riqi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.rulanshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.save",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.scan-bind-device",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shenfengzhenghaoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shipin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shitichulicishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shitiwuhaihuachuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shoujihao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.shusuoxiangzheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.siwangshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.submit",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.sui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshucunweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshufangyiyuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshumoweihui",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuquyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuxian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuxiang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuxiangzhen",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuzhou",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suoshuzuzhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.suyuan-i-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tianjiachenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tianjiashibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tishi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tizhong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tongji-xinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tongjixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tuichudenglu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.tupuai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weibangdxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weidin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weinengshibieerweima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.weizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wenhuachengdu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wodeweizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wodexiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wudangtianshuju",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuduiyinquanzhiquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuhaihua",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuquanzhidinweixinxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuzi-guanli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuzileixing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.wuzimingcheng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xialagengduo",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangqing",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquanbangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquanbianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquanfafang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquangenghuan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangquangenghuancishu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiangxidizhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xingbie",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xingming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinmima",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinshebeibianhao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinxiangquan",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzeng",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengniuyangkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengniuyangzangqichuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengpeixunhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanfenkanyuanjiance",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanzhijiepao",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanzhu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanzhushuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengquanzxhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xinzengxuanchuanhuodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiugaichenggong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xiugaishibai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xuanchuan-huodong",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xuanchuan-peixun",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.xuanzhequyu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yangxinglv",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yangxingshu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.year",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yiduxiaoxi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yifangyi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yonghudianhuahaomachongfu",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yonghuming",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yuanxiangquanchuli",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.yuyanshezhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zanbubangdin",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhaopian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhengjian-haoma",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhengjian-leix",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhengjianhaomayicunzai",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhi",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhuti",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhuxiaoquanzhishuliang",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhuxiaoshijian",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wxmultilang.ZhMNLangProp",
+      "name": "zh_MN.zhuxiaoyuanyin",
+      "type": "java.lang.String"
+    }
+  ]
+}

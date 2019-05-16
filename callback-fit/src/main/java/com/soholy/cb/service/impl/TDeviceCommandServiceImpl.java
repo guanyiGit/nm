@@ -8,6 +8,7 @@ import com.soholy.cb.entity.TDeviceInfoEntity;
 import com.soholy.cb.entity.cdoec.CallBackData;
 import com.soholy.cb.entity.cdoec.DecodeRsp;
 import com.soholy.cb.enums.CmdType;
+import com.soholy.cb.enums.CodecVersion;
 import com.soholy.cb.service.TDeviceCommandService;
 import com.soholy.cb.service.app.CmdService;
 import org.apache.commons.lang3.StringUtils;
@@ -43,20 +44,20 @@ public class TDeviceCommandServiceImpl implements TDeviceCommandService {
         return (this.tDeviceCommandMapper.updateById(tdevCmd) == 1);
     }
 
-    public void resStart(CallBackData data, TDeviceInfoEntity device) {
+    public void resStart(CallBackData data, TDeviceInfoEntity device, CodecVersion codecVersion) {
         if (data != null && data.getDataType().intValue() == 4) {
             int resultCode = 0;
             if (device != null && device.getStatus() != null && device.getStatus().intValue() == 1)
                 resultCode = 1;
             try {
-                this.cmdService.sendCommand(CmdType.STARTING_UP, Integer.valueOf(resultCode), Integer.valueOf(this.cmdService.generateMid()), device.getDeviceIotId());
+                this.cmdService.sendCommand(CmdType.STARTING_UP, Integer.valueOf(resultCode), Integer.valueOf(this.cmdService.generateMid()), device.getDeviceIotId(), codecVersion);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public boolean cmdResHandle(DecodeRsp decodeRsp) {
+    public boolean cmdResHandle(DecodeRsp decodeRsp, CodecVersion codecVersion) {
         if (decodeRsp != null) {
             int resMid = decodeRsp.getMid();
             TDeviceCommandEntity command = new TDeviceCommandEntity();

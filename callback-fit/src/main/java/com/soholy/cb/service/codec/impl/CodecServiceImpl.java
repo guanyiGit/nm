@@ -31,7 +31,7 @@ public class CodecServiceImpl implements CodecService {
         DecodeRsp decodeRsp = null;
 
         try {
-            UploadBean wifiUpload = null;
+            UploadBean uploadBean = null;
             int inputBinaryindex = 0;
             CodecVersion cdoe_version = CodecVersion.BASIC;
             String versionStr = String.valueOf(ByteUtils.byte1Toint(inputBinary, inputBinaryindex++));
@@ -50,39 +50,38 @@ public class CodecServiceImpl implements CodecService {
             }
             byte code = inputBinary[inputBinaryindex++];
             if (1 == code) {
-                wifiUpload = decodeGpsUp(inputBinary, inputBinaryindex, cdoe_version);
-                if (wifiUpload == null)
+                uploadBean = decodeGpsUp(inputBinary, inputBinaryindex, cdoe_version);
+                if (uploadBean == null)
                     logger.warn("定位数据上传解析出错！");
             } else if (2 == code) {
-                wifiUpload = decodeWarnUp(inputBinary, inputBinaryindex, cdoe_version);
-                if (wifiUpload == null)
+                uploadBean = decodeWarnUp(inputBinary, inputBinaryindex, cdoe_version);
+                if (uploadBean == null)
                     logger.warn("设备告警数据解码失败！");
             } else if (4 == code) {
                 decodeRsp = decodeSetIntervalTimeReq(inputBinary, inputBinaryindex);
                 if (decodeRsp == null)
                     logger.info("设备响应【间隔时间设备信息】解码错误！");
             } else if (5 == code) {
-                wifiUpload = decodeSimpleUp(inputBinary, inputBinaryindex, cdoe_version);
-                if (wifiUpload == null)
+                uploadBean = decodeSimpleUp(inputBinary, inputBinaryindex, cdoe_version);
+                if (uploadBean == null)
                     logger.warn("设备心跳数据解码失败！");
             } else if (7 == code) {
                 decodeRsp = decodeWorkPatternRsp(inputBinary, inputBinaryindex);
                 if (decodeRsp == null)
                     logger.warn("设置设备工作模式,设备响应【间隔时间设备信息】解码失败！");
             } else if (8 == code) {
-                wifiUpload = decodeStartUpData(inputBinary, inputBinaryindex, cdoe_version);
-                if (wifiUpload == null)
+                uploadBean = decodeStartUpData(inputBinary, inputBinaryindex, cdoe_version);
+                if (uploadBean == null)
                     logger.warn("开机数据解码失败！");
             } else if (10 == code) {
-                wifiUpload = decodeWifi(inputBinary, inputBinaryindex, cdoe_version);
-                if (wifiUpload == null)
+                uploadBean = decodeWifi(inputBinary, inputBinaryindex, cdoe_version);
+                if (uploadBean == null)
                     logger.warn("定位数据上传(wifi)解码失败！");
             }
-            if (wifiUpload != null)
-                wifiUpload.setCodecVersion(Float.valueOf(cdoe_version.getVersion()));
             CodecBean codecBean = new CodecBean();
             codecBean.setDecodeRsp(decodeRsp);
-            codecBean.setUploadBean(wifiUpload);
+            codecBean.setUploadBean(uploadBean);
+            codecBean.setCodecVersion(cdoe_version);
             return codecBean;
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +89,7 @@ public class CodecServiceImpl implements CodecService {
             return null;
         }
     }
+
 
     private StartUpBean decodeStartUpData(byte[] inputBinary, int inputBinaryindex, CodecVersion version) {
         StartUpBean startUpBean = new StartUpBean();
@@ -281,7 +281,7 @@ public class CodecServiceImpl implements CodecService {
         return bean;
     }
 
-    public byte[] generateComanmd(CmdType cmdType, int cmdValue, int mid) {
+    public byte[] generateComanmd(CmdType cmdType, int cmdValue, int mid, CodecVersion codecVersion) {
         byte[] output = null;
         Date reqTime = new Date();
         try {
@@ -324,6 +324,16 @@ public class CodecServiceImpl implements CodecService {
                 ByteUtils.copyArrays(rspTimeBytes, 0, rspTimeBytes.length, output, 1);
                 output[5] = 1 == cmdValue ? (byte) 1 : (byte) 0;
             }
+
+            switch (codecVersion) {
+                case CODEC_VERSION:
+                    byte[] toArr = new byte[output.length + 1];
+                    ByteUtils.copyArrays(output, 0, output.length, toArr, 1);
+                    ByteUtils.intTobyte1(170, toArr, 0);
+                    output = toArr;
+                    break;
+            }
+
         } catch (Exception e) {
             logger.warn("命令拼装错误！");
             return null;

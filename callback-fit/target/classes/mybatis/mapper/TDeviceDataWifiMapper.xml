@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soholy.cb.dao.TDeviceDataWifiDb">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soholy.cb.entity.TDeviceDataWifiEntity">
+        <id column="device_data_wifi_id" property="deviceDataWifiId" />
+        <result column="bssid" property="bssid" />
+        <result column="rssi" property="rssi" />
+        <result column="device_data_id" property="deviceDataId" />
+        <result column="device_no" property="deviceNo" />
+        <result column="creation_time" property="creationTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        device_data_wifi_id, bssid, rssi, device_data_id, device_no, creation_time
+    </sql>
+
+</mapper>

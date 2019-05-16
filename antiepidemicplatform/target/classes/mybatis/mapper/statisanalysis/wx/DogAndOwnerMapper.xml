@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.wx.dao.DogAndOwnerDao">
+    <select id="getProtectorIds" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT id FROM t_protector
+        where org_id = #{orgId}
+    </select>
+    <select id="getMyAreaName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT
+            area.NAME
+        FROM
+            t_org_info org
+            LEFT JOIN t_area_info area ON area.id = org.area_id
+        WHERE
+            org.id = #{orgId}
+    </select>
+    <!--犬只存栏数量-->
+    <select id="getDogInfoByVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        p.id protectorId,
+        p.NAME protectorName,
+        count( * ) count
+        FROM
+        t_dog_info dog
+        LEFT JOIN t_protector p ON p.id = dog.protector
+--         LEFT JOIN t_device_ref_dog ref ON ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse ON corpse.trace_id = dog.trace_id
+        left join t_dog_cancel cancel on cancel.trace_id = dog.trace_id
+        <where>
+            dog.create_date  <![CDATA[ < ]]> #{nextMonth}
+            <if test="protectorList != null and protectorList.size > 0">
+                AND dog.protector IN
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            and (corpse.deal_time IS NULL OR corpse.deal_time  <![CDATA[ > ]]> #{nextMonth})
+            and ( cancel.create_date is null or cancel.create_date > #{nextMonth})
+        </where>
+        GROUP BY
+        dog.protector
+    </select>
+
+    <select id="getDogInfoByCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_dog_info` dog
+        LEFT JOIN t_org_info org2 ON org2.id = dog.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+--         LEFT JOIN t_device_ref_dog ref ON ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse ON corpse.trace_id = dog.trace_id
+        left join t_dog_cancel cancel on cancel.trace_id = dog.trace_id
+        <where>
+            dog.create_date  <![CDATA[ < ]]> #{nextMonth} AND ( corpse.deal_time IS NULL OR corpse.deal_time > #{nextMonth})
+            and ( cancel.create_date is null or cancel.create_date > #{nextMonth})
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and dog.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id in
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        group by area.id
+    </select>
+    <select id="getDogInfoByState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.NAME villageName,
+        area.id villageId,
+        area2.NAME countyName,
+        area2.id countyId,
+        count(*) count
+        FROM
+        t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref ON ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse ON corpse.trace_id = dog.trace_id
+        LEFT JOIN t_org_info org2 ON org2.id = dog.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        LEFT JOIN t_org_info org3 ON org3.id = org2.pid
+        LEFT JOIN t_area_info area2 ON area2.id = org3.area_id
+        left join t_dog_cancel cancel on cancel.trace_id = dog.trace_id
+        <where>
+            dog.create_date  <![CDATA[ < ]]> #{nextMonth}
+            AND ( corpse.deal_time IS NULL OR corpse.deal_time > #{nextMonth})
+            and ( cancel.create_date is null or cancel.create_date > #{nextMonth})
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and dog.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id in
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        group by area.id
+    </select>
+    <!--犬主数量-->
+    <select id="getDogOwnerByVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            p.id protectorId,
+            p.name protectorName,
+            count( * ) count
+        FROM
+            `t_dog_owner` owner
+        LEFT JOIN t_protector p ON p.user_id = owner.operator_id
+        <where>
+            <if test="nextMonth != null">and owner.create_date <![CDATA[ < ]]> #{nextMonth}</if>
+            <if test="protectorList != null and protectorList.size > 0">
+                and  owner.operator_id IN (select p.user_id from t_protector p where p.id in
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            owner.operator_id
+    </select>
+    <select id="getDogOwnerByCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_dog_owner`
+        OWNER LEFT JOIN t_org_info org2 ON org2.id = OWNER.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="nextMonth != null">and OWNER.create_date <![CDATA[ < ]]> #{nextMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and OWNER.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <select id="getDogOwnerByState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.name villageName,area.id villageId,area2.id countyId,area2.name countyName,count(*) count
+        FROM
+        t_dog_owner owner
+        left join t_org_info org2 on org2.id = owner.org_id
+        left join t_area_info area on area.id = org2.area_id
+        left join t_org_info org3 on org3.id = org2.pid
+        left join t_area_info area2 on area2.id = org3.area_id
+        <where>
+            <if test="nextMonth != null">and owner.create_date <![CDATA[ < ]]> #{nextMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and owner.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        group by area.id
+    </select>
+
+    <!--流浪狗-->
+    <select id="countStrayDog" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count(*) count
+        FROM
+            `t_stray_dog` stray
+        WHERE
+            date_format( stray.deal_time, '%Y-%m' ) = #{searchMonth}
+            AND stray.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+    </select>
+    <select id="getStrayByVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            p.id protectorId,
+            p.name protectorName,
+            count( * ) count
+        FROM
+            t_stray_dog stray
+        LEFT JOIN t_protector p ON p.user_id = stray.operator
+        <where>
+            stray.deal_time is not  null
+            <if test="searchMonth != null">and date_format(stray.deal_time,'%Y-%m') = #{searchMonth}</if>
+            <if test="protectorList != null and protectorList.size > 0">
+                and stray.operator IN (select p.user_id from t_protector p where p.id in
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            stray.operator
+    </select>
+    <select id="getStrayByCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            area.id villageId,
+            area.NAME villageName,
+            count( * ) count
+        FROM
+            t_stray_dog stray
+            LEFT JOIN t_org_info org2 ON org2.id = stray.org_id
+            LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and date_format(stray.create_date,'%Y-%m') = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and stray.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            area.id
+    </select>
+    <select id="getStrayByState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        select area2.id countyId,area2.name countyName,area.id villageId,area.name villageName,count(*) count
+        from t_stray_dog stray
+        left join t_org_info org2 on org2.id = stray.org_id
+        left join t_area_info area on area.id = org2.area_id
+        left join t_org_info org3 on org3.id = org2.pid
+        left join t_area_info area2 on area2.id = org3.area_id
+        <where>
+            <if test="searchMonth != null">and date_format(stray.create_date,'%Y-%m') = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                and stray.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        group by area.id
+    </select>
+
+    <select id="getAreaIdList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+            distinct(org.area_id)
+        FROM
+            t_org_info org
+        WHERE
+            org.pid = #{orgId}
+    </select>
+    <select id="getAreaIdList2" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT DISTINCT( org2.area_id )
+        FROM
+            t_org_info org2
+        WHERE
+            org2.pid IN ( SELECT org.id FROM t_org_info org WHERE org.pid = #{orgId} )
+    </select>
+
+    <select id="getCountyAreaIdList" resultType="java.lang.Integer">
+        SELECT DISTINCT( org.area_id )
+        FROM
+            `t_org_info` org
+        WHERE
+            org.type = 2
+    </select>
+
+    <select id="getVillageIdList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+            org2.area_id
+        FROM
+            t_org_info org2
+        WHERE
+            org2.pid IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+    </select>
+
+    <select id="getMyCountyAreaIdList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT DISTINCT
+            ( org.area_id )
+        FROM
+            t_org_info org
+        WHERE
+            org.pid = #{orgId}
+    </select>
+    <select id="getPAreaId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select area.pid from t_area_info area where area.id = #{areaId}
+    </select>
+    <select id="getPAreaInfo" parameterType="java.lang.Integer" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            area.id villageId,
+            area.NAME villageName,
+            area2.id countyId,
+            area2.NAME countyName
+        FROM
+            t_area_info area
+            LEFT JOIN t_area_info area2 ON area.pid = area2.id
+        WHERE
+            area.id = #{areaId}
+    </select>
+    <select id="getProtectorInfo" parameterType="java.lang.Integer" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT name protectorName,id protectorId
+        FROM
+            t_protector
+        WHERE
+            id = #{protectorId}
+    </select>
+    <select id="getAreaInfo" parameterType="java.lang.Integer" resultType="com.statisanalysis.wx.vo.CountVO">
+        select name countyName,id countyId from t_area_info
+        where id = #{areaId}
+    </select>
+</mapper>
