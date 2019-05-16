@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8" >
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>新增防疫信息</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<th:block th:if="${type==0}">
+			<li class="fl"><a href="/biz/antiepidemic/springDefendInfo" th:text="#{dogManage.springAntiepidemic}">春防信息></a></li>
+			</th:block>
+			<th:block th:if="${type==1}">
+			<li class="fl"><a href="/biz/antiepidemic/autumnDefendInfo"th:text="#{dogManage.autmnAntiepidemic}">秋防信息></a></li>
+			</th:block>
+			<th:block th:if="${type==2}">
+				<li class="fl"><a href="/biz/antiepidemic/monthDefendInfo"th:text="#{dogManage.monthAntiepidemic}">秋防信息></a></li>
+			</th:block>
+			<li class="fl" th:text="#{dogManage.edit2}"></li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75">
+		<form action="" id="myFrom5">
+			<div class="pdl0 pdr50">
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属乡镇</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.antiepidemicDrug2}">*防疫药品</div>
+					<div class="mgl90">
+						<select class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22" name="drugId" id="selectDrug">
+						</select>
+					</div>
+				</div>
+				
+				<!--<div class="ovh mgt10">-->
+					<!--<div class="fl w70 cor3 h50 lh50 t-r">*防疫时间</div>-->
+					<!--<div class="mgl90">-->
+						<!--<input type="text" id="antiepidemicDate" class="ww92 h50 lh50 bore ras4 pdl30" name="antiepidemicDate">-->
+					<!--</div>-->
+				<!--</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{antiepidemicManage.antiepidemicPeriod}">*防疫周期</div>
+					<div class="mgl90">
+						<select class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22" name="antiepidemicPeriod" id="antiepidemicPeriod">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+					</div>
+				</div>
+
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*溯源ID</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30" onblur="getDeviceId(this);" id="deviceId">
+					</div>
+				</div>-->
+
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+					<div class="mgl90 ovh">
+
+					</div>
+				</div>-->
+				
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+					<div class="mgl90 ovh">
+						<div class="file rel">
+
+						</div>
+					</div>
+				</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{dogManage.description}">描述</div>
+					<div class="mgl90">
+						<textarea class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30"  name="description" id="description"></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button"  th:value="#{dogManage.save}" id="ajaxBtn">
+						<a id="cancel" class="a6 dinb hov8" th:text="#{dogManage.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/axios-0.16.0.js"></script>
+<script th:inline="javascript">
+    var type = [[${type}]];
+    window.sessionStorage.setItem("type",type);
+    var operationSuccess=[[#{operationSuccess}]];
+    var operationFailure=[[#{operationFailure}]];
+    var sure5=[[#{dogManage.sure}]];
+</script>
+<script>
+
+</script>
+<script src="/dogmanager/YLUtils.js"></script>
+<script src="/epmanagement/editDefend.js"></script>
+
+</body>
+</html>

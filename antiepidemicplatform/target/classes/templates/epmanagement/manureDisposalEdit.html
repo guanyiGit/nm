@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head  th:include="include :: header">
+<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>粪便无害化处理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<li class="fl"><a href="/biz/manureDisposal" th:text="#{antiepidemicManage.manureHandle}">粪便无害化处理></a></li>
+			<li class="fl" th:text="#{dogManage.edit2}"></li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<form id="updateManureDisposal">
+			<div class="pdl50 pdr50">
+				<input id="id" name="id" th:value="${manureDisposal.id}" type="hidden">
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*标题</div>
+					<div class="mgl90">
+						<input id="title" name="title" type="text" th:value="${manureDisposal.title}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>-->
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.traceId2}">*溯源ID</div>
+					<div class="mgl90">
+						<input id="traceId" name="traceId" type="text" th:value="${manureDisposal.traceId}" onblur="checkDeviceNo()" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.handleWay2}">*处理方法</div>
+					<div class="mgl90">
+						<select id="processMode" name="processMode" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+						</select>
+						<!--<input id="processMode" name="processMode" type="text" th:value="${manureDisposal.processMode}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">-->
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.methodDescription}">方法说明</div>
+					<div class="mgl90">
+						<textarea id="methodDes" name="methodDes" th:text	="${manureDisposal.methodDes}" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" placeholder=""></textarea>
+					</div>
+				</div>
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*处理周期</div>
+					<div class="mgl90">
+						<input id="period" name="period" type="text" th:value="${manureDisposal.period}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.handleDate}">*处理时间</div>
+					<div class="mgl90">
+						<input id="dealTime" name="dealTime"  type="text" th:value="${#dates.format(manureDisposal.dealTime,'yyyy-MM-dd HH:mm:ss')}" class="ww92 h50 lh50 bore ras4 pdl30" readonly="readonly">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.handlePerson}">*处理人</div>
+					<div class="mgl90">
+						<!--<select id="operator" name="operator"  class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="users : ${userList}" th:value="${users.id}" th:text="${users.name}"  th:selected="${users.isCheck == 'checked'}"></option>
+						</select>-->
+						<input id="operator" name="operator" th:value="${manureDisposal.operator}" type="hidden">
+						<input type="text" th:value="${operatorName}" class="ww92 h50 lh50 bore ras4 pdl30" readonly="readonly">
+					</div>
+				</div>
+				
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+					<div class="mgl90 ww87 ">
+						<div class="pdt20 pdb20">
+							<input id="file-1" name="files"  type="file" multiple="multiple" class="file" >
+						</div>
+					</div>
+				</div>
+
+				<div class="ovh mgt10 ">
+					<div class="fl w70 cor3 h50 lh50 t-r">*视频</div>
+					<div class="mgl90 ww87">
+						<div class="file-loading" style="height: 100px">
+							<input name="videos" id="file-2" type="file" multiple class="file" >
+						</div>
+					</div>
+				</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.description}">描述</div>
+					<div class="mgl90">
+						<textarea id="description" name="description" th:text="${manureDisposal.description}" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" ></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button" onclick="updateManureDisposal()"  th:value="#{dogManage.save}">
+						<input class="a6 dinb bort hov8" type="button" onclick="javascript:window.history.back(-1);" th:value="#{dogManage.cancel}">
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+
+</div>
+<div th:include="include::footer"></div>
+<script src="/epmanagement/manureDisposalEdit.js"></script>
+<script src="/utils/MySelect.js"></script>
+<!--wrap End-->
+</body>
+</html>
+<script th:inline="javascript">
+    // let picUrlList = [[${picUrlList}]];
+    // let videoUrlList = [[${videoUrlList}]];
+    // initFileInput();
+    // initVideo();
+	let sv = [[${manureDisposal.processMode}]];
+  var   traceIdCantBeEmpty=[[#{antiepidemicManage.traceIdCantBeEmpty}]];
+  var   traceIdNotExit=[[#{antiepidemicManage.traceIdNotExit}]];
+    var sure5=[[#{dogManage.sure}]];
+    var operationFailure=[[#{operationFailure}]];
+    var unKnownError=[[#{antiepidemicManage.unKnownError}]];
+</script>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A10-防疫药品信息</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh" style="margin-left: -25px;">
+			<li class="fl"><a href="###">组织权限></a></li>
+			<li class="fl">用户管理</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+</div>
+<!--内容栏END-->
+
+<!--弹出-->
+<div class="T">
+	<div class="tan1">
+		<a href="###" id="close"><img src="images/48.png" alt=""></a>
+		<p class="h60 lh60 bgf1 fs16 cor0 fb pdl30">重置密码</p>
+		<div class="pdt20 pdl50 pdr50">
+			<form  id="resetPwdForm" action="#">
+				<input type="hidden" th:value="${user.userId}" name="userId" id="userId">
+				<div class="ovh mgt14">
+					<div class="w90 fl cor0 h50 lh50">新密码</div>
+					<div class="mgl90"><input type="passwd" class="db ww100 h50 lh50 pdl15 borf1"></div>
+				</div>
+				<div class="ovh mgt14">
+					<div class="w90 fl cor0 h50 lh50">确认密码</div>
+					<div class="mgl90"><input type="getPwdNew" class="db ww100 h50 lh50 pdl15 borf1"></div>
+				</div>
+				
+				<div class="ovh mgt75">
+					<div class="t-c">
+						<input class="a6 dinb bort hov8" type="button" value="重置密码">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$('#close').click(function(){
+		$('.T').hide();
+	});
+})	
+</script>		
+<!--弹出END-->	
+			
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+</html>
+<script src="/orgmanagement/resetPwd.js"></script>

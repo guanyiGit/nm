@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dogmanager.dao.TDogCancelMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TDogCancel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="operator" property="operator" jdbcType="INTEGER" />
+    <result column="reason" property="reason" jdbcType="INTEGER" />
+    <result column="device_deal_way" property="deviceDealWay" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, operator, reason, description, device_deal_way,trace_id, org_id, create_date, update_date
+  </sql>
+
+  <select id="findDogCancelList" resultType="com.dogmanager.VO.DogCanselVO" parameterType="string">
+    SELECT
+    mi.`thumbnail_url` smallUrl,mi.`url` bigUrl,dc.`trace_id` traceId,dc.id,dc.`description`, nr1.name reason,
+    nr2.name deviceDealWay,dc.`create_date` CanselDate,dow.name,dif.dog_name dogName,dif.breed,dow.card_num cardNum,
+    dow.phone_num phoneNum,dow.area_id town,dow.no,por.name porName,por.phone_num porPhoneNum,pc.name pcName,
+    drd.device_no deviceNo
+    FROM t_dog_cancel dc
+    LEFT JOIN t_dog_info dif
+    ON dc.trace_id=dif.trace_id
+    LEFT JOIN t_dog_owner dow
+    ON dif.`owner`=dow.`id`
+    LEFT JOIN t_media_ref mr
+    ON mr.`ref_id`=dc.`id` AND mr.`type`=2
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_protector por
+    ON dif.protector =por.id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id =pc.id
+    LEFT JOIN t_device_ref_dog drd
+    ON dc.trace_id=drd.trace_id
+    LEFT JOIN t_sys_dict sd
+    ON dc.reason=sd.value AND sd.type='dog_cancel_reason'
+    left join t_name_ref nr1 on nr1.resource_id = sd.name_id and nr1.type = #{langType}
+    LEFT JOIN t_sys_dict sd2
+    ON dc.device_deal_way=sd2.value AND sd2.type='device_deal_way'
+    left join t_name_ref nr2 on nr2.resource_id = sd2.name_id and nr2.type = #{langType}
+    <where>
+      <if test="string !=null and string !=''">
+        AND  (
+            dow.name like "%"#{string}"%" OR dc.trace_id = #{string} OR
+            drd.device_no = #{string} OR dow.card_num = #{string} OR
+            dow.phone_num = #{string}
+        )
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (dc.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="operator !=null and operator!=''">
+        AND dc.`operator`=#{operator}
+      </if>
+    </where>
+    GROUP BY dc.`id` ORDER BY dc.create_date desc
+  </select>
+
+  <select id="findDogCanselVOById" resultType="com.dogmanager.VO.DogCanselVO" parameterType="int">
+    SELECT
+    dc.`trace_id` traceId,dc.id,dc.`description`, sd.name reason,sd2.name deviceDealWay,dc.`create_date` CanselDate,
+    dow.name,dif.dog_name dogName,dif.breed,dow.card_num cardNum,dow.phone_num phoneNum,dow.area_id town,
+    dow.no,por.name porName,por.phone_num porPhoneNum,pc.name pcName,drd.device_no deviceNo
+    FROM t_dog_cancel dc
+    LEFT JOIN t_dog_info dif
+    ON dc.trace_id=dif.trace_id
+    LEFT JOIN t_dog_owner dow
+    ON dif.`owner`=dow.`id`
+    LEFT JOIN t_protector por
+    ON dif.protector =por.id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id =pc.id
+    LEFT JOIN t_device_ref_dog drd
+    ON dc.trace_id=drd.trace_id
+    LEFT JOIN t_sys_dict sd
+    ON dc.reason=sd.value AND sd.type='dog_cancel_reason'
+    LEFT JOIN t_sys_dict sd2
+    ON dc.device_deal_way=sd2.value AND sd2.type='device_deal_way'
+    WHERE dc.id=#{Id}
+  </select>
+
+  <select id="findDogCanselVOByIdI18N" resultType="com.dogmanager.VO.DogCanselVO" parameterType="map">
+    SELECT
+    dc.`trace_id` traceId,dc.id,dc.`description`, nr1.name reason,nr2.name deviceDealWay,dc.`create_date` CanselDate,
+    dow.name,dif.dog_name dogName,nr.name breed,dow.card_num cardNum,dow.phone_num phoneNum,dow.area_id town,
+    dow.no,por.name porName,por.phone_num porPhoneNum,pc.name pcName,drd.device_no deviceNo
+    FROM t_dog_cancel dc
+    LEFT JOIN t_dog_info dif
+    ON dc.trace_id=dif.trace_id
+    left join t_sys_dict dict on dict.value = dif.breed_id
+    left join t_name_ref nr on nr.resource_id = dict.name_id
+    LEFT JOIN t_dog_owner dow
+    ON dif.`owner`=dow.`id`
+    LEFT JOIN t_protector por
+    ON dif.protector =por.id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id =pc.id
+    LEFT JOIN t_device_ref_dog drd
+    ON dc.trace_id=drd.trace_id
+    LEFT JOIN t_sys_dict sd ON dc.reason=sd.value AND sd.type='dog_cancel_reason'
+    left join t_name_ref nr1  on nr1.resource_id = sd.name_id and nr1.type = #{langType}
+    LEFT JOIN t_sys_dict sd2 ON dc.device_deal_way=sd2.value AND sd2.type='device_deal_way'
+    left join t_name_ref nr2  on nr2.resource_id = sd2.name_id and nr2.type = #{langType}
+    WHERE dc.id=#{Id}
+    and dict.type = 'dog_breed'
+    and nr.type = #{langType}
+  </select>
+
+  
+  <select id="findDogIdByDeviceNo" parameterType="string" resultType="int">
+    SELECT
+    dog_id
+    FROM
+    t_device_ref_dog  drd
+    LEFT JOIN t_dog_info di
+    ON drd.`dog_id`=di.`id`
+    WHERE device_no=#{deviceNo} AND di.`status`=0
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dog_cancel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dog_cancel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.entities.TDogCancel" >
+    <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_dog_cancel (id, operator, reason,device_deal_way,
+      description, trace_id, org_id,
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{operator,jdbcType=INTEGER}, #{reason,jdbcType=INTEGER}, #{deviceDealWay,jdbcType=INTEGER},
+      #{description,jdbcType=VARCHAR}, #{traceId,jdbcType=VARCHAR}, #{orgId,jdbcType=INTEGER},
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.entities.TDogCancel" >
+    update t_dog_cancel
+    set
+      reason = #{reason,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<select id="findTSysDict" resultType="com.entities.TSysDict" parameterType="string">
+  SELECT sd.name,sd.value FROM t_sys_dict sd WHERE sd.type=#{type}
+</select>
+
+  <select id="findTSysDictI18N" resultType="com.entities.TSysDict" parameterType="map">
+  SELECT ref.name,sd.value FROM
+   t_sys_dict sd
+   left join t_name_ref  ref on ref.resource_id = sd.name_id
+  WHERE sd.type=#{type}
+  and ref.type = #{langType}
+</select>
+
+  <delete id="deleteDeviceRefDog" parameterType="string">
+    delete from t_device_ref_dog  where trace_id=#{traceId}
+  </delete>
+
+</mapper>

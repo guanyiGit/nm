@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.devicemanagement.dao.DeviceRecordDao">
+
+	<select id="get" resultType="map">
+		<include refid="base"></include>
+		where ref.id = #{value}
+		and  dev.org_id in
+		<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+			#{orgId}
+		</foreach>
+	</select>
+
+
+	<sql id="base">
+		select rec.id,dev.device_no deviceNo,rec.lng,rec.lat,rec.quantity,rec.upload_time uploadTime
+		 from t_device_record rec LEFT JOIN t_device_info dev
+		on dev.device_no = rec.device_no LEFT JOIN t_device_ref_dog ref
+		on ref.device_no = dev.device_no LEFT JOIN t_dog_info  dog
+		on dog.id = ref.dog_id LEFT JOIN t_fence_def fd
+		on dog.fence_id = fd.id LEFT JOIN t_fence_detail ft
+		on fd.id  = ft.fence_id
+		LEFT JOIN t_dog_owner owen on dog.`owner` = owen.id
+
+	</sql>
+
+
+	<!--实时定位sql查询-->
+	<select id="selectSiteByDeviceNo" resultType="map">
+		select record.lng,record.lat from t_device_record record LEFT JOIN t_device_info device
+		on record.device_no = device.id
+		where record.id = (
+			select MAX(rec.id) from t_device_record rec LEFT JOIN t_device_info dev
+			on rec.device_no = dev.device_no
+			where dev.org_id in
+			<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+				#{orgId}
+			</foreach>
+		and dev.device_no = #{deviceNo};
+		);
+
+	</select>
+
+	<!--活动轨迹sql查询-->
+	<select id="selectTrailByDeviceNoAndDate" resultType="map">
+			select record.lng,record.lat from t_device_record record LEFT JOIN t_device_info device
+		on record.device_no = device.id
+		where record.id = (
+			select MAX(rec.id) from t_device_record rec LEFT JOIN t_device_info dev
+			on rec.device_no = dev.device_no
+			<where>
+				<if test="orgIds !=null and orgIds.size()>0">
+					and dev.org_id  in
+					<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+						#{orgId}
+					</foreach>
+				</if>
+				and dev.device_no = #{deviceNo}
+				<if test="createDate != null and createDate != ''"> and record.create_date &lt; #{createDate} </if>
+			</where>
+		);
+
+	</select>
+	
+	
+	
+
+	<!--根据项圈编号查询-->
+	<select id="selectByDeviceNo" resultType="map">
+		<include refid="base"></include>
+		where dev.org_id in
+		<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+			#{orgId}
+		</foreach>
+		and dev.device_no = #{deviceNo};
+	</select>
+
+	<select id="list" resultType="map">
+		<include refid="base"></include>
+        <where>
+		  		  <!-- <if test="id != null and id != ''"> and id = #{id} </if>-->
+		  		  <!--<if test="lng != null and lng != ''"> and lng = #{lng} </if>-->
+		  		  <!--<if test="lat != null and lat != ''"> and lat = #{lat} </if>-->
+		  		  <!--<if test="quantity != null and quantity != ''"> and quantity = #{quantity} </if>-->
+
+			      <if test="type ==2 "> and dev.receiver = #{userId} </if>
+		  		  <if test="deviceIdOrDmname != null and deviceIdOrDmname != ''"> concat(owen.name,dev.device_no) = #{deviceIdOrDmname} </if>
+		  		  <if test="fenceDetailId != null and fenceDetailId != ''"> and ft.id= #{fenceDetailId} </if>
+			      <if test="orgIds !=null and orgIds.size()>0">
+						and dev.org_id  in
+						<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+							#{orgId}
+						</foreach>
+				  </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ref.id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*)
+		from t_device_record rec LEFT JOIN t_device_info dev
+		on dev.device_no = rec.device_no LEFT JOIN t_device_ref_dog ref
+		on ref.device_no = dev.device_no LEFT JOIN t_dog_info  dog
+		on dog.id = ref.dog_id LEFT JOIN t_fence_def fd
+		on dog.fence_id = fd.id LEFT JOIN t_fence_detail ft
+		on fd.id  = ft.fence_id
+		LEFT JOIN t_dog_owner owen on dog.`owner` = owen.id
+		 <where>
+			 	<if test="type ==2 "> and dev.receiver = #{userId} </if>
+				 <if test="dogMasterName != null and dogMasterName != ''"> and owen.name = #{dogMasterName} </if>
+				 <if test="deviceId != null and deviceId != ''"> and dev.device_no = #{deviceId} </if>
+			     <if test="fenceDetailId != null and fenceDetailId != ''"> and ft.id= #{fenceDetailId} </if>
+			 <if test="orgIds !=null and orgIds.size()>0">
+				 and dev.org_id  in
+				 <foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+					 #{orgId}
+				 </foreach>
+			 </if>
+		  		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  		  <!--<if test="lng != null and lng != ''"> and lng = #{lng} </if>-->
+		  		  <!--<if test="lat != null and lat != ''"> and lat = #{lat} </if>-->
+		  		  <!--<if test="quantity != null and quantity != ''"> and quantity = #{quantity} </if>-->
+		  		  <!--<if test="deviceId != null and deviceId != ''"> and device_no = #{deviceId} </if>-->
+		  		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  		  <!--<if test="dataTime != null and dataTime != ''"> and data_time = #{dataTime} </if>-->
+		  		  <!--<if test="uploadTime != null and uploadTime != ''"> and upload_time = #{uploadTime} </if>-->
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.DeviceRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into t_device_record
+		(
+			`lng`, 
+			`lat`, 
+			`quantity`, 
+			`device_no`, 
+			`create_date`, 
+			`data_time`,
+			'upload_time'
+		)
+		values
+		(
+			#{lng}, 
+			#{lat}, 
+			#{quantity}, 
+			#{deviceId}, 
+			#{createDate}, 
+			#{dataTime},
+			#{uploadTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.DeviceRecord">
+		update t_device_record 
+		<set>
+			<if test="lng != null">`lng` = #{lng}, </if>
+			<if test="lat != null">`lat` = #{lat}, </if>
+			<if test="quantity != null">`quantity` = #{quantity}, </if>
+			<if test="deviceId != null">`device_no` = #{deviceId}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="dataTime != null">`data_time` = #{dataTime}</if>
+			<if test="uploadTime != null and uploadTime != ''"> and upload_time = #{uploadTime} </if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_device_record where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_device_record where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 查看犬只轨迹 -->
+	<select id="getDogPath" resultType="com.entities.DeviceRecord">
+		SELECT lng,lat, create_date 
+			FROM t_device_record 
+		WHERE trace_id =#{traceId} 
+			AND DATE_FORMAT(create_date,'%Y-%m-%d')=#{selectedDate}  
+		ORDER BY create_date 
+	</select>
+
+	<select id="selectDogInfosByRange" resultType="com.posiition.VO.DogRecordInfo">
+		SELECT
+	tmp.traceId,
+	tmp.dogMasterName,
+	tmp.dogName,
+	tmp.lng,
+	tmp.lat,
+	MAX(tmp.createDate) dateTime
+FROM
+	(
+		SELECT
+			ref.trace_id traceId,
+			ow.`name` dogMasterName,
+			dog.dog_name dogName,
+			ref.lng,
+			ref.lat,
+			ref.create_date createDate
+		FROM
+			t_device_record ref
+		LEFT JOIN t_dog_info dog ON ref.trace_id = dog.trace_id
+		LEFT JOIN t_dog_owner ow ON ow.id = dog.`owner`
+		<where>
+			dog.`status`=0
+			<if test="query !=null and query != '' ">
+				and ref.create_date concat(dog.dog_name,ow.name) like '%'#{query}'%'
+			</if>
+			<!--<if test="dateTime !=null and dateTime != '' ">-->
+				<!--ref.create_date LIKE concat('%',#{dateTime},'%')-->
+			<!--</if>-->
+			<if test="orgIds !=null and orgIds.size()>0">
+				and dog.org_id  in
+				<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+					#{orgId}
+				</foreach>
+			</if>
+		</where>
+		ORDER BY
+			ref.create_date DESC
+	) tmp GROUP BY tmp.traceId;
+
+	</select>
+
+</mapper>

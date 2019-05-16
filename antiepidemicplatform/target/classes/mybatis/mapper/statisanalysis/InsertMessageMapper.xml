@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.InsertMessageDao">
+    <insert id="insertMessage" parameterType="com.statisanalysis.entity.Message" useGeneratedKeys="true" keyColumn="id" keyProperty="message.id">
+        INSERT INTO t_msg
+        (title,content,status,type,create_by,create_date)
+        VALUES
+        (#{message.title},#{message.content},#{message.status},#{message.type},#{message.createBy},#{message.createDate})
+    </insert>
+
+    <insert id="insertMsgRef" parameterType="java.util.List">
+        INSERT INTO t_user_ref_msg
+        (receiver,msg_id)
+        VALUES
+        <foreach collection="list" item="item" open="(" close=")" separator="," >
+            #{item.receiver},#{item.msgId}
+        </foreach>
+    </insert>
+</mapper>

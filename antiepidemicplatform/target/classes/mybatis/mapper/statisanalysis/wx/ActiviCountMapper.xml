@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.wx.dao.ActiviCountDao">
+    <select id="getActiviCount" parameterType="map" resultType="com.entities.ActivityInfoDO">
+        SELECT
+            activity_type,org_id,operator_id,activity_time
+        FROM
+            t_activity_info
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( activity_time, '%Y-%m' ) = #{searchMonth} </if>
+            <if test="orgList != null and orgList.size > 0">
+                AND org_id IN
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

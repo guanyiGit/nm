@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<input id="deptId" name="deptId" th:value="${sysDept.deptId}"
+								class="hidden">
+							<div class="form-group">
+								<label class="col-sm-3 control-label " th:text="#{orgManage.pOrg}">上级部门：</label>
+								<div class="col-sm-8">
+								<input th:value="${parentDeptName}"
+										class="form-control" type="text" readonly="true" />
+									<input class="form-control hidden" type="text" id="parentId" name="parentId" th:value="${sysDept.parentId}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"th:text="#{orgManage.name}">部门名称：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" th:value="${sysDept.name}"
+										class="form-control" type="text">
+								</div>
+							</div>
+
+
+							<div class="ovh mgt10">
+								<div class="fl w70 cor3 h50 lh50 t-r" style="margin-left: 227px"><b th:text="#{orgManage.orgType}">部门类型</b></div>
+								<div class="mgl90 ovh pdt17">
+									<ul class="fl ovh" style="margin-left: 45px">
+										<li  id="sheng" class="fl mgr50">
+											<label class="lab1" >
+												<input class="dinb" name="type" 	th:field="*{sysDept.type}" value="0" type="radio"/>
+												<i style="margin-right: 10px;" class="dinb" ></i><span th:text="#{orgManage.provinceLevel}"></span>
+											</label>
+										</li>
+										<li id="zhou" class="fl mgr50">
+											<label class="lab1" >
+												<input class="dinb" name="type" th:field="*{sysDept.type}" value="1" type="radio"/>
+												<i style="margin-right: 10px;" class="dinb" ></i><span th:text="#{orgManage.cityLevel}"></span>
+											</label>
+										</li>
+										<li id="xian" class="fl mgr50">
+											<label class="lab1" >
+												<input class="dinb" name="type" th:field="*{sysDept.type}" value="2" type="radio"/>
+												<i style="margin-right: 10px;" class="dinb" ></i><span th:text="#{orgManage.countyLevel}"></span>
+											</label>
+										</li>
+										<li id="xiang" class="fl mgr50">
+											<label class="lab1" >
+												<input class="dinb" name="type" th:field="*{sysDept.type}" value="3" type="radio"/>
+												<i style="margin-right: 10px;" class="dinb" ></i><span th:text="#{orgManage.townLevel}"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label" th:text="#{userManage.area}">所属区域：</label>
+								<div class="col-sm-8">
+									<!--<input id="areaSelect"  select="selected" th:value="${sysDept.areaId}" name="areaId" class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">-->
+									<input id="areaSelect"  select="selected" name="areaId" class="form-control" type="text"  th:value="${sysDept.areaId}">
+								</div>
+							</div>
+
+
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-3 control-label">排序：</label>-->
+								<!--<div class="col-sm-8">-->
+									<!--<input id="orderNum" name="orderNum" th:value="${sysDept.orderNum}"-->
+										<!--class="form-control" type="text">-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-3 control-label">状态：</label>-->
+								<!--<div class="col-sm-8">-->
+									<!--<input id="delFlag" name="delFlag" th:value="${sysDept.delFlag}"-->
+										<!--class="form-control" type="text">-->
+								<!--</div>-->
+							<!--</div>-->
+
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary" th:text="#{deviceData.submit}">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/orgmanagement/orgEdit.js">
+	</script>
+</body>
+</html>
+<script th:inline="javascript">
+    var type = [[${sysDept.type}]];
+	var orgPid = [[${user.pid}]];
+</script>

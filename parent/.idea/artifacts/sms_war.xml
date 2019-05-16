@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sms:war">
+    <output-path>$PROJECT_DIR$/../sms/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>sms</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="sms-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="sms:war exploded" />
+    </root>
+  </artifact>
+</component>

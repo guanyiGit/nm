@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include="include :: header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Title</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<script src="../static/js/vue.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap pdt107">
+
+
+	<!--头部-->
+	<div class="header fixed z900 ww100 h107 left0 top0 bgw pdl50 pdr35 ovh">
+		<div class="h-l fl pdt20 w390 ovh">
+			<a href="###" class="db fl mgr15"><img src="images/1.png" alt="网站标识"></a>
+			<p class="cor006cb5 fs18 h51 lh51" th:text="${user.deptName}"><span class="fb"></span></p>
+		</div>
+		<div class="h-r fr mgt31 h30">
+			<a href="/biz/homePage/myMessage" target="menuFrame" class="db fl hov8 h30 lh30 rel"><img src="images/3.png" alt=""><span  class="sp22" th:if="${total} gt 0" th:text="${total}"></span></a>
+			<a href="###" class="db fl hov8"><img src="images/4.png" alt=""><span class="fs14 cor595959 mgl6" th:text="${user.username}"></span></a>
+			<a  onclick="personal()" class="db fl hov8"><img src="images/5.png" alt=""></a>
+			<a href="/logout" class="db fl hov8"><img src="images/5-2.png" alt=""></a>
+		</div>
+		<!--class="dinb fs16 cor6" th:onclick="'javascript:loadChildTrees('+${menu.attributes.url}+','+${menu.id}+')' "-->
+		<div id="mainTree" class="h-m ovh t-c h22 mgt35" >
+				<!--<a  @click="loadChildTrees(menu.attributes.url)" th:each="menu : ${menus}"    th:class="${menu.attributes.icon}" th:text="${menu.text}">-->
+				<!--</a>-->
+			<a v-for="(tree,index) in mainTrees" v-on:click="loadChildTrees(tree.attributes.url,tree.id,tree.text)" class="dinb fs16 cor6" :key="index">
+				<span></span>{{tree.text}}
+			</a>
+		</div>
+	</div>
+	<!--头部END-->
+
+	<!--左侧导航-->
+	<div class="mannav fixed z1000 w260 left0 top92 bg002950 pdt55">
+		<div class="pdl80">
+			<p class="fs24 cor006cb5">犬只管理</p>
+			<p class="fs12 cor006cb5 mgt10">dog management</p>
+		</div>
+		<ul  id="leftTree" class="ul01 mgt80">
+			<li v-for="(tree ,index) in  leftTrees" class="active"  :key="index">
+				<a  :href="tree.attributes.url" target="menuFrame" :id="tree.id" class="db corw pdl107 pc1" :text="tree.text">
+					{{tree.text}}<img src="images/2.png" alt="">
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!--左侧导航END-->
+
+	<!--内容栏-->
+	<div class="section mgl260">
+		<iframe id="menuFrame" name="menuFrame" th:src="@{/biz/homePage}" scrolling="auto"  frameborder="0">
+
+		</iframe>
+	</div>
+	<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<div th:include="include::form"></div>
+</body>
+<script>
+     function personal () {
+        layer.open({
+            type: 2,
+            title: '修改密码',
+            maxmin: true,
+            shadeClose: false,
+            area: ['800px', '600px'],
+            content: '/biz/userInfo/personal'
+        });
+    }
+</script>
+</html>
+<script src="/js/index.js"></script>

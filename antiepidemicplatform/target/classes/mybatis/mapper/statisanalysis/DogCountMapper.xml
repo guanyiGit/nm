@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.DogCountDao">
+	<select id="countDogs" resultType="java.lang.Integer">
+		select count(1) from t_dog_info where status=0;
+	</select>
+	<select id="getDogBreed" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		SELECT
+			nr.name,count( dict.name_id ) value
+		FROM
+			t_dog_info dog
+		left join t_protector protector on protector.id = dog.protector
+		left join t_sys_dict dict on dict.value = dog.breed_id and dict.type = 'dog_breed'
+		left join t_name_ref nr on nr.resource_id = dict.name_id and nr.type = #{langType}
+		<where>
+			status = 0 and dog.breed_id != ''
+			<if test="userId != null and userId != null">
+				and protector.user_id = #{userId}
+			</if>
+			<if test="lists != null and lists.size > 0">
+			and dog.org_id in
+			<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			</if>
+		</where>
+		GROUP BY dict.name_id
+		ORDER BY value DESC;
+	</select>
+	<select id="getDogSex" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		SELECT
+		dog.sex name,count( dog.sex ) value
+		FROM
+			t_dog_info dog
+		left join t_protector protector on protector.id = dog.protector
+		<where>
+			dog.status = 0 and dog.sex in (0,1)
+			<if test="userId != null and userId != null">
+				and protector.user_id = #{userId}
+			</if>
+			<if test="lists != null and lists.size != ''">
+				and dog.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+		GROUP BY dog.sex
+	</select>
+	<select id="getDogAge" parameterType="map" resultType="java.lang.Double">
+		SELECT dog.age from t_dog_info dog
+		left join t_protector protector on protector.id = dog.protector
+		<where>
+			dog.status = 0
+			<if test="userId != null and userId != null">
+				and protector.user_id = #{userId}
+			</if>
+			<if test="lists != null and lists.size != ''">
+				and dog.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	<!--县级统计犬只区域分布-->
+	<select id="getDogAreaInfo1" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		select area.name name,count(*) value from t_dog_info dog
+		left join t_org_info org on org.id = dog.org_id
+		left join t_area_info area on area.id = org.area_id
+		where dog.status = 0 and dog.org_id in (
+			select org.id from t_org_info org
+			where org.pid = #{orgId}
+		)
+		group by name
+	</select>
+	<select id="getDogAreaInfo2" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		select area.name name,count(*) value from t_dog_info dog
+		left join t_org_info org on org.id = dog.org_id
+		left join t_org_info org2 on org.pid = org2.id
+		left join t_area_info area on area.id = org2.area_id
+		where dog.status =0 and  dog.org_id in
+		<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		group by name
+	</select>
+
+</mapper>

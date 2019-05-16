@@ -18,15 +18,15 @@ new Vue({
     methods:{
     	submit: function() {
     		if(this.drug.drugName==null ||this.drug.drugName.trim()==''){
-    			layer.msg("请输入药品名!");
+    			layer.msg(qsrypm);
     			$("#drug").focus();
     			return false;
     		}
     		axios.post('/biz/drug/addDrug',this.drug)
                 .then(function (res) {
                     if(res.status==200){
-                    	layer.confirm('添加成功!', {
-                      btn : [ '确定' ]
+                    	layer.confirm(addSuccess, {
+                      btn : [ determine ]
                        }, function() {
                        
                        window.location="/biz/drug/antiepidemic_Drug_List";
@@ -34,8 +34,8 @@ new Vue({
              
                            
                     }else {
-                    	layer.confirm('添加失败!', {
-                      btn : [ '确定' ]
+                    	layer.confirm(addFailure, {
+                      btn : [ determine ]
                        }, function() {
                        
                        window.location="/biz/drug/antiepidemic_Drug_List";
@@ -44,7 +44,7 @@ new Vue({
                 	
                 })
                 .catch(function (error) {
-                	layer.alert("未知错误,请联系管理员!");
+                	layer.alert(wzcwqlxgly);
                 });
     		/*$.ajax({
     	        type: "post",

@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head  th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A28-项圈管理(未激活)</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<th:block th:if="${type==0}">
+				<li class="fl"><a href="/biz/antiepidemic/springDefendInfo" th:text="#{dogManage.springAntiepidemic}">春防信息></a></li>
+			</th:block>
+			<th:block th:if="${type==1}">
+				<li class="fl"><a href="/biz/antiepidemic/autumnDefendInfo" th:text="#{dogManage.autmnAntiepidemic}">秋防信息></a></li>
+			</th:block>
+			<th:block th:if="${type==2}">
+				<li class="fl"><a href="/biz/antiepidemic/monthDefendInfo" th:text="#{dogManage.monthAntiepidemic}">月月投药信息></a></li>
+			</th:block>
+			<li class="fl"th:text="#{dogManage.viewDetail2}">防疫详情</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<p class="fs16 cor0"th:text="#{dogManage.viewDetail}">查看详情<a href="javascript:window.history.back(-1);" class="dinb fr hov8"><img src="/images/42.png" alt=""></a></p>
+		
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table31">
+				<tbody>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.traceId}">溯源ID</td>
+						<td th:text="${antiepidemic.traceId}" class="cor9 ww30 h54"></td>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.deviceNo}">设备编号</td>
+						<td th:text="${antiepidemic.deviceNo}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{antiepidemicManage.protector}">防疫员</td>
+						<td th:text="${antiepidemic.name}" class="cor9 ww30 h54"></td>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.protectorPhone}">防疫员电话</td>
+						<td th:text="${antiepidemic.proPhoneNum}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{antiepidemicManage.antiepidemicDrug}">防疫药品</td>
+						<td th:text="${antiepidemic.drugName}" class="cor9 ww30 h54">12345632146</td>
+						<td class="cor0 ww20 h54"th:text="#{antiepidemicManage.antiepidemicTime}">防疫时间</td>
+						<td th:text="${#dates.format(antiepidemic.date,'yyyy-MM-dd HH:mm	')}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{antiepidemicManage.antiepidemicPeriod}">防疫周期(月)</td>
+						<td th:text="${antiepidemic.period}" class="cor9 ww30 h54"></td>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.ownerName}">犬主</td>
+						<td th:text="${antiepidemic.ownerName}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.phone}">犬主电话</td>
+						<td th:text="${antiepidemic.phoneNum}" class="cor9 ww30 h54"></td>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.ID}">犬主身份证</td>
+						<td th:text="${antiepidemic.cardNum}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.town}">所属乡镇</td>
+						<td th:text="${antiepidemic.town}" class="cor9 ww30 h54"></td>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.address}">详细地址</td>
+						<td th:text="${antiepidemic.pcName==null?'':antiepidemic.pcName}+${antiepidemic.no==null?'':antiepidemic.no}" class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54"th:text="#{dogManage.description}">描述</td>
+						<td th:text="${antiepidemic.description}" style="word-break: break-all;"  class="cor9 ww30"></td>
+						<td class="cor0 ww20 h54"></td>
+						<td class="cor9 ww30 h54"></td>
+					</tr>
+					
+					<tr>
+						<td class="cor0 ww20"th:text="#{dogManage.dogPhoto}">照片</td>
+						<td class="cor9 ww30 pdt35 pdb35">
+							<span th:each="picUrl:${picList}">
+								<img th:src="${picUrl.thumbnail_url}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td class="cor0 ww20"th:text="#{antiepidemicManage.video}">视频</td>
+						<td class="cor9 ww30">
+							<span th:each="videoUrl:${VideoList}">
+								<video id="video1" th:src="${videoUrl.url}"  controls="controls"></video>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+
+</html>
+

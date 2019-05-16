@@ -9,7 +9,7 @@ $(function () {
 
 function updateDrug(form) {
 	if(form.drugName.value==''){
-		layer.msg("请输入药品名!");
+		layer.msg(qsrypm);
 		form.drugName.focus();
 		return false;
 	}
@@ -21,8 +21,8 @@ function updateDrug(form) {
         dataType: "json",
         success: function (data) {
         	if(data.msg=="0"){
-        		layer.confirm('修改成功!', {
-                    btn : [ '确定' ]
+        		layer.confirm(updateSuccess, {
+                    btn : [ determine ]
                      }, function() {
                      
                      window.location="/biz/drug/antiepidemic_Drug_List";
@@ -34,7 +34,7 @@ function updateDrug(form) {
         	
         },
         error:function (error) {
-        	layer.alert("未知错误,请联系管理员!");
+        	layer.alert(wzcwqlxgly);
         }
     });
 

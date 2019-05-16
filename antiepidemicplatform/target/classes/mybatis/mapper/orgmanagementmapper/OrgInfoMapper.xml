@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.orgmanagement.dao.OrgInfoDao">
+
+	<resultMap id="BaseResultMap" type="com.entities.OrgInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="depart_name" property="departName" jdbcType="VARCHAR" />
+    <result column="platform_name" property="platformName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+	<!--<select id="get" resultType="map">-->
+ 		<!--select `id`,`pid`,`type`,`depart_name`,`platform_name`,`area_id`,`create_date`,`update_date` from t_org_info-->
+
+		<!--<include refid="base"></include>-->
+		<!--where org.id= #{value}-->
+
+	<!--</select>-->
+
+	<!--<sql id="base">-->
+			<!--select org.id,org.depart_name orgName,area.id areaId-->
+			<!--from t_org_info org LEFT JOIN t_area_info area-->
+			<!--on org.area_id = area.id-->
+	<!--</sql>-->
+
+	<!--&lt;!&ndash;根据组织名称 查询&ndash;&gt;-->
+
+	<!--<select id="selectByOrgName" resultType="map">-->
+		<!--<include refid="base"></include>-->
+		<!--where org.depart_name = #{departName}-->
+	<!--</select>-->
+
+	<!--<select id="list" resultType="map">-->
+		<!--<include refid="base"></include>-->
+        <!--<where>-->
+		  		  <!--<if test="id != null and id != ''"> and org.id = #{id} </if>-->
+		  		  <!--<if test="pid != null and pid != ''"> and org.pid = #{pid} </if>-->
+		  		  <!--<if test="type != null and type != ''"> and org.type = #{type} </if>-->
+		  		  <!--<if test="departName != null and departName != ''"> and org.depart_name like CONCAT("%",#{departName},"%") </if>-->
+		  		  <!--<if test="platformName != null and platformName != ''"> and org.platform_name = #{platformName} </if>-->
+		  		  <!--<if test="areaId != null and areaId != ''"> and org.area_id = #{areaId} </if>-->
+		  		  <!--<if test="createDate != null and createDate != ''"> and org.create_date = #{createDate} </if>-->
+		  		  <!--<if test="updateDate != null and updateDate != ''"> and org.update_date = #{updateDate} </if>-->
+		  		<!--</where>-->
+        <!--<choose>-->
+            <!--<when test="sort != null and sort.trim() != ''">-->
+                <!--order by ${sort} ${order}-->
+            <!--</when>-->
+			<!--<otherwise>-->
+                <!--order by org.id desc-->
+			<!--</otherwise>-->
+        <!--</choose>-->
+		<!--<if test="offset != null and limit != null">-->
+			<!--limit #{offset}, #{limit}-->
+		<!--</if>-->
+	<!--</select>-->
+	<!---->
+ 	<!--<select id="count" resultType="int">-->
+		<!--select count(*)-->
+		<!--from t_org_info org LEFT JOIN t_area_info area-->
+		<!--on org.area_id = area.id-->
+		 <!--<where>-->
+			 <!--<if test="id != null and id != ''"> and org.id = #{id} </if>-->
+			 <!--<if test="pid != null and pid != ''"> and org.pid = #{pid} </if>-->
+			 <!--<if test="type != null and type != ''"> and org.type = #{type} </if>-->
+			 <!--<if test="departName != null and departName != ''"> and org.depart_name like CONCAT("%",#{departName},"%") </if>-->
+			 <!--<if test="platformName != null and platformName != ''"> and org.platform_name = #{platformName} </if>-->
+			 <!--<if test="areaId != null and areaId != ''"> and org.area_id = #{areaId} </if>-->
+			 <!--<if test="createDate != null and createDate != ''"> and org.create_date = #{createDate} </if>-->
+			 <!--<if test="updateDate != null and updateDate != ''"> and org.update_date = #{updateDate} </if>-->
+		 <!--</where>-->
+	<!--</select>-->
+	 <!---->
+	<!--<insert id="save" parameterType="com.entities.OrgInfo" useGeneratedKeys="true" keyProperty="id">-->
+		<!--insert into t_org_info-->
+		<!--(-->
+			<!--`pid`, -->
+			<!--`type`, -->
+			<!--`depart_name`, -->
+			<!--`platform_name`, -->
+			<!--`area_id`, -->
+			<!--`create_date`, -->
+			<!--`update_date`-->
+		<!--)-->
+		<!--values-->
+		<!--(-->
+			<!--#{pid}, -->
+			<!--#{type}, -->
+			<!--#{departName}, -->
+			<!--#{platformName}, -->
+			<!--#{areaId}, -->
+			<!--#{createDate}, -->
+			<!--#{updateDate}-->
+		<!--)-->
+	<!--</insert>-->
+	 <!---->
+	<!--<update id="update" parameterType="com.entities.OrgInfo">-->
+		<!--update t_org_info -->
+		<!--<set>-->
+			<!--<if test="pid != null">`pid` = #{pid}, </if>-->
+			<!--<if test="type != null">`type` = #{type}, </if>-->
+			<!--<if test="departName != null">`depart_name` = #{departName}, </if>-->
+			<!--<if test="platformName != null">`platform_name` = #{platformName}, </if>-->
+			<!--<if test="areaId != null">`area_id` = #{areaId}, </if>-->
+			<!--<if test="createDate != null">`create_date` = #{createDate}, </if>-->
+			<!--<if test="updateDate != null">`update_date` = #{updateDate}</if>-->
+		<!--</set>-->
+		<!--where id = #{id}-->
+	<!--</update>-->
+	<!---->
+	<!--<delete id="remove">-->
+		<!--delete from t_org_info where id = #{value}-->
+	<!--</delete>-->
+	<!---->
+	<!--<delete id="batchRemove">-->
+		<!--delete from t_org_info where id in -->
+		<!--<foreach item="id" collection="array" open="(" separator="," close=")">-->
+			<!--#{id}-->
+		<!--</foreach>-->
+	<!--</delete>-->
+
+	<!--&lt;!&ndash; 查找所有组织 &ndash;&gt;-->
+	<select id="orgList" resultMap="BaseResultMap">
+		select * from t_org_info
+	</select>
+
+	<select id="get" resultType="com.orgmanagement.domain.DeptDO">
+		select
+		`id` dept_id,`pid` parent_id,`depart_name` name,`order_num`,`del_flag`,area_id,type  from t_org_info
+		where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.orgmanagement.domain.DeptDO">
+		select  `id` dept_id,`pid` parent_id,`depart_name` name,`order_num`,`del_flag`,area_id,type from t_org_info
+		<where>
+			<if test="deptId != null and deptId != ''"> and id = #{deptId} </if>
+			<if test="parentId != null and parentId != ''"> and pid = #{parentId} </if>
+			<if test="name != null and name != ''"> and depart_name = #{name} </if>
+			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+
+			<!--<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>-->
+			<!--<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>-->
+			<!--<if test="name != null and name != ''"> and name = #{name} </if>-->
+			<!--<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>-->
+			<!--<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>-->
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_org_info
+		<where>
+			<if test="deptId != null and deptId != ''"> and id = #{deptId} </if>
+			<if test="parentId != null and parentId != ''"> and pid = #{parentId} </if>
+			<if test="name != null and name != ''"> and depart_name = #{name} </if>
+			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+			<if test="areaId != null and areaId != ''"> and area_id = #{areaId} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+
+
+			<!--<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>-->
+			<!--<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>-->
+			<!--<if test="name != null and name != ''"> and name = #{name} </if>-->
+			<!--<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>-->
+			<!--<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>-->
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.orgmanagement.domain.DeptDO"
+			useGeneratedKeys="true" keyProperty="deptId">
+		insert into t_org_info
+		(
+		`pid`,
+		`depart_name`,
+		`order_num`,
+		`del_flag`,
+		area_id,
+		type
+		)
+		values
+		(
+		#{parentId},
+		#{name},
+		#{orderNum},
+		#{delFlag},
+		#{areaId},
+		#{type}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.orgmanagement.domain.DeptDO">
+		update t_org_info
+		<set>
+			<if test="parentId != null">`pid` = #{parentId}, </if>
+			<if test="name != null">`depart_name` = #{name}, </if>
+			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
+			<if test="delFlag != null">`del_flag` = #{delFlag},</if>
+			<if test="areaId != null">`area_id` = #{areaId},</if>
+			<if test="type != null">`type` = #{type}</if>
+		</set>
+		where id = #{deptId}
+	</update>
+
+	<delete id="remove">
+		delete from t_org_info where id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from t_org_info where dept_id in
+		<foreach item="deptId" collection="array" open="(" separator=","
+				 close=")">
+			#{deptId}
+		</foreach>
+	</delete>
+
+	<select id="listParentDept" resultType="long">
+		select DISTINCT pid from t_org_info
+	</select>
+
+	<select id="getDeptUserNumber" resultType="int">
+		select count(*) from t_user_info inf where inf.org_id = #{value}
+	</select>
+	
+	<select id="initOrgSelect" resultType="com.entities.OrgInfo">
+		select  * from t_org_info
+	</select>
+
+	<select id="initOrgSelect2" resultType="com.entities.OrgInfo">
+		SELECT
+		  oi.*,
+		  ai.`name` areaName
+		FROM
+		  t_org_info oi
+		  LEFT JOIN t_area_info ai
+    	  ON oi.`area_id`=ai.`id`
+	</select>
+
+	<select id="initOrgSelect4" resultType="com.entities.OrgInfo">
+		select * from t_org_info org
+		where org.pid = #{value}
+	</select>
+
+</mapper>

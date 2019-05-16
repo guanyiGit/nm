@@ -58,32 +58,32 @@ function load() {
                 columns : [
                     {
                         field : 'drugName',
-                        title : '名称',
+                        title : namee,
                         align: 'center'
                     },
                     {
                         field : 'period',
-                        title : '使用周期',
+                        title : useCycle,
                         width : '100px',
                         align: 'center'
                     },
                     {
                         field : 'usageMode',
-                        title : '使用方式',
+                        title : use,
                         align: 'center'
                     },
                     {
                         field : 'purposeOfUse',
-                        title : '使用目的',
+                        title : purpose,
                         align: 'center'
                     },
                     {
                         field : 'drugComposition',
-                        title : '药品成分',
+                        title : drugComposition,
                         align: 'center'
                     },
                     {
-                        title : '操作',
+                        title : operation,
                         field : 'id',
                         align : 'center',
                         formatter : function(value, row, index) {
@@ -92,10 +92,10 @@ function load() {
                             + '\')"><i class="fa"></i>查看</a> ';*/
                          var e = '<a class="btn btn-info btn-sm '+s_edit_h+'" href="#" mce_href="#" title="修改" onclick="edit(\''
                              + row.id
-                             + '\')"><i class="fa"></i>修改</a> ';
+                             + '\')"><i class="fa"></i>'+updatee+'</a> ';
                          var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
                              + row.id
-                             + '\')"><i class="fa"></i>删除</a> ';
+                             + '\')"><i class="fa"></i>'+deletee+'</a> ';
                          return e + d;
                         }
                     } ]
@@ -112,7 +112,7 @@ function reLoad() {
 function check(id) {
     layer.open({
         type : 2,
-        title : '查看',
+        title : checkk,
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
@@ -131,8 +131,8 @@ function check(id) {
 //     });
  }
  function remove(id) {
-     layer.confirm('确定要删除选中的记录？', {
-         btn : [ '确定', '取消' ]
+     layer.confirm(sureDeleteSelectedRecord, {
+         btn : [ determine, cancel ]
      }, function() {
          $.ajax({
              url : prefix + "/deleteDrug",
@@ -142,10 +142,10 @@ function check(id) {
              },
              success : function(r) {
                  if (r.code == 0) {
-                     layer.msg(r.msg);
+                     layer.msg(operationSuccess);
                      reLoad();
                  } else {
-                     layer.msg(r.msg);
+                     layer.msg(operationFailure);
                  }
              }
          });

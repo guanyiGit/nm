@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.ComprehensiveReportDao">
+    <select id="getMonth" parameterType="map" resultType="map">
+        select distinct(date_format(antiepidemic_date, '%Y-%m')) perMonth from antiepidemic
+        where antiepidemic_date like CONCAT(#{year},'%')
+        ORDER BY antiepidemic_date desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+    <select id="getMonthTotal" parameterType="map" resultType="java.lang.Integer">
+        select count(distinct(date_format(antiepidemic_date, '%Y-%m'))) from antiepidemic
+        where antiepidemic_date like CONCAT(#{year},'%')
+    </select>
+    <select id="getCounties" parameterType="map" resultType="map">
+        select area.id,area.name from t_area_info area
+        where area.pid =
+        (
+        select area_id from t_org_info org
+        where org.id = #{orgId}
+        )
+    </select>
+    <select id="getCountiesInfo" parameterType="java.lang.Integer" resultType="map">
+        select org.id,org.area_id areaId,area.name
+        from t_org_info org
+        left join t_area_info area on area.id = org.area_id
+        where org.pid = #{orgId}
+    </select>
+    <select id="getTownId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select org.id
+        from t_org_info org
+        where org.pid = #{orgId}
+    </select>
+    <select id="getDogsByTownId" parameterType="java.lang.Integer" resultType="com.entities.TDogInfo">
+        select * from t_dog_info dog
+        where dog.org_id in (
+        select id from t_org_info org
+        where org.pid = #{orgId}
+        )
+    </select>
+    <select id="getDogsByAreaId" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        SELECT
+        dog.create_date,
+        corpse.deal_time
+        FROM
+        t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref ON ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse ON corpse.trace_id = dog.trace_id
+        WHERE
+        dog.create_date <![CDATA[ < ]]> #{nextMonth}
+        AND dog.org_id IN (
+        SELECT
+        org2.id
+        FROM
+        t_org_info org2
+        WHERE
+        org2.pid IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+        )
+    </select>
+
+    <select id="getStrayDog" parameterType="map" resultType="java.util.Date">
+        SELECT
+            dog.deal_time
+        FROM
+            t_stray_dog dog
+        WHERE
+            dog.deal_time LIKE concat(#{year},'%')
+            AND dog.org_id IN (
+        SELECT
+            org2.id
+        FROM
+            t_org_info org2
+        WHERE
+            org2.pid IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+            )
+    </select>
+
+    <select id="getFenMount" parameterType="map" resultType="map">
+        SELECT
+            sum( antiegen.test_amount ) jianNum,
+            sum( antiegen.positive_amount ) yangNum
+        FROM
+            `t_manure_antigen` antiegen
+        <where>
+            antiegen.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+            <if test="year != null"> and antiegen.test_date LIKE concat( #{year}, '%' )</if>
+            <if test="perMonth != null"> and antiegen.test_date LIKE concat( #{perMonth}, '%' )</if>
+        </where>
+    </select>
+
+    <select id="getPouMount" parameterType="map" resultType="map">
+        SELECT
+            sum( anatomy.test_amount ) jianNum,
+            sum( anatomy.positive_amount ) yangNum
+        FROM
+            `t_dog_anatomy` anatomy
+        WHERE
+            anatomy.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = 33 )
+            <if test="year != null"> and anatomy.test_date LIKE concat( #{year}, '%' )</if>
+            <if test="perMonth != null"> and anatomy.test_date LIKE concat( #{perMonth}, '%' )</if>
+    </select>
+</mapper>

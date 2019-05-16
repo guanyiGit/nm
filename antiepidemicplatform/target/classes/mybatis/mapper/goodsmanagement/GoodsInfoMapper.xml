@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goodsmanagement.dao.GoodsInfoDao">
+
+	<!--<select id="get" resultType="com.goodsmanagement.vo.GoodsInfoVO">
+			SELECT
+				goods.`id`,
+				goods.`goods_type`,
+				goods.`goods_name`,
+				goods.`goods_amount`,
+				goods.`distributor_org_id`,
+				goods.`distribute_date`,
+				goods.`receive_org`,
+				goods.`receiver`,
+				goods.`create_date`,
+				goods.`update_date`,
+				goods.`operator_id`,
+				goods.`org_receiver_name`,
+				goods.`remark`,
+				u.NAME receiverName,
+				org.depart_name orgName,
+				org2.depart_name distributorName,
+			  	dict.name goodsTypeName
+			FROM
+				t_goods_info goods
+				LEFT JOIN t_user_info u ON u.id = goods.receiver
+				LEFT JOIN t_org_info org ON org.id = goods.receive_org
+				LEFT JOIN t_org_info org2 ON org2.id = goods.distributor_org_id
+				LEFT JOIN t_sys_dict dict ON dict.value = goods.goods_type AND dict.type = 'goods_type'
+			WHERE
+				goods.id = #{value}
+	</select>-->
+	<select id="get" resultType="com.goodsmanagement.vo.GoodsInfoVO">
+			SELECT
+				goods.`id`,
+				goods.`goods_type`,
+				goods.`goods_name`,
+				goods.`goods_amount`,
+				goods.`distributor_org_id`,
+				goods.`distribute_date`,
+				goods.`receive_org`,
+				goods.`receiver`,
+				goods.`create_date`,
+				goods.`update_date`,
+				goods.`operator_id`,
+				goods.`org_receiver_name`,
+				goods.`remark`,
+				u.NAME receiverName,
+				org.depart_name orgName,
+				org2.depart_name distributorName,
+			  	tnr.name goodsTypeName
+			FROM
+				t_goods_info goods
+				LEFT JOIN t_user_info u ON u.id = goods.receiver
+				LEFT JOIN t_org_info org ON org.id = goods.receive_org
+				LEFT JOIN t_org_info org2 ON org2.id = goods.distributor_org_id
+				LEFT JOIN t_sys_dict dict ON dict.value = goods.goods_type AND dict.type = 'goods_type'
+				LEFT JOIN t_name_ref tnr ON tnr.resource_id=dict.name_id AND tnr.type=#{type}
+			WHERE
+				goods.id = #{id}
+	</select>
+
+	<!--<select id="list" resultType="com.goodsmanagement.vo.GoodsInfoVO">-->
+		<!--select goods.`id`,goods.`goods_type`,goods.`goods_name`,goods.`goods_amount`,-->
+				  <!--goods.`distributor_org_id`,goods.`distribute_date`,goods.`receive_org`,goods.`receiver`,-->
+					<!--goods.`create_date`,goods.`update_date`,goods.`operator_id`,goods.org_receiver_name,-->
+						<!--dict.name goodsTypeName,org.depart_name distributorName,org2.depart_name orgName,pro.name receiverName-->
+		<!--from t_goods_info goods-->
+		<!--left join t_sys_dict dict on dict.type='goods_type' and dict.value = goods.goods_type-->
+		<!--left join t_org_info org on org.id = goods.distributor_org_id-->
+		<!--left join t_org_info org2 on org2.id = goods.receive_org-->
+		<!--left join t_protector pro on pro.user_id = goods.receiver-->
+		<!--<where>-->
+		  <!--&lt;!&ndash;<if test="id != null and id != ''"> and id = #{id} </if>&ndash;&gt;-->
+		  <!--&lt;!&ndash;<if test="goodsType != null and goodsType != ''"> and goods_type = #{goodsType} </if>&ndash;&gt;-->
+			<!--<if test="goodsName != null and goodsName.trim() != ''"> and goods_name like  concat(concat('%',#{goodsName}),'%') </if>-->
+		  <!--&lt;!&ndash;<if test="goodsAmount != null and goodsAmount != ''"> and goods_amount = #{goodsAmount} </if>&ndash;&gt;-->
+		  <!--&lt;!&ndash;<if test="distributorOrgId != null and distributorOrgId != ''"> and distributor_org_id = #{distributorOrgId} </if>&ndash;&gt;-->
+			<!--<if test="deptIdList != null and deptIdList.size > 0">-->
+				<!--and goods.distributor_org_id in-->
+				<!--<foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">-->
+					<!--#{item}-->
+				<!--</foreach>-->
+			<!--</if>-->
+		  <!--&lt;!&ndash;<if test="distributeDate != null and distributeDate != ''"> and distribute_date = #{distributeDate} </if>-->
+		  <!--<if test="receiveOrg != null and receiveOrg != ''"> and receive_org = #{receiveOrg} </if>&ndash;&gt;-->
+		  <!--<if test="receiver != null and receiver != ''"> and receiver = #{receiver} </if>-->
+			<!--<if test="startDate != null and startDate != ''"> and goods.`create_date` <![CDATA[>]]> #{startDate}  </if>-->
+			<!--<if test="endDate != null and endDate != ''"> and goods.`create_date` <![CDATA[<]]> #{endDate}  </if>-->
+		  <!--&lt;!&ndash;<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>&ndash;&gt;-->
+		  <!--&lt;!&ndash;<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>&ndash;&gt;-->
+		  <!--&lt;!&ndash;<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>&ndash;&gt;-->
+		<!--</where>-->
+        <!--<choose>-->
+            <!--<when test="sort != null and sort.trim() != ''">-->
+                <!--order by ${sort} ${order}-->
+            <!--</when>-->
+			<!--<otherwise>-->
+                <!--order by id desc-->
+			<!--</otherwise>-->
+        <!--</choose>-->
+		<!--<if test="offset != null and limit != null">-->
+			<!--limit #{offset}, #{limit}-->
+		<!--</if>-->
+	<!--</select>-->
+	<select id="list" resultType="com.goodsmanagement.vo.GoodsInfoVO">
+		select goods.`id`,goods.`goods_type`,goods.`goods_name`,goods.`goods_amount`,
+		goods.`distributor_org_id`,goods.`distribute_date`,goods.`receive_org`,goods.`receiver`,
+		goods.`create_date`,goods.`update_date`,goods.`operator_id`,goods.org_receiver_name,
+		tnr.name goodsTypeName,org.depart_name distributorName,org2.depart_name orgName,pro.name receiverName
+		from t_goods_info goods
+		left join t_sys_dict dict on dict.type='goods_type' and dict.value = goods.goods_type
+		LEFT JOIN t_name_ref tnr ON tnr.resource_id=dict.name_id AND tnr.type=#{type}
+		left join t_org_info org on org.id = goods.distributor_org_id
+		left join t_org_info org2 on org2.id = goods.receive_org
+		left join t_protector pro on pro.user_id = goods.receiver
+		<where>
+			<!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+			<!--<if test="goodsType != null and goodsType != ''"> and goods_type = #{goodsType} </if>-->
+			<if test="goodsName != null and goodsName.trim() != ''"> and goods_name like  concat(concat('%',#{goodsName}),'%') </if>
+			<!--<if test="goodsAmount != null and goodsAmount != ''"> and goods_amount = #{goodsAmount} </if>-->
+			<!--<if test="distributorOrgId != null and distributorOrgId != ''"> and distributor_org_id = #{distributorOrgId} </if>-->
+			<if test="deptIdList != null and deptIdList.size > 0">
+				and goods.distributor_org_id in
+				<foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<!--<if test="distributeDate != null and distributeDate != ''"> and distribute_date = #{distributeDate} </if>-->
+			<!--<if test="receiveOrg != null and receiveOrg != ''"> and receive_org = #{receiveOrg} </if>-->
+			<if test="receiver != null and receiver != ''"> and receiver = #{receiver} </if>
+			<if test="startDate != null and startDate != ''"> and goods.`create_date` <![CDATA[>]]> #{startDate}  </if>
+			<if test="endDate != null and endDate != ''"> and goods.`create_date` <![CDATA[<]]> #{endDate}  </if>
+			<!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+			<!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+			<!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+ 	<select id="count" resultType="int">
+		select count(*)
+		from t_goods_info goods
+		left join t_sys_dict dict on dict.type='goods_type' and dict.value = goods.goods_type
+		left join t_org_info org on org.id = goods.distributor_org_id
+		left join t_org_info org2 on org2.id = goods.receive_org
+		left join t_protector protector on protector.user_id = goods.receiver
+		 <where>  
+		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  <!--<if test="goodsType != null and goodsType != ''"> and goods_type = #{goodsType} </if>-->
+		  <if test="goodsName != null and goodsName.trim() != ''"> and goods_name like  concat(concat('%',#{goodsName}),'%') </if>
+		  <!--<if test="goodsAmount != null and goodsAmount != ''"> and goods_amount = #{goodsAmount} </if>-->
+		  <!--<if test="distributorOrgId != null and distributorOrgId != ''"> and distributor_org_id = #{distributorOrgId} </if>-->
+		 <if test="deptIdList != null and deptIdList.size > 0">
+			 and goods.distributor_org_id in
+			 <foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+				 #{item}
+			 </foreach>
+		 </if>
+		  <!--<if test="distributeDate != null and distributeDate != ''"> and distribute_date = #{distributeDate} </if>-->
+		  <!--<if test="receiveOrg != null and receiveOrg != ''"> and receive_org = #{receiveOrg} </if>-->
+		  <if test="receiver != null and receiver != ''"> and receiver = #{receiver} </if>
+		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  <!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		  <!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.GoodsInfoDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_goods_info
+		(
+			`goods_type`, 
+			`goods_name`, 
+			`goods_amount`, 
+			`distributor_org_id`, 
+			`distribute_date`, 
+			`receive_org`, 
+			`receiver`,
+			`org_receiver_name`,
+			`create_date`, 
+			`update_date`, 
+			`operator_id`,
+			`remark`
+		)
+		values
+		(
+			#{goodsType}, 
+			#{goodsName}, 
+			#{goodsAmount}, 
+			#{distributorOrgId}, 
+			#{distributeDate}, 
+			#{receiveOrg}, 
+			#{receiver},
+			#{orgReceiverName},
+			#{createDate}, 
+			#{updateDate}, 
+			#{operatorId},
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.GoodsInfoDO">
+		update t_goods_info 
+		<set>
+			<if test="goodsType != null">`goods_type` = #{goodsType}, </if>
+			<if test="goodsName != null">`goods_name` = #{goodsName}, </if>
+			<if test="goodsAmount != null">`goods_amount` = #{goodsAmount}, </if>
+			<if test="distributorOrgId != null">`distributor_org_id` = #{distributorOrgId}, </if>
+			<if test="distributeDate != null">`distribute_date` = #{distributeDate}, </if>
+			<if test="receiveOrg != null">`receive_org` = #{receiveOrg}, </if>
+			<if test="receiver != null">`receiver` = #{receiver}, </if>
+			<if test="orgReceiverName != null">`org_receiver_name` = #{orgReceiverName}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
+			<if test="operatorId != null">`operator_id` = #{operatorId}</if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_goods_info where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_goods_info where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

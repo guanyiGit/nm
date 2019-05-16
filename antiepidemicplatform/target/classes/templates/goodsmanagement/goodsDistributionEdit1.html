@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>TITLE</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{materialManage}">物资管理</a>></li>
+			<li class="fl"><a href="/biz/goodsInfo" th:text="#{materialManage.protectiveCommodityIssue}">防护物资发放</a>></li>
+			<li class="fl" th:text="#{binformation.update}">修改</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75">
+		<form id="updateGoodsDistribution" action="#">
+			<div class="pdl30 pdr30">
+				<input type="hidden" name="id" th:value="${goodsInfo.id}"/>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{materialManage.materialType}">物资类型</span></div>
+					<div class="mgl90">
+						<select id="goodsType" name="goodsType" th:value="${goodsInfo.goodsType}"  class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+						</select>
+						<!--<select id="goodsType" name="goodsType"  class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">-->
+							<!--<option  th:each="users : ${userList}" th:value="${users.id}" th:text="${users.name}"  th:selected="${users.isCheck == 'checked'}"></option>-->
+						<!--</select>-->
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{materialManage.nameGoods}">物资名称</span></div>
+					<div class="mgl90">
+						<input id="goodsName" name="goodsName" th:value="${goodsInfo.goodsName}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{materialManage.issueNumber}">发放数量</span></div>
+					<div class="mgl90">
+						<input id="goodsAmount" name="goodsAmount" th:value="${goodsInfo.goodsAmount}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{materialManage.recipient}">接收人</span></div>
+					<div class="mgl90">
+						<select id="receiver" name="receiver"   class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+						</select>
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{materialManage.note}">备注</div>
+					<div class="mgl90">
+						<textarea id="description" name="remark" th:text="${goodsInfo.remark}" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30"></textarea>
+					</div>
+				</div>
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input id="savee" class="a6 dinb bort hov8" type="submit"  value="保存">
+						<a href="javascript:window.history.back(-1);" class="a6 dinb hov8" th:text="#{binformation.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script th:inline="javascript">
+    var sv = [[${goodsInfo.goodsType}]];
+    var sv2 = [[${goodsInfo.receiver}]];
+    var save = [[#{binformation.save}]];
+    $("#savee").val(save)
+    var operationSuccess = [[#{materialManage.operationSuccess}]];
+    var pleaseInputNumber = [[#{materialManage.pleaseInputNumber}]];
+    var onlyInputPosInt = [[#{materialManage.onlyInputPosInt}]];
+    var pleaseInputGoodsName = [[#{materialManage.pleaseInputGoodsName}]];
+    var determine = [[#{determine}]];
+</script>
+<script src="/goodsmanagement/goodsDistributionEdit1.js"></script>
+</body>
+</html>
+

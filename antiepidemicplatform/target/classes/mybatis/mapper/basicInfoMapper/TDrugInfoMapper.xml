@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basicInfo.dao.TDrugInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TDrugInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="drug_name" property="drugName" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="VARCHAR" />
+    <result column="usage_mode" property="usageMode" jdbcType="VARCHAR" />
+    <result column="purpose_of_use" property="purposeOfUse" jdbcType="VARCHAR" />
+    <result column="drug_composition" property="drugComposition" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, area_id, drug_name, period, usage_mode, purpose_of_use, drug_composition, description, 
+    type, org_id, create_date, update_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entities.TDrugInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_drug_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_drug_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_drug_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.entities.TDrugInfoExample" >
+    delete from t_drug_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entities.TDrugInfo" >
+    insert into t_drug_info (id, area_id, drug_name, 
+      period, usage_mode, purpose_of_use, 
+      drug_composition, description, type, 
+      org_id, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{drugName,jdbcType=VARCHAR}, 
+      #{period,jdbcType=VARCHAR}, #{usageMode,jdbcType=VARCHAR}, #{purposeOfUse,jdbcType=VARCHAR}, 
+      #{drugComposition,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{orgId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entities.TDrugInfo" >
+    insert into t_drug_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="drugName != null" >
+        drug_name,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="usageMode != null" >
+        usage_mode,
+      </if>
+      <if test="purposeOfUse != null" >
+        purpose_of_use,
+      </if>
+      <if test="drugComposition != null" >
+        drug_composition,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="usageMode != null" >
+        #{usageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeOfUse != null" >
+        #{purposeOfUse,jdbcType=VARCHAR},
+      </if>
+      <if test="drugComposition != null" >
+        #{drugComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entities.TDrugInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_drug_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_drug_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drugName != null" >
+        drug_name = #{record.drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.period != null" >
+        period = #{record.period,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usageMode != null" >
+        usage_mode = #{record.usageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purposeOfUse != null" >
+        purpose_of_use = #{record.purposeOfUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drugComposition != null" >
+        drug_composition = #{record.drugComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_drug_info
+    set id = #{record.id,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      drug_name = #{record.drugName,jdbcType=VARCHAR},
+      period = #{record.period,jdbcType=VARCHAR},
+      usage_mode = #{record.usageMode,jdbcType=VARCHAR},
+      purpose_of_use = #{record.purposeOfUse,jdbcType=VARCHAR},
+      drug_composition = #{record.drugComposition,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      org_id = #{record.orgId,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entities.TDrugInfo" >
+    update t_drug_info
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="drugName != null" >
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="usageMode != null" >
+        usage_mode = #{usageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeOfUse != null" >
+        purpose_of_use = #{purposeOfUse,jdbcType=VARCHAR},
+      </if>
+      <if test="drugComposition != null" >
+        drug_composition = #{drugComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entities.TDrugInfo" >
+    update t_drug_info
+    set area_id = #{areaId,jdbcType=INTEGER},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      period = #{period,jdbcType=VARCHAR},
+      usage_mode = #{usageMode,jdbcType=VARCHAR},
+      purpose_of_use = #{purposeOfUse,jdbcType=VARCHAR},
+      drug_composition = #{drugComposition,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 药品列表 -->
+  <select id="findDrugList" resultMap="BaseResultMap">
+  		SELECT * FROM t_drug_info
+  		where type=#{type}
+  		<if test="searchKey !=null and searchKey != ''">
+  			and drug_name LIKE CONCAT('%',#{searchKey},'%')  
+  		</if>
+  		order by create_date desc
+  		limit #{index},#{pageSize}
+  </select>
+
+  <!--初始话药品下拉框-->
+  <select id="initDrugSelect" resultMap="BaseResultMap">
+
+      select * from t_drug_info  drug
+      <where>
+        <if test="q != null and q != ''"> and concat(drug.drug_name) like '%' #{q} '%' </if>
+        <if test="orgId != null and  orgId  != ''"> and org_id = in (#{orgId}) </if>
+      </where>
+
+  </select>
+</mapper>

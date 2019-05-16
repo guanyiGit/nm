@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.orgmanagement.dao.RoleInfoDao">
+
+	<!--<select id="get" resultType="com.entities.RoleInfo">-->
+		<!--select role.`id`,role.`role_name`roleName,role.`role_sign` roleSign,role.`remarks`-->
+		<!--,role.`creator`,role.`create_date` createDate,role.`update_date` updateDate-->
+		<!--from t_role_info role left join t_org_ref_role ref on role.id = ref.role_id-->
+		<!--left join t_org_info org on org.type = ref.org_type-->
+		 <!--where-->
+		<!--role.id = #{value} and org.type = #{type}-->
+	<!--</select>-->
+
+	<!--<sql id="base">-->
+				<!--select role.`id`,role.`role_name`,role.`role_sign`,role.`remarks`,role.`creator`,role.`create_date`,role.`update_date`-->
+		<!--from t_role_info role left join t_org_ref_role ref on role.id = ref.role_id-->
+		<!--left join t_org_info org on org.type = ref.org_type-->
+	<!--</sql>-->
+
+	<!--&lt;!&ndash;根据角色名查询&ndash;&gt;-->
+
+	<!--<select id="selectByRoleName" resultType="com.entities.RoleInfo">-->
+		<!--<include refid="base"></include>-->
+		<!--where role.role_name = #{roleName} and org.type = #{type}-->
+	<!--</select>-->
+
+	<!--<select id="list" resultType="com.entities.RoleInfo">-->
+		<!--<include refid="base"></include>-->
+        <!--<where>  -->
+		  		  <!--<if test="id != null and id != ''"> and role.id = #{id} </if>-->
+		  		  <!--<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>-->
+		  		  <!--<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>-->
+		  		  <!--<if test="remarks != null and remarks != ''"> and role.remarks = #{remarks} </if>-->
+		  		  <!--<if test="creator != null and creator != ''"> and role.creator = #{creator} </if>-->
+		  		  <!--<if test="createDate != null and createDate != ''"> and role.create_date = #{createDate} </if>-->
+		  		  <!--<if test="updateDate != null and updateDate != ''"> and role.update_date = #{updateDate} </if>-->
+		  		<!--</where>-->
+        <!--<choose>-->
+            <!--<when test="sort != null and sort.trim() != ''">-->
+                <!--order by ${sort} ${order}-->
+            <!--</when>-->
+			<!--<otherwise>-->
+                <!--order by role.id desc-->
+			<!--</otherwise>-->
+        <!--</choose>-->
+		<!--<if test="offset != null and limit != null">-->
+			<!--limit #{offset}, #{limit}-->
+		<!--</if>-->
+	<!--</select>-->
+	<!---->
+ 	<!--<select id="count" resultType="int">-->
+		<!--select count(*)-->
+		<!--from t_role_info role left join t_org_ref_role ref on role.id = ref.role_id-->
+		<!--left join t_org_info org on org.type = ref.org_type-->
+		 <!--<where>-->
+			 <!--<if test="id != null and id != ''"> and role.id = #{id} </if>-->
+			 <!--<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>-->
+			 <!--<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>-->
+			 <!--<if test="remarks != null and remarks != ''"> and role.remarks = #{remarks} </if>-->
+			 <!--<if test="creator != null and creator != ''"> and role.creator = #{creator} </if>-->
+			 <!--<if test="createDate != null and createDate != ''"> and role.create_date = #{createDate} </if>-->
+			 <!--<if test="updateDate != null and updateDate != ''"> and role.update_date = #{updateDate} </if>-->
+		 <!--</where>-->
+	<!--</select>-->
+	 <!---->
+	<!--<insert id="save" parameterType="com.entities.RoleInfo" useGeneratedKeys="true" keyProperty="id">-->
+		<!--insert into t_role_info-->
+		<!--(-->
+			<!--`role_name`, -->
+			<!--`role_sign`, -->
+			<!--`remarks`, -->
+			<!--`creator`, -->
+			<!--`create_date`, -->
+			<!--`update_date`-->
+		<!--)-->
+		<!--values-->
+		<!--(-->
+			<!--#{roleName}, -->
+			<!--#{roleSign}, -->
+			<!--#{remarks}, -->
+			<!--#{creator}, -->
+			<!--#{createDate}, -->
+			<!--#{updateDate}-->
+		<!--)-->
+	<!--</insert>-->
+	 <!---->
+	<!--<update id="update" parameterType="com.entities.RoleInfo">-->
+		<!--update t_role_info -->
+		<!--<set>-->
+			<!--<if test="roleName != null">`role_name` = #{roleName}, </if>-->
+			<!--<if test="roleSign != null">`role_sign` = #{roleSign}, </if>-->
+			<!--<if test="remarks != null">`remarks` = #{remarks}, </if>-->
+			<!--<if test="creator != null">`creator` = #{creator}, </if>-->
+			<!--<if test="createDate != null">`create_date` = #{createDate}, </if>-->
+			<!--<if test="updateDate != null">`update_date` = #{updateDate}</if>-->
+		<!--</set>-->
+		<!--where id = #{id}-->
+	<!--</update>-->
+	<!---->
+	<!--<delete id="remove">-->
+		<!--delete from t_role_info where id = #{value}-->
+	<!--</delete>-->
+	<!---->
+	<!--<delete id="batchRemove">-->
+		<!--delete from t_role_info where id in -->
+		<!--<foreach item="id" collection="array" open="(" separator="," close=")">-->
+			<!--#{id}-->
+		<!--</foreach>-->
+	<!--</delete>-->
+
+
+	<select id="get" resultType="com.orgmanagement.domain.RoleDO">
+		select
+		`id` role_id,`role_name`,`role_sign`,`remarks` remark,`creator` user_id_create,`create_date` gmt_create,`update_date` gmt_modified
+		from t_role_info where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.orgmanagement.domain.RoleDO">
+		select
+		`id` role_id,`role_name`,`role_sign`,`remarks` remark,`creator` user_id_create,
+		`create_date` gmt_create,`update_date` gmt_modified ,type
+		from t_role_info
+		<where>
+			<if test="roleId != null and roleId != ''"> and id = #{roleId} </if>
+			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
+			<if test="remark != null and remark != ''"> and remarks = #{remark} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and creator = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and create_date = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and update_date = #{gmtModified} </if>
+
+			<!--<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>-->
+			<!--<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>-->
+			<!--<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>-->
+			<!--<if test="remark != null and remark != ''"> and remark = #{remark} </if>-->
+			<!--<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>-->
+			<!--<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>-->
+			<!--<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>-->
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_role_info
+		<where>
+			<if test="roleId != null and roleId != ''"> and id = #{roleId} </if>
+			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
+			<if test="remark != null and remark != ''"> and remarks = #{remark} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and creator = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and create_date = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and update_date = #{gmtModified} </if>
+
+			<!--<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>-->
+			<!--<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>-->
+			<!--<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>-->
+			<!--<if test="remark != null and remark != ''"> and remark = #{remark} </if>-->
+			<!--<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>-->
+			<!--<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>-->
+			<!--<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>-->
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.orgmanagement.domain.RoleDO"
+			useGeneratedKeys="true" keyProperty="roleId">
+		insert into t_role_info
+		(
+		`role_name`,
+		`role_sign`,
+		`remarks`,
+		`creator`,
+		`create_date`,
+		`update_date`
+		)
+		values
+		(
+		#{roleName},
+		#{roleSign},
+		#{remark},
+		#{userIdCreate},
+		#{gmtCreate},
+		#{gmtModified}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.orgmanagement.domain.RoleDO">
+		update t_role_info
+		<set>
+			<if test="roleName != null">`role_name` = #{roleName}, </if>
+			<if test="roleSign != null">`role_sign` = #{roleSign}, </if>
+			<if test="remark != null">`remarks` = #{remark}, </if>
+			<if test="userIdCreate != null">`creator` = #{userIdCreate}, </if>
+			<if test="gmtCreate != null">`create_date` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`update_date` = #{gmtModified}</if>
+		</set>
+		where id = #{roleId}
+	</update>
+
+	<delete id="remove">
+		delete from t_role_info where id= #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from t_role_info where id in
+		<foreach item="roleId" collection="array" open="(" separator=","
+				 close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+
+</mapper>

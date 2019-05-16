@@ -104,7 +104,6 @@ function updateProtector(form) {
             data: data,
             dataType: "json",
             success: function (data) {
-                debugger
             	if(data.code==0){//操作成功
 					if(data.i==1){
                         layer.confirm(updateSuccess, {
@@ -112,9 +111,12 @@ function updateProtector(form) {
                         }, function() {
                             window.location="/biz/protector/protector_List";
                         })
-					}else {
+					}else if(data.i==-1){
                         layer.msg(accountExit);
                         form.phoneNum.focus();
+					}
+					else{
+                        layer.alert(updateFailure);
 					}
 				}else{
                     layer.alert(wzcwqlxgly);

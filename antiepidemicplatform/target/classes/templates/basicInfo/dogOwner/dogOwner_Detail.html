@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+	<div id="innerdiv" style="position:absolute;">
+		<img id="bigimg" style="border:5px solid #fff;" src="" />
+	</div>
+</div>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{binformation}">基础信息</a>></li>
+			<li class="fl"><a href="/biz/dogOwner/dogOwner_List" th:text="#{binformation.ownerInfo}">犬主信息</a>></li>
+			<li class="fl" th:text="#{binformation.details}">详情</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<p class="fs16 cor0"><span th:text="#{binformation.checkDetails}">查看详情</span><a href="/biz/dogOwner/dogOwner_List" class="dinb fr hov8"><img src="/images/42.png" alt=""></a></p>
+		
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table31">
+				<tbody>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.ownerName}">犬主姓名</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.name}">张三</td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.gender}">性别</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.sex==0}?#{ownerMale}:#{ownerFemale}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.belTownship}">所属乡镇</td>
+						<!-- <td class="cor9 ww30 h54"  th:text="${lists[3].name}+${lists[2].name}+${lists[1].name}+${lists[0].name}"></td> -->
+						<td class="cor9 ww30 h54"  th:text="${lists.get(3).getName()}+${lists.get(2).getName()}+${lists.get(1).getName()}+${lists.get(0).getName()}"></td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.villageCommittee}">所属村委会</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.tCommittee==null?'':dogOwnerVO.tCommittee.name}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.houseNumber}">门牌号</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.no}">青123</td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.pastureArea}">草场面积</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.grassLandArea==null}?'':${dogOwnerVO.grassLandArea}+'亩'">2018-01-02</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.birthday}">出生日期</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.birthDay==null}?'':${#dates.format(dogOwnerVO.birthDay, 'yyyy-MM-dd')}"></td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.national}">民族</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.nation}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.levelEducation}">文化程度</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.degreeOfEducation}">
+							<!--<div th:switch="${dogOwnerVO.degreeOfEducation}">-->
+							 <!--<p th:case="小学" th:text="#{binformation.primarySchool}">小学</p>-->
+							 <!--<p th:case="初中" th:text="#{binformation.juHiSchool}">初中</p>-->
+							 <!--<p th:case="高中" th:text="#{binformation.highSchool}">高中</p>-->
+							 <!--<p th:case="大专" th:text="#{binformation.college}">大专</p>-->
+							 <!--<p th:case="本科及以上" th:text="#{binformation.baDeAbove}">本科及以上</p>-->
+							<!--</div>-->
+						</td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.contactPhone}">联系电话</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.phoneNum}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.documentType}">证件类型</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.cardType==0}?#{binformation.idCard}:#{binformation.residenceBooklet}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.certificateNumber}">证件号码</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.cardNum}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{binformation.epidemicPreMem}">防疫员</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.protectorName}"></td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.entryTime}">录入时间</td>
+						<td class="cor9 ww30 h54" th:text="${dogOwnerVO.createDate==null}?'':${#dates.format(dogOwnerVO.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20" th:text="#{binformation.photo}">照片</td>
+						<td class="cor9 ww30 pdt20 pdb20">
+							<div th:if="${not #lists.isEmpty(dogOwnerVO.imageList)}">
+								<span th:each="picUrl:${dogOwnerVO.imageList}">
+									<img th:src="${picUrl.thumbnailUrl}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+								</span>
+							<!-- <img th:src="${dogOwnerVO.imageList[0].thumbnailUrl}"> -->
+							</div>
+						</td>
+						<td class="cor0 ww20 h54" th:text="#{binformation.describe}">描述</td>
+						<td class="cor9 ww30"  th:text="${dogOwnerVO.discription}" style="word-break:break-all;"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<p class="fs16 cor0 mgt25" th:text="#{binformation.haveDogInfor}">拥有犬只信息</p>
+		<div>
+			<table class="table999-1" width="100%">
+				<tbody>
+					<tr>
+						<td style="background-color: transparent!important;" th:text="#{binformation.photo}">照片</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.resourceID}">溯源ID</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.collarNumber}">项圈编号</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.dogName}">犬名</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.dogBreed}">犬种</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.gender}">性别</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.ageYears}">年龄(岁)</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.hairColor}">毛色</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.weightKg}">体重（公斤）</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.state}">状态</td>
+						<td style="background-color: transparent!important;" th:text="#{binformation.operation}">操作</td>
+					</tr>
+					<tr th:each="d: ${dogList}">
+						<td class="pdt20 pdb20">
+							<img th:src="${d.dogSmallUrl}" th:onclick="'javascript:openImgShow(&quot;'+${d.dogBigUrl}+'&quot;);'">
+						</td> 
+						<td th:text="${d.traceId}"></td>
+						<td th:text="${d.deviceNo}"></td>
+						<td th:text="${d.dogName}"></td>
+						<td th:text="${d.breed}"></td>
+						<td th:text="${d.sex==0?'公':'母'}"></td>
+						<td th:text="${d.age}"></td>
+						<td th:text="${d.hairColor}"></td>
+						<td th:text="${d.weight}"></td>
+						<td th:switch="${d.status}">
+							<p th:case="0" th:text="#{binformation.normal}">正常</p>
+							<p th:case="1" th:text="#{binformation.death}">死亡</p>
+							<p th:case="2" th:text="#{binformation.lose}">丢失</p>
+							<p th:case="3" th:text="#{binformation.inspection}">送检</p>
+						</td>
+						<td width="100px">
+							<a 
+							th:href="@{'/biz/dogInfo/findOne?traceId='+${d.traceId}}"
+							class="dinb cor4eb5fb hov8" th:text="#{binformation.checkDetails}">查看详情</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>
+<!--内容栏END-->
+	
+</div>
+</body>
+</html>

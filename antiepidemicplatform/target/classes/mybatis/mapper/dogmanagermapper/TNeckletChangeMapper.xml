@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dogmanager.dao.TNeckletChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TNeckletChange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="old_necklet_no" property="oldNeckletNo" jdbcType="VARCHAR" />
+    <result column="new_necklet_no" property="newNeckletNo" jdbcType="VARCHAR" />
+    <result column="change_reasons" property="changeReasons" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="operator" property="operator" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, old_necklet_no, new_necklet_no, change_reasons, description, trace_id,org_id,operator,createtime,
+    updatetime
+  </sql>
+
+  <!--项圈变更列表-->
+<select id="findTNeckletChangeList" resultType="com.dogmanager.VO.NectletChangeVO" parameterType="map">
+  SELECT
+  nc.trace_id traceId, nc.description,nc.createtime, nc.id,nc.new_necklet_no newNeckletNo, nc.old_necklet_no oldNeckletNo,
+  di.dog_name dogName,di.breed,dow.name, dow.card_num cardNum, dow.phone_num phoneNum, dow.area_id town,dow.no,por.name porName,
+  por.phone_num porPhoneNum,pc.name pcName, nr.name changeReason
+  FROM
+  t_necklet_change nc
+  LEFT JOIN t_dog_info di
+  ON nc.trace_id = di.trace_id
+  LEFT JOIN t_dog_owner dow
+  ON di.owner = dow.id
+  LEFT JOIN t_pastoral_committee pc
+  ON dow.pastoral_committee_id = pc.id
+  LEFT JOIN t_protector por
+  ON di.protector = por.id
+  LEFT JOIN t_sys_dict sd
+  ON nc.change_reasons = sd.value
+  AND sd.type = 'device_deal_way'
+  left join t_name_ref nr on nr.resource_id = sd.name_id and nr.type = #{langType}
+  <where>
+    <if test="string !=null and string !=''">
+      AND (
+      dow.name like "%"#{string}"%" OR nc.trace_id = #{string} OR
+      nc.new_necklet_no = #{string} OR dow.card_num = #{string} OR
+      dow.phone_num = #{string}
+      )
+    </if>
+    <if test="orgList !=null and orgList.size>0">
+      AND  (nc.org_id in
+      <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+      )
+    </if>
+    <if test="operator !=null and operator!=''">
+      AND nc.operator=#{operator}
+    </if>
+  </where>
+  ORDER  BY  createtime DESC
+</select>
+
+
+  <update id="updateDogRefDevice" parameterType="com.entities.TDeviceRefDog">
+     update t_device_ref_dog
+     set device_no = #{deviceNo,jdbcType=VARCHAR},
+         start_date =#{startDate,jdbcType=TIMESTAMP}
+    where trace_id = #{traceId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByDeviceNo" parameterType="string" resultMap="BaseResultMap">
+    select drd.id from t_device_ref_dog drd where drd.device_no=#{deviceNo}
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultType="com.dogmanager.VO.NectletChangeVO" parameterType="java.lang.Integer" >
+  SELECT
+  nc.trace_id traceId, nc.description,nc.createtime, nc.id,nc.new_necklet_no newNeckletNo, nc.old_necklet_no oldNeckletNo,
+  di.dog_name dogName,di.breed,dow.name, dow.card_num cardNum, dow.phone_num phoneNum, dow.area_id town,dow.no,por.name porName,
+  por.phone_num porPhoneNum,pc.name pcName, sd.name changeReason
+  FROM
+  t_necklet_change nc
+  LEFT JOIN t_dog_info di
+  ON nc.trace_id = di.trace_id
+  LEFT JOIN t_dog_owner dow
+  ON di.owner = dow.id
+  LEFT JOIN t_pastoral_committee pc
+  ON dow.pastoral_committee_id = pc.id
+  LEFT JOIN t_protector por
+  ON di.protector = por.id
+  LEFT JOIN t_sys_dict sd
+  ON nc.change_reasons = sd.value
+  AND sd.type = 'device_deal_way'
+  where nc.id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectByPrimaryKeyI18N" resultType="com.dogmanager.VO.NectletChangeVO" parameterType="map" >
+  SELECT
+  nc.trace_id traceId, nc.description,nc.createtime, nc.id,nc.new_necklet_no newNeckletNo, nc.old_necklet_no oldNeckletNo,
+  di.dog_name dogName,nr.name breed,dow.name, dow.card_num cardNum, dow.phone_num phoneNum, dow.area_id town,dow.no,por.name porName,
+  por.phone_num porPhoneNum,pc.name pcName, nr1.name changeReason
+  FROM
+  t_necklet_change nc
+  LEFT JOIN t_dog_info di
+  ON nc.trace_id = di.trace_id
+  left join t_sys_dict sd1 on sd1.value = di.breed_id and sd1.type = 'dog_breed'
+  left join t_name_ref nr on nr.resource_id =sd1.name_id and nr.type = #{langType}
+  LEFT JOIN t_dog_owner dow
+  ON di.owner = dow.id
+  LEFT JOIN t_pastoral_committee pc
+  ON dow.pastoral_committee_id = pc.id
+  LEFT JOIN t_protector por
+  ON di.protector = por.id
+  LEFT JOIN t_sys_dict sd
+  ON nc.change_reasons = sd.value
+  AND sd.type = 'device_deal_way'
+  left join t_name_ref nr1 on nr1.resource_id = sd.name_id and nr1.type = #{langType}
+  where nc.id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_necklet_change
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.entities.TNeckletChange" >
+    insert into t_necklet_change (id, old_necklet_no, new_necklet_no, 
+      change_reasons, description, trace_id,org_id,operator,
+      createtime, updatetime)
+    values (#{id,jdbcType=INTEGER}, #{oldNeckletNo,jdbcType=VARCHAR}, #{newNeckletNo,jdbcType=VARCHAR}, 
+      #{changeReasons,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{traceId,jdbcType=VARCHAR},
+      #{orgId,jdbcType=INTEGER},#{operator,jdbcType=INTEGER},
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.entities.TNeckletChange" >
+    update t_necklet_change
+    set old_necklet_no = #{oldNeckletNo,jdbcType=VARCHAR},
+      new_necklet_no = #{newNeckletNo,jdbcType=VARCHAR},
+      change_reasons = #{changeReasons,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      trace_id = #{traceId,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

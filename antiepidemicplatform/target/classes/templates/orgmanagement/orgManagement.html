@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>title</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false" style="overflow-x: hidden;">
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh" >
+			<li class="fl"><a href="###" th:text="#{orgPower}">组织权限></a></li>
+			<li class="fl"th:text="#{orgManage}">组织管理</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<div class="ovh">
+			<form class="db ovh fl">
+				<ul class="ul04 fl mgr10">
+
+					<shiro:hasRole name="超级用户角色">
+						<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+								<a href="###" onclick="add(0,orgType||-1)" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""th:text="#{dogManage.add}"></a>
+						</li>
+					</shiro:hasRole>
+				</ul>
+			</form>
+		</div>
+		<table id="orgInfoTable"></table>
+	</div>
+	<!--内容区END-->
+</div>
+<!--内容栏END-->
+		
+</div>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性  -->
+<div>
+	<script type="text/javascript" >
+        var s_add_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        var s_resetPwd_h = 'hidden';
+	</script>
+</div>
+<div >
+	<script type="text/javascript">
+        s_edit_h = '';
+	</script>
+</div>
+<div >
+	<script type="text/javascript">
+        s_add_h = '';
+	</script>
+</div>
+<div >
+	<script type="text/javascript">
+        var s_remove_h = '';
+	</script>
+</div>
+<div >
+	<script type="text/javascript">
+        var s_resetPwd_h = '';
+	</script>
+</div>
+<!--</div>-->
+<div th:include="include::footer"></div>
+</body>
+</html>
+<script th:inline="javascript">
+    var orgPid = [[${user.pid}]];
+    var orgType = [[${user.orgType}]];
+    var deptId = [[${user.deptId}]];
+
+    var code = [[#{orgManage.code}]];
+    var orgName = [[#{orgManage.name}]];
+    var sort = [[#{orgManage.sort}]];
+    var status5 = [[#{userManage.status}]];
+    var normal5 = [[#{userManage.normal}]];
+    var disabled5 = [[#{userManage.disabled}]];
+    var operation5 = [[#{dogManage.operation}]];
+    var edit5 = [[#{dogManage.edit}]];
+    var delete5 = [[#{dogManage.delete}]];
+    var add5 = [[#{orgManage.add}]];
+    var sureDeleteSelectedRecord = [[#{sureDeleteSelectedRecord}]];
+    var yesT = [[#{deviceData.yesT}]];
+    var noT = [[#{deviceData.noT}]];
+    var operationSuccess=[[#{operationSuccess}]];
+    var removeoneTitle1T=[[#{orgManage.removeoneTitle1T}]];
+    var removeoneTitle2T=[[#{orgManage.removeoneTitle2T}]];
+    var removeoneTitle3T=[[#{orgManage.removeoneTitle3T}]];
+
+</script>
+
+<script src="/orgmanagement/orgManagement.js"></script>

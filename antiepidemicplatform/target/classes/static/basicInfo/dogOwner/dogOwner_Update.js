@@ -14,17 +14,17 @@ $(function () {
 
 function updateDogOwner(form) {
 	if(form.name.value==''){
-		layer.msg("请输入犬主姓名!");
+		layer.msg(qsrqzxm);
 		form.name.focus();
 		return false;
 	}
 	if(form.phoneNum.value==''){
-		layer.msg("请输入犬主电话!");
+		layer.msg(qsrqzdh);
 		form.phoneNum.focus();
 		return false;
 	}
 	if(form.cardNum.value==''){
-		layer.msg("请输入犬主证件号码!");
+		layer.msg(qsrqzzjhm);
 		form.cardNum.focus();
 		return false;
 	}
@@ -32,14 +32,14 @@ function updateDogOwner(form) {
 	var re=/^[1][3,4,5,7,8][0-9]{9}$/;    
 	if(!re.test(form.phoneNum.value.trim())){
 		console.log(form.phoneNum.value);
-		layer.msg('请输入正确的手机号码!');
+		layer.msg(qsrzzsjhm);
 		form.phoneNum.focus();
 		return false;   
 	}
 	//检查身份证号
 	var reg = /^([0-9]{15}|[0-9]{18})$/;
 	if(!reg.test(form.cardNum.value.trim())){
-		layer.msg('请输入正确的身份证号码!');
+		layer.msg(qsrzzsfzhm);
 		form.cardNum.focus();
 		return false;   
 	}
@@ -53,7 +53,7 @@ function updateDogOwner(form) {
         async: false,
         success: function (r) {
         	if(r.code==1){
-        		layer.msg("该身份证号码已经存在!请重新输入!");
+        		layer.msg(gsfzhmyjczqcxsr);
         		form.cardNum.focus();
         	}else{
         		flag1=true;
@@ -74,7 +74,7 @@ function updateDogOwner(form) {
         async: false,
         success: function (r) {
         	if(r.code==1){
-        		layer.msg("该电话号码已经存在!请重新输入!");
+        		layer.msg(gdhhmyjczqcxsr);
         		form.phoneNum.focus();
         	}else{
         		flag2 = true;
@@ -83,7 +83,7 @@ function updateDogOwner(form) {
         	
         },
         error: function () {
-        	layer.alert("未知错误!请联系管理员!");
+        	layer.alert(wzcwqlxgly);
         }
     })
     
@@ -95,16 +95,16 @@ function updateDogOwner(form) {
             data: data,
             dataType: "json",
             success: function (data) {
-            	layer.confirm('修改成功!', {
-          	         btn : [ '确定' ]
+            	layer.confirm(updateSuccess, {
+          	         btn : [ determine ]
           	     }, function() {
           	    	window.location="/biz/dogOwner/dogOwner_List";
           	     })
             	
             },
             error:function (error) {
-            	layer.confirm('未知错误,请联系管理员!', {
-         	         btn : [ '确定' ]
+            	layer.confirm(wzcwqlxgly, {
+         	         btn : [ determine ]
          	     }, function() {
          	    	window.location="/biz/dogOwner/dogOwner_List";
          	     })

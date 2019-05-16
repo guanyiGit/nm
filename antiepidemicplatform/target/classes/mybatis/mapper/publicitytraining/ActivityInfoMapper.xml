@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.publicitytraining.dao.ActivityInfoDao">
+
+	<select id="get" resultType="com.publicitytraining.vo.ActivityInfoVO">
+		select activity.`id`,activity.`activity_time`,activity.`activity_type`,activity.`activity_address`,
+		        activity.`activity_subject`,activity.`org_id`,activity.`amount`,activity.`activity_content`,
+		         activity.`create_date`,activity.`update_date`,activity.`operator_id`,activity.activity_target,activity.participate_amount,
+				  org.depart_name holdOrgName
+		from t_activity_info activity
+	    left join t_org_info org on org.id = activity.org_id
+		where activity.id = #{value}
+	</select>
+
+	<select id="getMediaUrlById" parameterType="map" resultType="com.epmanagement.vo.MediaUrl">
+		SELECT
+			media.url,
+			media.thumbnail_url,
+			ref.is_video
+		FROM
+			`t_media_ref` ref
+			LEFT JOIN t_media_info media ON ref.media_id = media.id
+		WHERE
+			ref.ref_id = #{id} and ref.type = #{type}
+	</select>
+
+	<select id="list" resultType="com.publicitytraining.vo.ActivityInfoVO">
+		select activity.`id`,activity.`activity_time`,activity.`activity_type`,activity.`activity_address`,
+		        activity.`activity_subject`,activity.`org_id`,activity.`amount`,activity.`activity_content`,
+		         activity.`create_date`,activity.`update_date`,activity.`operator_id`,activity.activity_target,activity.participate_amount,
+				  media.url,media.thumbnail_url,org.depart_name holdOrgName
+		from t_activity_info activity
+		left join t_media_ref ref on ref.type = 13 and ref.is_video = 0 and ref.ref_id = activity.id
+		left join t_media_info media on media.id = ref.media_id
+		left join t_org_info org on org.id = activity.org_id
+        <where>  
+		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  <!--<if test="activityTime != null and activityTime != ''"> and activity_time = #{activityTime} </if>-->
+		  <if test="activityType != null and activityType != ''"> and activity_type = #{activityType} </if>
+		  <!--<if test="activityAddress != null and activityAddress != ''"> and activity_address = #{activityAddress} </if>-->
+		  <if test="activitySubject != null and activitySubject != ''"> and activity_subject like concat(concat('%',#{activitySubject}),'%') </if>
+		  <!--<if test="orgId != null and orgId != ''"> and org_id = #{orgId} </if>-->
+			<if test="deptIdList != null and deptIdList.size > 0">
+				and activity.org_id in
+				<foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		  <!--<if test="amount != null and amount != ''"> and amount = #{amount} </if>-->
+		  <!--<if test="activityContent != null and activityContent != ''"> and activity_content = #{activityContent} </if>-->
+		  <if test="startDate != null and startDate != ''"> and activity.create_date <![CDATA[>]]> #{startDate}  </if>
+			<if test="endDate != null and endDate != ''"> and activity.create_date <![CDATA[<]]> #{endDate}  </if>
+		  <!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		  <!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+		</where>
+		group by activity.id
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(distinct(activity.id))
+		from t_activity_info activity
+		left join t_media_ref ref on ref.type = 13  and ref.is_video = 0  and ref.ref_id = activity.id
+		left join t_media_info media on media.id = ref.media_id
+		left join t_org_info org on org.id = activity.org_id
+		 <where>  
+		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  <!--<if test="activityTime != null and activityTime != ''"> and activity_time = #{activityTime} </if>-->
+		  <if test="activityType != null and activityType != ''"> and activity_type = #{activityType} </if>
+		  <!--<if test="activityAddress != null and activityAddress != ''"> and activity_address = #{activityAddress} </if>-->
+		  <if test="activitySubject != null and activitySubject != ''"> and activity_subject like concat(concat('%',#{activitySubject}),'%') </if>
+		  <!--<if test="orgId != null and orgId != ''"> and org_id = #{orgId} </if>-->
+			 <if test="deptIdList != null and deptIdList.size > 0">
+				 and activity.org_id in
+				 <foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+					 #{item}
+				 </foreach>
+			 </if>
+		  <!--<if test="amount != null and amount != ''"> and amount = #{amount} </if>-->
+		  <!--<if test="activityContent != null and activityContent != ''"> and activity_content = #{activityContent} </if>-->
+		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  <!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		  <!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.ActivityInfoDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_activity_info
+		(
+			`activity_time`, 
+			`activity_type`, 
+			`activity_address`, 
+			`activity_subject`,
+			`activity_target`,
+			`org_id`, 
+			`amount`, 
+			`activity_content`, 
+			`create_date`, 
+			`update_date`, 
+			`operator_id`,
+			`participate_amount`
+		)
+		values
+		(
+			#{activityTime}, 
+			#{activityType}, 
+			#{activityAddress}, 
+			#{activitySubject},
+			#{activityTarget},
+			#{orgId}, 
+			#{amount}, 
+			#{activityContent}, 
+			#{createDate}, 
+			#{updateDate}, 
+			#{operatorId},
+			#{participateAmount}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.ActivityInfoDO">
+		update t_activity_info 
+		<set>
+			<if test="activityTime != null">`activity_time` = #{activityTime}, </if>
+			<if test="activityType != null">`activity_type` = #{activityType}, </if>
+			<if test="activityAddress != null">`activity_address` = #{activityAddress}, </if>
+			<if test="activityTarget != null">`activity_target` = #{activityTarget}, </if>
+			<if test="activitySubject != null">`activity_subject` = #{activitySubject}, </if>
+			<if test="orgId != null">`org_id` = #{orgId}, </if>
+			<if test="amount != null">`amount` = #{amount}, </if>
+			<if test="activityContent != null">`activity_content` = #{activityContent}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
+			<if test="operatorId != null">`operator_id` = #{operatorId},</if>
+			<if test="participateAmount != null">`participate_amount` = #{participateAmount}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="remove">
+		delete t_activity_info,t_media_ref,t_media_info from t_activity_info
+		left join t_media_ref on t_media_ref.ref_id = t_activity_info.id and t_media_ref.type = 13
+		left join t_media_info on t_media_info.id = t_media_ref.media_id
+		where t_activity_info.id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_activity_info where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

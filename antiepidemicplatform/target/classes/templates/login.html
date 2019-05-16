@@ -1,0 +1,171 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>无包虫病疫区建设管理平台</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/css.css">
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/js.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+	<!--<style  type="text/css">-->
+		<!--::-webkit-input-placeholder { /* WebKit browsers */-->
+			<!--color:    black;-->
+		<!--}-->
+		<!--:-moz-placeholder { /* Mozilla Firefox 4 to 18 */-->
+			<!--color:    black;-->
+		<!--}-->
+		<!--::-moz-placeholder { /* Mozilla Firefox 19+ */-->
+			<!--color:    black;-->
+		<!--}-->
+		<!--:-ms-input-placeholder { /* Internet Explorer 10+ */-->
+			<!--color:    black;-->
+		<!--}-->
+	<!--</style>-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<div id="login" class="fixed">
+	<div style="margin-top: 50px;margin-right: 100px;float: right;">
+		<a onmouseover="aa(this)"onmouseout="bb(this)"style="color:white;font-size: 16px" class="btn btn-sm" th:href="@{/login(l='zh_CN')}">中文&nbsp;&nbsp;</a><span style="color: #FFFFFF;">|</span>
+		<a onmouseover="aa(this)"onmouseout="bb(this)"style="color:white;font-size: 16px" class="btn btn-sm" th:href="@{/login(l='zh_BO')}">&nbsp;&nbsp;བོད་ཡིག།&nbsp;&nbsp;</a><span style="color: #FFFFFF;">|</span>
+		<a onmouseover="aa(this)"onmouseout="bb(this)"style="color:white;font-size: 16px" class="btn btn-sm" th:href="@{/login(l='zh_MN')}">&nbsp;&nbsp;ᠮᠣᠩᠭᠣᠯ ᠦᠰᠦᠭ </a>
+	</div>
+	<div class="login">
+		<div class="pdt70 pdl45 pdr45">
+			<div class="ovh">
+				<div class="fl w83"><img src="/images/login-bg3.png" alt=""></div>
+				<div class="mgl83">
+					<!--cor134e90 fb-->
+					<p class="fs21 h68 lh68 " style="color: white" th:text="#{login.title}"></p>
+				</div>
+			</div>
+			<form id="signupForm" action="#" class="mgt30">
+				<p class="mgt10"><input  name="username"  class="db ww100 h50 lh50 pdl65 ras6 bord4d4d4 pc16" type="text" th:placeholder="#{login.username}"></p>
+				<p class="mgt10"><input   type="password" name="password" class="db ww100 h50 lh50 pdl65 ras6 bord4d4d4 pc17" type="password" th:placeholder="#{login.password}"></p>
+				<a href="###" class="mgt25 db cor005acb pdl40 hov8" th:text="#{login.forgetpwd}"></a>
+				<p class="mgt35"><input id="logins" class="formsub db ww100 h58 bort" type="button" style="opacity: 0.5;" value=""></p>
+				<!--<div style="text-align: center">
+					<select id="lanSel">
+						<option value="zh_CN" th:selected="${lang == 'zh_CN'}">中文</option>
+						<option value="zh_BO" th:selected="${lang == 'zh_BO'}">藏文</option>
+						<option value="zh_MN" th:selected="${lang == 'zh_MN'}">蒙文</option>
+					</select>
+					&lt;!&ndash;<a class="btn btn-sm" th:href="@{/login(l='zh_CN')}">中文</a>&ndash;&gt;
+					&lt;!&ndash;<a class="btn btn-sm" th:href="@{/login(l='zh_BO')}">藏文</a>&ndash;&gt;
+					&lt;!&ndash;<a class="btn btn-sm" th:href="@{/login(l='zh_MN')}">蒙文</a>&ndash;&gt;
+				</div>-->
+
+			</form>
+		</div>
+	</div>
+
+</div>
+	
+</div>
+<!--wrap End-->
+</body>
+<script th:inline="javascript"> var ctx = [[@{/}]] ; </script>
+<!-- 全局js -->
+<script src="/js/jquery.min.js" ></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js" ></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="/js/ajax-util.js"></script>
+<script src="/js/plugins/validate/jquery.validate.min.js" ></script>
+<script src="/js/plugins/validate/messages_zh.min.js" ></script>
+<script src="/js/plugins/layer/layer.min.js" ></script>
+<script type="text/javascript" th:inline="javascript">
+	let checkValue = [[${lang}]];
+	$("#lanSel").change(function(){
+		checkValue = $("#lanSel").val();
+		parent.location.href = '/login?l='+checkValue;
+	});
+
+    $(document).ready(function () {
+        //keydowm事件
+        $("#signupForm").keydown(function(e) {
+            if (e.keyCode == 13) {
+                $("#signupForm").submit();
+                validateRule();
+            }
+        });
+        $("#logins").on('click',function(){$("#signupForm").submit();});
+        validateRule();
+    });
+
+    $.validator.setDefaults({
+        submitHandler: function () {
+            debugger
+            login();
+        }
+    });
+
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: ctx+"login",
+            data: $('#signupForm').serialize(),
+            success: function (r) {
+                if (r.code == 0) {
+                    var index = layer.load(1, {
+                        shade: [0.1,'#fff'] //0.1透明度的白色背景
+                    });
+                    debugger
+                    parent.location.href = '/index?l='+checkValue;
+                } else {
+                    layer.msg(r.msg);
+                }
+            },
+        });
+    }
+
+    function validateRule() {
+        var icon = "<i class='fa fa-times-circle'></i> ";
+
+        $("#signupForm").validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: icon + "请输入您的用户名",
+                },
+                password: {
+                    required: icon + "请输入您的密码",
+                }
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+
+    function aa(_this){
+        $(_this).css("color","#00BFFF");
+    }
+    function bb(_this){
+        $(_this).css("color","#FFFFFF");
+    }
+</script>
+</html>

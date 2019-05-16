@@ -84,7 +84,7 @@ function load() {
                 columns : [
                 	{
                 		field: 'imageList',
-                        title: '照片',
+                        title: photo,
                         align:'center',
                         valign:"middle",
                         formatter:function (value,row,index,field) {
@@ -97,12 +97,12 @@ function load() {
                     },
                     {
                         field : 'name',
-                        title : '姓名',
+                        title : namee,
                         align: 'center'
                     },
                     {
                         field : 'townList',
-                        title : '所属乡镇',
+                        title : belTownship,
                         align: 'center',
                         formatter : function(value, row, index) {
                         	if(value==null){
@@ -117,7 +117,7 @@ function load() {
                     },
                     {
                         field : 'orgInfo',
-                        title : '所属兽医站',
+                        title : belVet,
                         width : '100px',
                         align: 'center',
                         formatter : function(value, row, index) {
@@ -130,19 +130,19 @@ function load() {
                     },
                     {
                         field : 'sex',
-                        title : '性别',
+                        title :gender,
                         align: 'center',
                         formatter : function(value, row, index) {
                         	if(value==0){
-                        		return "男";
+                        		return male;
                         	}if(value==1){
-                        		return "女";
+                        		return female;
                         	}
                         }
                     },
                     {
                         field : 'birthDay',
-                        title : '出生日期',
+                        title : birthday,
                         align: 'center',
                             formatter : function(value, row, index) {
                             	return value?model.formatDate(value):"";
@@ -150,23 +150,23 @@ function load() {
                     },
                     {
                         field : 'phoneNum',
-                        title : '联系电话',
+                        title : contactPhone,
                         align: 'center'
                     },
                     {
-                        title : '操作',
+                        title : operation,
                         field : 'id',
                         align : 'center',
                         formatter : function(value, row, index) {
                             var f = '<a class="btn btn-success btn-sm '+s_check_h+'" href="#" mce_href="#" title="查看" onclick="check(\''
                             + row.id
-                            + '\')"><i class="fa"></i>查看</a> ';
+                            + '\')"><i class="fa"></i>'+checkk+'</a> ';
                          var e = '<a class="btn btn-info btn-sm '+s_edit_h+'" href="#" mce_href="#" title="修改" onclick="edit(\''
                              + row.id
-                             + '\')"><i class="fa"></i>修改</a> ';
+                             + '\')"><i class="fa"></i>'+updatee+'</a> ';
                          var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
                              + row.id
-                             + '\')"><i class="fa"></i>删除</a> ';
+                             + '\')"><i class="fa"></i>'+deletee+'</a> ';
                          if(row.createBy==user.userId){
 	                         return f+ e + d;
                     	}
@@ -211,8 +211,8 @@ function check(id) {
 //     });
  }
  function remove(id) {
-     layer.confirm('确定要删除选中的记录？', {
-         btn : [ '确定', '取消' ]
+     layer.confirm(sureDeleteSelectedRecord, {
+         btn : [ determine, cancel ]
      }, function() {
          $.ajax({
              url : prefix + "/deleteProtector",
@@ -222,10 +222,10 @@ function check(id) {
              },
              success : function(r) {
                  if (r.code == 0) {
-                     layer.msg(r.msg);
+                     layer.msg(operationSuccess);
                      reLoad();
                  } else {
-                     layer.msg(r.msg);
+                     layer.msg(operationFailure);
                  }
              }
          });

@@ -7,12 +7,18 @@ $(function () {
 	 //初始化民族下拉框
     new MySelct({
         id:"selectedNation",
-        url:"/biz/protector/findTotalNation",
+        url:"/biz/protector/selectEthnic",
         // value:"name",
         value:"value",
         text:"name",
     });
-
+        //初始化学历下拉框
+        new MySelct({
+            id:"selectEducationBackground",
+            url:"/biz/protector/selectEducationBackground",
+            value:"value",
+            text:"name",
+        });
     laydate.render({
         elem: '#birth', //指定元素
         type:"datetime",

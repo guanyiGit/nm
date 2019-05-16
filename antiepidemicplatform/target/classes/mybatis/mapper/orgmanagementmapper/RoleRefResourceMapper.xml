@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.RoleRefResourceDao">
+
+	<!--<select id="get" resultType="com.entities.RoleRefResource">-->
+		<!--select `id`,`role_id`,`r_id`,`create_date` from t_role_ref_resource where id = #{value}-->
+	<!--</select>-->
+
+	<!--<select id="list" resultType="com.entities.RoleRefResource">-->
+		<!--select `id`,`role_id`,`r_id`,`create_date` from t_role_ref_resource-->
+        <!--<where>  -->
+		  		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  		  <!--<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>-->
+		  		  <!--<if test="rId != null and rId != ''"> and r_id = #{rId} </if>-->
+		  		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  		<!--</where>-->
+        <!--<choose>-->
+            <!--<when test="sort != null and sort.trim() != ''">-->
+                <!--order by ${sort} ${order}-->
+            <!--</when>-->
+			<!--<otherwise>-->
+                <!--order by id desc-->
+			<!--</otherwise>-->
+        <!--</choose>-->
+		<!--<if test="offset != null and limit != null">-->
+			<!--limit #{offset}, #{limit}-->
+		<!--</if>-->
+	<!--</select>-->
+	<!---->
+ 	<!--<select id="count" resultType="int">-->
+		<!--select count(*) from t_role_ref_resource-->
+		 <!--<where>  -->
+		  		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  		  <!--<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>-->
+		  		  <!--<if test="rId != null and rId != ''"> and r_id = #{rId} </if>-->
+		  		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  		<!--</where>-->
+	<!--</select>-->
+	 <!---->
+	<!--<insert id="save" parameterType="com.entities.RoleRefResource" useGeneratedKeys="true" keyProperty="id">-->
+		<!--insert into t_role_ref_resource-->
+		<!--(-->
+			<!--`role_id`, -->
+			<!--`r_id`, -->
+			<!--`create_date`-->
+		<!--)-->
+		<!--values-->
+		<!--(-->
+			<!--#{roleId}, -->
+			<!--#{rId}, -->
+			<!--#{createDate}-->
+		<!--)-->
+	<!--</insert>-->
+	 <!---->
+	<!--<update id="update" parameterType="com.entities.RoleRefResource">-->
+		<!--update t_role_ref_resource -->
+		<!--<set>-->
+			<!--<if test="roleId != null">`role_id` = #{roleId}, </if>-->
+			<!--<if test="rId != null">`r_id` = #{rId}, </if>-->
+			<!--<if test="createDate != null">`create_date` = #{createDate}</if>-->
+		<!--</set>-->
+		<!--where id = #{id}-->
+	<!--</update>-->
+	<!---->
+	<!--<delete id="remove">-->
+		<!--delete from t_role_ref_resource where id = #{value}-->
+	<!--</delete>-->
+	<!---->
+	<!--<delete id="batchRemove">-->
+		<!--delete from t_role_ref_resource where id in -->
+		<!--<foreach item="id" collection="array" open="(" separator="," close=")">-->
+			<!--#{id}-->
+		<!--</foreach>-->
+	<!--</delete>-->
+
+
+	<select id="get" resultType="com.orgmanagement.domain.RoleMenuDO">
+		select `id`,`role_id`,`r_id` from
+		t_role_ref_resource where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.orgmanagement.domain.RoleMenuDO">
+		select `id`,`role_id`,`r_id` from t_role_ref_resource
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+			<if test="menuId != null and menuId != ''"> and r_id = #{menuId} </if>
+
+			<!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+			<!--<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>-->
+			<!--<if test="menuId != null and menuId != ''"> and r_id = #{menuId} </if>-->
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_role_ref_resource
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+			<if test="menuId != null and menuId != ''"> and r_id = #{menuId} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.orgmanagement.domain.RoleMenuDO"
+			useGeneratedKeys="true" keyProperty="id">
+		insert into t_role_ref_resource
+		(
+		`role_id`,
+		`r_id`
+		)
+		values
+		(
+		#{roleId},
+		#{menuId}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.orgmanagement.domain.RoleMenuDO">
+		update t_role_ref_resource
+		<set>
+			<if test="roleId != null">`role_id` = #{roleId}, </if>
+			<if test="menuId != null">`r_id` = #{menuId}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="remove">
+		delete from t_role_ref_resource where id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from t_role_ref_resource where id in
+		<foreach item="id" collection="array" open="(" separator=","
+				 close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<select id="listMenuIdByRoleId" resultType="long">
+		select r_id from t_role_ref_resource
+		<where>role_id = #{roleId}</where>
+	</select>
+
+	<delete id="removeByRoleId">
+		DELETE FROM t_role_ref_resource WHERE role_id=#{roleId}
+	</delete>
+
+	<delete id="removeByMenuId">
+		DELETE FROM t_role_ref_resource WHERE r_id=#{menuId}
+	</delete>
+
+	<insert id="batchSave">
+		INSERT INTO t_role_ref_resource(role_id, r_id) values
+		<foreach item="item" index="index" collection="list"
+				 separator=",">
+			(#{item.roleId},#{item.menuId})
+		</foreach>
+	</insert>
+</mapper>

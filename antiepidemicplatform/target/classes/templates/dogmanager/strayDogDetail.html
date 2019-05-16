@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>犬只注销详情</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/RL.css">
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="/biz/dogInfo/dogMasterFile" th:text="#{dogManage}">犬只管理></a></li>
+			<li class="fl"><a href="/biz/strayDog/StrayDogFile" th:text="#{dogManage.handleStrayDog}+'>'">流浪犬处理></a></li>
+			<li class="fl" th:text="#{dogManage.viewDetail}">流浪犬详情</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<p class="fs16 cor0" th:text="#{dogManage.viewDetail}">查看详情<a href="javascript:window.history.back(-1);" class="dinb fr hov8"><img src="/images/42.png" alt=""></a></p>
+		
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table31">
+				<tbody>
+
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogBreed}">犬种</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.breed}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogAge}">犬龄(岁)</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.age}">GDQ201707006214</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.sex}">性别</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.sex}==0? #{dogManage.male}:#{dogManage.female}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogColor}">毛色</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.hairColor}">GDQ201707006214</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogWeight}">体重(公斤)</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.weight}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.handleDate}">处理时间</td>
+						<td class="cor9 ww30 h54" th:text="${#dates.format(strayDog.dealTime,'yyyy-MM-dd HH:mm')}">GDQ201707006214</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.handleWay}">处理方式</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.processMode}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.handlePerson}">处理人</td>
+						<td class="cor9 ww30 h54" th:text="${strayDog.dealName}"></td>
+					</tr>
+				    <tr>
+						<td class="cor0 ww20" th:text="#{dogManage.dogPhoto}">照片</td>
+						<td class="cor9 ww30 pdt35 pdb35">
+							<span th:each="picUrl:${picList}">
+								<img th:src="${picUrl.thumbnail_url}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td class="cor0 ww20" th:text="#{dogManage.description}">描述</td>
+						<td class="cor9 ww30" style="word-break: break-all;" th:text="${strayDog.description}"></td>
+					</tr>
+			</table>
+		</div>
+		
+	</div>
+
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+</html>

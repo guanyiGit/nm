@@ -60,7 +60,7 @@ function load() {
                 columns : [
                 	{
                         field : 'townList',
-                        title : '所属乡镇',
+                        title : belTownship,
                         width : '100px',
                         align: 'center',
                         formatter:function (value,row,index,field) {
@@ -76,53 +76,53 @@ function load() {
                     },
                     {
                         field : 'name',
-                        title : '名称',
+                        title : nam,
                         align: 'center'
                     },
                     {
                         field : 'address',
-                        title : '详细地址',
+                        title : detailedAddress,
                         width : '100px',
                         align: 'center'
                     },
                     {
                         field : 'floorArea',
-                        title : '占地面积',
+                        title : coversArea,
                         align: 'center',
                         formatter : function(value, row, index) {
                         	if(value==null){
                         		return "";
                         	}else{
-                        		return value+"亩";
+                        		return value+mu;
                         	}
                         }
                     },
                     {
                         field : 'useableArea',
-                        title : '可利用面积',
+                        title : availableArea,
                         align: 'center',
                         formatter : function(value, row, index) {
                             	if(value==null){
                             		return "";
                             	}else{
-                            		return value+"亩";
+                            		return value+mu;
                             	}
                             }
                     },
                     {
-                        title : '操作',
+                        title : operation,
                         field : 'id',
                         align : 'center',
                         formatter : function(value, row, index) {
                             var f = '<a class="btn btn-success btn-sm '+s_check_h+'" href="#" mce_href="#" title="查看" onclick="check(\''
                             + row.id
-                            + '\')"><i class="fa"></i>查看</a> ';
+                            + '\')"><i class="fa"></i>'+checkk+'</a> ';
                          var e = '<a class="btn btn-info btn-sm '+s_edit_h+'" href="#" mce_href="#" title="修改" onclick="edit(\''
                              + row.id
-                             + '\')"><i class="f"></i>修改</a> ';
+                             + '\')"><i class="f"></i>'+updatee+'</a> ';
                          var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
                              + row.id
-                             + '\')"><i class="fa"></i>删除</a> ';
+                             + '\')"><i class="fa"></i>'+deletee+'</a> ';
                          return f+ e + d;
                         }
                     } ]
@@ -159,8 +159,8 @@ function check(id) {
 //     });
  }
  function remove(id) {
-     layer.confirm('确定要删除选中的记录？', {
-         btn : [ '确定', '取消' ]
+     layer.confirm(sureDeleteSelectedRecord, {
+         btn : [ determine, cancel ]
      }, function() {
          $.ajax({
              url : prefix + "/deletePastoralCommittee",
@@ -170,10 +170,10 @@ function check(id) {
              },
              success : function(r) {
                  if (r.code == 0) {
-                     layer.msg(r.msg);
+                     layer.msg(operationSuccess);
                      reLoad();
                  } else {
-                     layer.msg(r.msg);
+                     layer.msg(operationFailure);
                  }
              }
          });

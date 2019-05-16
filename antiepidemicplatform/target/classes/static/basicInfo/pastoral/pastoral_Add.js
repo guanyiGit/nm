@@ -10,7 +10,7 @@ $(function () {
 
 function savePastoral(form) {
 	if(form.name.value==''){
-		layer.msg("请输入村委会名!");
+		layer.msg(qsrcwhm);
 		form.name.focus();
 		return false;
 	}
@@ -18,7 +18,7 @@ function savePastoral(form) {
 	if(form.floorArea.value !=null && form.floorArea.value !=""){
 		if(!check.test(form.floorArea.value))
 		{
-			layer.msg("请输入合法数字!");
+			layer.msg(qsrhfsz);
 			form.floorArea.focus();
 		return false;
 		}
@@ -27,7 +27,7 @@ function savePastoral(form) {
 	if(form.useableArea.value !=null && form.useableArea.value !=""){
 		if(!check.test(form.useableArea.value))
 		{
-			layer.msg("请输入合法数字!");
+			layer.msg(qsrhfsz);
 			form.useableArea.focus();
 		return false;
 		}
@@ -52,22 +52,22 @@ function savePastoral(form) {
         dataType: "json",
         success: function (data) {
         	if(data.code==0){
-       		 layer.confirm('新增成功!', {
-       	         btn : [ '确定' ]
+       		 layer.confirm(addSuccess, {
+       	         btn : [ determine ]
        	     }, function() {
        	    	 location.href='/biz/pastoralCommittee/pastoral_List';
        	     })
        		
        	}else{
-       		layer.confirm('新增失败!', {
-      	         btn : [ '确定' ]
+       		layer.confirm(addFailure, {
+      	         btn : [ determine ]
       	     }, function() {
       	    	 location.href='/biz/pastoralCommittee/pastoral_List';
       	     })
        	}
         },
         error:function (error) {
-        	layer.alert("未知错误,请联系管理员");
+        	layer.alert(wzcwqlxgly);
         }
     });
 

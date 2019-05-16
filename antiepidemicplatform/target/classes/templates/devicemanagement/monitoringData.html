@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A26-监测数据</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh" >
+			<li class="fl"><a href="###">设备数据></a></li>
+			<li class="fl">监测数据</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt25 pdb75">
+		<div class="ovh">
+			<div class="fl mgr10">
+				<!--<span class="fs14 cor303030 h40 lh40 fb">监测数据（总条数：124）：</span>-->
+				<!--<select class="w150 h40 lh40 pdl10 cor9 bord9 pic2 mgr7">-->
+					<!--<option value="1">海晏县</option>-->
+					<!--<option value="1">海晏县二</option>-->
+				<!--</select>-->
+				<!--<select  class="w150 h40 lh40 pdl10 cor9 bord9 pic2 mgr7">-->
+					<!--<option value="1">青海湖乡</option>-->
+					<!--<option value="1">青海湖乡二</option>-->
+				<!--</select>-->
+				<select id="fenceDetailId" class="w150 h40 lh40 pdl10 cor9 bord9 pic2 " style="width: 200px">
+				</select>
+			</div>
+			<ul class="ul04 fl">
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+				</li>
+			</ul>
+			<div class="fr ovh">
+				<!--<a href="###" class="db fr w19 hov8 pdt10"><img src="images/10-2.png" alt=""></a>-->
+				<form class="db ovh">
+					<input id="deviceIdOrDmname"  style="width: 250px" type="text" class="db input1 w310 h40 lh40 pdl15 fl" placeholder="溯源ID/犬主姓名">
+					<input id="search" type="button" class="db fl pc5 hov8" value="">
+				</form>
+			</div>
+		</div>
+		<div class="mgt28">
+			<table id="deviceRecordTable" class="table15" width="100%" border="1"></table>
+		</div>
+
+	</div>
+	<!--内容区END-->
+	
+	<!--分页-->
+
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+
+<div th:include="include::footer"></div>
+</body>
+</html>
+<script  src="/devicemanagement/monitoringData.js"></script>

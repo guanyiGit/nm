@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<script th:inline="javascript">
+    var namee = [[#{binformation.ownerName}]];
+    var phone = [[#{phone}]];
+
+    var photo = [[#{binformation.photo}]];
+    var nam = [[#{binformation.name}]];
+    var belTownship = [[#{binformation.belTownship}]];
+    var belVet = [[#{binformation.belVet}]];
+    var gender = [[#{binformation.gender}]];
+    var birthday = [[#{binformation.birthday}]];
+    var contactPhone = [[#{binformation.contactPhone}]];
+    var operation = [[#{binformation.operation}]];
+    var checkk = [[#{binformation.check}]];
+    var updatee = [[#{binformation.update}]];
+    var deletee = [[#{binformation.delete}]];
+    var male = [[#{ownerMale}]];
+    var female = [[#{ownerFemale}]];
+    var national = [[#{binformation.national}]];
+    var levelEducation = [[#{binformation.levelEducation}]];
+    var villageCommit = [[#{binformation.villageCommit}]];
+    var pastureArea = [[#{binformation.pastureArea}]];
+    var mu = [[#{mu}]];
+    var sureDeleteSelectedRecord = [[#{sureDeleteSelectedRecord}]];
+    var determine = [[#{determine}]];
+    var cancel = [[#{binformation.cancel}]];
+    var operationSuccess = [[#{operationSuccess}]];//操作成功
+    var operationFailure = [[#{operationFailure}]];//操作失败
+    var primarySchool = [[#{binformation.primarySchool}]];//小学
+    var juHiSchool = [[#{binformation.juHiSchool}]];//初中
+    var highSchool = [[#{binformation.highSchool}]];//高中
+    var college = [[#{binformation.college}]];//大专
+    var baDeAbove = [[#{binformation.baDeAbove}]];//本科及以上
+</script>
+<!--引入自定js-->
+<script src="/basicInfo/dogOwner/dogOwner_List.js"></script>
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+	<div id="innerdiv" style="position:absolute;">
+		<img id="bigimg" style="border:5px solid #fff;" src="" />
+	</div>
+</div>
+<style type="text/css">
+		.tree-title{
+			font-size: 14px;
+		}
+		.textbox .textbox-text{
+			font-size: 14px;
+		}
+	</style>
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2" shiro:hasPermission="/biz/dogOwner/dogOwner_List">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{binformation}">基础信息</a>></li>
+			<li class="fl" th:text="#{binformation.ownerInfo}">犬主信息</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<div class="h40">
+			<ul class="ul04 fl">
+					<li class="fl t-c w280 mgr4 rel li1"><!--class="fl t-c pc20 w252 mgr4 rel li1"-->
+						<div class="ovh mgt2" style="margin-left: -108px" shiro:hasPermission="/biz/org/initOrgSelect2"><!--shiro:hasPermission="/biz/org/initOrgSelect2"-->
+							<div class="mgl90">
+								<input id="orgSelect"><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+						<div class="ovh mgt2" style="margin-left: -150px" shiro:hasPermission="/biz/dogInfo/findProtector">
+							<div class="mgl90" >
+								<!--<a style="color:#337AB7" onclick="getAll();">全部</a>-->
+								<input id="proSelect" ><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+					</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="/biz/dogOwner/dogOwner_Add">
+					<a href="/biz/dogOwner/dogOwner_Add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""><span th:text="#{binformation.add}">新增</span></a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt=""><span th:text="#{binformation.import}">导入</span></a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt=""><span th:text="#{binformation.export}">导出</span></a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt=""><span th:text="#{binformation.accurateSearch}">精确搜索</span></a>
+				</li>
+			</ul>
+			<div class="fr ovh">
+				<div class="mgr0 db ovh" id="enterKey">
+					<input id="searchKey" type="text" class="db input1 w250 h40 lh40 pdl15 fl" placeholder="犬主姓名/电话">
+					<input  type="button" class="db fl pc5 hov8" value="" onclick="reLoad();">
+				</div>
+			</div>
+		</div>
+		<table id="exampleTable" data-mobile-responsive="true">
+		</table>
+
+
+	</div>
+	<!--内容区END-->
+	
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_check_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        /* var s_resetPwd_h = 'hidden'; */
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogOwner/findDogOwnerDetail">
+    s_check_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogOwner/toUpadatePage">
+        s_edit_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogOwner/deleteDogOwner">
+    s_remove_h = '';
+    </script>
+</div>
+<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    $("#searchKey").attr("placeholder",namee+"/"+phone)
+</script>
+
+<!--<script th:inline="javascript">-->
+
+    <!--var bind5 = [[#{dogManage.bind}]];-->
+
+<!--</script>-->

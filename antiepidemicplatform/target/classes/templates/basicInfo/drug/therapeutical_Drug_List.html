@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/drug/therapeutical_Drug_List.js"></script>
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2" shiro:hasPermission="/biz/drug/findDrugList">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###">基础信息></a></li>
+			<li class="fl">治疗药品信息</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<div class="ovh">
+			<ul class="ul04 fl">
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="/biz/drug/addDrug">
+					<a href="/biz/drug/therapeutical_Drug_Add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt="">新增治疗药品</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt="">导入</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+				</li>
+			</ul>
+			<div  class="fr">
+				<div class="db ovh" id="enterKey">
+					<input  id="searchKey" type="text" class="db input1 w250 h40 lh40 pdl15 fl" placeholder="治疗药品名称">
+					<input  type="button" class="db fl pc5 hov8" value="" onclick="reLoad();">
+				</div>
+			</div>
+		</div>
+		<table id="exampleTable" data-mobile-responsive="true">
+		</table>
+		<!-- <div class="mgt28">
+			<table class="table10" width="100%" border="1">
+				<tbody>
+					<tr>
+						<td>名称</td>
+						<td>使用周期</td>
+						<td>使用方式</td>
+						<td>使用目的</td>
+						<td>药品成分</td>
+						<td>操作</td>
+
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+					<tr>
+						<td>吡硅酮咀嚼片</td>
+						<td>10小时以上给药</td>
+						<td>内服</td>
+						<td>血吸虫病</td>
+						<td>吡硅酮</td>
+						<td class="td1">
+							<a href="###" class="dinb cor005bac">查看</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</div> -->
+	<!--内容区END-->
+	
+	<!--分页-->
+	<!-- <div class="fen mgb75">
+		<ul class="ul06 ovh t-c w408 c-b">
+			<li class="fl"><a href="###" class="db w36">1</a></li>
+			<li class="fl active"><a href="###" class="db w36">2</a></li>
+			<li class="fl"><a href="###" class="db w36">3</a></li>
+			<li class="fl"><a href="###" class="db w36">4</a></li>
+			<li class="fl"><a href="###" class="db w36">5</a></li>
+			<li class="fl w36"><img src="images/13-3.png" alt=""></li>
+			<li class="fl"><a href="###" class="db w36">99</a></li>
+			<li class="fl curr"><a href="###" class="db w60"></a></li>
+			<li class="fl"><a href="###" class="db w60"></a></li>
+		</ul>
+	</div> -->
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+       /*  var s_check_h = 'hidden'; */
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        /* var s_resetPwd_h = 'hidden'; */
+    </script>
+</div>
+<!-- <div >
+    <script type="text/javascript" shiro:hasPermission="/biz/cooperation/findCooperationDetail">
+    s_check_h = '';
+    </script>
+</div> -->
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/drug/toUpdatePage">
+        s_edit_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/drug/deleteDrug">
+    s_remove_h = '';
+    </script>
+</div>
+</body>
+</html>

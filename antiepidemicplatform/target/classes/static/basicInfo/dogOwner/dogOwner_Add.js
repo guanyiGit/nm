@@ -14,10 +14,17 @@ $(function () {
   //初始化民族下拉框
     new MySelct({
         id:"selectedNation",
-        url:"/biz/protector/findTotalNation",
-        value:"name",
+        url:"/biz/protector/selectEthnic",
+        value:"value",
         text:"name",
     });
+        //初始化学历下拉框
+        new MySelct({
+            id:"selectEducationBackground",
+            url:"/biz/protector/selectEducationBackground",
+            value:"value",
+            text:"name",
+        });
     
     laydate.render({
         elem: '#birth', //指定元素
@@ -33,36 +40,36 @@ $(function () {
 // 保存
 function saveDogOwner(form) {
 	if(form.files.value==''){
-		layer.msg("请选择犬主照片!");
+		layer.msg(qxzqzzp);
 		return false;
 	}
 	
 	if(form.name.value==''){
-		layer.msg("请输入犬主姓名!");
+		layer.msg(qsrqzxm);
 		form.name.focus();
 		return false;
 	}
 	if(form.phoneNum.value==''){
-		layer.msg("请输入犬主电话!");
+		layer.msg(qsrqzdh);
 		form.phoneNum.focus();
 		return false;
 	}
 	if(form.cardNum.value==''){
-		layer.msg("请输入犬主证件号码!");
+		layer.msg(qsrqzzjhm);
 		form.cardNum.focus();
 		return false;
 	}
 	
 	var re=/^[1][3,4,5,7,8][0-9]{9}$/;    
 	if(!re.test(form.phoneNum.value.trim())){
-		layer.msg("请输入正确的手机号码!");
+		layer.msg(qsrzqdsjhm);
 		form.phoneNum.focus();
 		return false;   
 	}
 	//检查身份证号
 	var reg = /^([0-9]{15}|[0-9]{18})$/;
 	if(!reg.test(form.cardNum.value.trim())){
-		layer.msg("请输入正确的身份证号码!");
+		layer.msg(qsrzzsfzhm);
 		form.cardNum.focus();
 		return false;   
 	}
@@ -76,14 +83,14 @@ function saveDogOwner(form) {
         async: false,
         success: function (r) {
         	if(r.code==1){
-        		layer.msg("该身份证号码已经存在!请重新输入!");
+        		layer.msg(gsfzhmyjczqcxsr);
         		form.cardNum.focus();
         	}else{
         		flag1=true;
         	}
         },
         error: function () {
-        	layer.alert("未知错误,请联系管理员");
+        	layer.alert(wzcwqlxgly);
         }
     })
     
@@ -97,7 +104,7 @@ function saveDogOwner(form) {
         async: false,
         success: function (r) {
         	if(r.code==1){
-        		layer.msg("该电话号码已经存在!请重新输入!");
+        		layer.msg(gdhhmyjczqcxsr);
         		form.phoneNum.focus();
         	}else{
         		flag2 = true;
@@ -106,7 +113,7 @@ function saveDogOwner(form) {
         	
         },
         error: function () {
-        	layer.alert("未知错误!请联系管理员!");
+        	layer.alert(wzcwqlxgly);
         }
     })
     
@@ -169,11 +176,18 @@ $("#file-1").fileinput({
         // todo 弹框提示，页面跳转
         var code = data['response'].code;
         var msg = data['response'].msg;
-
+        if (code==10001) {
+            msg=idNotNull
+        }else if(code==10002){
+            msg=typeNotNull
+        }else if(code==10003){
+            msg=uploadPicFailure
+        }
         if (code == 0) {
+            msg=operationSuccess
             layer.alert(msg);
             layer.confirm(msg, {
-                btn : [ '确定' ]
+                btn : [ determine ]
             }, function() {
                 location.href='/biz/dogOwner/dogOwner_List';
             })
