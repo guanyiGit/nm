@@ -1,0 +1,323 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.4",
+	"appid": "wx84658bb2a228deb5",
+	"projectname": "wx-xcx-lang",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 45,
+			"list": [
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "犬只列表",
+					"pathName": "pages/home/dogInfo/dogInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬只添加",
+					"pathName": "pages/home/dogInfo/add/dog_add",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "犬主列表",
+					"pathName": "pages/home/ownerInfo/ownerInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主信息",
+					"pathName": "pages/home/ownerInfo/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主添加",
+					"pathName": "pages/home/ownerInfo/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主防疫列表",
+					"pathName": "pages/home/antiepidemic/antiepidemic",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主防疫详情",
+					"pathName": "pages/home/antiepidemic/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主防疫添加",
+					"pathName": "pages/home/antiepidemic/add/add",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "粪便处理列表",
+					"pathName": "pages/home/manure/manure",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "粪便处理详情",
+					"pathName": "pages/home/manure/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "粪便处理添加",
+					"pathName": "pages/home/manure/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "尸体处理列表",
+					"pathName": "pages/home/corpse/corpse",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "尸体处理详情",
+					"pathName": "pages/home/corpse/info/info",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "尸体处理添加",
+					"pathName": "pages/home/corpse/add/add",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "流浪犬处理列表",
+					"pathName": "pages/home/strayDog/strayDog",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "流浪犬处理详情",
+					"pathName": "pages/home/strayDog/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "流浪犬处理添加",
+					"pathName": "pages/home/strayDog/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主变更记录列表",
+					"pathName": "pages/home/ownerChange/ownerChange",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "犬主变更记录详情",
+					"pathName": "pages/home/ownerChange/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬主变更记录添加",
+					"pathName": "pages/home/ownerChange/add/add",
+					"query": ""
+				},
+				{
+					"id": 21,
+					"name": "项圈变更记录列表",
+					"pathName": "pages/home/neckletChange/neckletChange",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "项圈变更记录详情",
+					"pathName": "pages/home/neckletChange/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项圈变更记录添加",
+					"pathName": "pages/home/neckletChange/add/add",
+					"query": ""
+				},
+				{
+					"id": 24,
+					"name": "犬只注销列表",
+					"pathName": "pages/home/dogCancel/dogCancel",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬只注销详情",
+					"pathName": "pages/home/dogCancel/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬只注销添加",
+					"pathName": "pages/home/dogCancel/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的消息",
+					"pathName": "pages/home/message/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的消息详情",
+					"pathName": "pages/home/message/info/info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/home/setUp/setUp",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/home/userInfo/userInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "密码修改",
+					"pathName": "pages/home/setUp/passwordChange/passwordChange",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "统计信息",
+					"pathName": "pages/home/statistics/statistics",
+					"query": ""
+				},
+				{
+					"id": 33,
+					"name": "犬只详情",
+					"pathName": "pages/home/dogInfo/info/info",
+					"query": ""
+				},
+				{
+					"id": 34,
+					"name": "扫一扫",
+					"pathName": "pages/home/petInfo/petInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定位轨迹",
+					"pathName": "pages/home/location/location",
+					"query": ""
+				},
+				{
+					"id": 36,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "管理员首页",
+					"pathName": "pages/admin/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/admin/test/test",
+					"query": ""
+				},
+				{
+					"id": 39,
+					"name": "犬只犬主统计",
+					"pathName": "pages/admin/home/dogStatistics/statistics",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "防疫信息统计",
+					"pathName": "pages/admin/home/epidemicStatistics/statistics",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定设备",
+					"pathName": "pages/home/dogInfo/bindDevice/bindDevice",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "犬只列表工具",
+					"pathName": "pages/home/dogInfo/dogUtil/dogUtil",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "以防未防统计",
+					"pathName": "pages/admin/home/statisticalDetails/statisticalDetails",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "蓝牙",
+					"pathName": "pages/home/setUp/bluetooth/bluetooth",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "普通测试",
+					"pathName": "test/test",
+					"scene": null
+				}
+			]
+		}
+	}
+}

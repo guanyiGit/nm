@@ -1,0 +1,86 @@
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.deviceId||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>死亡原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.deathReason.name||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理方法：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.handleMethod.name||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>方法说明：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.methodDescription||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.dealTime||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理人员：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.user.name||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ imageList }}" wx:key="index">
+               <image src='{{ item.url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视频：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+    <view class="item describe">
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.description||'' }}</text>
+        </view>
+    </view>
+</view>

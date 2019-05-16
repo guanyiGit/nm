@@ -1,0 +1,155 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>溯源ID：</text> -->
+            <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.traceId||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>旧设备编号：</text> -->
+            <text>{{ LG.get(L,"jiushebeibianhao") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.oldNeckletNo||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>新设备编号：</text> -->
+            <text>{{ LG.get(L,"xinshebeibianhao") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.newNeckletNo||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>更换原因：</text> -->
+            <text>{{ LG.get(L,"genghuanyuanyin") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.changeReason||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>更换时间：</text> -->
+            <text>{{ LG.get(L,"genghuanshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.createtime||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬名：</text> -->
+            <text>{{ LG.get(L,"quanming") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.dogName||"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬种：</text> -->
+            <text>{{ LG.get(L,"quanzhong") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.breed||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主：</text> -->
+            <text>{{ LG.get(L,"quanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.name||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主电话：</text> -->
+            <text>{{ LG.get(L,"quanzhudianhua") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.phoneNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>身份证号码：</text> -->
+            <text>{{ LG.get(L,"shenfengzhenghaoma") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.cardNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>所属乡镇：</text> -->
+            <text>{{ LG.get(L,"suoshuxiangzhen") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.town||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>详细地址：</text> -->
+            <text>{{ LG.get(L,"xiangxidizhi") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.pcName||"" }}{{ neckletChange.no||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫员：</text> -->
+            <text>{{ LG.get(L,"fangyiyuan") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.porName||""  }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>防疫员电话：</text> -->
+            <text>{{ LG.get(L,"fangyiyuandianhua") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.porPhoneNum||""  }}</text>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.description||"" }}</text>
+        </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

@@ -1,0 +1,93 @@
+Page {
+  background-color: #EEEEEE
+}
+
+.container_body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx; 
+
+}
+
+.container_item {
+  display: flex;
+  height: 200rpx;
+  background-color: white;
+  border-bottom: 1rpx solid #cccccc;
+  border-left: 1rpx solid #cccccc;
+  border-right: 1rpx solid #cccccc;
+  font-size: 16px;
+}
+
+.item-body {
+  width: 90%;
+  height: 80%;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.headle {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+.gray {
+  color: #A69999;
+  font-size: 14px;
+}
+
+
+.more {
+  width: 100%;
+  height: 68rpx;
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 68rpx;
+  text-align: center;
+}
+
+.drop-right {
+  display: flex;
+  align-items: center;
+}
+
+.drop-right::after {
+  content: "";
+  width: 25rpx;
+  height: 25rpx;
+  border-top: 6rpx solid #9a9a9a;
+  border-right: 6rpx solid #9a9a9a;
+  transform: rotate(45deg);
+  display: block;
+  margin-left: 20rpx;
+}
+
+
+/* .add_DeviceDistribution::after */
+.xqff_element{
+  /*通过伪元素设置一像素的右边框*/
+  content: "项圈发放";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 20rpx;
+  line-height: 30rpx;
+
+ white-space: pre-wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

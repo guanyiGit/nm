@@ -1,0 +1,37 @@
+.page {
+  display: flex;
+  border-bottom: 2rpx solid #CDCDCD;
+  height: 80rpx;
+  align-items: center;
+  background-color: white;
+  margin-top: 10rpx;
+}
+
+.nav {
+  font-size: 14px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.drop-down {
+  display: flex;
+  align-items: center;
+}
+
+.drop-down::after {
+  content: "";
+  width: 15rpx;
+  height: 15rpx;
+  margin-left: 20rpx;
+  border-bottom: 2rpx solid black;
+  border-right: 2rpx solid black;
+  transform: rotate(45deg);
+  display: block;
+  margin-bottom: 10rpx; 
+}
+
+.splitLine {
+  border-right: 2rpx solid #CDCDCD
+}

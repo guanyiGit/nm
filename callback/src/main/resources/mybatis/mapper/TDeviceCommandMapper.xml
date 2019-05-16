@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="atshunhengli.com.mapper.TDeviceCommandMapper" >
+ <resultMap id="BaseResultMap" type="com.entities.TDeviceCommand" >
+    <id column="device_command_id" property="deviceCommandId" jdbcType="BIGINT" />
+    <result column="device_no" property="deviceNo" jdbcType="BIGINT" />
+    <result column="cmd_type" property="cmdType" jdbcType="INTEGER" />
+    <result column="cmd_value" property="cmdValue" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="cmd_issued_time" property="cmdIssuedTime" jdbcType="TIMESTAMP" />
+    <result column="cmd_mid" property="cmdMid" jdbcType="INTEGER" />
+    <result column="cmd_status" property="cmdStatus" jdbcType="INTEGER" />
+    <result column="cmd_rsp_time" property="cmdRspTime" jdbcType="TIMESTAMP" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="iot_command_id" property="iotCommandId" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <!--修改命令状态-->
+  <update id="updateStatusByNo">
+    update t_device_command  d
+    <set>
+      <if test="command.cmdStatus != null ">
+        d.cmd_status = #{command.cmdStatus},
+      </if>
+      <if test="command.cmdRspTime != null ">
+         d.cmd_rsp_time = #{command.cmdRspTime},
+      </if>
+    </set>
+    WHERE
+    d.cmd_status = #{cmdStatus} AND   d.device_no = #{deviceNo}
+  </update>
+
+  <!--根据设备iot平台编码查询设备命令列表-->
+  <select id="findCommandByDeviceIotId" resultMap="BaseResultMap" >
+
+    SELECT
+      dc.cmd_issued_time 'cmd_issued_time',dc.cmd_mid 'cmd_mid',
+      dc.cmd_rsp_time 'cmd_rsp_time', dc.cmd_status 'cmd_status',dc.cmd_type 'cmd_type',
+      dc.cmd_value 'cmd_value', dc.creation_time 'creation_time',dc.device_command_id
+      'device_command_id', dc.device_no 'device_no',dc.operator_id 'operator_id'
+    FROM t_device_command dc ,t_device_info d
+    WHERE dc.device_no =d.device_no
+    AND d.device_iot_id = #{deviceIotId}
+    <if test="status != null">
+      AND dc.cmd_status = #{status}
+    </if>
+  </select>
+
+     <!-- 根据设备imei更新设备命令结果信息  [0失败 1成功]-->
+    <update id="modifyDeviceCmdByMidAndDeviceImei">
+    	UPDATE t_device_command dc
+    	SET dc.cmd_rsp_time =#{c}, dc.cmd_status =#{resultCode}
+		WHERE dc.device_id = (
+			SELECT d.device_id from t_device d where  d.imei = #{imei}
+		)
+		AND dc.cmd_mid= #{mid}
+    </update>
+  <!-- 插入命令记录 -->
+  <insert id="saveCommand" parameterType="com.entities.TDeviceCommand" useGeneratedKeys="true" keyProperty="device_command_id" >
+  	INSERT INTO t_device_command
+		(device_id, cmd_type, cmd_value, operator_id, cmd_issued_time,
+		<if test="cmdStatus !=null">
+			cmd_status,
+		</if>
+		 cmd_rsp_time, creation_time, cmd_req_time)
+	VALUES
+		( #{deviceId}, #{cmdType}, #{cmdValue}, #{operatorId}, #{cmdIssuedTime},
+		<if test="cmdStatus !=null">
+			#{cmdStatus},
+		</if>
+		#{cmdRspTime}, #{creationTime}, #{cmdReqTime})
+  </insert>
+
+   <!-- 根据设备编码查询设备命令列表 -->
+  <select id="findCommandByDeviceNum" resultMap="BaseResultMap" >
+  	SELECT
+		dc.cmd_issued_time 'cmd_issued_time',dc.cmd_mid 'cmd_mid',dc.cmd_rsp_time 'cmd_rsp_time',
+		dc.cmd_status 'cmd_status',dc.cmd_type 'cmd_type', dc.cmd_value 'cmd_value',
+		dc.creation_time 'creation_time',dc.device_command_id 'device_command_id',
+		dc.device_id 'device_id',dc.operator_id 'operator_id'
+	FROM t_device_command dc ,t_device d
+	WHERE  dc.device_id =d.device_id
+	AND d.device_number = #{deviceNum}
+	<if test="status != null">
+		AND dc.cmd_status = #{status}
+	</if>
+  </select>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    device_command_id, device_id, cmd_type, cmd_value, operator_id, cmd_issued_time,
+    cmd_mid, cmd_status, cmd_rsp_time, creation_time, iot_command_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entities.TDeviceCommandExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_device_command
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_device_command
+    where device_command_id = #{deviceCommandId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_device_command
+    where device_command_id = #{deviceCommandId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.entities.TDeviceCommandExample" >
+    delete from t_device_command
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entities.TDeviceCommand" >
+    insert into t_device_command (device_command_id, device_id, cmd_type,
+      cmd_value, operator_id, cmd_issued_time,
+      cmd_mid, cmd_status, cmd_rsp_time,
+      creation_time, iot_command_id)
+    values (#{deviceCommandId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{cmdType,jdbcType=INTEGER},
+      #{cmdValue,jdbcType=INTEGER}, #{operatorId,jdbcType=BIGINT}, #{cmdIssuedTime,jdbcType=TIMESTAMP},
+      #{cmdMid,jdbcType=INTEGER}, #{cmdStatus,jdbcType=INTEGER}, #{cmdRspTime,jdbcType=TIMESTAMP},
+      #{creationTime,jdbcType=TIMESTAMP}, #{iotCommandId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entities.TDeviceCommand" >
+    insert into t_device_command
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deviceCommandId != null" >
+        device_command_id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="cmdType != null" >
+        cmd_type,
+      </if>
+      <if test="cmdValue != null" >
+        cmd_value,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="cmdIssuedTime != null" >
+        cmd_issued_time,
+      </if>
+      <if test="cmdMid != null" >
+        cmd_mid,
+      </if>
+      <if test="cmdStatus != null" >
+        cmd_status,
+      </if>
+      <if test="cmdRspTime != null" >
+        cmd_rsp_time,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="iotCommandId != null" >
+        iot_command_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deviceCommandId != null" >
+        #{deviceCommandId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="cmdType != null" >
+        #{cmdType,jdbcType=INTEGER},
+      </if>
+      <if test="cmdValue != null" >
+        #{cmdValue,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="cmdIssuedTime != null" >
+        #{cmdIssuedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmdMid != null" >
+        #{cmdMid,jdbcType=INTEGER},
+      </if>
+      <if test="cmdStatus != null" >
+        #{cmdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cmdRspTime != null" >
+        #{cmdRspTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iotCommandId != null" >
+        #{iotCommandId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entities.TDeviceCommandExample" resultType="java.lang.Integer" >
+    select count(*) from t_device_command
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_device_command
+    <set >
+      <if test="record.deviceCommandId != null" >
+        device_command_id = #{record.deviceCommandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cmdType != null" >
+        cmd_type = #{record.cmdType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmdValue != null" >
+        cmd_value = #{record.cmdValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cmdIssuedTime != null" >
+        cmd_issued_time = #{record.cmdIssuedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cmdMid != null" >
+        cmd_mid = #{record.cmdMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmdStatus != null" >
+        cmd_status = #{record.cmdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmdRspTime != null" >
+        cmd_rsp_time = #{record.cmdRspTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creationTime != null" >
+        creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.iotCommandId != null" >
+        iot_command_id = #{record.iotCommandId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_device_command
+    set device_command_id = #{record.deviceCommandId,jdbcType=BIGINT},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
+      cmd_type = #{record.cmdType,jdbcType=INTEGER},
+      cmd_value = #{record.cmdValue,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=BIGINT},
+      cmd_issued_time = #{record.cmdIssuedTime,jdbcType=TIMESTAMP},
+      cmd_mid = #{record.cmdMid,jdbcType=INTEGER},
+      cmd_status = #{record.cmdStatus,jdbcType=INTEGER},
+      cmd_rsp_time = #{record.cmdRspTime,jdbcType=TIMESTAMP},
+      creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+      iot_command_id = #{record.iotCommandId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entities.TDeviceCommand" >
+    update t_device_command
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="cmdType != null" >
+        cmd_type = #{cmdType,jdbcType=INTEGER},
+      </if>
+      <if test="cmdValue != null" >
+        cmd_value = #{cmdValue,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="cmdIssuedTime != null" >
+        cmd_issued_time = #{cmdIssuedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmdMid != null" >
+        cmd_mid = #{cmdMid,jdbcType=INTEGER},
+      </if>
+      <if test="cmdStatus != null" >
+        cmd_status = #{cmdStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cmdRspTime != null" >
+        cmd_rsp_time = #{cmdRspTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iotCommandId != null" >
+        iot_command_id = #{iotCommandId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where device_command_id = #{deviceCommandId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entities.TDeviceCommand" >
+    update t_device_command
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      cmd_type = #{cmdType,jdbcType=INTEGER},
+      cmd_value = #{cmdValue,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      cmd_issued_time = #{cmdIssuedTime,jdbcType=TIMESTAMP},
+      cmd_mid = #{cmdMid,jdbcType=INTEGER},
+      cmd_status = #{cmdStatus,jdbcType=INTEGER},
+      cmd_rsp_time = #{cmdRspTime,jdbcType=TIMESTAMP},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      iot_command_id = #{iotCommandId,jdbcType=VARCHAR}
+    where device_command_id = #{deviceCommandId,jdbcType=BIGINT}
+  </update>
+</mapper>

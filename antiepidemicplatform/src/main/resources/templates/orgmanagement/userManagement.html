@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>title</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/css.css">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh" >
+			<li class="fl"><a href="###" th:text="#{orgPower}">组织权限></a></li>
+			<li class="fl"th:text="#{userManage}">用户管理</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<form class="db ovh" style="margin-bottom: 20px">
+			<ul class="ul04 fl mgr20">
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="/biz/userInfo/add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""th:text="#{dogManage.add}"></a>
+				</li>
+
+				<!--<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">-->
+					<!--<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>-->
+				<!--</li>-->
+				<!--<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">-->
+					<!--<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>-->
+				<!--</li>-->
+			</ul>
+			<div id="userKeyDown" class="fr">
+				<input id="userNameOrNo" style="width: 250px" type="text" class="db input1 w310 h40 lh40 pdl15 fl" th:placeholder="#{userManage.searchKey}">
+				<input id="search" type="button" class="db fl pc5 hov8" value="">
+			</div>
+		</form>
+		<table id="userInfoTable" ></table>
+	</div>
+	<!--内容区END-->
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+		
+</div>
+<div th:include="include::footer"></div>
+<!--wrap End-->
+</body>
+</html>
+
+<script src="/orgmanagement/userManagement.js"></script>
+
+<script th:inline="javascript">
+	var name5 =[[#{userManage.name}]];
+	var phone5 =[[#{dogManage.phone}]];
+	var org5 =[[#{userManage.org}]];
+	var role5 =[[#{userManage.role}]];
+	var createTime5 =[[#{deviceData.createTime}]];
+	var isUse5 =[[#{userManage.isUse}]];
+	var operation5 =[[#{dogManage.operation}]];
+	var edit5 =[[#{dogManage.edit}]];
+	var delete5 =[[#{dogManage.delete}]];
+	var sure5 =[[#{userManage.sure}]];
+	var notSure5 =[[#{userManage.notSure}]];
+    var yesDeleteUserT =[[#{orgManage.yesDeleteUserT}]];
+    var yesT =[[#{deviceData.yesT}]];
+    var noT =[[#{deviceData.yesT}]];
+    var yesDeleteT =[[#{deviceData.yesDeleteT}]];
+    var cancel5 =[[#{binformation.cancel}]];
+
+</script>
+

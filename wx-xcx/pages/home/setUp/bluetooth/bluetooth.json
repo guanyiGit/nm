@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-switch":"../../../../dist/switch/index"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "蓝牙"
+}

@@ -1,0 +1,29 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchDog"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ ownerChange }}" wx:key="index">
+      <view class='container_item drop-right' bindtap='toStrayDogPage' data-index='{{ idnex }}'>
+        <view class='body'>
+          <view class='title'>
+              <text>溯源ID：</text>
+              <text class='deviceNo'>{{item.deviceNo}}</text>
+          </view>
+          <view class='middle'>
+            <view>{{ item.oldOwner }}</view>
+            <view style='color:#999999;font-size:14px;'>更换为</view>
+            <view>{{ item.newOwner }}</view>
+          </view>
+          <view class='foot'>
+              <text>更换时间：</text>
+              <text>{{item.createtime}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='add_dog'></view>
+<view class='more'>
+  <text>下拉查看更多</text>
+</view>

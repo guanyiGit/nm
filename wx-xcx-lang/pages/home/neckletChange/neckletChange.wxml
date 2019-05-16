@@ -1,0 +1,53 @@
+<view wx:if="{{ ishasData }}">
+<search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="search" query ="{{ query.string }}"  bind:scanSearchEvent="scanSearch"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ nectletChangeList }}" wx:key="index">
+      <view class="container_item drop-right" bindtap='toNeckletChangePage' data-index='{{ index }}'>
+        <view class='body'>
+          <view class='title'>
+            <!-- <view>溯源ID：</view> -->
+            <view>{{ LG.get(L,"suyuan_ID") }}：</view>
+            <view style='color:black'>{{item.traceId}}</view>
+          </view>
+          <view class='middle'>
+            <view class='texthide'>
+            <!-- 犬名: -->
+                {{ LG.get(L,"quanming") }}:
+                <!-- <text> {{ item.dogName||'未知'}} </text> -->
+                <text> {{ item.dogName||LG.get(L,"weizhi")}} </text>
+            </view>
+            <view class='texthide'>
+            <!-- 犬主: -->
+                {{ LG.get(L,"quanzhu") }}:
+                <!-- <text>{{ item.name||'未知'}}</text> -->
+                <text>{{ item.name||LG.get(L,"weizhi")}}</text>
+            </view>
+
+          </view>
+          <view class='foot'>
+            <!-- <view class='neckletNo'>{{ item.oldNeckletNo||'未知'}}</view> -->
+            <view class='neckletNo'>{{ item.oldNeckletNo||LG.get(L,"weizhi")}}</view>
+            <!-- <view class=''>更换为</view> -->
+            <view class=''>{{ LG.get(L,"genghuanwei") }}</view>
+            <!-- <view class='neckletNo'>{{ item.newNeckletNo||'未知'}}</view> -->
+            <view class='neckletNo'>{{ item.newNeckletNo||LG.get(L,"weizhi")}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='necklet-change' bindtap='toDogUtilPage' data-type='4'>
+  <text class='xqgh_element'>{{ LG.get(L,"xiangquangenghuan") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

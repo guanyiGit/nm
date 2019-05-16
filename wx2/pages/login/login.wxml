@@ -1,0 +1,19 @@
+<!--登录页-->
+<view class='warp'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='login_title'>
+      <image src='{{ login.imageUrl }}'></image>
+    </view>
+    <view class='login_body'>
+      <view class='username'>
+        <image src='{{ login.username_icon }}'></image>
+        <input placeholder-class="input-placeholder" placeholder='请输入用户名' name="username"></input>
+      </view>
+      <view class='password'>
+        <image src='{{ login.password_icon }}'></image>
+        <input placeholder-class="input-placeholder" placeholder='请输入密码' name="password" type='password'> </input>
+      </view>
+    </view>
+    <button class='submit_button' form-type='submit'>提交</button>
+  </form>
+</view>

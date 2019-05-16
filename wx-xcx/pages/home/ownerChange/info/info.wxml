@@ -1,0 +1,56 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>旧犬主：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.oldOwner }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>新犬主：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.newOwner }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.changeReasons }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.createtime }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.description }}</text>
+        </view>
+    </view>
+</view>

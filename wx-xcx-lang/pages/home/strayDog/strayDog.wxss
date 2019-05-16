@@ -1,0 +1,159 @@
+Page {
+  background-color: #EEEEEE
+}
+
+.container_scan {
+  display: flex;
+  align-items: center;
+  width: 98%;
+}
+
+.search_input {
+  width: 100%;
+  border: 2rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 50rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  background-color: white;
+  font-size: 16px;
+}
+
+.search-date {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 50rpx;
+}
+
+.search-date picker{
+  width: 35%;
+}
+
+.picker {
+  text-align: center;
+}
+
+.placeholder {
+  font-size: 16px;
+  text-align: center;
+}
+
+.search_input image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 20rpx;
+}
+
+.search_input input {
+  margin-left: 10rpx;
+}
+
+.scan{
+  display: flex;
+  align-items: center;
+}
+
+.scan image{
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+
+.container_body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx; 
+
+}
+
+.container_item {
+  display: flex;
+  height: 200rpx;
+  background-color: white;
+  align-items: center;
+  border-bottom: 1rpx solid #cccccc;
+  border-left: 1rpx solid #cccccc;
+  border-right: 1rpx solid #cccccc;
+}
+
+.left {
+  margin-left: 20rpx;
+}
+
+.left image{
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.right {
+  margin-left: 40rpx;
+  height: 160rpx;
+  width: 440rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right_headle{
+  font-size: 15px;
+}
+
+.right_body{
+  display: flex;
+  width: 380rpx;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.right_foot {
+  font-size: 15px;
+}
+
+.gray {
+  font-size: 14px;
+  color: #aaaaaa;
+}
+
+.more {
+  width: 100%;
+  height: 68rpx;
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 68rpx;
+  text-align: center;
+}
+
+
+.add_dog {
+  /*子绝父相*/
+  
+}
+
+/* .add_dog::after */
+.llqcl_element{
+  /*通过伪元素设置一像素的右边框*/
+  /* content: "流浪犬 \a 处理"; */
+  /* white-space: pre; */
+  /*定位，不占位置*/
+   position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 10rpx;
+  line-height: 30rpx;
+  white-space: pre-wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

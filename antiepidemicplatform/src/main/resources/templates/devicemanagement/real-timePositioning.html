@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A27-实时定位</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+	<link rel="stylesheet" href="/css/common.css"/>
+	<link rel="stylesheet" href="/css/css.css">
+	<link rel="stylesheet" href="/css/RL.css">
+	<!--引入easy.css 组件-->
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/icon.css">
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/demo.css">
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/plugins/layer/layer.js"></script>
+	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.10&key=ec56615395d54d192428e2f04dfb7e9e"></script>
+	<style type="text/css">
+		#container {width:1550px; height: 700px; }
+	</style>
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{deviceData}">设备数据></a></li>
+			<li class="fl" th:text="#{deviceData.timePos}">实时定位</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+
+		<div class="mgt28 rel" id="container">
+		</div>
+
+	</div>
+	<!--内容区END-->
+
+</div>
+<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+<script src="/devicemanagement/real-timePositioning.js"></script>
+<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+<script src="/dogmanager/YLUtils.js"></script>
+</body>
+</html>

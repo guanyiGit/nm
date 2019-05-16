@@ -1,0 +1,38 @@
+<view wx:if="{{ ishasData }}">
+  <active-box bind:searchEvent="searchActivity" bind:orgEvent="orgEvent" bind:dateEvent="dateEvent" placeholder-text="{{ component.placeholderText }}" is-show="{{ component.isShow }}"></active-box>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ activityArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+        <view class='container_item drop-right' bindtap='toActivityInfoPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.url }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <text>{{item.activitySubject}}</text>
+            </view>
+            <view class='right_body'>
+              <!-- <view class='texthide'>举办单位：{{ item.holdOrgName }}</view> -->
+              <view class='texthide'>{{ LG.get(L,"huodongshijian") }}：{{ item.holdOrgName }}</view>
+            </view>
+            <view class='right_foot'>
+              <!-- <view>活动时间：{{ item.activityTime }}</view> -->
+              <view>{{ LG.get(L,"huodongshijian") }}：{{ item.activityTime }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_anatomy' bindtap='toActivityAddPage'>
+  <text class='xz_element'>{{ LG.get(L,"xinzeng") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

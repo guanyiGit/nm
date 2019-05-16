@@ -1,0 +1,172 @@
+<view class='page' wx:if="{{ ishasData }}">
+  <statistics-box bind:dataEvent="bindDataEvent" bind:monthEvent="bindMonthEvent"></statistics-box>
+  <view class='container'>
+    <view class='item' wx:if="{{ isShow.epidemicIsShow }}">
+      <view class='title'>
+        <view class="title-content {{ antieTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='1'>防疫次数</view>
+      </view>
+      <view class='table' hidden='{{ !antieTimes.isOpen }}'>
+        <view class='table-header'>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡镇</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+          <view class='table-heade-th'>次数</view>
+        </view>
+        <view class='table-body'>
+          <block wx:for="{{ antieTimes.antieTimesArray }}" wx:key="index">
+            <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == antieTimes.length-1?'last-tr':''  }} ">
+              <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+              <view class='table-body-td'>{{ item.count }}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class='item' wx:if="{{ isShow.corpseIsShow }}">
+      <view class='title'>
+        <view class="title-content {{ corpseTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='2'>犬尸处理次数</view>
+      </view>
+      <view class='table' hidden='{{ !corpseTimes.isOpen }}'>
+        <view class='table-header'>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡镇</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+          <view class='table-heade-th'>次数</view>
+        </view>
+        <view class='table-body'>
+          <block wx:for="{{ corpseTimes.corpseTimesArray }}" wx:key="index">
+            <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == corpseTimes.length-1?'last-tr':''  }} ">
+              <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+              <view class='table-body-td'>{{ item.count }}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='item' wx:if="{{ isShow.manureIsShow }}">
+    <view class='title'>
+      <view class="title-content {{ manureTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='3'>  犬粪处理次数 </view>
+    </view>
+    <view class='table' hidden='{{ !manureTimes.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡镇</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+        <view class='table-heade-th'>次数</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ manureTimes.manureTimesArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == manureTimes.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class='item' wx:if="{{ isShow.manureAntigenIsShow }}">
+    <view class='title'>
+      <view class="title-content {{ antigenTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='4'> 犬粪抗原检测次数 </view>
+    </view>
+    <view class='table' hidden='{{ !antigenTimes.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th'>次数</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ antigenTimes.antigenTimesArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == antigenTimes.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class='item' wx:if="{{ isShow.anatomyIsShow }}">
+    <view class='title'>
+      <view class="title-content {{ anatomyTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='5'>犬只解剖次数</view>
+    </view>
+    <view class='table' hidden='{{ !anatomyTimes.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th'>次数</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ anatomyTimes.anatomyTimesArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == anatomyTimes.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='item' wx:if="{{ isShow.CASAntigenIsShow }}">
+    <view class='title'>
+      <view class="title-content {{ antibodyTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='6'>牛羊抗体检测次数</view>
+    </view>
+    <view class='table' hidden='{{ !antibodyTimes.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th'>次数</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ antibodyTimes.antibodyTimesArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == dantibodyTimesog.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class='item' wx:if="{{ isShow.CASVisceraIsShow }}">
+    <view class='title'>
+      <view class="title-content {{ infectionTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='7'>牛羊脏器处理次数</view>
+    </view>
+    <view class='table' hidden='{{ !infectionTimes.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th'>次数</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ infectionTimes.infectionTimesArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == infectionTimes.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>

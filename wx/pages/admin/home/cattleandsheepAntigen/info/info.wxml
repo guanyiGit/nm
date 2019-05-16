@@ -1,0 +1,70 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>检测数：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.testAmount }}公斤</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>合格数：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.qualifiedAmount }}公斤</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>合格率：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.qualifiedRate }}%</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>检测时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.testDate }}</text>
+        </view>
+    </view>
+  
+    <view class='item'>
+        <view class='left'>
+            <text>检测单位：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.orgInfo.departName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视屏：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>

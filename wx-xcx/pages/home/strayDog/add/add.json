@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "date-select": "/components/date-select/date-select",
+    "image-upload":"/components/imageUpload/upload"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "流浪犬处理录入"
+}

@@ -1,0 +1,4 @@
+<view class="map_box">
+  <map id="map" longitude="{{ longitude }}" latitude="{{ latitude }}" polyline='{{ polyline }}' scale="13" markers="{{ markers }}" bindmarkertap="markerClick">
+  </map>
+</view>

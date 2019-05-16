@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.HomePageDao">
+    <select id="findAllMsgs" parameterType="java.util.Map" resultType="com.entities.TMsg">
+        select tm.*  from t_protector tp
+        left join t_user_ref_msg turm on turm.receiver =  tp.user_id
+        left join t_msg tm on tm.id  = turm.msg_id
+        where tp.id = #{id}
+    </select>
+
+    <select id="findAntiepidmicTimes" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*) FROM antiepidemic
+        left join t_protector protector on protector.id  = antiepidemic.protector
+        <where>
+            <if test="userId != null and userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size > 0">
+                and antiepidemic.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="lastMonth != null and lastMonth != ''">
+                and antiepidemic.antiepidemic_date <![CDATA[ > ]]> #{lastMonth}
+            </if>
+            <if test="currMonth != null and currMonth != ''">
+                and antiepidemic.antiepidemic_date <![CDATA[ < ]]> #{currMonth}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="findAddedDogs" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*) FROM t_dog_info dog
+        left join t_protector protector on protector.id = dog.protector
+        <where>
+            <if test="userId != null and userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size > 0">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="lastMonth != null">and dog.create_date like concat(#{lastMonth},'%')</if>
+        </where>
+    </select>
+
+    <select id="findCancelDogs" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(dog.id) FROM `t_dog_info` dog
+        left join t_protector protector on protector.id = dog.protector
+        <where>
+            dog.status in (2,3)
+            <if test="userId != null and userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size > 0">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="lastMonth != null">and dog.create_date like concat(#{lastMonth},'%')</if>
+        </where>
+    </select>
+
+    <select id="findDeadDogs" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(dog.id) FROM `t_dog_info` dog
+        left join t_protector protector on protector.id = dog.protector
+        left join t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        <where>
+            dog.status = 1
+            <if test="userId != null and userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size > 0">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="lastMonth != null">
+                AND (corpse.deal_time is not null and corpse.deal_time LIKE concat( '2019-03', '%' ))
+            </if>
+        </where>
+    </select>
+
+    <select id="findTopTenDrug" parameterType="java.util.Map" resultType="com.statisanalysis.entity.Data">
+        select tri.drug_name name,count(*) value from antiepidemic a
+        left join t_drug_info tri on tri.id = a.drug_id
+        <where>
+            a.antiepidemic_date <![CDATA[ > ]]> #{lastMonth}
+            and a.antiepidemic_date <![CDATA[ < ]]> #{currMonth}
+            <if test="protectorId != null and protectorId != null">and a.protector = #{protectorId}</if>
+            <if test="lists != null and lists.size > 0">
+                and a.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY tri.drug_name
+        order by value DESC
+        limit 0,10
+    </select>
+
+    <select id="findPerMonthTimes" parameterType="java.util.Map" resultType="com.entities.Antiepidemic">
+        select * from antiepidemic
+        <where>
+            antiepidemic_date <![CDATA[ < ]]> #{endTime}
+            <if test="protectorId != null and protectorId != null">and antiepidemic.protector = #{protectorId}</if>
+            <if test="lists != null and lists.size > 0">
+                and antiepidemic.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
+    <select id="findDogsByTime" parameterType="java.util.Map" resultType="com.entities.TDogInfo">
+        select * from t_dog_info dog
+        <where>
+            create_date <![CDATA[ < ]]> #{endTime} and status = 0
+            <if test="protectorId != null and protectorId != null">and dog.protector = #{protectorId}</if>
+            <if test="lists != null and lists.size > 0">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="findUnreadTotal" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*) from t_msg tm
+        LEFT JOIN t_user_ref_msg turm on tm.id = turm.msg_id
+        LEFT JOIN t_user_info tui on tui.id  = turm.receiver
+        where tui.id = #{id} and tm.status  = 0
+    </select>
+    <select id="findUnreadMsgs" parameterType="java.util.Map" resultType="com.entities.TMsg">
+        SELECT tm.* from t_msg tm
+        LEFT JOIN t_user_ref_msg turm on tm.id = turm.msg_id
+        left join t_user_info tui on tui.id  = turm.receiver
+        <where>
+          tui.id = #{id} and tm.status  = 0
+        </where>
+        order by tm.create_date DESC
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+
+    </select>
+
+    <select id="findReadedTotal" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*) from t_msg tm
+        LEFT JOIN t_user_ref_msg turm on tm.id = turm.msg_id
+        LEFT JOIN t_user_info tui on tui.id  = turm.receiver
+        where tui.id = #{id} and tm.status  = 1
+    </select>
+    <select id="findReadMsgs" parameterType="java.util.Map" resultType="com.entities.TMsg">
+        SELECT tm.* from t_msg tm
+        LEFT JOIN t_user_ref_msg turm on tm.id = turm.msg_id
+        left join t_user_info tui on tui.id  = turm.receiver
+        <where>
+            tui.id = #{id} and tm.status  = 1
+        </where>
+        order by tm.create_date DESC
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+
+    </select>
+
+    <select id="findHomePageUnreadMsgs" parameterType="map" resultType="com.entities.TMsg">
+        select msg.id,msg.title,msg.create_date,msg.type from t_msg msg,t_user_ref_msg ref,t_user_info user
+        where user.id = #{userId} and ref.receiver = user.id and msg.id = ref.msg_id and msg.status = 0
+        order by msg.create_date desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="findMsgById" parameterType="java.lang.String" resultType="com.entities.TMsg">
+        select * from t_msg
+        where t_msg.id = #{id}
+    </select>
+
+
+    <select id="orgInfoList" resultType="com.entities.OrgInfo">
+        select * from t_org_info
+    </select>
+
+    <update id="updateMsgStatus" parameterType="java.lang.String">
+        update t_msg set status = 1 where id = #{id}
+    </update>
+    
+    <select id="getMsgList" parameterType="map" resultType="com.entities.TMsg">
+        SELECT
+            msg.*
+        FROM
+            t_user_info USER,
+            t_user_ref_msg ref,
+            t_msg msg
+        <where>
+            <if test="id != null">USER.id = #{id}</if>
+            AND USER.id = ref.receiver
+            AND msg.id = ref.msg_id
+        </where>
+        order by msg.create_date desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="getTraceIdList" parameterType="map" resultType="java.lang.String">
+        	SELECT
+                dog.trace_id
+            FROM
+                t_dog_info dog
+                LEFT JOIN t_protector pro ON pro.id = dog.protector
+            <where>
+                dog.STATUS = 0
+                <if test="userId != null">and pro.user_id = #{userId}</if>
+                <if test="lists != null and lists.size > 0">
+                    and dog.org_id in
+                    <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </if>
+            </where>
+    </select>
+
+    <!--<select id="countTotalAmount" parameterType="map" resultType="java.lang.Integer">-->
+        <!--select count(dog.id) from t_dog_info dog-->
+        <!--left join t_protector pro on pro.id = dog.protector-->
+        <!--<where>-->
+            <!--dog.status = 0-->
+            <!--<if test="userId != null">and pro.user_id = #{userId}</if>-->
+            <!--<if test="lists != null and lists.size != ''">-->
+                <!--and dog.org_id in-->
+                <!--<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">-->
+                    <!--#{item}-->
+                <!--</foreach>-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <select id="countAntiAmount" parameterType="map" resultType="map">
+        select anti.trace_id traceId,max(anti.antiepidemic_date) antieDate,anti.antiepidemic_period period from antiepidemic anti
+        <where>
+            <if test="traceIdList != null and traceIdList.size > 0">
+                anti.trace_id in
+                <foreach collection="traceIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by anti.trace_id
+    </select>
+
+    <select id="counpteAntiAmount" parameterType="map" resultType="java.lang.String">
+        select anti.trace_id traceId from antiepidemic anti
+        <where>
+            <if test="searchMonth != null">
+                and DATE_FORMAT(anti.antiepidemic_date,'%Y-%m')=#{searchMonth}
+            </if>
+            <if test="traceIdList != null and traceIdList.size > 0">
+                and anti.trace_id in
+                <foreach collection="traceIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by anti.trace_id
+    </select>
+
+    <select id="dogList" parameterType="map" resultType="map">
+        SELECT
+            media.thumbnail_url dogSmallUrl,
+            media.url dogBigUrl,
+            dog.trace_id traceId,
+            refdog.device_no deviceNo,
+            dog.dog_name dogName,
+            OWNER.NAME ownerName,
+            OWNER.phone_num ownerPhone,
+            OWNER.area_id areaId,
+            comm.NAME pname,
+            OWNER.no,
+            dog.create_date createDate
+        FROM
+            t_dog_info dog
+            LEFT JOIN t_media_ref ref ON ref.ref_id = dog.id
+            AND ref.type = 0
+            LEFT JOIN t_media_info media ON media.id = ref.media_id
+            LEFT JOIN t_device_ref_dog refdog ON refdog.trace_id = dog.trace_id
+            LEFT JOIN t_dog_owner OWNER ON OWNER.id = dog.
+            OWNER LEFT JOIN t_pastoral_committee comm ON comm.id = OWNER.pastoral_committee_id
+        <where>
+            <if test="antiTraceIdList != null and antiTraceIdList.size > 0">
+                dog.trace_id IN
+                <foreach collection="antiTraceIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY
+            dog.id
+    </select>
+
+    <select id="findUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select user_id from t_protector where id = #{value}
+    </select>
+</mapper>

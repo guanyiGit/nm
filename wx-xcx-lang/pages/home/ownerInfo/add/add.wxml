@@ -1,0 +1,215 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--草场面积：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>犬主姓名：</text> -->
+            <text>{{ LG.get(L,"quanzhu_xingming") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="name"></input>
+        </view>
+      </view>
+
+      <!--性别：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <!-- <text>性别：</text> -->
+            <text>{{ LG.get(L,"xingbie") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindSexChange' value='{{ sex.sexIndex }}' range='{{ sex.sexArray }}' name="sex">
+            <view class='picker drop-down'>
+              {{ sex.sexArray[sex.sexIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--出生日期：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <!-- <text>出生日期：</text> -->
+            <text>{{ LG.get(L,"chushengriqi") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker mode="date" bindchange='bindDataChange' value='{{ birthday.date }}'  name="birthDay">
+            <view class='picker drop-down'>
+              {{ birthday.date }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--名族：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <!-- <text>名族：</text> -->
+            <text>{{ LG.get(L,"mingzu") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindnationChange' value='{{ nation.nationArray[nation.nationIndex].value }}' range='{{ nation.nationArray }}' range-key='name' name="nationId">
+            <view class='picker drop-down'>
+              {{ nation.nationArray[nation.nationIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+      
+       <!--文化程度：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <!-- <text>文化程度：</text> -->
+            <text>{{ LG.get(L,"wenhuachengdu") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+           <picker bindchange='binddegreeOfEducationChange' value='{{ degreeOfEducation.degreeOfEducationArray[degreeOfEducation.degreeOfEducationIndex].value }}' range='{{ degreeOfEducation.degreeOfEducationArray }}' range-key='name' name="degreeOfEducation">
+            <view class='picker drop-down'>
+              {{ degreeOfEducationName?degreeOfEducationName:degreeOfEducation.degreeOfEducationArray[degreeOfEducation.degreeOfEducationIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--联系电话：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>联系电话：</text> -->
+            <text>{{ LG.get(L,"lianxidianhua") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="phoneNum"></input>
+        </view>
+      </view>
+      <!--详细地址：-->
+      <!-- <view class='item'>
+        <view class='left'>
+          <view class=''>
+            <text>详细地址：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="address"></input>
+        </view>
+      </view> -->
+
+
+       <!--证件类型：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>证件类型：</text> -->
+            <text>{{ LG.get(L,"zhengjian_leix") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindcardTypeChange' value='{{ cardType.cardTypeIndex }}' range='{{ cardType.cardTypeArray }}' name="cardType">
+            <view class='picker drop-down'>
+              {{ cardType.cardTypeArray[cardType.cardTypeIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--详细地址：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>证件号码：</text> -->
+            <text>{{ LG.get(L,"zhengjian_haoma") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="cardNum"></input>
+        </view>
+      </view>
+
+      <!--草场面积：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <!-- <text>草场面积：</text> -->
+            <text>{{ LG.get(L,"caochangmianji") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="grassLandArea"  placeholder="{{ LG.get(L,'mu') }}" placeholder-class='area'></input>
+        </view>
+      </view>
+
+       <!--所属牧委会：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must texthide2'>
+            <!-- <text>所属村委会:</text> -->
+            <text>{{ LG.get(L,"suoshucunweihui") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindPastoralCommitteeChange' value='{{  pastoralCommittee.pastoralCommitteeArray[pastoralCommittee.pastoralCommitteeIndex].id }}' range='{{ pastoralCommittee.pastoralCommitteeArray }}' range-key="name" name="pastoralCommitteeId">
+            <view class='picker drop-down'>
+              {{ pastoralCommittee.pastoralCommitteeArray[pastoralCommittee.pastoralCommitteeIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--门牌号：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>门牌号：</text> -->
+            <text>{{ LG.get(L,"menpaihao") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="no" value='{{ no }}'></input>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='owner_pic item'>
+        <view class='left'>
+          <view>
+            <!-- <text>照片：</text> -->
+            <text>{{ LG.get(L,"zhaopian") }}：</text>
+          </view>
+        </view>
+        <view class='right '>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+      <!--描述：-->
+      <view class='description item'>
+        <view class='left'>
+          <view>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="discription"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>{{ LG.get(L,"submit") }}</button>
+        <button class='reset' formType="reset">{{ LG.get(L,"reset") }}</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

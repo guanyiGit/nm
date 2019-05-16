@@ -1,0 +1,428 @@
+Page {
+  background-color: #eee;
+}
+
+.dog {
+  position: relative;
+}
+
+.dog-title {
+  position: absolute;
+  font-size: 16px;
+  left: 60rpx;
+  top: -20rpx;
+}
+
+.owner {
+  position: relative;
+}
+
+.owner-title {
+  position: absolute;
+  font-size: 16px;
+  left: 60rpx;
+  top: -20rpx;
+}
+
+.antiepidemic {
+  position: relative;
+}
+
+.antiepidemic-title {
+  position: absolute;
+  font-size: 16px;
+  left: 60rpx;
+  top: -20rpx;
+}
+
+.info {
+  width: 90%;
+  background-color: white;
+  margin-left: 20rpx;
+  margin-top: 70rpx;
+  padding-top: 30rpx;
+  padding-left: 25rpx;
+  padding-bottom: 50rpx;
+  border: 1rpx solid #ccc;
+}
+
+.top_body {
+  display: flex;
+}
+
+.top_body_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.top_body_item {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.top_body_item_left {
+  color: #999;
+  width: 140rpx;
+}
+
+.top_body_item_right {
+  width: 220rpx;
+}
+
+.top_body_left image {
+  width: 280rpx;
+  height: 280rpx;
+}
+
+.foot_body {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20rpx;
+}
+
+.foot_body_item {
+  display: flex;
+  margin-top: 30rpx;
+  font-size: 14px;
+}
+
+.foot_body_item_left {
+  color: #999;
+  width: 200rpx;
+}
+
+.foot_body_item_right {
+  width: 400rpx;
+}
+
+.ttt {
+  color: #237893
+}
+
+.foot_body_item_right image {
+  height: 180rpx;
+  width: 180rpx;
+  margin-right: 20rpx;
+}
+
+.foot_body_item_right video {
+  height: 180rpx;
+  width: 180rpx;
+  margin-right: 20rpx;
+}
+
+/* 犬只列表 */
+
+.dogInfo {
+  margin-top: 30rpx;
+  height: 60rpx;
+  font-size: 16px;
+  line-height: 70rpx;
+  margin-left: 40rpx;
+}
+
+.container_body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.container_item {
+  display: flex;
+  width: 93%;
+  height: 200rpx;
+  margin-left: 20rpx;
+  background-color: white;
+  align-items: center;
+  border-bottom: 1rpx solid #ccc;
+  border-left: 1rpx solid #ccc;
+  border-right: 1rpx solid #ccc;
+}
+
+.left {
+  margin-left: 20rpx;
+}
+
+.left image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.right {
+  margin-left: 40rpx;
+  height: 160rpx;
+  width: 420rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right_headle {
+  font-size: 16px;
+}
+
+.right_body {
+  display: flex;
+  width: 380rpx;
+  justify-content: space-between;
+  color: #999;
+  font-size: 14px;
+}
+
+.right_foot {
+  color: #999;
+  font-size: 14px;
+}
+
+.foot {
+  height: 70rpx;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+/* 功能封装3 右拉符*/
+
+.drop-right {
+  display: flex;
+  align-items: center;
+}
+
+.drop-right::after {
+  content: "";
+  width: 20rpx;
+  height: 20rpx;
+  border-top: 6rpx solid #9a9a9a;
+  border-right: 6rpx solid #9a9a9a;
+  transform: rotate(45deg);
+  display: block;
+  margin-left: 5rpx;
+}
+
+.separate-line {
+  width: 100%;
+  height: 2rpx;
+  border: 2rpx dashed #ccc;
+}
+
+.antiepidemic-item {
+  border-bottom: 2rpx dashed #ccc;
+}
+
+.epidemicPic image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.epidemicPic video {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.foot {
+  width: 100%;
+  height: 68rpx;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 68rpx;
+  text-align: center;
+}
+
+.last-item {
+  border-bottom: 0rpx dashed #ccc;
+}
+
+.antiepidemic-add::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "防疫登记";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 530rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.manure-add::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬粪处理";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 400rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.corpse-add::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬尸处理";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 270rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.dog-logout::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬只注销";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 140rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.device-change::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "项圈更换";
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.antiepidemic-add1::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "防疫登记";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.manure-add1::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬粪处理";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.corpse-add1::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬尸处理";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.dog-logout1::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "犬只注销";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+.device-change1::after {
+  /*通过伪元素设置一像素的右边框*/
+  content: "项圈更换";
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 30rpx;
+}
+
+/* 编辑按钮 */
+.editImage {
+  position: absolute;
+  right: 40rpx;
+ 
+}
+
+.editImage image{
+  width: 48rpx;
+  height: 48rpx;
+}

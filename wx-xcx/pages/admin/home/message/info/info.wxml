@@ -1,0 +1,29 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>标题：</text>
+        </view>
+        <view class='right'>
+            <text>{{ message.title }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>详情：</text>
+        </view>
+        <view class='right'>
+            <text>{{ message.content }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>发送时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ message.createDate }}</text>
+        </view>
+    </view>
+</view>

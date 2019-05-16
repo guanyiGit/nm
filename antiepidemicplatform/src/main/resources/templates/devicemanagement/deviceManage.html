@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A28-项圈管理(未激活)</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{deviceData}">设备数据></a></li>
+			<li class="fl" th:text="#{deviceData.deviceManage}">项圈管理</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<div class="ovh">
+			<form id="deviceForm" class="db ovh">
+				<div class="fl ovh">
+					<div class="fl mgr15">
+						<input id = "deviceStatus" type="text" class="myselect-input" value="">
+					</div>
+				</div>
+				<ul class="ul04 fl mgr20">
+					<shiro:hasAnyRoles name="州级管理人员,县级管理人员">
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<button type="button" class="layui-btn" id="test1"  >
+							<i class="fa fa-cloud" th:text="#{deviceData.upFile5}"></i>
+						</button>
+					</li>
+				<!--</shiro:hasAnyRoles>-->
+					<!--<shiro:hasAnyRoles name="州级管理人员,县级管理人员">-->
+						<!--<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">-->
+								<!--<a id="test1" th-text="#{deviceData.upFile5}"></a>-->
+						<!--</li>-->
+					<!--</shiro:hasAnyRoles>-->
+
+					<!--<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">-->
+						<!--<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt=""th:text="#{deviceData.upFile5}"></a>-->
+					<!--</li>-->
+				</ul>
+				
+				<div id="kkeyDown" class="fr">
+					<input id="deviceNo" name="deviceNo" style="width: 250px" type="text" class="db input1 w310 h40 lh40 pdl15 fl" th:placeholder="#{deviceData.neckLet}">
+					<input id="search"  type="button" class="db fl pc5 hov8" value="">
+				</div>
+			</form>
+		</div>
+		<div class="mgt28" style="padding-top: 10px;margin-top: 10px;">
+			<table id="deviceInfoTable" data-mobile-responsive="true" class="table" ></table>
+		</div>
+	</div>
+	<!--内容区END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+</html>
+<script th:inline="javascript">
+	$(function () {
+	    $("#kkeyDown").keydown((e)=>{
+	        if(e.keyCode=="13"){
+	            $("#search").click();
+			}
+		});
+        $(".layui-upload-file").hide();
+
+    });
+	var roleType = [[${user.roles[0].type}]];
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1', //绑定元素
+            url: '/excel/importDevice', //上传接口
+            size: 1000000,
+            accept: 'file',
+            done: function (r) {
+                layer.msg(r.msg);
+                $('#deviceInfoTable').bootstrapTable('refresh');
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+                $('#deviceInfoTable').bootstrapTable('refresh');
+            }
+        });
+    });
+    var neckLet5 = [[#{deviceData.neckLet}]];
+    var brand5 = [[#{deviceData.brand}]];
+    var model5 = [[#{deviceData.model}]];
+    var productDate5 = [[#{deviceData.productDate}]];
+    var deviceStatus5 = [[#{deviceData.deviceStatus}]];
+    var effectiveDate5 = [[#{deviceData.effectiveDate}]];
+    var failureDate5 = [[#{deviceData.failureDate}]];
+    var stateT = [[#{deviceData.stateT}]];
+    var state1T = [[#{deviceData.state1T}]];
+    var state0T= [[#{deviceData.state0T}]];
+    var state3T = [[#{deviceData.state3T}]];
+</script>
+<script src="/js/easyui/js/jquery.easyui.min.js"></script>
+<script  src="/devicemanagement/deviceInfo.js"></script>
+

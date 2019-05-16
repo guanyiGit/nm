@@ -1,0 +1,10 @@
+<view>
+  <scroll-view class="video-group" scroll-x="true">
+    <view wx:for="{{ tempFilePaths }}" wx:key="index" class='videoItem'>
+      <video src='{{ item }}' bindlongpress="deleteVideo" data-index='{{ index }}'  objectFit="contain"></video>
+    </view>
+    <view class='uploadVideo' bindtap='chooseVideo'>
+      <image src='../../assets/image/video.png'></image>
+    </view>
+  </scroll-view>
+</view>

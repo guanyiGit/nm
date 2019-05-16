@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posiition.mapper.BizMapper">
+
+    <!--查询所有机构信息-->
+    <select id="findOrgAll" resultType="com.entities.OrgInfo">
+        SELECT * from t_org_info
+    </select>
+
+    <!--查询我的机构id-->
+    <select id="findOrgIdByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        <if test="_parameter != null">
+            SELECT u.org_id from t_user_info u where u.id = #{_parameter}
+        </if>
+    </select>
+
+    <!--查询我的角色-->
+    <select id="findRoleIdsByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT ur.role_id from t_user_info u,t_user_ref_role ur
+        WHERE u.id = ur.user_id
+        AND u.id = #{userId}
+    </select>
+
+</mapper>

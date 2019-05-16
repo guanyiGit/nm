@@ -1,0 +1,135 @@
+Page {
+  background-color: #eee;
+}
+
+.input-placeholder {
+  font-size: 14px;
+}
+
+.container image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.container_body text {
+  margin-left: 28rpx;
+  font-size: 14px;
+}
+
+.left {
+  width: 39%;
+}
+
+picker,input{
+  padding-left: 5rpx;
+}
+
+
+.right {
+  width: 60%;
+  font-size: 14px;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1rpx solid black; 
+}
+
+.right picker{
+  width: 100%;
+}
+
+.right image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.traceId {
+  width: 530rpx;
+  font-size: 14px;
+  color: #999;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+.right-header {
+  border: 1rpx solid #ccc;
+  background-color: white;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.right-middle {
+  display: flex;
+}
+
+.right-middle view {
+  width: 50%;
+}
+
+.right textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+
+.item {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.dog_pic image {
+  width: 188rpx;
+  height: 188rpx;
+}
+
+.submit_button {
+  display: flex;
+  width: 80%;
+  height: 200rpx;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.submit {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: #3545a6;
+  color: white;
+}
+
+.reset {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: white;
+}
+
+.right-input {
+  width: 90%
+}
+
+.right-input input{
+  width: 100%;
+  margin-left: 5rpx;
+}
+
+.right-image {
+  line-height: 100%;
+}
+
+.description {
+  height: 160rpx;
+}
+
+.dogCancel-image {
+  height: 230rpx;
+}

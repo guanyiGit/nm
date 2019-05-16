@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "statistics-box": "/components/statisticsBox/statisticsBox"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "统计信息"
+}

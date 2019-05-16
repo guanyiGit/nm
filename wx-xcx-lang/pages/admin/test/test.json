@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "search": "/components/search/search",
+    "search-box": "/components/searchBox/searchBox",
+    "search-org":"/components/searchOrg/searchOrg",
+    "date-selector":"/components/dateSelector/dateSelector",
+    "active-box": "/components/activeBox/activeBox",
+    "statistics-box":"/components/statisticsBox/statisticsBox",
+    "dogInfo": "/components/searchBox/other/dogInfo"
+
+
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "犬主信息"
+}

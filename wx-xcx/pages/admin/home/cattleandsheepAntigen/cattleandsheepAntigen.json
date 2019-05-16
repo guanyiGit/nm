@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "search": "/components/search/search",
+    "search-org": "/components/searchOrg/searchOrg"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "牛羊抗体检测"
+}

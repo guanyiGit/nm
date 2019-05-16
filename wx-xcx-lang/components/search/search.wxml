@@ -1,0 +1,9 @@
+<view class='container'>
+  <view class='search_input'>
+      <image src='{{ searchIcon }}'></image>
+      <input placeholder='{{ placeholderText }}' bindblur="searchEvent"  placeholder-class='placeholder' value='{{ query }}'></input>
+  </view>
+  <view class='scan' bindtap='scanSearchEvent' wx:if="{{ isShow }}">
+      <image src='{{ scan }}'></image>
+  </view>
+</view>

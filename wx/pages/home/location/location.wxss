@@ -1,0 +1,101 @@
+.map_box{
+  position:absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+#map{
+  width: 100%;
+  height: 100%;
+}
+
+.showSearch {
+  height: 120rpx;
+}
+
+.showContrail {
+  display: flex;
+  flex-direction: column;
+  height: 280rpx;
+}
+
+.left{
+  width: 140rpx;
+  font-size: 16px;
+  line-height: 70rpx;
+}
+
+.right{
+  width: 580rpx;
+  font-size: 16px;
+  border: 1rpx solid #666666;
+  border-radius: 10rpx;
+  line-height: 70rpx;
+}
+.item {
+  display: flex;
+  height: 70rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  
+}
+
+.searchButton {
+  background-color: #3545A6;
+  width: 90%;
+  border-radius: 10rpx;
+  height: 70rpx;
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  text-align: center;
+  line-height: 70rpx;
+  color: white;
+  font-size: 16px;
+}
+
+.location-query {
+  /*子绝父相*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 140rpx;
+  font-size: 14px;
+  background-color: #FF6857;
+  color: white;
+  border-radius: 60rpx;
+}
+
+.contrail-query {
+  /*子绝父相*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+}
+
+/* .contrail-query::after{
+  content: "轨迹查询";
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #FF9A68;
+  color: white;
+  border-radius: 60rpx;
+} */

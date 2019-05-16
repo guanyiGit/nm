@@ -1,0 +1,41 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" query="{{ query.string }}" bind:searchEvent="searchDog" is-show="{{ isShow }}"></search>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ dogCancelList }}" wx:key="index">
+        <view class='container_item' bindtap='toDogCancelPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.bigUrl }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <view>{{ item.traceId||'未知' }}</view>
+              <!-- 犬主 -->
+            </view>
+            <view class='right_body'>
+              <view class='texthide'>犬名:
+                <text style='color:black'>{{ item.dogName||'未知'}}</text>
+              </view>
+              <view class='texthide'>犬主:
+                <text style='color:black'>{{ item.name||'未知'}}</text>
+              </view>
+            </view>
+            <view class="right_foot">
+              <view>注销时间:
+                <text style='color:black'> {{ item.canselDate||'未知'}} </text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='dog-cancel' bindtap='toDogUtilPage' data-type='5'></view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>上拉查看更多</text>
+</view>

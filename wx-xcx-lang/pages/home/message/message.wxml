@@ -1,0 +1,38 @@
+<view class="container" wx:if="{{ ishasData }}">
+
+  <i-tabs current="{{ component.current }}" color="#f759ab" bindchange="handleChange">
+    <!-- <i-tab key="1" title="未读消息"></i-tab> -->
+    <i-tab key="1" title="{{ LG.get(L,'weiduxiaoxi') }}"></i-tab>
+    <!-- <i-tab key="2" title="已读消息"></i-tab> -->
+    <i-tab key="2" title="{{ LG.get(L,'yiduxiaoxi') }}"></i-tab>
+  </i-tabs>
+
+  <!-- 消息列表 -->
+  <block wx:for="{{ messageArray }}" wx:key="index" wx:if="{{ index<maxLength }}">
+    <view class='item' bindtap='toMessagePage' data-index='{{ index }}'>
+      <view class='item-body'>
+        <view class='title'>
+          <image src='{{ item.typeIcon }}'></image>
+          <text class='texthide'>{{ item.title }}</text>
+        </view>
+        <view class='body texthide'>
+          <text>{{ item.content }}</text>
+        </view>
+        <view class='foot'>
+          <!-- <text>发送时间：{{ item.createDate }}</text> -->
+          <text>{{ LG.get(L,"fasongshijian") }}：{{ item.createDate }}</text>
+          <image src='{{ item.readIcon }}'></image>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_dog' bindtap='toDogAddPage'></view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

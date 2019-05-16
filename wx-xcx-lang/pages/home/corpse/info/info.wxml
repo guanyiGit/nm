@@ -1,0 +1,186 @@
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>溯源ID：</text> -->
+            <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.traceId||'未知' }}</text> -->
+            <text>{{ corpse.traceId||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬名：</text> -->
+            <text>{{ LG.get(L,"quanming") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dog.dogName||'未知' }}</text> -->
+            <text>{{ corpse.dog.dogName||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬种：</text> -->
+            <text>{{ LG.get(L,"quanzhong") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dog.breed||'未知' }}</text> -->
+            <text>{{ corpse.dog.breed||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主：</text> -->
+            <text>{{ LG.get(L,"quanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dogOwner.name||'未知' }}</text> -->
+            <text>{{ corpse.dogOwner.name||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>电话：</text> -->
+            <text>{{ LG.get(L,"dianhua") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dogOwner.phoneNum||'未知' }}</text> -->
+            <text>{{ corpse.dogOwner.phoneNum||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>身份证号码：</text> -->
+            <text>{{ LG.get(L,"shenfengzhenghaoma") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dogOwner.cardNum||'未知' }}</text> -->
+            <text>{{ corpse.dogOwner.cardNum||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>所属乡镇：</text> -->
+            <text>{{ LG.get(L,"suoshuxiangzhen") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.town||LG.get(L,"weizhi")}}</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <!-- <text>详细地址：</text> -->
+            <text>{{ LG.get(L,"xiangxidizhi") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.committeeName||'未知' }} {{ corpse.dogOwner.no||'未知' }}</text> -->
+            <text>{{ corpse.committeeName||LG.get(L,"weizhi") }} {{ corpse.dogOwner.no||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>死亡原因：</text> -->
+            <text>{{ LG.get(L,"siwangshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.deathReason.name||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理方法：</text> -->
+            <text>{{ LG.get(L,"chulifangfa") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.handleMethod.name||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>方法说明：</text> -->
+           <text>{{ LG.get(L,"fangfashuoming") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.methodDescription||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理时间：</text> -->
+            <text>{{ LG.get(L,"chulishijian") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.dealTime||'未知' }}</text> -->
+            <text>{{ corpse.dealTime||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+    
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>项圈处理：</text> -->
+            <text>{{ LG.get(L,"xiangquanchuli") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ corpse.deviceDeal.name||'未绑定项圈' }}</text> -->
+            <text>{{ corpse.deviceDeal.name||LG.get(L,"weibangdxiangquan") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理人员：</text> -->
+            <text>{{ LG.get(L,"chulirenyuan") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.user.name||LG.get(L,"weizhi") }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+            <text>{{ LG.get(L,"tupian") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ imageList }}" wx:key="index">
+               <image src='{{ item.url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>视频：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+    <view class="item describe">
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ corpse.description||'' }}</text>
+        </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

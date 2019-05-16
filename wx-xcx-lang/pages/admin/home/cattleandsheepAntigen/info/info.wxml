@@ -1,0 +1,81 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测数：</text> -->
+            <text>{{ LG.get(L,"jianceshu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ antibodyInfo.testAmount }}公斤</text> -->
+            <text>{{ antibodyInfo.testAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>合格数：</text> -->
+            <text>{{ LG.get(L,"hegeshu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ antibodyInfo.qualifiedAmount }}公斤</text> -->
+            <text>{{ antibodyInfo.qualifiedAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>合格率：</text> -->
+            <text>{{ LG.get(L,"hegelv") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.qualifiedRate }}%</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测时间：</text> -->
+            <text>{{ LG.get(L,"jianceshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.testDate }}</text>
+        </view>
+    </view>
+  
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测单位：</text> -->
+            <text>{{ LG.get(L,"jiancedanwei") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antibodyInfo.orgInfo.departName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+            <text>{{ LG.get(L,"tupian") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>视屏：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

@@ -1,0 +1,83 @@
+Page {
+  background-color: #eee;
+}
+
+.input-placeholder {
+  font-size: 16px;
+}
+
+.container_body text {
+  margin-left: 28rpx;
+  font-size: 16px;
+}
+
+.left {
+  width: 200rpx;
+  line-height: 70rpx;
+}
+
+.right {
+  width: 530rpx;
+  border: 1rpx solid black;
+  background-color: white;
+  font-size: 16px;
+  line-height: 70rpx;
+}
+
+.right textarea{
+  width: 100%;
+  height: 100%;
+}
+
+.item {
+  display: flex;
+  margin-top: 20rpx;
+  height: 70rpx;
+}
+
+.scan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dog_pic {
+  height: 230rpx;
+}
+
+.submit_button {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  margin: 40rpx 2.5%;
+  
+}
+
+.scanIcon image {
+  margin-top: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+
+.dog_description {
+  height: 200rpx;
+}
+
+.submit {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #3545a6;
+  
+}
+
+.reset {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: white;
+}

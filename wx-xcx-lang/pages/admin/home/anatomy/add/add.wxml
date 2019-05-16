@@ -1,0 +1,82 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--阳性率：-->
+      <view class='item'>
+        <view class='left must'>
+          <!-- <text>检测数(公斤)：</text> -->
+          <text>{{ LG.get(L,"jianceshu") }}({{ LG.get(L,"gongjin") }})：</text>
+        </view>
+        <view class='right scan'>
+          <input name="testAmount" bindblur='checkNumber' bindinput="gettestAmount" value='{{ testAmount }}' data-index='1'></input>
+        </view>
+      </view>
+
+      <!--阳性率：-->
+      <view class='item'>
+        <view class='left must'>
+          <!-- <text>阳性数(公斤)：</text> -->
+          <text>{{ LG.get(L,"yangxingshu") }}({{ LG.get(L,"gongjin") }})：</text>
+        </view>
+        <view class='right scan'>
+          <input name="positiveAmount" bindblur='checkNumber' bindinput="getpositiveAmount" value='{{ positiveAmount }}' data-index='2'></input>
+        </view>
+      </view>
+
+      <!--阳性率：-->
+      <view class='item'>
+        <view class='left must'>
+          <!-- <text>阳性率(%)：</text> -->
+          <text>{{ LG.get(L,"yangxinglv") }}(%)：</text>
+        </view>
+        <view class='right scan'>
+          <input name="positiveRate" value='{{ positiveRate }}' disabled></input>
+        </view>
+      </view>
+
+      <!--无害化处理：-->
+      <view class='item'>
+        <view class='left must'>
+          <!-- <text>无害化(公斤)：</text> -->
+          <text>{{ LG.get(L,"wuhaihua") }}({{ LG.get(L,"gongjin") }})：</text>
+        </view>
+        <view class='right scan'>
+          <input name="harmlessTreatAmount" value='{{ harmlessTreatAmount }}'></input>
+        </view>
+      </view>
+      <!--照片：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <!-- <text>照片：</text> -->
+            <text>{{ LG.get(L,"zhaopian") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--视频：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <!-- <text>视频：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>{{ LG.get(L,"submit") }}</button>
+        <button class='reset' formType="reset">{{ LG.get(L,"reset") }}</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<i-toast id="toast" />
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

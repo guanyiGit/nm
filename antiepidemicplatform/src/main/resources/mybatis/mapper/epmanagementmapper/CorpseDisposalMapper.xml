@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.epmanagement.dao.CorpseDisposalDao">
+
+	<resultMap id="BaseResultMap" type="com.entities.CorpseDisposal" >
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+	    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+	    <result column="cause_of_death" property="causeOfDeath" jdbcType="VARCHAR" />
+	    <result column="processing_method" property="processingMethod" jdbcType="VARCHAR" />
+	    <result column="method_description" property="methodDescription" jdbcType="VARCHAR" />
+	    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+	    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+	    <result column="description" property="description" jdbcType="VARCHAR" />
+	    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+	    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	    <result column="device_deal_way" property="deviceDealWay" jdbcType="INTEGER" />
+	    
+  </resultMap>
+  <resultMap id="CorpseDisposalVOMap" type="com.epmanagement.vo.CorpseDisposalVO" extends="BaseResultMap" >
+  		
+		<!-- 村委会 -->
+		<result column="committeeName" property="committeeName" jdbcType="VARCHAR" />
+		<!-- 一对一犬主 -->
+		<association property="dogOwner" javaType="com.entities.TDogOwner">
+			<result column="dogOwnerName" property="name" jdbcType="VARCHAR" />
+  			<result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+  			 <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
+  			  <result column="no" property="no" jdbcType="VARCHAR" />
+		</association>
+		<!-- 一对一犬 -->
+  		<association property="dog" javaType="com.entities.TDogInfo">
+  			<result column="dogName" property="dogName" jdbcType="VARCHAR" />
+  			<result column="breed" property="breed" jdbcType="VARCHAR" />
+  		</association>
+  		
+  		
+  		<!-- 一对一关联用户 -->
+  		<association property="user" javaType="com.entities.UserInfo">
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+  		</association>
+  		<!-- 一对一关联字典表死亡原因 -->
+	  	<association property="deathReason" javaType="com.entities.TSysDict">
+   			 <result column="name_1" property="name" jdbcType="VARCHAR" />
+   			 <result column="value_1" property="value" jdbcType="VARCHAR" />
+	  	</association>
+	  	<!-- 一对一关联字典表处理方法 -->
+	  	<association property="handleMethod" javaType="com.entities.TSysDict">
+   			 <result column="name_2" property="name" jdbcType="VARCHAR" />
+   			 <result column="value_2" property="value" jdbcType="VARCHAR" />
+	  	</association>
+	  	<!-- 一对一关联字典表项圈处理 -->
+	  	<association property="deviceDeal" javaType="com.entities.TSysDict">
+   			 <result column="name_3" property="name" jdbcType="VARCHAR" />
+   			 <result column="value_3" property="value" jdbcType="VARCHAR" />
+	  	</association>
+	  	<!-- 一对一关联组织 -->
+  		<association property="orgInfo" javaType="com.entities.OrgInfo">
+  			<result column="depart_name" property="departName" jdbcType="VARCHAR" />
+  		</association>
+		    <!-- 一对多关照片 -->
+	  		<collection property="imageList" ofType="com.entities.TMediaInfo">
+			    <result column="url" property="url" jdbcType="VARCHAR" />
+			    <result column="thumbnail_url" property="thumbnailUrl" jdbcType="VARCHAR" />
+	  		</collection>
+	  	
+  </resultMap>
+
+	<select id="get" resultType="java.util.HashMap">
+		select `id`,`device_id`,`area_id`,`cause_of_death`,`processing_method`,`method_description`,`deal_time`,`operator_id`,`description`,`org_id`,`create_date`,`update_date` from t_corpse_disposal where id = #{value}
+	</select>
+
+	<sql id="base">
+		select corpse.id,media.thumbnail_url url ,device.id deviceId,corpse.cause_of_death deathReason
+		,corpse.processing_method processMethod ,corpse.method_description methodDes
+		,corpse.deal_time dealTime ,`user`.`name` ,corpse.description
+		from t_corpse_disposal corpse LEFT JOIN t_device_info device
+		on device.id = corpse.device_id LEFT JOIN t_user_info user
+		on `user`.id=corpse.operator_id LEFT JOIN t_media_ref ref
+		on ref.ref_id = corpse.id LEFT JOIN t_media_info media
+		on media.id = ref.media_id
+	</sql>
+
+	<!--根据title查询-->
+	<select id="selectByTitle" resultType="map">
+		<include refid="base"></include>
+		<where>
+			1=1
+			<if test="title != null and title != ''">and corpse.title = #{title} </if>
+			<if test="orgId != null and orgId != ''"> and corpse.org_id in (#{orgId}) </if>
+		</where>
+	</select>
+	<!-- 查找尸体处理列表 -->
+	<select id="list" resultMap="CorpseDisposalVOMap">
+			SELECT 	c.id,c.trace_id,c.area_id,c.deal_time,
+				u.`name`,
+				i.thumbnail_url,i.url,
+				d_1.value value_1, nr1.`name` name_1,
+				d_2.value value_2,nr2.`name` name_2,
+				dog.dog_name dogName,dog.breed,
+				o.`name` dogOwnerName,o.card_num,o.phone_num,o.`no`,
+				p.`name` committeeName
+				
+			FROM t_corpse_disposal c
+		  LEFT JOIN t_user_info u ON c.operator_id=u.id
+		  LEFT JOIN t_media_ref m ON m.ref_id= c.id AND m.type=7  and m.is_video=0
+		  LEFT JOIN t_media_info i ON m.media_id=i.id
+		   LEFT JOIN t_sys_dict d_1 ON c.cause_of_death=d_1.value AND d_1.type='casuse_of_death'
+		left join t_name_ref nr1 on nr1.resource_id=d_1.name_id AND nr1.type=#{langType}
+		  LEFT JOIN t_sys_dict d_2 ON c.processing_method=d_2.value AND d_2.type='corpse_handle'
+		left join t_name_ref nr2 on nr2.resource_id=d_2.name_id AND nr2.type=#{langType}
+		  LEFT JOIN t_dog_info dog ON dog.trace_id=c.trace_id
+			LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+			LEFT JOIN t_pastoral_committee p ON o.pastoral_committee_id=p.id
+			
+			  <where>
+			  		<if test="orgList !=null and orgList.size>0">
+						c.org_id in(
+			  		 	<foreach collection="orgList" separator="," item="orgId">
+			  		 		#{orgId}
+			  		 	</foreach>
+			  		 )
+					</if>
+		  		 	<if test="searchKey !=null and searchKey !=''">
+			  		 	and (c.trace_id =#{searchKey}
+			  		 		 or o.`name` LIKE CONCAT('%',#{searchKey},'%')
+			  		 		 or o.phone_num =#{searchKey}
+			  		 		 or o.card_num =#{searchKey}
+			  		 		 )
+			  		 </if>
+			  		 <if test="userId !=null">
+					 	and c.operator_id=#{userId}
+					 </if>
+				</where>
+			
+		 group by c.trace_id
+		  order by c.deal_time desc
+		  limit #{index},#{pageSize}
+
+			
+	</select>
+	
+	
+	
+	
+	<!-- 查找尸体处理详情-->
+	<select id="getCorpseDetail" resultMap="CorpseDisposalVOMap">
+		SELECT 	c.id,c.trace_id,c.area_id,c.deal_time,c.method_description,
+				c.description,c.processing_method,c.cause_of_death,c.device_deal_way,
+				u.`name`,
+				d_1.value value_1, d_1.`name` name_1,
+				d_2.value value_2,d_2.`name` name_2,
+				d_3.value value_3,d_3.`name` name_3,
+				dog.dog_name dogName,dog.breed,
+				o.`name` dogOwnerName,o.card_num,o.phone_num,o.`no`,
+				p.`name` committeeName,
+				org.depart_name
+
+			FROM t_corpse_disposal c
+		  LEFT JOIN t_user_info u ON c.operator_id=u.id
+		   LEFT JOIN t_sys_dict d_1 ON c.cause_of_death=d_1.value AND d_1.type='casuse_of_death'
+		  LEFT JOIN t_sys_dict d_2 ON c.processing_method=d_2.value AND d_2.type='corpse_handle'
+		    LEFT JOIN t_sys_dict d_3 ON c.device_deal_way=d_3.value AND d_3.type='device_deal_way'
+		  LEFT JOIN t_dog_info dog ON dog.trace_id=c.trace_id
+			LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+			LEFT JOIN t_pastoral_committee p ON o.pastoral_committee_id=p.id
+			left join t_org_info org on c.org_id=org.id
+			where c.id=#{id}
+	</select>
+
+	<!-- 查找尸体处理详情国际化-->
+	<select id="getCorpseDetaili18n" parameterType="java.util.Map" resultMap="CorpseDisposalVOMap">
+		SELECT 	c.id,c.trace_id,c.area_id,c.deal_time,c.method_description,
+				c.description,c.processing_method,c.cause_of_death,c.device_deal_way,
+				u.`name`,
+
+				d_1.value value_1,  nr1.`name` name_1,
+				d_2.value value_2, nr2.`name` name_2,
+				d_3.value value_3,nr3.`name` name_3,
+				dog.dog_name dogName,nr4.`name` breed,
+				o.`name` dogOwnerName,o.card_num,o.phone_num,o.`no`,
+				p.`name` committeeName,
+				org.depart_name
+
+			FROM t_corpse_disposal c
+		  LEFT JOIN t_user_info u ON c.operator_id=u.id
+		   LEFT JOIN t_sys_dict d_1 ON c.cause_of_death=d_1.value AND d_1.type='casuse_of_death'
+		   left join t_name_ref nr1 on nr1.resource_id=d_1.name_id AND nr1.type=#{langType}
+		  LEFT JOIN t_sys_dict d_2 ON c.processing_method=d_2.value AND d_2.type='corpse_handle'
+left join t_name_ref nr2 on nr2.resource_id=d_2.name_id AND nr2.type=#{langType}
+		    LEFT JOIN t_sys_dict d_3 ON c.device_deal_way=d_3.value AND d_3.type='device_deal_way'
+left join t_name_ref nr3 on nr3.resource_id=d_3.name_id AND nr3.type=#{langType}
+		  LEFT JOIN t_dog_info dog ON dog.trace_id=c.trace_id
+LEFT JOIN t_sys_dict d_4 ON dog.breed_id=d_4.value AND d_4.type='dog_breed'
+left join t_name_ref nr4 ON nr4.resource_id=d_4.name_id AND nr4.type=#{langType}
+			LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+			LEFT JOIN t_pastoral_committee p ON o.pastoral_committee_id=p.id
+			left join t_org_info org on c.org_id=org.id
+			where c.id=#{id}
+	</select>
+	
+	<!-- 查找尸体处理详情中的照片和视频 -->
+	<select id="getMedia" resultType="com.epmanagement.vo.MediaUrl">
+		SELECT mr.is_video isVideo, m.url,m.thumbnail_url thumbnailUrl FROM t_media_ref mr 
+			LEFT JOIN t_media_info m ON mr.media_id=m.id 
+		WHERE mr.ref_id=#{id} AND mr.type=7
+	</select>
+	
+		
+	
+ 	<select id="count" resultType="int">
+		select count(*)
+		from t_corpse_disposal c 
+		LEFT JOIN t_dog_info dog ON dog.trace_id=c.trace_id
+			LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+		<where>
+			<if test="orgList !=null and orgList.size>0">
+				c.org_id in(
+	  		 	<foreach collection="orgList" separator="," item="orgId">
+	  		 		#{orgId}
+	  		 	</foreach>
+	  		 )
+			</if>
+		 <if test="searchKey !=null and searchKey !=''">
+			and  (c.trace_id =#{searchKey}
+			  		 		 or o.`name` LIKE CONCAT('%',#{searchKey},'%')
+			  		 		 or o.phone_num =#{searchKey}
+			  		 		 or o.card_num =#{searchKey}
+			  		 		 )
+		</if>
+		 <if test="userId !=null">
+		 	and c.operator_id=#{userId}
+		 </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.CorpseDisposal" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="id" resultType="int">
+           select LAST_INSERT_ID()
+       </selectKey>
+		insert into t_corpse_disposal
+		(
+			`trace_id`, 
+			`area_id`, 
+			`cause_of_death`, 
+			`processing_method`, 
+			`method_description`, 
+			`deal_time`, 
+			`operator_id`, 
+			`description`, 
+			`org_id`, 
+			`create_date`, 
+			`update_date`,
+			`device_deal_way`
+		)
+		values
+		(
+			#{traceId}, 
+			#{areaId}, 
+			#{causeOfDeath}, 
+			#{processingMethod}, 
+			#{methodDescription}, 
+			#{dealTime}, 
+			#{operatorId}, 
+			#{description}, 
+			#{orgId}, 
+			#{createDate}, 
+			#{updateDate},
+			#{deviceDealWay}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.CorpseDisposal">
+		update t_corpse_disposal 
+		<set>
+			<if test="traceId != null">`trace_id` = #{traceId}, </if>
+			<if test="areaId != null">`area_id` = #{areaId}, </if>
+			<if test="causeOfDeath != null">`cause_of_death` = #{causeOfDeath}, </if>
+			<if test="processingMethod != null">`processing_method` = #{processingMethod}, </if>
+			<if test="methodDescription != null">`method_description` = #{methodDescription}, </if>
+			<if test="dealTime != null">`deal_time` = #{dealTime}, </if>
+			<if test="operatorId != null">`operator_id` = #{operatorId}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="orgId != null">`org_id` = #{orgId}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate},</if>
+			<if test="deviceDealWay != null">`device_deal_way` = #{deviceDealWay}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete t_corpse_disposal,t_media_ref,t_media_info from t_corpse_disposal
+		left join t_media_ref on t_media_ref.ref_id = t_corpse_disposal.id
+		left join t_media_info on t_media_info.id = t_media_ref.media_id
+		where t_corpse_disposal.id = #{value} and t_media_ref.type=7
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_corpse_disposal where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,99 @@
+/* components/searchBox/other/antiepidemicOther.wxss */
+.container-or {
+  width: 100%;
+  background-color: #fff;
+  font-size: 30rpx;
+  padding: 10rpx;
+  /* margin-left: -10px; */
+  box-sizing: border-box;
+  opacity: 1;
+}
+
+.container-or>view {
+  margin-bottom: 20rpx;
+}
+
+.seitem {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  /* background-color: cadetblue; */
+  align-items: center;
+}
+
+.seitem.input {
+  justify-content: flex-start;
+  padding-left: 11px;
+}
+
+.cjeck {
+  display: inline-block;
+  border: solid 1rpx #aaa;
+  width: 140rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  padding: 6rpx 0;
+  margin-bottom: 5rpx;
+  padding-left: 27rpx;
+}
+
+.input-or, .picker-or {
+  /* background-color: salmon; */
+  width: 220rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  border-radius: 5rpx;
+  border: solid 1rpx #aaa;
+  padding: 0 10rpx;
+}
+
+picker {
+  text-align: center;
+}
+
+.input-line {
+  margin: 0 20rpx;
+}
+
+.checkSex {
+  background-color: rgb(56, 154, 252);
+  color: #fff;
+  border: none;
+}
+
+.btns {
+  margin-top: 35rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btns>view {
+  border-radius: 5rpx;
+  width: 200rpx;
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.reset:active{
+  background-color: rgb(209, 179, 179);
+}
+
+.reset {
+  background-color: rgb(228, 228, 228);
+}
+
+.confirm {
+  background-color: rgb(51, 67, 165);
+  color: #fff;
+}
+.confirm:active{
+  background-color: rgb(63, 79, 180);
+}
+

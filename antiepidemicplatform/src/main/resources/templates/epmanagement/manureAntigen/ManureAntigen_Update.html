@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head  th:include="include :: header">
+<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>A19-犬只更换记录</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<li class="fl"><a href="/biz/manureAntigen/toManureAntigen_List" th:text="#{antiepidemicManage.detection}">犬粪抗原检测></a></li>
+			<li class="fl"th:text="#{dogManage.edit2}">修改</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75">
+		<form action="#" id="manureAntigenUpdate">
+			<div class="pdl30 pdr30">
+				<input th:value="${detail.id}" name="id" type="text" hidden="hidden">
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.detectionCount2}">*检测数</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						id="testAmount" name="testAmount" th:value="${detail.testAmount}">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.positiveCount2}">*阳性数</div>
+					<div class="mgl90">
+						<input id="positiveAmount" name="positiveAmount" th:value="${detail.positiveAmount}"  class="ww92 h50 lh50 bore ras4 pdl30">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.positiveRate2}">*阳性率</div>
+					<div class="mgl90">
+						<input readonly="readonly" id="positiveRate" name="positiveRate" th:value="${detail.positiveRate}" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="%">
+					</div>
+				</div> 
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.detectionTime}">*检测时间</div>
+					<div class="mgl90">
+						<input readonly="readonly" type="text" th:value="${#dates.format(detail.testDate, 'yyyy-MM-dd HH:mm:ss')}" class="ww92 h50 lh50 bore ras4 pdl30 pc23">
+					</div>
+				</div> 
+				<!-- <div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+					<div class="mgl90 ww87 ">
+						<div class="pdt20 pdb20">
+							<input id="file-1" name="files" type="file" multiple="multiple" class="file" >
+						</div>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10 ">
+					<div class="fl w70 cor3 h50 lh50 t-r">*视频</div>
+					<div class="mgl90 ww87">
+							<div class="file-loading" style="height: 100px">
+								<input id="file-2" name="videos"  type="file" multiple class="file" >
+							</div>
+					</div>
+				</div> -->
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button" onclick="updateManureAntigen(this.form)" th:value="#{dogManage.save}">
+						<a href="/biz/manureAntigen/toManureAntigen_List" class="a6 dinb hov8"th:text="#{dogManage.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<div th:include="include::footer"></div>
+<script src="/epmanagement/manureAntigen/ManureAntigen_Update.js"></script>
+<!--wrap End-->
+</body>
+</html>
+<script th:inline="javascript">
+    var waitCompute=[[#{antiepidemicManage.waitCompute}]];
+    var errorCompute=[[#{antiepidemicManage.errorCompute}]];
+    var positiveShouldSmallThanTest=[[#{antiepidemicManage.positiveShouldSmallThanTest}]];
+    var TestShouldBigThanZero=[[#{antiepidemicManage.TestShouldBigThanZero}]];
+    var pleaseInputLegal=[[#{antiepidemicManage.pleaseInputLegal}]];
+    var positiveShouldBigThanZero=[[#{antiepidemicManage.positiveShouldBigThanZero}]];
+    var pleaseInputTestNumber=[[#{antiepidemicManage.pleaseInputTestNumber}]];
+    var pleaseInputPositiveNum=[[#{antiepidemicManage.pleaseInputPositiveNum}]];
+    var pleaseInputHarmlessNum=[[#{antiepidemicManage.pleaseInputHarmlessNum}]];
+    var positiveRateError=[[#{antiepidemicManage.positiveRateError}]];
+    var pleaseSelectPhoto=[[#{dogManage.pleaseSelectPhoto}]];
+    var addFail=[[#{antiepidemicManage.addFail}]];
+    var unKnownError=[[#{antiepidemicManage.unKnownError}]];
+    var operationSuccess=[[#{operationSuccess}]];
+    var operationFailure=[[#{operationFailure}]];
+    var sure5=[[#{dogManage.sure}]];
+</script>

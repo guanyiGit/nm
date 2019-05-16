@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/drug/antiepidemic_Drug_Add.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{binformation}">基础信息</a>></li>
+			<li class="fl"><a href="/biz/drug/antiepidemic_Drug_List" th:text="#{binformation.antiepidemicDrugInfo}">防疫药品信息</a>></li>
+			<li class="fl" th:text="#{binformation.add}">新增</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" id="app">
+		<form action="#" @submit.prevent="submit">
+			<div class="pdl50 pdr50">
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.belTownship}">所属乡镇</span></div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1" th:text="#{state}">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1" th:text="#{county}">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1" th:text="#{township}">乡</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w90 cor3 h50 lh50 t-r">*<span th:text="#{binformation.antiepidemicDrugName}">防疫药品名称</span></div>
+					<div class="mgl90">
+						<input v-model="drug.drugName" id="drug" type="text" class="ww92 h50 lh50 bore ras4 pdl30" >
+					</div>
+				</div>
+				
+				
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.useCycle}">使用周期</div>
+					<div class="mgl90">
+						<input v-model="drug.period" type="text" class="ww92 h50 lh50 bore ras4 pdl30">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.use}">使用方式</div>
+					<div class="mgl90">
+						<input v-model="drug.usageMode" type="text" class="ww92 h50 lh50 bore ras4 pdl30">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.purpose}">使用目的</div>
+					<div class="mgl90">
+						<textarea v-model="drug.purposeOfUse" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" ></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.drugComposition}">药品成分</div>
+					<div class="mgl90">
+						<textarea v-model="drug.drugComposition" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" ></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.describe}">描述</div>
+					<div class="mgl90">
+						<textarea v-model="drug.description" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" ></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input id="savee" class="a6 dinb bort hov8" type="submit" value="保存">
+						<a href="/biz/drug/antiepidemic_Drug_List" class="a6 dinb hov8" th:text="#{binformation.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+</body>
+</html>
+<script th:inline="javascript">
+    var save = [[#{binformation.save}]];
+    $("#savee").val(save)
+    var qsrypm = [[#{binformation.qsrypm}]];//请输入药品名!
+    var addSuccess = [[#{binformation.addSuccess}]];//添加成功!
+    var addFailure = [[#{binformation.addFailure}]];//添加失败!
+    var determine = [[#{determine}]];//确定
+    var wzcwqlxgly = [[#{binformation.wzcwqlxgly}]];//未知错误!请联系管理员!
+</script>

@@ -1,0 +1,14 @@
+<view class='page'>
+  <statistics-box is-material-statistics="{{ component.isMaterialStatistics }}" bind:dataEvent="bindDataEvent" bind:monthEvent="bindMonthEvent"></statistics-box>
+  <view class='container'>
+    <view class='table_header'> {{ currentYear }}年{{ currentMonth }}月 </view>
+    <view class='table_body'>
+      <block wx:for="{{ statistics.statisticsArray }}" wx:key="index">
+        <view class="item {{ index == statisticsArray.length-1?'last-item':'' }}">
+          <view class='item-td left right-line'>{{ item.name }}</view>
+          <view class='item-td right'>{{ item.count }}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

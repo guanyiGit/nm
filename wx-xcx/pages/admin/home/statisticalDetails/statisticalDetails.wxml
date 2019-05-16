@@ -1,0 +1,41 @@
+<view class='page' wx:if="{{ ishasData }}">
+  <statistics-box bind:dataEvent="bindDataEvent" bind:monthEvent="bindMonthEvent"></statistics-box>
+  <view class='container'>
+    <view class='item' wx:if="{{ isShow.epidemicIsShow }}">
+      <view class='title'>
+        <view class="title-content {{ antieTimes.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='1'>防疫统计</view>
+      </view>
+      <view class='table' hidden='{{ !antieTimes.isOpen }}'>
+        <view class='table-header'>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡镇</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+          <view class='table-heade-th right-line'>犬只数</view>
+          <view class='table-heade-th right-line'>已防疫</view>
+          <view class='table-heade-th'>未防疫</view>
+        </view>
+        <view class='table-body'>
+          <block wx:for="{{ antieTimes.antieTimesArray }}" wx:key="index">
+            <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == antieTimes.length-1?'last-tr':''  }} ">
+              <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+              <view class='table-body-td right-line'>
+                <block>{{ item.totalAmount }}</block>
+              </view>
+              <!--跳转到已防疫列表-->
+              <view class='table-body-td right-line' bindtap='antiAmountEvent' data-type='2' data-area='{{ item.areaId }}'     data-protector='{{ item.protectorId }}' >
+                <text  style='color:blue' >{{ item.antiAmount }}</text>
+              </view>
+              <view class='table-body-td' bindtap='antiAmountEvent' data-type='1' data-area='{{ item.areaId }}' data-protector='{{ item.protectorId }}'>
+                <text  style='color:red' >{{ item.unAntiAmount }}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

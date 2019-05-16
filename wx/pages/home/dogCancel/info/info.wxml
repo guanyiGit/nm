@@ -1,0 +1,47 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>注销原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.reason }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>注销时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.CanselDate }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+            <image src='{{ dogCancel.dogCancelImage }}'></image>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.description }}</text>
+        </view>
+    </view>
+</view>

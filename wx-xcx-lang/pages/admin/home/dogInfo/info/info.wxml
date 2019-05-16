@@ -1,0 +1,146 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'>
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>所属乡镇：</text> -->
+            <text>{{ LG.get(L,"shusuoxiangzheng") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.address?dogInfo.address:"" }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主：</text> -->
+            <text>{{ LG.get(L,"quanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.ownerName?dogInfo.ownerName:"" }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬名：</text> -->
+            <text>{{ LG.get(L,"quanming") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.dogName?dogInfo.dogName:"" }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>溯源ID：</text> -->
+            <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.deviceNo?dogInfo.deviceNo:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬种：</text> -->
+            <text>{{ LG.get(L,"quanzhong") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.breed?dogInfo.breed:"" }}</text>
+        </view>
+    </view>
+
+  <view class='item'>
+        <view class='left'>
+            <!-- <text>犬龄(岁)：</text> -->
+            <text>{{ LG.get(L,"quanling") }}：({{LG.get(L,"sui")}})</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.age?dogInfo.age:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>性别：</text> -->
+            <text>{{ LG.get(L,"xingbie") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.sex==0?'公':'母' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>毛色：</text> -->
+            <text>{{ LG.get(L,"maose") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.hairColor?dogInfo.hairColor:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>体重(公斤)：</text> -->
+            <text>{{ LG.get(L,"tizhong") }}：({{ LG.get(L,"gongjin") }})</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.weight?dogInfo.weight:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>入栏时间：</text> -->
+            <text>{{ LG.get(L,"rulanshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.createDate?dogInfo.address:"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫员：</text> -->
+            <text>{{ LG.get(L,"fangyiyuan") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.name1?dogInfo.name1:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>联系电话：</text> -->
+            <text>{{ LG.get(L,"lianxidianhua") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.ownerPhone?dogInfo.ownerPhone:"" }}</text>
+        </view>
+    </view>
+
+    <!--暂未循环展示 -->
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+            <text>{{ LG.get(L,"tupuai") }}：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ dogPicList }}" wx:key="index">
+               <image src='{{ dogPicList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.description?dogInfo.description:"" }}</text>
+        </view>
+    </view>
+
+    <!-- <view class='edit_dog' bindtap='toDogEditPage'></view> -->
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

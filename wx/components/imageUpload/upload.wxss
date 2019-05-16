@@ -1,0 +1,25 @@
+.image-group {
+  display: flex;
+  white-space: nowrap;
+}
+.image-group image {
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+
+.imageItem {
+  display: inline-block;
+}
+
+.uploadImage {
+  display: inline-block;
+}
+
+.deleteIcon {
+  width: 30rpx;
+  height: 30rpx;
+}
+

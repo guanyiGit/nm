@@ -1,0 +1,178 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>溯源ID：</text> -->
+            <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.traceId||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>项圈编号：</text> -->
+            <text>{{ LG.get(L,"xiangquanbianhao") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.deviceNo||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬名：</text> -->
+            <text>{{ LG.get(L,"quanming") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogName||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主：</text> -->
+            <text>{{ LG.get(L,"quanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerName||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主电话：</text> -->
+             <text>{{ LG.get(L,"quanzhudianhua") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.phoneNum||'' }}</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <!-- <text>犬主身份证：</text> -->
+            <text>{{ LG.get(L,"quanzhushengfengzheng") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.cardNum||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>所属乡镇：</text> -->
+            <text>{{ LG.get(L,"shusuoxiangzheng") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.town||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>详细地址:</text> -->
+             <text>{{ LG.get(L,"xiangxidizhi") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.pcName||'' }}{{ antiepidemic.no||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫类型：</text> -->
+            <text>{{ LG.get(L,"fangyileixin") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.type||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫时间：</text> -->
+            <text>{{ LG.get(L,"fangyishijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.date||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫药品：</text> -->
+            <text>{{ LG.get(L,"fangyiyaopin") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.drugName||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫周期(月):</text> -->
+            <text>{{ LG.get(L,"fangyizhouqi") }} ({{ LG.get(L,"month") }})：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.period||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫员：</text> -->
+            <text>{{ LG.get(L,"fangyiyuan") }} ：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.name||'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>防疫员电话：</text> -->
+            <text>{{ LG.get(L,"fangyiyuandianhua") }} ：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.proPhoneNum||'' }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+             <text>{{ LG.get(L,"zhaopian") }} ：</text>
+        </view>
+        <view class='right '>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>视频：</text> -->
+            <text>{{ LG.get(L,"shipin") }} ：</text>
+        </view>
+        <view class='right '>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }} ：</text>
+        </view>
+        <view class='right'>
+            {{ antiepidemic.description||'' }}
+        </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

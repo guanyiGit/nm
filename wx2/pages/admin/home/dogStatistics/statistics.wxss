@@ -1,0 +1,133 @@
+Page {
+  background-color: #fff;
+}
+
+.page {
+  padding-bottom: 60rpx;
+}
+
+.container {
+  margin-top: -20rpx;
+}
+
+.item {
+  margin-top: 50rpx;
+}
+
+.table {
+  background-color: #fff;
+  font-size: 12px;
+  width: 98%;
+  margin: auto 1%;
+  border: 1rpx solid #666666;
+}
+
+.title {
+  width: 98%;
+  height: 70rpx;
+  font-size: 14px;
+  margin: 20rpx 1%;
+  color: white;
+  background-color: #09f;
+  display: flex;
+  justify-content: center;
+}
+
+.title-content {
+  width: 96%;
+}
+
+.table-header {
+  display: flex;
+  height: 70rpx;
+}
+
+.table-heade-th {
+  flex: 1;
+  text-align: center;
+  height: 100%;
+  line-height: 70rpx;  
+  border-bottom: 1rpx solid #C5C5C5;
+}
+
+.table-body {
+
+}
+
+.table-body-tr{
+  height: 90rpx;
+  display: flex;
+  
+}
+
+.table-body-td {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1rpx solid #C5C5C5;
+}
+
+/*上拉箭头*/
+
+.drop-upArrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drop-upArrow::after {
+  content: "";
+  width: 25rpx;
+  height: 25rpx;
+  border-left: 10rpx solid white;
+  border-top: 10rpx solid white;
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-top: 10rpx;
+}
+
+/*下拉箭头*/
+
+.drop-downArrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drop-downArrow::after {
+  content: "";
+  width: 25rpx;
+  height: 25rpx;
+  border-right: 10rpx solid white;
+  border-bottom: 10rpx solid white;
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-bottom: 15rpx;
+}
+
+
+.right-line{
+  position: relative;
+}
+
+.right-line::after{
+  content: "";
+  width: 1rpx;
+  height: 100%;
+  /*定位，不占位置*/
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #C5C5C5;
+}
+
+.odd-tr {
+  background-color: #EEEEEE;
+}
+
+.last-tr .table-body-td{
+  border-bottom: 0rpx solid #C5C5C5;
+}

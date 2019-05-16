@@ -1,0 +1,18 @@
+/* 功能封装3 下拉符*/
+
+.drop-down {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drop-down::after {
+  content: "";
+  width: 15rpx;
+  height: 15rpx;
+  border-bottom: 2rpx solid black;
+  border-right: 2rpx solid black;
+  transform: rotate(45deg);
+  display: block;
+  margin-right: 15rpx;
+}

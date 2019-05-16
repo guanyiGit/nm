@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.AntiepidemicCountDao">
+    <select id="getInfoByEndTime" parameterType="java.util.Map" resultType="java.util.Date">
+        select a.antiepidemic_date from antiepidemic a
+        left join t_protector protector on protector.id = a.protector
+        <where>
+            <if test="userId != null">and protector.user_id = #{userId}</if>
+            <if test="nextMonth != null"> and a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth} </if>
+            <if test="orgList != null and orgList.size > 0">
+                and a.org_id in
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getInfoByEndTime2" parameterType="java.util.Map" resultType="java.util.Date">
+        SELECT
+        a.antiepidemic_date
+        FROM
+        antiepidemic a
+        WHERE
+        a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth}
+        AND a.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+    </select>
+    <select id="getInfoByEndTime3" parameterType="java.util.Map" resultType="java.util.Date">
+        SELECT
+        a.antiepidemic_date
+        FROM
+        antiepidemic a
+        WHERE
+        a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth}
+        AND a.org_id IN (
+        SELECT
+        org2.id
+        FROM
+        t_org_info org2
+        WHERE
+        org2.pid IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{areaId} )
+        )
+    </select>
+
+
+
+    <select id="getTopTenDrug" parameterType="java.util.Map" resultType="com.statisanalysis.entity.DrugNumVO">
+        SELECT
+        drug.id,
+        drug.drug_name drugName,
+        count( * ) drugNum
+        FROM
+        antiepidemic a
+        LEFT JOIN t_drug_info drug ON a.drug_id = drug.id
+        left join t_protector protector on protector.id = a.protector
+        <where>
+            a.antiepidemic_date <![CDATA[ > ]]> #{startTime} and a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth}
+            <if test="userId != null">AND protector.user_id = #{userId}</if>
+            <if test="orgList != null and orgList.size > 0">
+                AND a.org_id IN
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY drugName
+        ORDER BY drugNum DESC
+        LIMIT 0,10
+    </select>
+
+    <select id="getAllNames" parameterType="map" resultType="java.lang.String">
+        SELECT DISTINCT
+        ( drug.drug_name )
+        FROM
+        antiepidemic a
+        LEFT JOIN t_drug_info drug ON a.drug_id = drug.id
+        WHERE
+        a.drug_id != ''
+        AND a.antiepidemic_date <![CDATA[ > ]]> #{startTime}
+        AND a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth}
+    </select>
+
+    <select id="getDrugUse" parameterType="java.util.Map" resultType="com.statisanalysis.entity.DrugVO">
+        SELECT
+        a.antiepidemic_date createDate,
+        drug.drug_name drugName
+        FROM
+        antiepidemic a
+        LEFT JOIN t_drug_info drug ON a.drug_id = drug.id
+        left join t_protector protector on protector.id = a.protector
+        <where>
+            a.antiepidemic_date <![CDATA[ > ]]> #{startTime}
+            AND a.antiepidemic_date <![CDATA[ < ]]> #{nextMonth}
+            <if test="userId != null">and protector.user_id = #{userId}</if>
+            <if test="orgList != null and orgList.size > 0">
+                AND a.org_id IN
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

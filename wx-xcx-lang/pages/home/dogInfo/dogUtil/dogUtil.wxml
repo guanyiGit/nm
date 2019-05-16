@@ -1,0 +1,70 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" query ="{{ query.string }}" bind:searchEvent="searchDog" bind:scanSearchEvent="scanSearchDog"></search>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ dogInfos }}" wx:key="index" wx:if="{{ index<maxLength }}">
+        <view class='container_item' bindtap='toDogPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.dogBigUrl }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+            <!-- 犬主 -->
+              <!-- <view>{{ item.traceId||'未知' }}</view> -->
+              <view>{{ item.traceId||LG.get(L,"weizhi") }}</view>
+              <view class="{{ item.isExpire?'expire2':'normal2' }}">
+                {{
+                    item.isExpire ? LG.get(L,"mianyichaoqi") : LG.get(L,"zhengchang")
+                }}
+              </view>
+            </view>
+            <view class='right_body'>
+              <!-- <view class='texthide'>犬名: {{ item.dogName||'未知'}}</view> -->
+              <view class='texthide'>{{ LG.get(L,"quanming") }}: {{ item.dogName||LG.get(L,"weizhi")}}</view>
+              <!-- <view class='texthide'>犬种: {{ item.breed||'未知'}}</view> -->
+              <view class='texthide'>{{ LG.get(L,"quanzhong") }}: {{ item.breed||LG.get(L,"weizhi")}}</view>
+            </view>
+            <view class="right_foot" >
+              <!-- <view class='texthide'>犬主: {{ item.ownerName||'未知'}}</view> -->
+              <view class='texthide'>{{ LG.get(L,"quanzhu") }}: {{ item.ownerName||LG.get(L,"weizhi")}}</view>
+              <view class='' catchtap='toNavigationPage' data-index='{{ index }}'>
+                <text class='xqgh_element'>{{
+                 flag == 'epidemic-register' ? LG.get(L,"fangyidengji"): 
+                 flag == 'manure-register' ? LG.get(L,"fenbianchuli"): 
+                 flag == 'corpse-register' ? LG.get(L,"quanshi_chuli"): 
+                 flag == 'necklet-change' ? LG.get(L,"xiangquangenghuan"): 
+                 flag == 'dog-logout' ? LG.get(L,"quanzhizhuxiao"): 'none'
+                 }}</text>
+              </view>
+            </view>
+            <!-- 
+               //防疫登记
+                  flag = "epidemic-register"
+                } else if (type == 2){
+                  //粪便处理
+                  flag = "manure-register"
+                } else if (type == 3) {
+                  //犬尸处理
+                  flag = "corpse-register"
+                } else if (type == 4) {
+                  //项圈更换
+                  flag = "necklet-change"
+                } else if (type == 5) {
+                  //犬只注销
+                  flag = "dog-logout"
+             -->
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

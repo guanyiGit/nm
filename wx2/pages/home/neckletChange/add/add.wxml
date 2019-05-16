@@ -1,0 +1,71 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--原项圈：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>溯源ID:</text>
+          </view>
+        </view>
+        <view class='traceId'>
+          <view class='right-header'>{{ dog.traceId }}</view>
+          <view class='right-middle'>
+            <view>犬名：{{ dog.dogName||'' }}</view>
+            <view>犬主：{{ dog.ownerName||'' }}</view>
+          </view>
+          <view class='right-foot'>项圈编号：{{ dog.deviceNo||'' }}</view>
+        </view>
+      </view>
+
+      <!--新项圈：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>新项圈：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <view class='right-input'>
+            <input value='{{ deviceNo  }}' bindblur='deviceNoBlur'></input>
+          </view>
+          <view class='right-image'>
+            <image src='{{ scanIcon }}' bindtap='scanEvent'></image>
+          </view>
+        </view>
+      </view>
+
+      <!--更换原因：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>原项圈处理:</text>
+          </view>
+        </view>
+        <view class='right'>
+           <picker bindchange='bindReasonChange' value='{{ deviceDeal.deviceDealIndex }}' range='{{ deviceDeal.deviceDealArray }}' range-key='name' name="changeReasons">
+            <view class='picker drop-down'>
+              {{ deviceDeal.deviceDealArray[deviceDeal.deviceDealIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--描述：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right description'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

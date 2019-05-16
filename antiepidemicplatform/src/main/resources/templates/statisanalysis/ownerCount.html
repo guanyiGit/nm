@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>A31-统计分析-犬主分布</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/css.css">
+
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap">
+
+	<!--内容栏-->
+	<div class="section2">
+		<!--面包屑-->
+		<div class="tit pdl0">
+			<ul class="ul03 ovh">
+				<li class="fl"><a href="###" th:text="#{statistical.analysis}">统计分析</a>></li>
+				<li class="fl" th:text="#{statistical.ownerDistribution}">犬主分布</li>
+			</ul>
+		</div>
+		<!--面包屑END-->
+
+		<!--内容区-->
+		<div class="pdl0 pdr50 pdt25 pdb75">
+			<div class="ovh">
+				<div class="mgt20 ww49 fl" shiro:hasPermission="biz:ownerCount:getOwnerAge">
+					<div class="bord9 rel">
+						<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+						<a href="###" class="db abs z100 a4"></a>
+						<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.ownerAgeDistribution}">年龄分布</p>
+						<div id="main4" class="h450 ww100"></div>
+					</div>
+				</div>
+
+				<div class="mgt20 ww49 fr" shiro:hasPermission="biz:ownerCount:getOwnerSex">
+					<div class="bord9 rel">
+						<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+						<a href="###" class="db abs z100 a4"></a>
+						<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.genderDistribution}">性别分布</p>
+						<div id="main5" class="h450 ww100"></div>
+					</div>
+				</div>
+				</div>
+
+				<div class="mgt20 ww100" shiro:hasPermission="biz:ownerCount:getOwnerAreaInfo">
+					<div class="bord9 rel">
+						<!--<a href="###" class="db abs z100 a4"><img src="/images/28.png" alt=""></a>-->
+						<a href="###" class="db abs z100 a4"></a>
+						<p class="fs18 cor006cb5 mgt20 mgl20 h40 lh40 mgb18" th:text="#{statistical.areaDistribution}">区域分布</p>
+						<div id="main6" class="h450 ww100"></div>
+					</div>
+				</div>
+		</div>
+		<!--内容区END-->
+
+	</div>
+	<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script th:inline="javascript">
+    var roleId = [[${user.roles[0].roleId}]];
+    var male = [[#{ownerMale}]];
+    var female = [[#{ownerFemale}]];
+    var ownerCount = [[#{statistical.ownerCount}]];//犬主数量
+    var radiusModel = [[#{statistical.radiusModel}]];//半径模式
+    var annum = [[#{annum}]];//岁
+    var ageAbove = [[#{ageAbove}]];//岁以上
+    var ageFollowing = [[#{ageFollowing}]];//岁以下
+    var twentyAgeFollowing = [[#{twentyAgeFollowing}]];//20岁以下
+    var twentyOneToThirtyAnnum = [[#{twentyOneToThirtyAnnum}]];//21~30岁
+    var thirtyOneToFortyAnnum = [[#{thirtyOneToFortyAnnum}]];//31~40岁
+    var fortyOneToFiftyAnnum = [[#{fortyOneToFiftyAnnum}]];//41~50岁
+    var fiftyOneToSixtyAnnum = [[#{fiftyOneToSixtyAnnum}]];//51~60岁
+    var sixtyAgeFollowing = [[#{sixtyAgeFollowing}]];//60岁以上
+</script>
+<script src="/statisanalysis/ownerCount.js"></script>
+</body>
+</html>
+

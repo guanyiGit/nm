@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/epmanagement/dogAnatomy/DogAnatomy_List.js"></script> 
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+	<div id="innerdiv" style="position:absolute;">
+		<img id="bigimg" style="border:5px solid #fff;" src="" />
+	</div>
+</div>
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2" shiro:hasPermission="/biz/dogAnatomy/toDogAnatomy_List">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<li class="fl"th:text="#{antiepidemicManage.dogAnatomy}">犬只解剖</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt25 pdb75 pdr50">
+		<div class="h40 pdl30 pdr30" style="margin-left: -30px;">
+			<ul class="ul04 fl">
+				<li class="fl t-c w250 h40 lh40 mgr30" shiro:hasPermission="/biz/manureAntigen/selectOrg">
+					<select id="selectOrg" class="ww100 h40 lh40 pdl10 bore pc18" onchange="orgChange()">
+						<option value="-1" selected="selected" th:text="#{antiepidemicManage.all}">全部</option>
+						<!-- <option value="1">组织</option> -->
+					</select>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="/biz/dogAnatomy/add">
+					<a href="/biz/dogAnatomy/add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt="" th:text="#{dogManage.add}"></a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+				</li>
+			</ul>
+		</div>
+		<table id="exampleTable" data-mobile-responsive="true">
+		</table>
+
+	</div>
+	<!--内容区END-->
+	
+	<!--分页END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_check_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        /* var s_resetPwd_h = 'hidden'; */
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogAnatomy/getDogAnatomyDetail">
+    s_check_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogAnatomy/edit">
+        s_edit_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/dogAnatomy/remove">
+    	s_remove_h = '';
+    </script>
+</div>
+</body>
+</html>
+<script th:inline="javascript">
+    var user = [[${user}]];
+    var photo5 = [[#{antiepidemicManage.photo}]];
+    var detectionCount5=[[#{antiepidemicManage.detectionCount}]];
+    var positiveCount5=[[#{antiepidemicManage.positiveCount}]];
+    var positiveRate5=[[#{antiepidemicManage.positiveRate}]];
+    var detectionTime5=[[#{antiepidemicManage.detectionTime}]];
+    var dectectOrg5 = [[#{antiepidemicManage.dectectOrg}]];
+    var dogHarmlessTreatNum5 = [[#{antiepidemicManage.dogHarmlessTreatNum}]];
+    var operation5 = [[#{dogManage.operation}]];
+    var detail5 = [[#{dogManage.detail}]];
+    var edit5 = [[#{dogManage.edit}]];
+    var delete5 = [[#{dogManage.delete}]];
+    var operationSuccess=[[#{operationSuccess}]];
+    var operationFailure=[[#{operationFailure}]];
+    var sureDeleteSelectedRecord=[[#{sureDeleteSelectedRecord}]];
+    var sure5=[[#{dogManage.sure}]];
+    var cancel5=[[#{dogManage.cancel}]];
+</script>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="antiepidemicplatform" />
+        <module name="api" />
+        <module name="callback" />
+        <module name="eureka01" />
+        <module name="eureka02" />
+        <module name="eureka03" />
+        <module name="sms" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="antiepidemicplatform" target="1.8" />
+      <module name="api" target="1.8" />
+      <module name="callback" target="1.8" />
+      <module name="eureka01" target="1.8" />
+      <module name="eureka02" target="1.8" />
+      <module name="eureka03" target="1.8" />
+      <module name="parent" target="1.8" />
+      <module name="sms" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

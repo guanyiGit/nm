@@ -1,0 +1,3 @@
+<view class='page' wx:if="{{ ishasData }}">
+  <statistics-box bind:dataEvent="bindDataEvent" bind:monthEvent="bindMonthEvent"></statistics-box>
+</view>

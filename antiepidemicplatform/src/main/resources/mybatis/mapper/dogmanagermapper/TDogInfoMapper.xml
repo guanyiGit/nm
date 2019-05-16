@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dogmanager.dao.TDogInfoMapper" >
+
+  <resultMap id="BaseResultMap" type="com.entities.TDogInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="breed" property="breed" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="DOUBLE" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="hair_color" property="hairColor" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="protector" property="protector" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="dog_name" property="dogName" jdbcType="VARCHAR" />
+    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+    <result column="fence_id" property="fenceId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="DogInfoDetailMap" type="com.dogmanager.VO.DogInfoVO">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="breed" property="breed" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="DOUBLE" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="dog_name" property="dogName" jdbcType="VARCHAR" />
+    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+    <result column="hair_color" property="hairColor" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+
+    <result column="ownerName" property="ownerName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="ownersex" property="ownersex" jdbcType="INTEGER" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="degree_of_education" property="degree_of_education" jdbcType="VARCHAR" />
+    <result column="ownerPhone" property="ownerPhone" jdbcType="VARCHAR" />
+    <result column="birth_day" property="birthDay" jdbcType="TIMESTAMP" />
+    <result column="grass_land_area" property="grass_land_area" jdbcType="DOUBLE" />
+    <result column="dowdiscription" property="dowdiscription" jdbcType="VARCHAR" />
+    <result column="dowcreateDate" property="dowcreateDate" jdbcType="TIMESTAMP" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="education_background" property="educationBackground" jdbcType="VARCHAR" />
+
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="name1" property="name1" jdbcType="VARCHAR" />
+    <result column="pphone" property="pphone" jdbcType="VARCHAR" />
+    <result column="fence_no" property="fenceNo" jdbcType="VARCHAR" />
+    <result column="fenceId" property="fenceId" jdbcType="VARCHAR" />
+    <result column="device_no" property="deviceNo" jdbcType="VARCHAR" />
+    <result column="fenceName" property="fenceName" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+<resultMap id="manureDetailMap" type="com.dogmanager.VO.ManureVO">
+  <result column="mode" property="mode" jdbcType="VARCHAR" />
+  <result column="processMode" property="processMode" jdbcType="VARCHAR" />
+  <result column="modeName" property="modeName" jdbcType="VARCHAR" />
+  <result column="methodDes" property="methodDes" jdbcType="VARCHAR" />
+  <result column="period" property="period" jdbcType="VARCHAR" />
+  <result column="dealTime" property="dealTime" jdbcType="TIMESTAMP" />
+  <result column="name" property="name" jdbcType="VARCHAR" />
+  <result column="description" property="description" jdbcType="VARCHAR" />
+  <collection property="urlList" ofType="com.entities.TMediaInfo">
+    <result column="thumbnailUrl" property="thumbnailUrl" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </collection>
+  <collection property="vedioList" ofType="java.lang.String">
+    <result column="vedioUrl" property="vedioUrl" jdbcType="VARCHAR" />
+  </collection>
+</resultMap>
+
+  <resultMap id="antiepidemicDetailMap" type="com.dogmanager.VO.Antiepidemic">
+    <result column="drugName" property="drugName" jdbcType="VARCHAR" />
+    <result column="antiepidemicDate" property="antiepidemicDate" jdbcType="TIMESTAMP" />
+    <result column="antiepidemicPeriod" property="antiepidemicPeriod" jdbcType="VARCHAR" />
+    <result column="name2" property="name2" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <collection property="picList" ofType="com.entities.TMediaInfo">
+      <result column="thumbnailUrl" property="thumbnailUrl" jdbcType="VARCHAR" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="vedioList" ofType="java.lang.String">
+      <result column="videoUrl" property="videoUrl" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, breed, age, sex, hair_color, weight, owner, protector, description, fence_id,
+    area_id, org_id, status,trace_id, dog_name, create_date, update_date
+  </sql>
+
+  <!--更改犬只状态-->
+  <update id="updateDogStatus">
+      update t_dog_info SET status=#{status} WHERE trace_id=#{traceId}
+  </update>
+
+
+  <select id="findPicList" resultType="java.util.HashMap">
+    SELECT mi.`thumbnail_url`,mi.`url`,mi.id FROM t_media_info mi
+    LEFT JOIN t_media_ref mr
+    ON mi.`id`=mr.`media_id` and mr.is_video=0
+    WHERE mr.`type`=#{type} AND mr.`ref_id`=#{id}
+  </select>
+
+
+  <select id="findVideoList" resultType="java.util.HashMap">
+    SELECT mi.`url` FROM t_media_info mi
+    LEFT JOIN t_media_ref mr
+    ON mi.`id`=mr.`media_id` and mr.is_video=1
+    WHERE mr.`type`=#{type} AND mr.`ref_id`=#{id}
+  </select>
+
+  <delete id="deletePic" parameterType="int">
+    DELETE
+      mr,
+      mi
+    FROM
+      t_media_ref mr
+      INNER JOIN t_media_info mi
+        ON mr.media_id = mi.id
+    WHERE mr.media_id = #{fid}
+  </delete>
+
+  <select id="findPicOne" resultType="com.entities.TMediaInfo" parameterType="int">
+    SELECT mi.`thumbnail_url`,mi.`url` FROM t_media_info mi WHERE mi.id=#{id}
+  </select>
+
+  <!--查看犬只列表-->
+  <select id="findDogInfoList" parameterType="string" resultType="com.dogmanager.VO.DogInfoVO">
+    SELECT
+    di.id,di.breed, di.age,di.sex,di.hair_color hairColor, di.weight,di.fence_id fenceId, di.create_date ,di.dog_name dogName,
+    di.trace_id traceId,di.owner,fd.fence_name fenceName,dow.name ownerName,mi.thumbnail_url dogSmallUrl,mi.url dogBigUrl,
+    drd.device_no deviceNo,dow.card_num cardNum,dow.no,dow.phone_num ownerPhone,dow.area_id town,pc.name pname
+    FROM t_dog_info di
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_media_ref mr
+    ON di.`id`=mr.`ref_id` AND mr.`type`=0
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id=pc.id
+    <where>
+      di.`status`=0
+      <if test="string !=null and string !=''">
+          AND  (
+                dow.name like "%"#{string}"%" OR di.trace_id = #{string} OR
+                drd.device_no = #{string} OR dow.phone_num = #{string} OR
+                dow.card_num = #{string}
+                )
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+         AND  (di.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="protector !=null and protector!=''">
+        AND di.`protector`=#{protector}
+      </if>
+    </where>
+    GROUP BY di.`id` ORDER BY di.`create_date` DESC
+  </select>
+
+  <!--查看犬只列表-->
+  <select id="findBindDogInfoList"  resultType="com.dogmanager.VO.DogInfoVO">
+    SELECT
+    di.id,di.breed, di.age,di.sex,di.hair_color hairColor, di.weight,di.fence_id fenceId, di.create_date ,di.dog_name dogName,
+    di.trace_id traceId,di.owner,fd.fence_name fenceName,dow.name ownerName,mi.thumbnail_url dogSmallUrl,mi.url dogBigUrl,
+    drd.device_no deviceNo,dow.card_num cardNum,dow.no,dow.phone_num ownerPhone,dow.area_id town,pc.name pname
+    FROM t_dog_info di
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_media_ref mr
+    ON di.`id`=mr.`ref_id` AND mr.`type`=0
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id=pc.id
+    <where>
+      di.`status`=0
+      and di.trace_id in (
+        select t.trace_id from  t_device_ref_dog t
+      )
+      <if test="string !=null and string !=''">
+        AND  (
+        dow.name like "%"#{string}"%" OR di.trace_id = #{string} OR
+        drd.device_no = #{string} OR dow.phone_num = #{string} OR
+        dow.card_num = #{string}
+        )
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (di.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="protector !=null and protector!=''">
+        AND di.`protector`=#{protector}
+      </if>
+    </where>
+    GROUP BY di.`id` ORDER BY di.`create_date` DESC
+  </select>
+
+  <!--wx查看犬只列表-->
+  <select id="wxfindDogInfoList" parameterType="string" resultType="com.dogmanager.VO.DogInfoVO">
+    SELECT
+    di.id,di.breed, di.age,di.sex,di.hair_color hairColor, di.weight,di.fence_id fenceId, di.create_date ,di.dog_name dogName,
+    di.trace_id traceId,di.owner,fd.fence_name fenceName,dow.name ownerName,mi.thumbnail_url dogSmallUrl,mi.url dogBigUrl,
+    drd.device_no deviceNo,dow.card_num cardNum,dow.no,dow.phone_num ownerPhone,dow.area_id town,pc.name pname,
+    ant.antiepidemic_date antiepidemicDate,ant.antiepidemic_period antiepidemicPeriod
+    FROM t_dog_info di
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_media_ref mr
+    ON di.`id`=mr.`ref_id` AND mr.`type`=0
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id=pc.id
+    LEFT JOIN ( SELECT
+    ant1.antiepidemic_date,ant1.antiepidemic_period,ant1.type,ant1.trace_id
+    FROM
+    antiepidemic ant1
+    INNER JOIN
+    (SELECT
+    trace_id ti,
+    MAX(antiepidemic_date) ad
+    FROM
+    antiepidemic
+    GROUP BY ti) ant2
+    ON ant1.trace_id = ant2.ti
+    AND ant1.antiepidemic_date=ant2.ad) ant
+    ON di.trace_id =ant.trace_id
+    <where>
+      di.`status`=0
+      <if test="string !=null and string !=''">
+        AND  (
+        dow.name like "%"#{string}"%" OR di.trace_id = #{string} OR
+        drd.device_no = #{string} OR dow.phone_num = #{string} OR
+        dow.card_num = #{string}
+        )
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (di.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="protector !=null and protector!=''">
+        AND di.`protector`=#{protector}
+      </if>
+    </where>
+    GROUP BY di.`id` ORDER BY di.`create_date` DESC
+  </select>
+
+
+
+
+  <!--wx是否防疫列表-->
+  <select id="wxfindDogInfoListIsAnt" parameterType="string" resultType="com.dogmanager.VO.DogInfoVO">
+    SELECT
+    di.id,di.breed, di.age,di.sex,di.hair_color hairColor, di.weight,di.fence_id fenceId, di.create_date ,di.dog_name dogName,
+    di.trace_id traceId,di.owner,fd.fence_name fenceName,dow.name ownerName,mi.thumbnail_url dogSmallUrl,mi.url dogBigUrl,
+    drd.device_no deviceNo,dow.card_num cardNum,dow.no,dow.phone_num ownerPhone,dow.area_id town,pc.name pname
+    FROM t_dog_info di
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_media_ref mr
+    ON di.`id`=mr.`ref_id` AND mr.`type`=0
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.pastoral_committee_id=pc.id
+    left join t_corpse_disposal corpse on di.trace_id = corpse.trace_id
+    left join t_dog_cancel cancel on cancel.trace_id = di.trace_id
+    <where>
+      DATE_FORMAT(di.create_date,'%Y-%m') <![CDATA[ <= ]]> #{antiepidemicDate}
+      AND (corpse.deal_time is NULL or DATE_FORMAT(corpse.deal_time,'%Y-%m') > #{antiepidemicDate})
+      AND (cancel.create_date is NULL or DATE_FORMAT(cancel.create_date,'%Y-%m') > #{antiepidemicDate})
+      and di.trace_id
+      <if test="type==1">NOT IN</if>
+      <if test="type==2">IN</if>
+        (
+        SELECT ant.trace_id
+        FROM antiepidemic ant
+        WHERE DATE_FORMAT(ant.antiepidemic_date,'%Y-%m')=#{antiepidemicDate}
+        )
+      <if test="string !=null and string !=''">
+        AND  (
+        dow.name like "%"#{string}"%" OR di.trace_id = #{string} OR
+        drd.device_no = #{string} OR dow.phone_num = #{string} OR
+        dow.card_num = #{string}
+        )
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (di.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="protector !=null and protector!=''">
+        AND di.`protector`=#{protector}
+      </if>
+    </where>
+    GROUP BY di.`id` ORDER BY di.`create_date` DESC
+  </select>
+
+
+
+
+ <!-- 犬只详情-->
+  <select id="findDogInfoByDogId" resultMap="DogInfoDetailMap" parameterType="java.util.HashMap">
+    SELECT
+    di.id,di.breed, di.owner,di.age,di.sex,di.hair_color,di.weight,di.create_date ,di.`description`,di.`dog_name`,di.fence_id fenceId,di.trace_id,
+    dow.`name` ownerName,dow.`address`,dow.`card_type`,dow.`card_num`,dow.`no`,dow.`sex` ownersex,dow.`nation`,dow.`birth_day`,
+    dow.`degree_of_education`,dow.`grass_land_area`,dow.`phone_num` ownerPhone,dow.`discription` dowdiscription,drd.device_no,
+    dow.`create_date` dowcreateDate,dow.`area_id` town, pc.name pname, pr.`name` name1,pr.`phone_num` pphone,fd.`fence_no`, fd.`fence_name` fenceName
+    FROM t_dog_info di
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.`pastoral_committee_id`=pc.id
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    where di.trace_id=#{traceId}
+  </select>
+  <!--犬只详情（多语言）-->
+  <!-- 犬只详情-->
+  <select id="findDogInfoByDogIdI18N" resultMap="DogInfoDetailMap" parameterType="java.util.HashMap">
+     SELECT
+    di.id,nr.name breed,di.breed_id breedId, di.owner,di.age,di.sex,di.hair_color,di.weight,di.create_date ,di.`description`,di.`dog_name`,di.fence_id fenceId,di.trace_id,
+    dow.`name` ownerName,dow.`address`,dow.`card_type`,dow.`card_num`,dow.`no`,dow.`sex` ownersex,nr2.name nation,dow.`birth_day`,dow.education_background,
+    dow.`degree_of_education`,dow.`grass_land_area`,dow.`phone_num` ownerPhone,dow.`discription` dowdiscription,drd.device_no,
+    dow.`create_date` dowcreateDate,dow.`area_id` town, pc.name pname, pr.`name` name1,pr.`phone_num` pphone,fd.`fence_no`, fd.`fence_name` fenceName
+    FROM t_dog_info di
+    left join t_sys_dict dict on dict.value = di.breed_id
+    left join t_name_ref nr on nr.resource_id = dict.name_id
+    LEFT JOIN t_dog_owner dow
+    ON di.`owner`=dow.`id`
+    left join t_sys_dict dict2 on dict2.value = dow.nation_id
+    left join t_name_ref nr2 on nr2.resource_id = dict2.name_id
+    LEFT JOIN t_pastoral_committee pc
+    ON dow.`pastoral_committee_id`=pc.id
+    LEFT JOIN t_protector pr
+    ON di.`protector`=pr.`id`
+    LEFT JOIN t_fence_def fd
+    ON di.`fence_id`=fd.`id`
+    LEFT JOIN  t_device_ref_dog drd
+    ON di.trace_id=drd.trace_id
+    where di.trace_id=#{traceId}
+    and dict.type = 'dog_breed'
+    and dict2.type = 'nation'
+    and nr.type =#{langType}
+	and nr2.type=#{langType}
+  </select>
+
+<select id="findManureList" parameterType="string" resultMap="manureDetailMap">
+      SELECT
+      manure.id,
+      med.thumbnail_url thumbnailUrl,
+      med.url url,
+      med1.`url` vedioUrl,
+      manure.title,
+      dict.name MODE,
+      manure.method_des methodDes,
+      manure.period,
+      manure.deal_time dealTime,
+      u.`name`,
+      manure.description
+    FROM
+      t_manure_disposal manure
+      LEFT JOIN t_user_info u
+        ON u.id = manure.operator
+      LEFT JOIN t_media_ref ref
+        ON ref.ref_id = manure.id
+        AND ref.type = 6
+        AND ref.is_video = 0
+      LEFT JOIN t_media_info med
+        ON med.id = ref.media_id
+      LEFT JOIN t_sys_dict dict
+        ON dict.value = manure.process_mode
+        AND dict.type = 'process_mode'
+      LEFT JOIN t_media_ref ref1
+        ON ref1.ref_id = manure.id
+        AND ref1.type = 6
+        AND ref1.is_video = 1
+     LEFT JOIN t_media_info med1
+        ON med1.id = ref1.media_id
+        WHERE manure.trace_id=#{traceId}
+        ORDER  BY manure.deal_time DESC
+</select>
+
+
+
+  <select id="findAntiepidemicList" parameterType="string" resultMap="antiepidemicDetailMap">
+    SELECT
+    an.`antiepidemic_date` antiepidemicDate,
+    an.`antiepidemic_period` antiepidemicPeriod,
+    an.`description`,
+    an.`type`,
+    mi1.thumbnail_url thumbnailUrl,
+    mi1.`url`,
+    mi2.`url` videoUrl,
+    pr1.`name` name2,
+    dri.`drug_name` drugName
+    FROM antiepidemic an
+    LEFT JOIN t_drug_info dri
+    ON an.`drug_id`=dri.`id`
+    LEFT JOIN t_media_ref mr1
+    ON an.`id`=mr1.`ref_id` AND mr1.`type`=3 AND mr1.`is_video`=0
+    LEFT JOIN t_media_info mi1
+    ON mr1.`media_id`=mi1.`id`
+    LEFT JOIN t_media_ref mr2
+    ON an.`id`=mr2.`ref_id` AND mr2.`type`=3 AND mr2.`is_video`=1
+    LEFT JOIN t_media_info mi2
+    ON mr2.`media_id`=mi2.`id`
+    LEFT JOIN t_protector pr1
+    ON an.`protector`=pr1.`id`
+    where an.trace_id=#{traceId}
+    ORDER BY an.`antiepidemic_date` DESC
+  </select>
+
+<select id="findProtector3" parameterType="int" resultType="java.util.HashMap">
+  SELECT
+  user_id id,
+  `name` text
+  FROM
+    t_protector
+  WHERE org_id = #{orgId}
+  UNION
+  SELECT id, `name` text
+  FROM t_user_info
+  WHERE org_id=#{orgId}
+</select>
+
+
+  <select id="findProtector2" parameterType="int" resultType="com.dogmanager.VO.TProtectorVO">
+    SELECT id,`name` text,user_id userId FROM t_protector WHERE org_id=#{Id}
+  </select>
+
+<select id="findProId" resultType="int" parameterType="int">
+  SELECT id FROM t_protector WHERE user_id=#{id}
+</select>
+
+<!--绑定设备-->
+<insert id="insertDogDeviceNo" parameterType="com.entities.TDeviceRefDog">
+  INSERT INTO t_device_ref_dog(trace_id,device_no,start_date,expire_date) VALUE(#{traceId},#{deviceNo},#{startDate},#{expireDate})
+</insert>
+
+  <!--查设备绑定-->
+<select id="selectByTraceId" resultType="com.entities.TDeviceRefDog">
+  SELECT id,trace_id traceId,device_no deviceNo from t_device_ref_dog WHERE trace_id=#{traceId}
+</select>
+
+<select id="findDeviceIdByDeviceNo" resultType="int" parameterType="string">
+   SELECT id FROM t_device_info WHERE device_no=#{deviceNo}
+</select>
+
+  <!--1代表已激活-->
+<update id="updateDeviceStatus">
+  UPDATE t_device_info SET `status`=#{status} WHERE device_no=#{deviceNo}
+</update>
+
+
+<!--查询防疫员的犬主-->
+  <select id="findDogOwner" resultType="java.util.HashMap" parameterType="int">
+   SELECT id,`name` FROM  t_dog_owner WHERE operator_id=#{operatorId}
+  </select>
+
+<!--<select id="findBreed" resultType="java.util.HashMap" >
+    select id,`name`,description from t_sys_dict where `type`='dog_breed'
+</select>-->
+  <select id="findBreed" resultType="java.util.HashMap" >
+    SELECT
+			dict.value id,
+			ref.name
+		FROM
+			t_sys_dict dict
+		LEFT JOIN t_name_ref ref ON dict.name_id = ref.resource_id AND ref.type = #{langType}
+		WHERE
+			dict.type ='dog_breed'
+  </select>
+  
+  <select id="findFence" resultType="java.util.HashMap" parameterType="int">
+    SELECT id,fence_name `name` FROM t_fence_def WHERE create_by=#{operator} AND `status`=1  OR (id = 1)  ORDER BY id ASC
+  </select>
+
+  <select id="findDogOwnerById" resultType="string" parameterType="int">
+    SELECT `name` FROM t_dog_owner WHERE id =#{Id}
+  </select>
+
+  <select id="findDevice" resultType="java.util.HashMap">
+    SELECT id,device_no deviceNo FROM t_device_info
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select 
+    id
+    from t_dog_info
+    where trace_id = #{traceId} and protector=#{protector} and status=0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dog_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.entities.TDogInfo" >
+    <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_dog_info (id, breed_id, age,
+      sex, hair_color, weight,
+      owner, protector, description,
+      fence_id, area_id, org_id,
+      status, dog_name, trace_id, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{breedId,jdbcType=INTEGER}, #{age,jdbcType=DOUBLE},
+      #{sex,jdbcType=INTEGER}, #{hairColor,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE},
+      #{owner,jdbcType=INTEGER}, #{protector,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR},
+      #{fenceId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{orgId,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, #{dogName,jdbcType=VARCHAR},#{traceId,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+
+
+  <update id="updateByPrimaryKey" parameterType="com.entities.TDogInfo" >
+    update t_dog_info
+    set breed_id = #{breedId,jdbcType=VARCHAR},
+      age = #{age,jdbcType=DOUBLE},
+      owner=#{owner,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      hair_color = #{hairColor,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      description = #{description,jdbcType=VARCHAR},
+      fence_id = #{fenceId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      dog_name = #{dogName,jdbcType=VARCHAR}
+    where trace_id = #{traceId,jdbcType=INTEGER}
+  </update>
+
+  <select id="checkDevice" parameterType="java.lang.String" resultType="com.entities.TDeviceRefDog">
+    select * from t_device_ref_dog drd where drd.device_no = #{deviceNo}
+  </select>
+
+  <select id="findDeviceByNo" parameterType="java.lang.String" resultType="com.entities.DeviceInfo">
+      SELECT * FROM t_device_info  WHERE device_no = #{deviceNo}
+  </select>
+
+  <select id="getOwnerNameAndDogName" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT di.dog_name dogName,down.`name` ownerName
+    FROM
+      t_dog_info di,
+      t_dog_owner down
+    WHERE
+     di.`owner` = down.id
+    AND di.trace_id = #{traceId}
+  </select>
+
+  <select id="getTraceIdByOwnerNameOrDogName"  resultType="java.util.Map">
+     SELECT tdd.trace_id traceId,di.dog_name dogName,down.`name` ownerName
+    FROM
+      t_device_ref_dog tdd,
+      t_dog_info di,
+      t_dog_owner down
+    <where>
+      tdd.trace_id = di.trace_id
+      AND di.`owner` = down.id
+      AND di.protector = #{ protectorId }
+      <if test="string != null and string != '' ">
+        AND (di.dog_name = #{string} OR down.`name` =  #{string})
+      </if>
+    </where>
+  </select>
+
+     <!-- 犬只轨迹中的犬只列表 -->
+     <select id="findDogList" resultType="com.dogmanager.VO.DogInfoVO">
+     		SELECT dog.id,dog.dog_name dogName,dog.breed,dog.age,dog.sex,dog.breed,dog.area_id,dog.trace_id,
+     				o.`name` ownerName,o.phone_num ownerPhone,o.card_num,
+     				fen.fence_name fenceName,
+     				mi.`thumbnail_url` dogSmallUrl,
+    				mi.`url` dogBigUrl
+				FROM t_dog_info dog 
+				LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+				LEFT JOIN t_fence_def fen ON dog.fence_id=fen.id
+				LEFT JOIN t_media_ref mrr 
+					ON dog.`id`=mrr.`ref_id` AND mrr.`type`=0 AND mrr.is_video=0
+		   		LEFT JOIN t_media_info mi
+		    		ON mrr.`media_id`=mi.`id`
+		    	INNER JOIN t_device_record tdr
+		    		ON dog.trace_id=tdr.trace_id
+			<where>
+				<if test="searchKey !=null and searchKey != '' ">
+					(
+						dog.trace_id = #{searchKey}
+							or o.`name` LIKE "%"#{searchKey}"%"
+							or o.phone_num = #{searchKey}
+							or o.card_num  = #{searchKey}
+					)
+				</if>
+				<if test="protectorId !=null">
+					and dog.protector=#{protectorId}
+				</if>
+				<if test="res !=null and res.size()>0">
+					and dog.org_id in(
+						<foreach collection="res" item="orgId" separator=",">
+							#{orgId}
+						</foreach>
+					)
+				</if>
+				and DATE_FORMAT(tdr.create_date, '%Y-%m-%d')=DATE_FORMAT(#{selectedDate}, '%Y-%m-%d')
+			</where>
+			group by dog.id order by dog.create_date desc
+			limit #{index},#{pageSize}
+     </select>
+
+	<!-- 犬只轨迹中的犬只总记录数-->
+	<select id="findDogCount" resultType="java.lang.Integer">
+	select count(*) from(
+		SELECT tdr.device_no 
+				FROM t_dog_info dog 
+				LEFT JOIN t_dog_owner o ON dog.`owner`=o.id
+				INNER JOIN t_device_record tdr
+		    		ON dog.trace_id=tdr.trace_id
+			<where>
+				
+				
+				<if test="searchKey !=null and searchKey != '' ">
+					( 
+						dog.trace_id = #{searchKey}
+							or o.`name` LIKE "%"#{searchKey}"%"
+							or o.phone_num = #{searchKey}
+							or o.card_num  = #{searchKey}
+					)
+				</if>
+				<if test="protectorId !=null">
+					 and dog.protector=#{protectorId}
+				</if>
+				<if test="res !=null and res.size()>0">
+					and dog.org_id in(
+						<foreach collection="res" item="orgId" separator=",">
+							#{orgId}
+						</foreach>
+					)
+				</if>
+				and DATE_FORMAT(tdr.create_date, '%Y-%m-%d')=DATE_FORMAT(#{selectedDate}, '%Y-%m-%d')
+			</where>
+			GROUP BY tdr.trace_id)a
+	</select>
+
+	<!-- 跟用防疫员userId查询犬只 -->
+	<select id="judgeTraceId" resultType="int">
+			SELECT count(*) FROM t_dog_info d 
+				LEFT JOIN t_protector p 
+			ON d.protector=p.id 
+				WHERE p.user_id=#{userId} AND d.trace_id=#{traceId} AND d.`status`=0;
+	</select>
+
+</mapper>

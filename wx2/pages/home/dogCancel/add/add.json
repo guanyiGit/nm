@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "image-upload": "/components/imageUpload/upload"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "犬只注销"
+}

@@ -1,0 +1,33 @@
+<view class="container">
+    <view class='body'>
+      <view class='items'>
+          <view class='item'>
+              <!-- <view>所属组织</view> -->
+              <view>{{ LG.get(L,"suoshuzuzhi") }}</view>
+              <view>{{ userInfo.deptName }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>所属区域</view> -->
+              <view>{{ LG.get(L,"suoshuquyu") }}</view>
+              <view>{{ userInfo.areaName }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>姓名</view> -->
+              <view>{{ LG.get(L,"xingming") }}</view>
+              <view>{{ userInfo.name }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>用户名</view> -->
+              <view>{{ LG.get(L,"yonghuming") }}</view>
+              <view>{{ userInfo.username }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>联系电话</view> -->
+              <view>{{ LG.get(L,"lianxidianhua") }}</view>
+              <view>{{ userInfo.mobile }}</view>
+          </view>
+      </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

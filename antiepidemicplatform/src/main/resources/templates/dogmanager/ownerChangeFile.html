@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>A19-犬只更换记录</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<style type="text/css">
+	.tree-title{
+		font-size: 14px;
+	}
+	.textbox .textbox-text{
+		font-size: 14px;
+	}
+</style>
+<!--wrap-->
+<div class="wrap">
+
+	<!--内容栏-->
+	<div class="section2">
+		<!--面包屑-->
+		<div class="tit pdl0">
+			<ul class="ul03 ovh">
+				<li class="fl"><a href="###">犬只管理></a></li>
+				<li class="fl">犬主更换记录</li>
+			</ul>
+		</div>
+		<!--面包屑END-->
+
+		<!--内容区-->
+		<div class="pdl0 pdr50 pdt20 pdb75">
+			<div class="h40 pdl0 pdr0">
+				<ul class="ul04 fl">
+					<li class="fl t-c w280 mgr4 rel li1"><!--class="fl t-c pc20 w252 mgr4 rel li1"-->
+						<div class="ovh mgt2" style="margin-left: -108px" shiro:hasPermission="/biz/org/initOrgSelect2"><!--shiro:hasPermission="/biz/org/initOrgSelect2"-->
+							<div class="mgl90">
+								<input id="orgSelect"><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+						<div class="ovh mgt2" style="margin-left: -150px" shiro:hasPermission="/biz/dogInfo/findProtector">
+							<div class="mgl90" >
+								<!--<a style="color:#337AB7" onclick="getAll();">全部</a>-->
+								<input id="proSelect" ><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+					</li>
+				</ul>
+				<div class="fr ovh" >
+					<div class="mgr0 db ovh" id="so">
+						<input type="text" class="db input1 w250 h40 lh40 pdl15 fl" placeholder="溯源ID" id="inputStr">
+						<input type="button" class="db fl pc5 hov8" value="" id="ss">
+					</div>
+				</div>
+			</div>
+			<div class="mgt28">
+				<table id="ownerChangeFileTable" class="table table-striped table-bordered"></table>
+			</div>
+
+		</div>
+		<!--内容区END-->
+
+
+	</div>
+	<!--内容栏END-->
+
+</div>
+<!--wrap End-->
+	<div>
+		<script type="text/javascript">
+            var check1 = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="/biz/dogInfo/ownerChange/findOne">
+		<script type="text/javascript" >
+            check1 = '';
+		</script>
+	</div>
+<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+<script src="/dogmanager/YLUtils.js"></script>
+<script src="/dogmanager/ownerChangeFile.js"></script>
+</body>
+</html>

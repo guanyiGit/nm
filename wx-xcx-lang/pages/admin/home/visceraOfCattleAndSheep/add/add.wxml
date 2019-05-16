@@ -1,0 +1,65 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--调查数：-->
+      <view class='item'>
+        <view class='left must'>
+          <text>调查数(公斤)：</text>
+        </view>
+        <view class='right scan'>
+          <input name="detectionAmount" value='{{ detectionAmount }}' bindinput='getdetectionAmount' bindblur='checkNumber' data-index='1'></input>
+        </view>
+      </view>
+
+      <!--感染数：-->
+      <view class='item'>
+        <view class='left must'>
+          <text>感染数(公斤)：</text>
+        </view>
+        <view class='right scan'>
+          <input name="infectionAmount" value='{{ infectionAmount }}' bindinput='getinfectionAmount' bindblur='checkNumber' data-index='2'></input>
+        </view>
+      </view>
+
+      <!--病变脏器处理数：-->
+      <view class='item'>
+        <view class='left must'>
+          <text>病变处理数(公斤)：</text>
+        </view>
+        <view class='right scan'>
+          <input name="harmlessTreatAmount" value='{{ harmlessTreatAmount }}' bindinput='getharmlessTreatAmount' bindblur='checkNumber'  data-index='3'></input>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--视频：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <text>视频：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<i-toast id="toast" />

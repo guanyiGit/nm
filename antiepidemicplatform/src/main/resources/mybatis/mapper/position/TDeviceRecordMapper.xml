@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posiition.mapper.TDeviceRecordMapper">
+
+    <resultMap id="DogRefDeviceRecordResultMap" type="com.posiition.VO.DogRefDeviceRecord">
+        <association property="tDogInfo" javaType="com.entities.TDogInfo" autoMapping="true"></association>
+        <collection property="deviceInfoRefDeviceRecords" autoMapping="true"
+                    ofType="com.posiition.VO.DeviceInfoRefDeviceRecord">
+            <collection property="DeviceRecord" javaType="com.entities.DeviceInfo" autoMapping="true"></collection>
+            <collection property="deviceRecords" javaType="com.entities.DeviceRecord" autoMapping="true"></collection>
+        </collection>
+    </resultMap>
+
+    <resultMap id="DeviceRecordResultMap" type="com.posiition.VO.DogRefDeviceRecordMax">
+        <result column="device_no" property="deviceNo"></result>
+        <result column="data_time" property="dataTime"></result>
+        <result column="lng" property="lng"></result>
+        <result column="lat" property="lat"></result>
+    </resultMap>
+
+
+    <!--查询犬只最近的一条定位信息-->
+    <select id="findDeviceDataGroubyDogId" resultMap="DogRefDeviceRecordResultMap" parameterType="java.lang.Integer">
+        SELECT * from t_dog_info di
+        LEFT JOIN t_device_ref_dog dd ON di.id = dd.dog_id
+        LEFT JOIN t_device_info de ON de.device_no = dd.device_no
+        LEFT JOIN t_device_record dr ON de.device_no = dr.device_no
+        <foreach collection="_parameter" item="iten" open="WHERE di.id IN (" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY di.id
+    </select>
+
+    <!--查询防疫员下的犬的定位信息-->
+    <!--<select id="findDeviceDataByUserId" parameterType="java.lang.Integer" resultMap="DogRefDeviceRecordResultMap">-->
+        <!--SELECT d.*,di.*,dr.* from t_dog_info d,t_device_ref_dog dd,t_device_info di-->
+        <!--LEFT JOIN t_device_record dr on dr.device_no = di.device_no-->
+        <!--WHERE  d.id = dd.dog_id-->
+        <!--AND dd.device_no = di.device_no-->
+        <!--AND d.protector = #{_parameter}-->
+
+    <!--</select>-->
+
+    <!--查询防疫员下的犬的定位信息-->
+    <select id="findDeviceDataByProtectorId" parameterType="java.lang.Integer" resultType="com.posiition.VO.DogRefDeviceRecordMax">
+        SELECT
+            td.trace_id traceId,
+            tdr.maxdateTime maxdateTime,
+            td.lat lat,
+            td.lng lng
+        FROM
+            t_device_record td,
+            (
+                SELECT
+                    trace_id,
+                    lng,
+                    lat,
+                    MAX(data_time) maxdateTime
+                FROM
+                    t_device_record
+                WHERE
+                    lng > 0
+                AND lat > 0
+                GROUP BY
+                    trace_id
+            ) tdr
+        WHERE
+            td.trace_id = tdr.trace_id
+        AND td.data_time = tdr.maxdateTime
+        AND td.trace_id IN (
+            SELECT
+                dd.trace_id
+            FROM
+                t_dog_info d,
+                t_device_ref_dog dd,
+                t_device_info di
+            WHERE
+                d.trace_id = dd.trace_id
+            AND dd.device_no = di.device_no
+            AND d.protector = #{protectorId})
+	 </select>
+
+    <!--查询deviceNo的犬的定位信息-->
+    <select id="findDeviceDataByTraceId" parameterType="java.lang.String" resultType="com.posiition.VO.DogRefDeviceRecordMax">
+        SELECT td.trace_id traceId,tdr.maxdateTime maxdateTime,td.lat lat,td.lng lng from t_device_record td,
+(SELECT trace_id,lng,lat,MAX(data_time) maxdateTime FROM t_device_record  where  lng<![CDATA[>]]> 0 and lat<![CDATA[>]]> 0 GROUP BY trace_id )tdr
+where td.trace_id = tdr.trace_id and td.data_time = tdr.maxdateTime
+and td.trace_id in (SELECT dd.trace_id from t_dog_info d,t_device_ref_dog dd,t_device_info di WHERE d.trace_id = dd.trace_id and dd.device_no = di.device_no and dd.trace_id = #{traceId}   )
+   </select>
+
+    <!--查询犬的轨迹信息-->
+    <select id="getContrailByTraceIdAndDate" resultType="com.posiition.VO.DogRefDeviceRecordMax">
+        select  rc.trace_id traceId,rc.lat lat,rc.lng lng, rc.data_time maxdateTime
+        from t_device_record rc
+        <where>
+            rc.lng<![CDATA[>]]> 0 and rc.lat<![CDATA[>]]> 0
+            <if test="traceId != null">
+                AND rc.trace_id= #{traceId}
+            </if>
+            <if test="date != null">
+                and DATE_FORMAT(rc.data_time,'%Y-%m-%d') = DATE_FORMAT(#{date},'%Y-%m-%d')
+            </if>
+            ORDER BY rc.data_time
+        </where>
+    </select>
+    <!--查询犬的轨迹信息-->
+    <!--<select id="getLocusByDeviceNoAndDate" resultMap="DogRefDeviceRecordResultMap">-->
+        <!--SELECT di.*,de.*,dr.* FROM t_dog_info di,t_device_ref_dog dd,t_device_info de-->
+        <!--LEFT JOIN t_device_record dr ON dr.device_no = de.device_no-->
+        <!--WHERE di.id = dd.dog_id-->
+        <!--AND dd.device_no = de.device_no-->
+        <!--AND dr.lng<![CDATA[>]]> 0 and dr.lat<![CDATA[>]]> 0-->
+        <!--<if test="deviceNo ! = null">-->
+            <!--AND dd.device_no= #{deviceNo}-->
+        <!--</if>-->
+        <!--<if test="date ! = null">-->
+            <!--DATE_FORMAT(dr.data_time,'%Y-%m-%d') = DATE_FORMAT(#{date},'%Y-%m-%d')-->
+        <!--</if>-->
+        <!--GROUP BY de.device_no-->
+        <!--ORDER BY dr.data_time-->
+    <!--</select>-->
+    <select id="findDogsPosition" resultType="com.posiition.VO.postionVO" parameterType="java.util.HashMap">
+        SELECT
+        dr.lat ,dr.lng,di.dog_name dogName,dow.name ownerName,dr.create_date createDate
+        FROM
+        t_device_record dr
+        INNER JOIN
+        (SELECT
+        trace_id,
+        MAX(create_date) create_date
+        FROM
+        t_device_record
+        GROUP BY trace_id) dr1
+        ON dr.trace_id = dr1.trace_id
+        AND dr.create_date = dr1.create_date
+        LEFT JOIN t_dog_info di
+        ON dr.trace_id=di.trace_id
+        LEFT JOIN t_dog_owner dow
+        ON di.owner=dow.id
+        <where>
+        dr.lng>0 AND dr.lat>0
+        <if test="orgList !=null and orgList.size>0">
+            AND  (di.`org_id` in
+            <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+            )
+        </if>
+        <if test="protector !=null and protector!=''">
+            AND di.`protector`=#{protector}
+        </if>
+        </where>
+        ORDER BY dr.device_no
+    </select>
+
+
+
+
+
+</mapper>

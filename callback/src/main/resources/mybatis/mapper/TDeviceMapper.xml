@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atshunhengli.com.mapper.TDeviceMapper">
+
+    <select id="findDeviceInfoByDeviceidIot" resultType="com.entities.DeviceInfo" parameterType="java.lang.String">
+        SELECT * from t_device_info d
+        <if test="_parameter != null and _parameter != ''">
+            WHERE d.device_iot_id = #{_parameter}
+        </if>
+    </select>
+
+    <!-- 根据设备id查询设备信息 -->
+    <select id="findDeviceListByIds" resultType="com.entities.DeviceInfo">
+        <if test="deviceIdList != null">
+            SELECT * FROM t_device_info d
+            <foreach collection="deviceIdList" item="deviceId" open="WHERE d.device_id IN (" separator="," close=")">
+                #{deviceId}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据平台id删除-->
+    <delete id="removeByDeviceIdIot" parameterType="java.lang.String">
+        DELETE FROM t_device_info WHERE device_iot_id = #{_parameter}
+    </delete>
+
+    <!--保存-->
+    <insert id="save" parameterType="com.entities.DeviceInfo">
+        INSERT INTO `t_device_info`(
+            `device_no`, `status`, `brand`, `model`, `date_of_production`,
+            `remarks`, `type`, `start_time`, `wirte_off_time`, `org_id`,
+            `receive_org`, `receiver`, `receive_time`, `create_date`,
+            `update_date`, `is_distribution`, `activate_time`, `freeze_time`,
+            `imei`, `traceability_num`, `batch`, `psk`, `manufacturer_num`, `device_iot_id`
+        ) VALUES (
+            #{_parameter.deviceNo}, #{_parameter.status}, #{_parameter.brand},  #{_parameter.model},
+            #{_parameter.dateOfProduction}, #{_parameter.remarks}, #{_parameter.type}, #{_parameter.startTime},
+            #{_parameter.wirteOffTime}, #{_parameter.orgId}, #{_parameter.receiveOrg}, #{_parameter.receiver},
+            #{_parameter.receiveTime}, #{_parameter.createDate}, #{_parameter.updateDate}, #{_parameter.isDistribution},
+            #{_parameter.activateTime}, #{_parameter.freezeTime}, #{_parameter.imei},#{_parameter.traceabilityNum},
+            #{_parameter.batch}, #{_parameter.psk},  #{_parameter.manufacturerNum},#{_parameter.deviceIotId}
+        )
+
+    </insert>
+
+    <select id="selectInfosByDeviceNo" resultType="map">
+        SELECT own.`name` ownName ,dog.dog_name dogName ,ref.trace_id  traceId from t_device_ref_dog ref LEFT JOIN t_dog_info dog
+        on ref.trace_id = dog.trace_id
+        LEFT JOIN t_dog_owner own
+        on own.id = dog.`owner`
+        where ref.device_no = #{deviceNo}
+    </select>
+
+
+
+
+    <!--测试低电告警-->
+    <resultMap id="testMap" type="com.entities.DeviceInfo">
+        <id column="deviceId" property="id" jdbcType="INTEGER"></id>
+        <result column="device_no" property="deviceNo" jdbcType="VARCHAR"></result>
+
+        <collection property="records" ofType="atshunhengli.com.entity.cdoec.CallBackData">
+            <id column="id" property="id" jdbcType="INTEGER"></id>
+            <result column="dn" property="deviceNo" jdbcType="VARCHAR"></result>
+            <result column="lat" property="lat" jdbcType="DOUBLE"></result>
+            <result column="lng" property="lng" jdbcType="DOUBLE"></result>
+            <result column="create_date" property="createDate" jdbcType="TIMESTAMP"></result>
+            <result column="data_time" property="dataTime" jdbcType="TIMESTAMP"></result>
+            <result column="quantity" property="quantity" jdbcType="DOUBLE"></result>
+            <result column="data_type" property="dataType" jdbcType="INTEGER"></result>
+        </collection>
+    </resultMap>
+
+    <select id="testLowerPower" resultMap="testMap">
+        SELECT
+            device.id deviceId ,device.device_no,
+            rec.device_no dn,rec.id,rec.lat,rec.lng,rec.create_date,rec.data_time,rec.quantity
+            ,rec.data_type
+        FROM
+        t_device_info device
+        LEFT JOIN t_device_record rec ON rec.device_no = device.device_no
+        where rec.device_no = "362531810121158" limit 100 ;
+    </select>
+
+    <!--测试低电告警-->
+
+    <!--根据device_no 查询trace_id-->
+    <select id="selectTraceIdByDeviceNo" resultType="string">
+        SELECT ref.trace_id traceId from t_device_ref_dog ref where ref.device_no=#{deviceNo};
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,26 @@
+<view class='page'>
+  <!-- 所属区域/下拉框 -->
+  <view class='nav splitLine' wx:if="{{ !isTownAdmin }}">
+    <picker mode="multiSelector" range="{{ regionArray }}" range-key='areaName' value='{{ regionIndex }}' bindchange='changeEvent' bindcolumnchange="changeRegionColumn">
+      <view wx:if="{{ !isChoose }}" class='drop-down'>
+        选择区域
+      </view>
+      <view wx:if="{{ isChoose }}" class='drop-down'>
+        {{ regionString }}
+      </view>
+    </picker>
+  </view>
+  <view class='nav splitLine' wx:if="{{ isTownAdmin }}">
+    <picker range="{{ protector.protectorArray }}" range-key='text'  bindchange='changeEvent'>
+      <view wx:if="{{ !protector.isChoose }}" class='drop-down'>
+        所属防疫员
+      </view>
+      <view wx:if="{{ protector.isChoose }}"  class='drop-down'>
+        {{ protector.protectorArray[protector.protectorIndex].text }}
+      </view>
+    </picker>
+  </view>
+  <view class='nav'>
+    <view class='drop-down' bindtap='more'>更多</view>
+  </view>
+</view>

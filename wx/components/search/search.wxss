@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 98%;
+  z-index: 100;
+}
+
+.search_input {
+  width: 100%;
+  border: 2rpx solid #ccc;
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 50rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  background-color: white;
+}
+
+.placeholder {
+  font-size: 14px;
+}
+
+.search_input image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 20rpx;
+}
+
+.search_input input {
+  margin-left: 10rpx;
+}
+
+.scan{
+  display: flex;
+  align-items: center;
+}
+
+.scan image{
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}

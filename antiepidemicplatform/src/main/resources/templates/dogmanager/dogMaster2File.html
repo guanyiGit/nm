@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>A13-犬主信息</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/css.css">
+	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/js.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<!--wrap-->
+<div class="wrap">
+	<div th:include="include::footer"></div>
+	<script src="/js/vue.min.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+	<script src="/dogmanager/YLUtils.js"></script>
+	<script src="/dogmanager/dogMaster2File.js"></script>
+	<!--内容栏-->
+	<div class="section2" id="app">
+		<!--面包屑-->
+		<div class="tit pdl0" >
+			<ul class="ul03 ovh">
+				<li class="fl"><a href="/biz/dogInfo/dogMaster2File">犬只管理></a></li>
+				<li class="fl">犬只信息</li>
+			</ul>
+		</div>
+		<!--面包屑END-->
+
+		<!--内容区-->
+		<div class="pdl0 pdr50 pdt20 pdb75" >
+			<div class="h40 pdl0 pdr50">
+				<ul class="ul04 fl">
+					<li class="fl t-c w252 mgr4 rel li1"><!--class="fl t-c pc20 w252 mgr4 rel li1"-->
+						<div class="ovh mgt10" shiro:hasPermission="/biz/org/initOrgSelect2"><!--shiro:hasPermission="/biz/org/initOrgSelect2"-->
+							<div class="mgl90">
+								<input id="orgSelect"><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+						<div class="ovh mgt10" shiro:hasPermission="/biz/dogInfo/findProtector">
+							<div class="mgl90" >
+								<a style="color:#337AB7" onclick="getAll();">全部</a>
+								<input id="proSelect" ><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="/biz/dogInfo/addDog" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt="">增加犬只</a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt="">导入</a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+					</li>
+				</ul>
+				<div class="fr ovh">
+					<div class="fr oDiv2 ovh pdt12">
+						<a href="/biz/dogInfo/dogMaster2File" class="db fl oDiv2-1 oD1 active"></a>
+						<a href="/biz/dogInfo/dogMasterFile" class="db fl oDiv2-2 oD2"></a>
+					</div>
+					<div class="mgr64 db ovh">
+						<input type="text" class="db input1 w310 h40 lh40 pdl15 fl" placeholder="溯源ID/犬主姓名" v-model="string" @keyup.enter="show($event)">
+						<input type="button" class="db fl pc5 hov8"  @click="showClick">
+					</div>
+				</div>
+			</div>
+			<div class="mgt7 pdl35 pdr20">
+				<ul class="ul05 t-c ovh pdb80">
+					<li class="fl" v-for="item in items">
+						<div class="rel h166 t-l">
+							<div class="fl w112"><img v-bind:src="item.dogUrl" alt=""></div>
+							<div class="mgl123 pdb8">
+								<div class="ovh bor-b1">
+									<p class="fs14 cor0 fl" >{{item.deviceNo}}</p>
+									<a href="###" class="dinb fr hov8 aa2"><img src="/images/11.png" alt=""></a>
+								</div>
+								<div class="mgt5">
+									<p class="cor0 fs14 lh24">犬种：<span>{{item.breed}}</span></p>
+									<p class="cor0 fs14 lh24">性别：<span>{{item.sex==1?'母':'公'}}</span></p>
+									<p class="cor0 fs14 lh24">入栏时间：<span>{{timeStamp2String(item.createDate)}}</span></p>
+									<p class="cor005bac fs14 lh24">犬主：<span>{{item.ownerName}}</span></p>
+								</div>
+							</div>
+							<!--<div class="abs z100 w120 show249 pdl10 pdr10 bgw right0 top20 dn aa1">
+								<a href="###" class="db bor-b1 h42 lh42 cor005bac fs14 t-c hov8">查看</a>
+								<a href="###" class="db bor-b1 h42 lh42 cor005bac fs14 t-c hov8" >编辑</a>
+								<a href="###" class="db bor-b1 h42 lh42 cor005bac fs14 t-c hov8" >删除</a>
+								<a href="###" class="db bor-b1 h42 lh42 cor005bac fs14 t-c hov8" >犬主更换</a>
+								<a href="###" class="db bor-b1 h42 lh42 cor005bac fs14 t-c hov8" >项圈更换</a>
+							</div>-->
+						</div>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<!--分页开始-->
+		<div style="text-align: center;" id="page">
+			<ul class="pagination">
+				<li>
+					<a @click="indexPage">首页</a>
+				</li>
+				<li>
+					<a @click="upPagenum">上一页</a>
+				</li>
+				<li>
+					<span><em>{{pageNum}}</em>/<em>{{totalPage}}</em></span>
+				</li>
+				<li>
+					<a @click="nextPagenum">下一页</a>
+				</li>
+				<li>
+					<a @click="endPagenum">末页</a>
+				</li>
+			</ul>
+			<div style="color: #1a91d0;margin: -52px 0px 0px 30%"><em>总计：</em><em>{{totalRecord}}</em><em>&nbsp;条</em></div>
+		</div>
+		<!--分页END-->
+	</div>
+	<!--内容-->
+</div>
+<style type="text/css">
+	p{
+		margin: 0 0 2px;
+	}
+</style>
+<!--wrap End-->
+<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.wx.dao.AntieCountDao">
+    <!--防疫次数-->
+    <select id="getAntieTimesVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        p.NAME protectorName,
+        p.id protectorId,
+        count( * ) count
+        FROM
+        `antiepidemic` a
+        LEFT JOIN t_protector p ON p.id = a.protector
+        <where>
+            <if test="searchMonth != null">date_format(a.antiepidemic_date,'%Y-%m') = #{searchMonth}</if>
+            <if test="protectorList != null and protectorList.size > 0">
+                AND a.protector IN
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY
+        a.protector
+    </select>
+    <select id="getAntieTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            area.id villageId,
+            area.NAME villageName,
+            count( * ) count
+        FROM
+            `antiepidemic` a
+            LEFT JOIN t_org_info org2 ON org2.id = a.org_id
+            LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and date_format(a.antiepidemic_date,'%Y-%m') = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND a.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            area.id
+    </select>
+    <select id="getAntieTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            area2.id countyId,
+            area2.NAME countyName,
+            area.id villageId,
+            area.NAME villageName,
+            count( * ) count
+        FROM
+            `antiepidemic` anti
+            LEFT JOIN t_org_info org2 ON org2.id = anti.org_id
+            LEFT JOIN t_area_info area ON area.id = org2.area_id
+            LEFT JOIN t_org_info org3 ON org3.id = org2.pid
+            LEFT JOIN t_area_info area2 ON area2.id = org3.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( anti.antiepidemic_date, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND anti.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            area.id
+    </select>
+
+    <!--犬尸处理-->
+    <select id="getCorpseTimesVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        p.id protectorId,
+        p.name protectorName,
+        count( * ) count
+        FROM
+        t_corpse_disposal corpse
+        LEFT JOIN t_protector p ON p.user_id = corpse.operator_id
+        <where>
+            <if test="nextMonth != null">and corpse.deal_time <![CDATA[ < ]]> #{nextMonth}</if>
+            <if test="protectorList != null and protectorList.size > 0">
+                AND corpse.operator_id IN ( SELECT p.user_id FROM t_protector p WHERE p.id IN
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY corpse.operator_id
+    </select>
+    <select id="getCorpseTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_corpse_disposal` corpse
+        LEFT JOIN t_org_info org2 ON org2.id = corpse.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and date_format(corpse.deal_time,'%Y-%m') = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND corpse.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY area.id
+    </select>
+    <select id="getCorpseTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area2.id countyId,
+        area2.NAME countyName,
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_corpse_disposal` corpse
+        LEFT JOIN t_org_info org2 ON org2.id = corpse.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        LEFT JOIN t_org_info org3 ON org3.id = org2.pid
+        LEFT JOIN t_area_info area2 ON area2.id = org3.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( corpse.deal_time, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND corpse.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <!--粪便处理-->
+    <select id="getManureTimesVillage" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        p.id protectorId,
+        p.name protectorName,
+        count( * ) count
+        FROM
+        t_manure_disposal manure
+        LEFT JOIN t_protector p ON p.user_id = manure.operator
+        <where>
+            <if test="searchMonth != null">and date_format(manure.deal_time,'%Y-%m') = #{searchMonth}</if>
+            <if test="protectorList != null and protectorList.size > 0">
+                AND manure.operator IN ( SELECT p.user_id FROM t_protector p WHERE p.id IN
+                <foreach collection="protectorList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        manure.operator
+    </select>
+    <select id="getManureTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_manure_disposal` manure
+        LEFT JOIN t_org_info org2 ON org2.id = manure.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and date_format(manure.deal_time,'%Y-%m') = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND manure.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY area.id
+    </select>
+    <select id="getManureTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area2.id countyId,
+        area2.NAME countyName,
+        area.id villageId,
+        area.NAME villageName,
+        count( * ) count
+        FROM
+        `t_manure_disposal` manure
+        LEFT JOIN t_org_info org2 ON org2.id = manure.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        LEFT JOIN t_org_info org3 ON org3.id = org2.pid
+        LEFT JOIN t_area_info area2 ON area2.id = org3.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( manure.deal_time, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList != null and areaIdList.size > 0">
+                AND manure.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <!--犬粪抗原检测-->
+    <select id="getAntiegenTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            count(*) count,
+            area.id countyId,
+            area.name countyName
+        FROM
+            `t_manure_antigen` antigen
+        left join t_org_info org on org.id = antigen.org_id
+        left join t_area_info area on area.id = org.area_id
+        WHERE
+            DATE_FORMAT( antigen.test_date, '%Y-%m' ) = #{searchMonth}
+            AND antigen.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+        group by area.id
+    </select>
+    <select id="getAntiegenTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            area.id countyId,
+            area.NAME countyName,
+            count( * ) count
+        FROM
+            t_manure_antigen antigen
+            LEFT JOIN t_org_info org2 ON org2.id = antigen.org_id
+            LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( antigen.test_date, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList2 != null and areaIdList2.size > 0">
+                AND antigen.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList2" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+            area.id
+    </select>
+    <select id="getMyStateAntiegenTimes" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( * ) count
+        FROM
+            t_manure_antigen antigen
+        WHERE
+            DATE_FORMAT( antigen.test_date, '%Y-%m' ) = #{searchMonth}
+            AND antigen.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+    </select>
+    <!--犬只解剖-->
+    <select id="getAnatomyTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            count(*) count,
+            area.id countyId,
+            area.name countyName
+        FROM
+            `t_dog_anatomy` anatomy
+        left join t_org_info org on org.id = anatomy.org_id
+        left join t_area_info area on area.id = org.area_id
+        WHERE
+            DATE_FORMAT( anatomy.test_date, '%Y-%m' ) = #{searchMonth}
+            AND anatomy.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+        group by area.id
+    </select>
+    <select id="getAnatomyTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id countyId,
+        area.NAME countyName,
+        count( * ) count
+        FROM
+        t_dog_anatomy anatomy
+        LEFT JOIN t_org_info org2 ON org2.id = anatomy.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( anatomy.test_date, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList2 != null and areaIdList2.size > 0">
+                AND anatomy.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList2" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <select id="getMyStateAnatomyTimes" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( * ) count
+        FROM
+            t_dog_anatomy anatomy
+        WHERE
+            DATE_FORMAT( anatomy.test_date, '%Y-%m' ) = #{searchMonth}
+            AND anatomy.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+    </select>
+    <!--牛羊抗体检测-->
+    <select id="getAntibodyTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            count(*) count,
+            area.id countyId,
+            area.name countyName
+        FROM
+            `t_antibody_detection` antibody
+        left join t_org_info org on org.id = antibody.org_id
+        left join t_area_info area on area.id = org.area_id
+        <where>
+            DATE_FORMAT( antibody.test_date, '%Y-%m' ) = #{searchMonth}
+            AND antibody.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+        </where>
+        GROUP BY area.id
+    </select>
+    <select id="getAntibodyTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id countyId,
+        area.NAME countyName,
+        count( * ) count
+        FROM
+        `t_antibody_detection` antibody
+        LEFT JOIN t_org_info org2 ON org2.id = antibody.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT( antibody.test_date, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList2 != null and areaIdList2.size > 0">
+                AND antibody.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList2" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <select id="getMyStateAntibodyTimes" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( * ) count
+        FROM
+            `t_antibody_detection` antibody
+        WHERE
+            DATE_FORMAT( antibody.test_date, '%Y-%m' ) = #{searchMonth}
+            AND antibody.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+    </select>
+    <!--牛羊脏器处理-->
+    <select id="getInfectionTimesCounty" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+            count(*) count,
+            area.id countyId,
+            area.name countyName
+        FROM
+            `t_infection_info` infection
+        left join t_org_info org on org.id = infection.org_id
+        left join t_area_info area on area.id = org.area_id
+        WHERE
+            DATE_FORMAT( infection.detection_date, '%Y-%m' ) = #{searchMonth}
+            AND infection.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+        group by area.id
+    </select>
+    <select id="getInfectionTimesState" parameterType="map" resultType="com.statisanalysis.wx.vo.CountVO">
+        SELECT
+        area.id countyId,
+        area.NAME countyName,
+        count( * ) count
+        FROM
+        `t_infection_info` infection
+        LEFT JOIN t_org_info org2 ON org2.id = infection.org_id
+        LEFT JOIN t_area_info area ON area.id = org2.area_id
+        <where>
+            <if test="searchMonth != null">and DATE_FORMAT(infection.detection_date, '%Y-%m' ) = #{searchMonth}</if>
+            <if test="areaIdList2 != null and areaIdList2.size > 0">
+                AND infection.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id IN
+                <foreach collection="areaIdList2" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+        GROUP BY
+        area.id
+    </select>
+    <select id="getMyStateInfectionTimes" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( * ) count
+        FROM
+            `t_infection_info` infection
+        WHERE
+            DATE_FORMAT( infection.detection_date, '%Y-%m' ) = #{searchMonth}
+            AND infection.org_id IN ( SELECT org.id FROM t_org_info org WHERE org.area_id = #{myAreaId} )
+    </select>
+
+    <select id="getOrgIdByAreaId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select org.id from t_org_info org where org.area_id = #{value}
+    </select>
+
+    <select id="getDogList" parameterType="map" resultType="com.entities.TDogInfo">
+        SELECT
+            dog.id,dog.status,dog.trace_id,dog.org_id
+        FROM
+            t_dog_info dog
+        <where>
+            dog.STATUS = 0
+            <if test="orgList != null and orgList.size > 0">
+                and dog.org_id in
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="protectorId != null">
+                and dog.protector = #{protectorId}
+            </if>
+            <if test="nextMonth != null">AND dog.create_date <![CDATA[ < ]]> #{nextMonth} </if>
+        </where>
+    </select>
+
+    <select id="getLiveDog" parameterType="map" resultType="java.lang.String">
+        SELECT
+        dog.trace_id
+        FROM
+        t_dog_info dog
+        left join t_corpse_disposal corpse on dog.trace_id = corpse.trace_id
+        left join t_dog_cancel cancel on cancel.trace_id = dog.trace_id
+        <where>
+            DATE_FORMAT(dog.create_date,'%Y-%m') <![CDATA[ <= ]]> #{searchMonth}
+            AND (corpse.deal_time is NULL or DATE_FORMAT(corpse.deal_time,'%Y-%m') > #{searchMonth})
+            AND (cancel.create_date is NULL or DATE_FORMAT(cancel.create_date,'%Y-%m') > #{searchMonth})
+            <if test="orgList != null and orgList.size > 0">
+                and dog.org_id in
+                <foreach collection="orgList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="protectorId != null">
+                and dog.protector = #{protectorId}
+            </if>
+        </where>
+
+    </select>
+</mapper>

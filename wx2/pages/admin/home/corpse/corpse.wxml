@@ -1,0 +1,34 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchCorpse" is-show="{{  component.isShow}}"></search>
+  <search-box bind:dataEvent="searchCorpseByBox"></search-box>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ corpseArray }}" wx:key="index">
+        <view class='container_item drop-right' bindtap='toCorpseInfoPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.imageList[0].url }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <view>{{ item.traceId||'未知' }}</view>
+            </view>
+            <view class='right_body'>
+              <view class='texthide'>犬名：{{ item.dog.dogName||'未知' }}</view>
+              <view class='texthide'>犬主：{{ item.dogOwner.name||'未知' }}</view>
+            </view>
+            <view class='right_foot'>
+              <view>处理时间：{{ item.dealTime||'未知' }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<!-- <view class='add_dog' bindtap='toCorpseAddPage'></view> -->
+<view class='more' wx:if="{{ ishasData }}">
+  <text>上拉查看更多</text>
+</view>

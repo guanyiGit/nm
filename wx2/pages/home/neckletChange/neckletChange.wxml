@@ -1,0 +1,38 @@
+<view wx:if="{{ ishasData }}">
+<search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchDog"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ nectletChangeList }}" wx:key="index">
+      <view class="container_item drop-right" bindtap='toNeckletChangePage' data-index='{{ index }}'>
+        <view class='body'>
+          <view class='title'>
+            <view>溯源ID：</view>
+            <view style='color:black'>{{item.traceId}}</view>
+          </view>
+          <view class='middle'>
+            <view class='texthide'>犬名:
+                <text> {{ item.dogName||'未知'}} </text>
+            </view>
+            <view class='texthide'>犬主:
+                <text>{{ item.name||'未知'}}</text>
+            </view>
+          </view>
+          <view class='foot'>
+            <view class='neckletNo'>{{ item.oldNeckletNo||'未知'}}</view>
+            <view class=''>更换为</view>
+            <view class='neckletNo'>{{ item.newNeckletNo||'未知'}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='necklet-change' bindtap='toDogUtilPage' data-type='4'></view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>下拉查看更多</text>
+</view>

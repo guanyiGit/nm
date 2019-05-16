@@ -1,0 +1,86 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>物资类型：</text> -->
+            <text>{{ LG.get(L,"wuzileixing") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.goodsTypeName  }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>物资名称：</text> -->
+            <text>{{ LG.get(L,"wuzimingcheng") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.goodsName }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>发放数量：</text> -->
+            <text>{{ LG.get(L,"fafangshuliang") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.goodsAmount }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>发放时间：</text> -->
+            <text>{{ LG.get(L,"fafangshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.distributeDate }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>发放单位：</text> -->
+            <text>{{ LG.get(L,"fafangdanwei") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.distributorName }}</text>
+        </view>
+    </view>
+
+    <view class='item' wx:if="{{proShow}}">
+        <view class='left'>
+            <!-- <text>接收人：</text> -->
+            <text>{{ LG.get(L,"jieshouren") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.receiverName}}</text>
+        </view>
+    </view>
+
+    <view class='item' wx:if="{{orgShow}}">
+        <view class='left'>
+            <!-- <text>接收单位：</text> -->
+            <text>{{ LG.get(L,"jieshoudanwei") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.orgName}}</text>
+        </view>
+    </view>
+
+        <view class='item' wx:if="{{orgShow}}">
+        <view class='left'>
+            <!-- <text>接收人：</text> -->
+            <text>{{ LG.get(L,"jieshouren") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ material.orgReceiverName==null?'无':material.orgReceiverName}}</text>
+        </view>
+    </view>
+
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atshunhengli.com.mapper.TDeviceDataWifiMapper">
+
+    <!-- 批量插入wifi数据 -->
+    <insert id="saveDeviceWifiDatas">
+        INSERT INTO t_device_data_wifi (
+        device_data_wifi_id, bssid, rssi, device_data_id, device_no, creation_time
+        ) VALUES
+        <foreach collection="datas" item="data" open="(" separator="),(" close=")">
+            #{data.deviceDataWifiId}, #{data.bssid}, #{data.rssi}, #{data.deviceDataId}, #{data.deviceNo}, #{data.creationTime}
+        </foreach>
+    </insert>
+
+</mapper>

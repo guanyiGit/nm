@@ -1,0 +1,33 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}"  query ="{{ query }}"bind:scanSearchEvent="scanSearchAntiepidemic"  bind:searchEvent="searchAntiepidemic"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ antiepidemicArray }}" wx:key="index" wx:if="{{ index < maxLength }}"  >
+      <view class='container_item drop-right' bindtap='toantiepidemicInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.bigUrl }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle {{ item.typeClass }}" >
+            <text>{{ item.traceId||'未知' }}</text>
+          </view>
+          <view class='right_body'>
+            <view class='texthide'>犬名：{{ item.dogName||'未知' }}</view>
+            <view class='texthide'>犬主：{{ item.ownerName||'未知' }}</view>
+          </view>
+          <view class='right_foot'>
+            <view>防疫时间：{{ item.date||'未知' }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_antiepidemic' bindtap='toDogUtilPage' data-type='1'></view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>下拉查看更多</text>
+</view>

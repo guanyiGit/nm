@@ -1,0 +1,64 @@
+<view class='page'>
+  <!-- 所属区域/下拉框 -->
+  <view class='nav'>
+    <view class='nav-search'>
+      <view class='nav-searchBox'>
+        <view class='nav-son borders' wx:if="{{ !isTownAdmin }}">
+          <picker mode="multiSelector" range="{{ regionArray }}" range-key='areaName' value='{{ regionIndex }}' bindchange='changeEvent' bindcolumnchange="changeRegionColumn">
+            <view wx:if="{{ !isChoose }}" class='drop-down'>
+              <text wx:if="{{ isMaterialStatistics }}">发放单位</text>
+              <text wx:elif="{{ isPubAndTrainStatistics }}">举办单位</text>
+              <text wx:else>选择区域</text>
+            </view>
+            <view wx:if="{{ isChoose }}" class='drop-down'>
+              {{ regionString }}
+            </view>
+          </picker>
+        </view>
+        <view class='nav-son' wx:if="{{ isShowProtector }}">
+          <picker range="{{ protector.protectorArray }}" range-key='text' bindchange='changeEvent'>
+            <view wx:if="{{ !protector.isChoose }}" class='drop-down'>
+              所属防疫员
+            </view>
+            <view wx:if="{{ protector.isChoose }}" class='drop-down'>
+              {{ protector.protectorArray[protector.protectorIndex].text }}
+            </view>
+          </picker>
+        </view>
+
+        <view class="borders nav-son">
+          <picker mode="date" fields="month" bindchange='bindMonthChange'>
+            <block wx:if="{{ !month.isChoose }}">
+              <view class='content drop-down'>{{ defaultDate }}</view>
+            </block>
+            <block wx:else>
+              <view class='content drop-down'>{{ month.value }}</view>
+            </block>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 时间展示框 -->
+  <!-- <view class="selector-container temp {{monthshow ? 'slidown' : 'slidup'}}  {{ !monthshow ? 'disappear':''}}">
+    <view class='selector-title'>统计月份</view>
+    <view class='selector-body'>
+      <picker mode="date" bindchange='bindMonthChange' fields="month">
+        <view class='selector-picker'>
+          <view>{{ month.value }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='button-line'></view>
+    <view class='selector-foot'>
+      <view class='button-group'>
+        <view class='reset' bindtap='reset'>重置</view>
+        <view class='confirm' bindtap='confirm'>确定</view>
+      </view>
+    </view>
+  </view>
+
+  <view class=" {{isfull ?'fullbg':''}}" bindtap="hidebg"></view> -->
+</view>

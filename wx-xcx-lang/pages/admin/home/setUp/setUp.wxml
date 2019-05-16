@@ -1,0 +1,23 @@
+<view class="container">
+    <view class='body'>
+      <view class='items'> 
+          <view class='item drop-right' bindtap='toUserInfoPage'>
+              <!-- <view>个人信息</view> -->
+              <view>{{ LG.get(L,"gerenxinxi") }}</view>
+          </view>
+          <view class='item drop-right last' bindtap='toPassWordChangePage'>
+              <!-- <view>密码设置</view> -->
+              <view>{{ LG.get(L,"miamashezhi") }}</view>
+          </view>
+      </view>
+    </view>
+
+    <view class='foot'>
+        <view class='logout' bindtap='logout'>
+              <!-- <view>退出登录</view> -->
+              <view>{{ LG.get(L,"tuichudenglu") }}</view>
+          </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

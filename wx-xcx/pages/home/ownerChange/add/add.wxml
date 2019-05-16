@@ -1,0 +1,75 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--溯源ID：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>溯源ID：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="deviceNo"></input>
+        </view>
+      </view>
+
+      <!--旧犬主：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>旧犬主：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="oldOwner" placeholder='根据溯源ID获取犬主'></input>
+        </view>
+      </view>
+
+      <!--新犬主：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>新犬主：</text>
+          </view>
+        </view>
+        <view class='right'>
+           <picker bindchange='bindOwnerChange' value='{{ age.ageIndex }}' range='{{ age.ageArray }}' name="newOwner">
+            <view class='picker drop-down'>
+              {{ age.ageArray[age.ageIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      
+      <!--更换原因：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>更换原因： :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="changeReasons"></input>
+        </view>
+      </view>
+
+
+      <!--描述：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

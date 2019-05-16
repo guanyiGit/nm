@@ -1,0 +1,100 @@
+<view class="page">
+  <!-- 所属区域/下拉框-->
+  <view class="nav ">
+    <!-- 如果是物资管理，加载搜索框 -->
+    <view class='nav-search' wx:if="{{ isMaterial && searchIsShow }}">
+      <search placeholder-text="{{ placeholderText }}" bind:searchEvent="searchMaterial" is-show="{{ isShow }}"></search>
+    </view>
+    <!-- 如果是物资管理，加载搜索box -->
+    <block wx:if="{{ isMaterial }}">
+      <!--左侧组织选择下拉-->
+      <view class='nav-searchBox'>
+        <!--如果不是乡级管理员 显示发放单位和发放时间-->
+        <view class='nav-son borders' wx:if="{{ !isTownAdmin }}">
+          <picker range="{{ org.orgArray }}" range-key="departName" bindchange='changeEvent' class='picker'>
+            <!-- <view wx:if="{{ !org.isChoose }}" class='content'>发放单位</view> -->
+            <view wx:if="{{ !org.isChoose }}" class='content'>{{ LG.get(L,"fafangdanwei") }}</view>
+            <view wx:else class='org texthide'>{{ org.orgArray[org.orgIndex].departName }}</view>
+            <view class="icon" wx:if="{{ !org.isChoose }}"></view>
+          </picker>
+        </view>
+
+        <!--如果是乡级管理员 只显示发放时间-->
+        <view class="borders {{ isTownAdmin?'nav-date':'nav-son' }}">
+          <block wx:if="{{ !date.isChoose }}">
+            <!-- <view class='content' bindtap='checkDate'>发放时间</view> -->
+            <view class='content' bindtap='checkDate'>{{ LG.get(L,"fafangshijian") }}</view>
+            <view class="icon"></view>
+          </block>
+          <block wx:else>
+            <view class='content' bindtap='checkDate'>{{ date.dateString }}</view>
+            <view class="icon"></view>
+          </block>
+        </view>
+      </view>
+    </block>
+    <!--如果是检测管理-->
+    <block wx:if="{{ isDetection }}">
+      <view class='nav-searchBox'>
+        <!-- 如果不是县级管理员 加载检测单位下拉 -->
+        <view class='nav-son borders' wx:if="{{ !isCountyAdmin }}">
+          <picker range="{{ org.orgArray }}" range-key="departName" bindchange='changeEvent' class='picker'>
+            <!-- <view wx:if="{{ !org.isChoose }}" class='content'>检测单位</view> -->
+            <view wx:if="{{ !org.isChoose }}" class='content'>{{ LG.get(L,"jiancedanwei") }}</view>
+            <view wx:else class='org texthide' >{{ org.orgArray[org.orgIndex].departName }}</view>
+            <view class="icon" wx:if="{{ !org.isChoose }}"></view>
+          </picker>
+        </view>
+
+        <!--如果是县级管理员 只显示发放时间-->
+        <view class="borders {{ isCountyAdmin?'nav-date':'nav-son' }}">
+          <block wx:if="{{ !date.isChoose }}">
+            <!-- <view class='content' bindtap='checkDate'>检测时间</view> -->
+            <view class='content' bindtap='checkDate'>{{ LG.get(L,"jianceshijian") }}</view>
+            <view class="icon"></view>
+          </block>
+          <block wx:else>
+            <view class='content' bindtap='checkDate'>{{ date.dateString }}</view>
+            <view class="icon"></view>
+          </block>
+        </view>
+
+      </view>
+    </block>
+  </view>
+  
+  <view class="selector-container temp {{dateshow ? 'slidown' : 'slidup'}}  {{ !dateshow ? 'disappear':''}}">
+    <!-- <view class='selector-title'>举办时间</view> -->
+    <view class='selector-title'>{{ LG.get(L,"jubanshijian") }}</view>
+    <view class='selector-body'>
+      <picker mode="date" bindchange='bindStartDateChange'>
+        <view class='selector-picker'>
+          <view>{{ startDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker> —
+      <picker mode="date" bindchange='bindEndDateChange'>
+        <view class='selector-picker'>
+          <view>{{ endDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='button-line'></view>
+    <view class='selector-foot'>
+      <view class='button-group'>
+        <!-- <view class='reset' bindtap='reset'>重置</view> -->
+        <view class='reset' bindtap='reset'>{{ LG.get(L,"reset") }}</view>
+        <!-- <view class='confirm' bindtap='confirm'>确定</view> -->
+        <view class='confirm' bindtap='confirm'>{{ LG.get(L,"quedin") }}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class=" {{isfull ?'fullbg':''}}" bindtap="hidebg"></view>
+
+
+</view>
+
+<wxs module="LG" src="../../utils/lang.wxs" />
+

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "search": "/components/search/search"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "犬主信息"
+}

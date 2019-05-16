@@ -1,0 +1,56 @@
+Page{
+  background-color: white
+}
+
+.table_header {
+  width: 95%;
+  margin: 20rpx 2.5%;
+  font-size: 16px;
+}
+
+.table_body {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  border: 1rpx solid #666666;
+  font-size: 15px;
+  margin: 10rpx 2.5%;
+}
+
+
+
+.item{
+  display: flex;
+  border-bottom:  1rpx solid #C5C5C5;
+}
+
+
+.last-item {
+  border-bottom:  0rpx solid #C5C5C5;
+}
+
+.item-td {
+  flex: 1;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.left {
+  background-color: #E4E4E4
+}
+
+.right-line{
+  position: relative;
+}
+
+.right-line::after{
+  content: "";
+  width: 1rpx;
+  height: 100%;
+  /*定位，不占位置*/
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #C5C5C5;
+}

@@ -1,0 +1,92 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测数：</text> -->
+           <text>{{ LG.get(L,"jianceshu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ anatomyInfo.testAmount }}公斤</text> -->
+            <text>{{ anatomyInfo.testAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>阳性数：</text> -->
+             <text>{{ LG.get(L,"yangxingshu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ anatomyInfo.positiveAmount }}公斤</text> -->
+            <text>{{ anatomyInfo.positiveAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>阳性率：</text> -->
+            <text>{{ LG.get(L,"yangxinglv") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.positiveRate }}%</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <!-- <text>无害化：</text> -->
+            <text>{{ LG.get(L,"wuhaihua") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ anatomyInfo.harmlessTreatAmount }}公斤</text> -->
+            <text>{{ anatomyInfo.harmlessTreatAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测时间：</text> -->
+            <text>{{ LG.get(L,"jianceshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.testDate }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测单位：</text> -->
+            <text>{{ LG.get(L,"jiancedanwei") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.orgInfo.departName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+             <text>{{ LG.get(L,"tupian") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>视频：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

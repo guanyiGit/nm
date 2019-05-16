@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.OwnerCountDao">
+	<select id="getOwnerSex" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		SELECT
+			sex name ,count(*) value
+		FROM
+			`t_dog_owner` OWNER
+		<where>
+			<if test="userId != null and userId != null">and OWNER.operator_id = #{userId}</if>
+			<if test="lists != null and lists.size != ''">
+				and OWNER.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+		group by sex
+
+	</select>
+
+	<select id="getOwnerAge" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			( YEAR ( NOW( ) ) - YEAR ( OWNER.birth_day ) + 1 )
+		FROM
+			`t_dog_owner` OWNER
+		<where>
+			OWNER.birth_day != ''
+			<if test="userId != null and userId != null">and OWNER.operator_id = #{userId}</if>
+			<if test="lists != null and lists.size != ''">
+				and OWNER.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="getOwnerAreaInfo1" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		select area.name name,count(*)value from t_dog_owner owner
+		left join t_org_info org on org.id = owner.org_id
+		left join t_area_info area on area.id = org.area_id
+		where owner.org_id in (
+			select org.id from t_org_info org
+			where org.pid = #{orgId}
+		)
+		group by name
+	</select>
+
+	<select id="getOwnerAreaInfo2" parameterType="map" resultType="com.statisanalysis.entity.Data">
+		select area.name name,count(*) value from t_dog_owner owner
+		left join t_org_info org on org.id = owner.org_id
+		left join t_org_info org2 on org2.id = org.pid
+		left join t_area_info area on area.id = org2.area_id
+		where owner.org_id in
+		<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		group by name
+	</select>
+</mapper>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head th:include="system/user/include :: header"></head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title" style="padding-bottom: 0;">
+                    <h3 class="text-center" th:text="#{orgManage.updatePassword}">修改密码</h3>
+                    <!--<div class="gg-nav">-->
+                        <!--<ul class="nav nav-tabs">-->
+                            <!--&lt;!&ndash;<li class="active"><a href="#basic_info" data-toggle="tab">基本资料</a></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li><a href="#photo_info" data-toggle="tab">头像修改</a></li>&ndash;&gt;-->
+                            <!--<li><a href="#pwd_info" class="active" data-toggle="tab">修改密码</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                </div>
+                <!--<div class="tab-content">-->
+                    <!--<div class="ibox-content tab-pane fade" id="pwd_info">-->
+                        <form class="gg-form" role="form" id="modifyPwd">
+                            <a id="logout" class="hidden" href="/logout"></a>
+                            <input type="hidden" name ="userDO.userId" th:value="${user.userId}"/>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span th:text="#{orgManage.oldpwd}">旧密码:</span>
+                                </div>
+                                <div class="gg-formDetail gg-dashed">
+                                    <input type="password" class="form-control gg-border0" id="pwdOld" name="pwdOld" th:placeholder="#{orgManage.pleaseInputOldPwd}" />
+                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"><span>
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span th:text="#{orgManage.newpwd}">新密码:</span>
+                                </div>
+                                <div class="gg-formDetail gg-dashed">
+                                    <input type="password" class="form-control gg-border0" id="pwdNew" name="pwdNew" th:placeholder="#{orgManage.pleaseInputNewPwd}" />
+                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
+                                </div>
+                            </div>
+                            <div class="gg-formGroup">
+                                <div class="gg-formTitle">
+                                    <em class="gg-star">*</em>
+                                    <span th:text="#{orgManage.confirmPwd}">确认密码:</span>
+                                </div>
+                                <div class="gg-formDetail gg-dashed">
+                                    <input type="password" class="form-control gg-border0" id="confirm_password" name="confirm_password" th:placeholder="#{orgManage.pleaseConfirmPwd}" />
+                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="gg-btnGroup">
+                            <button type="button" class="btn btn-sm btn-primary" id="pwd_save"th:text="#{dogManage.save}">保存</button>
+                        </div>
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="system/user/include :: footer"></div>
+<script type="text/javascript" src="/orgmanagement/personal.js"></script>
+</body>
+</html>
+<script th:inline="javascript">
+    var updatePwdSuccess=[[#{orgManage.updatePwdSuccess}]]
+</script>

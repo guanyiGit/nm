@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dogmanager.dao.TOwnerChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TOwnerChange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="old_owner" property="oldOwner" jdbcType="INTEGER" />
+    <result column="new_owner" property="newOwner" jdbcType="INTEGER" />
+    <result column="change_reasons" property="changeReasons" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="operator" property="operator" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, old_owner, new_owner, change_reasons, description, trace_id, org_id, operator, createtime, updatetime
+  </sql>
+
+
+<select id="findOwnerChangeVOList" resultType="com.dogmanager.VO.OwnerChangeVO" parameterType="string">
+    SELECT
+    oc.id,
+    oc.change_reasons changeReasons,
+    oc.createtime createtime,
+    oc.trace_id traceId,
+    dow.name oldDogOwnerName,
+    dow2.name newDogOwnerName
+    FROM t_owner_change oc
+    LEFT JOIN t_dog_owner dow
+    ON oc.old_owner =dow.id
+    LEFT JOIN t_dog_owner dow2
+    ON oc.new_owner=dow2.id
+    <where>
+      <if test="string != null and string != ''">
+        AND oc.trace_id like "%"#{string}"%"
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (oc.org_id in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="protector !=null and protector!=''">
+        AND oc.operator=#{operator}
+      </if>
+    </where>
+  ORDER BY oc.`createtime` DESC
+</select>
+
+
+  <select id="selectByPrimaryKey" resultType="com.dogmanager.VO.OwnerChangeVO"   parameterType="java.lang.Integer" >
+     SELECT
+    oc.id,
+    oc.change_reasons changeReasons,
+    oc.createtime createtime,
+    oc.trace_id traceId,
+    oc.description,
+    dow.name oldDogOwnerName,
+    dow2.name newDogOwnerName
+    FROM t_owner_change oc
+    LEFT JOIN t_dog_owner dow
+    ON oc.old_owner =dow.id
+    LEFT JOIN t_dog_owner dow2
+    ON oc.new_owner=dow2.id
+    where oc.id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_owner_change
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.entities.TOwnerChange" >
+    insert into t_owner_change (id, old_owner, new_owner, 
+      change_reasons, description, org_id, operator, trace_id,
+      createtime, updatetime)
+    values (#{id,jdbcType=INTEGER}, #{oldOwner,jdbcType=VARCHAR}, #{newOwner,jdbcType=VARCHAR}, 
+      #{changeReasons,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{orgId,jdbcType=INTEGER},
+      #{operator,jdbcType=INTEGER}, #{traceId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+
+<!--更换犬主-->
+<update id="updateDogOwner">
+    update t_dog_info set owner =#{owner} WHERE trace_id=#{traceId}
+</update>
+
+
+
+  <update id="updateByPrimaryKey" parameterType="com.entities.TOwnerChange" >
+    update t_owner_change
+    set old_owner = #{oldOwner,jdbcType=VARCHAR},
+        new_owner = #{newOwner,jdbcType=VARCHAR},
+      change_reasons = #{changeReasons,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

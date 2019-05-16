@@ -1,0 +1,13 @@
+<view>
+  <scroll-view class="image-group" scroll-x="true">
+    <view wx:for="{{ imageList_local }}" wx:key="index" class='imageItem'>
+      <image src='{{ item.url }}' mode="aspectFit" bindtap='previewImage' data-index='{{ index }}' bindlongpress="deleteImage"></image>
+      <view class='deleteIcon'>
+          <image src='{{ deleteIcon }}' bindtap='deleteImage' data-index='{{ index }}'></image>
+      </view>
+    </view>
+    <view class='uploadImage' bindtap='chooseImage'>
+      <image src='../../assets/image/upload.png'></image>
+    </view>
+  </scroll-view>
+</view>

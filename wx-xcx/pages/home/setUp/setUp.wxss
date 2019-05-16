@@ -1,0 +1,66 @@
+Page {
+  background-color: #EEEEEE;
+}
+
+.container {
+  font-size: 14px;
+}
+
+.body {
+  background-color: white;
+
+}
+
+.items {
+  width: 95%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20rpx;
+}
+
+.item {
+  height: 100rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.last {
+  border-bottom: 0rpx solid #ccc;
+}
+
+.logout {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin-top: 100rpx;
+
+}
+
+
+/* 功能封装 右拉符*/
+.drop-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drop-right::after {
+  content: "";
+  width: 30rpx;
+  height: 30rpx;
+  border-top: 4rpx solid #9a9a9a;
+  border-right: 4rpx solid #9a9a9a;
+  transform: rotate(45deg);
+  display: block;
+  margin-left: 20rpx;
+}
+
+.line-border {
+  width: 100%;
+  height: 1rpx;
+  
+  background-color: #ccc;
+}

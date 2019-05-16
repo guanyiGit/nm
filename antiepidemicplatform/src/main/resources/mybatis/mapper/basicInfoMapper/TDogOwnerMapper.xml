@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.basicInfo.dao.TDogOwnerMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TDogOwner" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pastoral_committee_id" property="pastoralCommitteeId" jdbcType="INTEGER" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="grass_land_area" property="grassLandArea" jdbcType="DOUBLE" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birth_day" property="birthDay" jdbcType="TIMESTAMP" />
+    <!--<result column="nation" property="nation" jdbcType="VARCHAR" />-->
+    <result column="nationName" property="nation" jdbcType="VARCHAR" />
+    <!--<result column="degree_of_education" property="degreeOfEducation" jdbcType="VARCHAR" />-->
+    <result column="educationBackground" property="degreeOfEducation" jdbcType="VARCHAR" />
+    <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="discription" property="discription" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap type="com.basicInfo.vo.DogOwnerVO" id="DogOwnerVOMap" extends="BaseResultMap">
+  		<result column="protectorName" property="protectorName" jdbcType="VARCHAR" />
+  		<!-- 一对一关联牧委会 -->
+  		<association property="tCommittee" javaType="com.entities.TPastoralCommittee">
+  			<id column="id_1" property="id" jdbcType="INTEGER" />
+		    <result column="name_1" property="name" jdbcType="VARCHAR" />
+  		</association>
+  			
+  		<!-- 一对多关联照片表 -->
+  		<collection property="imageList" ofType="com.entities.TMediaInfo">
+  			<id column="id_2" property="id" jdbcType="INTEGER" />
+		    <result column="url" property="url" jdbcType="VARCHAR" />
+		    <result column="thumbnail_url" property="thumbnailUrl" jdbcType="VARCHAR" />
+  		</collection>
+  		
+  </resultMap>
+  
+  <resultMap type="com.dogmanager.VO.DogInfoVO" id="DogInfoVOMap">
+  		<id column="id_4" property="id" jdbcType="INTEGER" />
+  			 <result column="dog_name" property="dogName" jdbcType="VARCHAR" />
+		    <result column="breed_4" property="breed" jdbcType="VARCHAR" />
+		    <result column="age_4" property="age" jdbcType="DOUBLE" />
+		    <result column="sex_4" property="sex" jdbcType="INTEGER" />
+		    <result column="hair_color_4" property="hairColor" jdbcType="VARCHAR" />
+		    <result column="weight_4" property="weight" jdbcType="DOUBLE" />
+		    <result column="owner_4" property="owner" jdbcType="INTEGER" />
+		    <result column="protector_4" property="protector" jdbcType="INTEGER" />
+		    <result column="description_4" property="description" jdbcType="VARCHAR" />
+		    <result column="fence_id_4" property="fenceId" jdbcType="INTEGER" />
+		    <result column="area_id_4" property="areaId" jdbcType="INTEGER" />
+		    <result column="org_id_4" property="orgId" jdbcType="INTEGER" />
+		    <result column="status_4" property="status" jdbcType="INTEGER" />
+		    <result column="create_date_4" property="createDate" jdbcType="TIMESTAMP" />
+		    <result column="update_date_4" property="updateDate" jdbcType="TIMESTAMP" />
+		    <result column="trace_id" property="traceId" jdbcType="VARCHAR" />
+		    <result column="dogSmallUrl" property="dogSmallUrl" jdbcType="VARCHAR" />
+		    <result column="dogBigUrl" property="dogBigUrl" jdbcType="VARCHAR" />
+		     <result column="device_no_4" property="deviceNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pastoral_committee_id, no, grass_land_area, name, sex, birth_day, nation, degree_of_education, 
+    phone_num, address, card_type, card_num, discription, area_id, org_id, create_date, 
+    update_date, operator_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entities.TDogOwnerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dog_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dog_owner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dog_owner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.entities.TDogOwnerExample" >
+    delete from t_dog_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entities.TDogOwner" >
+    insert into t_dog_owner (id, pastoral_committee_id, no, 
+      grass_land_area, name, sex, 
+      birth_day, nation, degree_of_education, 
+      phone_num, address, card_type, 
+      card_num, discription, area_id, 
+      org_id, create_date, update_date, 
+      operator_id)
+    values (#{id,jdbcType=INTEGER}, #{pastoralCommitteeId,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, 
+      #{grassLandArea,jdbcType=DOUBLE}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{birthDay,jdbcType=TIMESTAMP}, #{nation,jdbcType=VARCHAR}, #{degreeOfEducation,jdbcType=VARCHAR}, 
+      #{phoneNum,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{cardType,jdbcType=INTEGER}, 
+      #{cardNum,jdbcType=VARCHAR}, #{discription,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, 
+      #{orgId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entities.TDogOwner" >
+   	<selectKey keyProperty="id" resultType="int">
+           select LAST_INSERT_ID()
+       </selectKey>
+    insert into t_dog_owner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pastoralCommitteeId != null" >
+        pastoral_committee_id,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="grassLandArea != null" >
+        grass_land_area,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="nationId != null" >
+        nation_id,
+      </if>
+      <if test="degreeOfEducation != null" >
+        education_background,
+      </if>
+      <if test="phoneNum != null" >
+        phone_num,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="cardNum != null" >
+        card_num,
+      </if>
+      <if test="discription != null" >
+        discription,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pastoralCommitteeId != null" >
+        #{pastoralCommitteeId,jdbcType=INTEGER},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="grassLandArea != null" >
+        #{grassLandArea,jdbcType=DOUBLE},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationId != null" >
+        #{nationId,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeOfEducation != null" >
+        #{degreeOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null" >
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        #{discription,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entities.TDogOwnerExample" resultType="java.lang.Integer" >
+    select count(*) from t_dog_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_dog_owner
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pastoralCommitteeId != null" >
+        pastoral_committee_id = #{record.pastoralCommitteeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.no != null" >
+        no = #{record.no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grassLandArea != null" >
+        grass_land_area = #{record.grassLandArea,jdbcType=DOUBLE},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthDay != null" >
+        birth_day = #{record.birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degreeOfEducation != null" >
+        degree_of_education = #{record.degreeOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNum != null" >
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null" >
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNum != null" >
+        card_num = #{record.cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discription != null" >
+        discription = #{record.discription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_dog_owner
+    set id = #{record.id,jdbcType=INTEGER},
+      pastoral_committee_id = #{record.pastoralCommitteeId,jdbcType=INTEGER},
+      no = #{record.no,jdbcType=VARCHAR},
+      grass_land_area = #{record.grassLandArea,jdbcType=DOUBLE},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      birth_day = #{record.birthDay,jdbcType=TIMESTAMP},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      degree_of_education = #{record.degreeOfEducation,jdbcType=VARCHAR},
+      phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      card_num = #{record.cardNum,jdbcType=VARCHAR},
+      discription = #{record.discription,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      org_id = #{record.orgId,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      operator_id = #{record.operatorId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entities.TDogOwner" >
+    update t_dog_owner
+    <set >
+      <if test="pastoralCommitteeId != null" >
+        pastoral_committee_id = #{pastoralCommitteeId,jdbcType=INTEGER},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="grassLandArea != null" >
+        grass_land_area = #{grassLandArea,jdbcType=DOUBLE},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        birth_day = #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nationId != null" >
+        nation_id = #{nationId,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeOfEducation != null" >
+        education_background = #{degreeOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null" >
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        discription = #{discription,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entities.TDogOwner" >
+    update t_dog_owner
+    set pastoral_committee_id = #{pastoralCommitteeId,jdbcType=INTEGER},
+      no = #{no,jdbcType=VARCHAR},
+      grass_land_area = #{grassLandArea,jdbcType=DOUBLE},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birth_day = #{birthDay,jdbcType=TIMESTAMP},
+      nation = #{nation,jdbcType=VARCHAR},
+      degree_of_education = #{degreeOfEducation,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card_num = #{cardNum,jdbcType=VARCHAR},
+      discription = #{discription,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查看分页犬主信息 -->
+  <!--<select id="findDogOwnerList" resultMap="DogOwnerVOMap">
+  		SELECT o.*,m.url ,m.thumbnail_url,tc.`name` name_1
+  			FROM  
+  			(
+	  			SELECT * FROM   t_dog_owner 
+	  				<where>
+						<if test="orgList !=null and orgList.size>0 ">
+								org_id in(
+							 	<foreach collection="orgList" item="orgList" separator=",">
+							 		#{orgList}
+							 	</foreach>
+							 )
+						</if>
+						 <if test="userId !=null">
+						 	and operator_id=#{userId}
+						 </if>
+						 <if test="searchKey !=null and searchKey !='' ">
+						 	and (name  LIKE CONCAT('%',#{searchKey},'%') or phone_num =#{searchKey})
+						 </if>
+					</where>
+					order by create_date desc 
+	  			 limit #{index},#{pageSize} 
+  			 ) o
+	LEFT JOIN t_media_ref mr 
+		ON o.id=mr.ref_id AND mr.type=8 AND mr.is_video=0
+	LEFT JOIN t_media_info m 
+		ON mr.media_id=m.id
+	LEFT JOIN t_pastoral_committee tc
+		ON tc.id=o.pastoral_committee_id
+		
+		order by o.create_date desc 
+  </select>-->
+  <select id="findDogOwnerList" resultMap="DogOwnerVOMap">
+    SELECT o.*,m.url ,m.thumbnail_url,tc.`name` name_1,TF.name nationName,TFf.name educationBackground
+    FROM
+    (
+    SELECT * FROM   t_dog_owner
+    <where>
+      <if test="orgList !=null and orgList.size>0 ">
+        org_id in(
+        <foreach collection="orgList" item="orgList" separator=",">
+          #{orgList}
+        </foreach>
+        )
+      </if>
+      <if test="userId !=null">
+        and operator_id=#{userId}
+      </if>
+      <if test="searchKey !=null and searchKey !='' ">
+        and (name  LIKE CONCAT('%',#{searchKey},'%') or phone_num =#{searchKey})
+      </if>
+    </where>
+    order by create_date desc
+    limit #{index},#{pageSize}
+    ) o
+    LEFT JOIN t_media_ref mr
+    ON o.id=mr.ref_id AND mr.type=8 AND mr.is_video=0
+    LEFT JOIN t_media_info m
+    ON mr.media_id=m.id
+    LEFT JOIN t_pastoral_committee tc
+    ON tc.id=o.pastoral_committee_id
+    LEFT JOIN t_sys_dict TDT
+    ON o.nation_id=TDT.value
+    AND TDT.type='nation'
+    LEFT JOIN t_name_ref TF
+    ON TF.resource_id=TDT.name_id
+    AND TF.type=#{type}
+    LEFT JOIN t_sys_dict TDTt
+    ON o.education_background=TDTt.value
+    AND TDTt.type='education_background'
+    LEFT JOIN t_name_ref TFf
+    ON TFf.resource_id=TDTt.name_id
+    AND TFf.type=#{type}
+    order by o.create_date desc
+  </select>
+    
+    <!-- 查看犬主总记录数 -->
+    <select id="findDogOwnerCount" resultType="int">
+  		SELECT count(*)
+  			FROM t_dog_owner 
+  			<where>
+  				<if test="orgList !=null and orgList.size >0">
+  			  org_id in(
+		 	<foreach collection="orgList" item="orgList" separator=",">
+		 		#{orgList}
+		 	</foreach>
+		 )
+  		</if>
+		 <if test="userId !=null">
+		 	and operator_id=#{userId}
+		 </if>
+		 <if test="searchKey !=null and searchKey !='' ">
+		 	and (name  LIKE CONCAT('%',#{searchKey},'%')  or phone_num =#{searchKey})
+		 </if>
+  			</where>
+  		
+  </select>
+    
+  
+  <!-- 查看犬主详情 -->
+  <!--<select id="findDogOwnerDetail" resultMap="DogOwnerVOMap">
+  		SELECT o.*,m.id id_2,m.url,m.thumbnail_url,tc.`name` name_1,
+  			user.name protectorName
+  			FROM t_dog_owner o 
+		LEFT JOIN t_media_ref mr 
+			ON o.id=mr.ref_id AND mr.type=8 AND mr.is_video=0
+		LEFT JOIN t_media_info m 
+			ON mr.media_id=m.id
+		LEFT JOIN t_pastoral_committee tc
+			ON tc.id=o.pastoral_committee_id
+		 LEFT JOIN t_user_info user
+		 	ON user.id=o.operator_id
+			 where o.id=#{id}
+  </select>-->
+  <select id="findDogOwnerDetail" resultMap="DogOwnerVOMap">
+  		SELECT o.*,m.id id_2,m.url,m.thumbnail_url,tc.`name` name_1,
+  		TF.name nationName,TFf.name educationBackground,
+  			user.name protectorName
+  			FROM t_dog_owner o
+		LEFT JOIN t_media_ref mr
+			ON o.id=mr.ref_id AND mr.type=8 AND mr.is_video=0
+		LEFT JOIN t_media_info m
+			ON mr.media_id=m.id
+		LEFT JOIN t_pastoral_committee tc
+			ON tc.id=o.pastoral_committee_id
+		 LEFT JOIN t_user_info user
+		 	ON user.id=o.operator_id
+		 	LEFT JOIN t_sys_dict TDT
+            ON o.nation_id=TDT.value
+            AND TDT.type='nation'
+            LEFT JOIN t_name_ref TF
+            ON TF.resource_id=TDT.name_id
+            AND TF.type=#{type}
+            LEFT JOIN t_sys_dict TDTt
+            ON o.education_background=TDTt.value
+            AND TDTt.type='education_background'
+            LEFT JOIN t_name_ref TFf
+            ON TFf.resource_id=TDTt.name_id
+            AND TFf.type=#{type}
+			 where o.id=#{id}
+  </select>
+  
+  <!-- 查看犬只列表 -->
+  <select id="findDogList" resultMap="DogInfoVOMap">
+  		SELECT  
+	  		dg.id id_4,dg.breed breed_4,dg.sex sex_4,dg.age age_4,dg.trace_id,
+	  		dg.hair_color hair_color_4,dg.weight weight_4,dg.dog_name,dg.status status_4,
+  			mi.`thumbnail_url` dogSmallUrl,
+    		mi.`url` dogBigUrl,
+    		ref.device_no device_no_4
+  		FROM t_dog_info dg
+		LEFT JOIN t_media_ref mrr
+	   		ON dg.`id`=mrr.`ref_id` AND mrr.`type`=0 AND mrr.is_video=0
+	    LEFT JOIN t_media_info mi
+	    	ON mrr.`media_id`=mi.`id`
+	    LEFT JOIN t_device_ref_dog ref on ref.trace_id=dg.trace_id
+	    where dg.`owner`=#{id}
+	    group by dg.id
+
+  </select>
+</mapper>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A31-统计分析-防疫统计</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/css.css">
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh" >
+			<li class="fl"><a href="###" th:text="#{orgPower}">组织权限></a></li>
+			<li class="fl" th:text="#{orgManage.manageRole}">角色管理</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<table id="roleInfoTable" ></table>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+		
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+</html>
+<script src="/orgmanagement/roleManagement.js"></script>
+<script th:inline="javascript">
+	var num5=[[#{orgManage.num}]];
+	var roleName5=[[#{orgManage.roleName}]];
+	var remark5=[[#{orgManage.remark}]];
+	var search5=[[#{antiepidemicManage.search}]];
+</script>

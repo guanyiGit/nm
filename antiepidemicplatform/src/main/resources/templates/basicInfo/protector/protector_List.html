@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+	<div id="innerdiv" style="position:absolute;">
+		<img id="bigimg" style="border:5px solid #fff;" src="" />
+	</div>
+</div>
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2" shiro:hasPermission="/biz/protector/protector_List">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{binformation}">基础信息</a>></li>
+			<li class="fl" th:text="#{binformation.quarantineInformation}">防疫员信息</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt20 pdb75">
+		<div class="ovh">
+			<ul class="ul04 fl">
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="/biz/protector/protector_Add">
+					<a href="/biz/protector/protector_Add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""><span th:text="#{binformation.add}">新增</span></a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt="">导入</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="111">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+				</li>
+			</ul>
+			<div id="enterKey" class="fr">
+				<div class="db ovh">
+					<input id="searchKey" type="text" class="db input1 w250 h40 lh40 pdl15 fl" placeholder="防疫员姓名/电话">
+					<input type="submit" class="db fl pc5 hov8" value="" onclick="reLoad();">
+				</div>
+			</div>
+		</div>
+		<table id="exampleTable" data-mobile-responsive="true">
+		</table>
+
+	</div>
+</div>
+<!--内容栏END-->
+	
+</div>
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/protector/protector_List.js"></script>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_check_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        /* var s_resetPwd_h = 'hidden'; */
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/protector/findProtectorDetail">
+    s_check_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/protector/toUpdatePage">
+        s_edit_h = '';
+    </script>
+</div>
+<div >
+    <script type="text/javascript" shiro:hasPermission="/biz/protector/deleteProtector">
+    s_remove_h = '';
+    </script>
+</div>
+</body>
+</html>
+<script th:inline="javascript">
+    var user = [[${user}]];
+    var namee = [[#{binformation.name}]];
+    var quarantinePhone = [[#{binformation.quarantinePhone}]];
+    $("#searchKey").attr('placeholder',quarantinePhone+'/'+namee)
+    var photo = [[#{binformation.photo}]];
+    var belTownship = [[#{binformation.belTownship}]];
+    var belVet = [[#{binformation.belVet}]];
+    var gender = [[#{binformation.gender}]];
+    var birthday = [[#{binformation.birthday}]];
+    var contactPhone = [[#{binformation.contactPhone}]];
+    var operation = [[#{binformation.operation}]];
+    var checkk = [[#{binformation.check}]];
+    var updatee = [[#{binformation.update}]];
+    var deletee = [[#{binformation.delete}]];
+    var male = [[#{ownerMale}]];
+    var female = [[#{ownerFemale}]];
+    var sureDeleteSelectedRecord = [[#{sureDeleteSelectedRecord}]];
+    var determine = [[#{determine}]];
+    var cancel = [[#{binformation.cancel}]];
+    var operationSuccess = [[#{operationSuccess}]];//操作成功
+    var operationFailure = [[#{operationFailure}]];//操作失败
+</script>

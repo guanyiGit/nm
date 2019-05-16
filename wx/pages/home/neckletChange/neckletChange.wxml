@@ -1,0 +1,28 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchDog"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ neckletChange }}" wx:key="index">
+      <view class="container_item drop-right {{index % 2 == 0?'bg-g':''}}" bindtap='toNeckletChangePage' data-index='{{ idnex }}'>
+        <view class='body'>
+          <view class='title'>
+              <text class='left'>新项圈：</text>
+              <text class='deviceNo'>{{item.oldNeckletNo}}</text>
+          </view>
+          <view class='middle'>
+              <text class='left'>原项圈：</text>
+              <text class='deviceNo'>{{item.newNeckletNo}}</text>
+          </view>
+          <view class='foot'>
+              <text class='left'>更换时间：</text>
+              <text>{{item.createtime}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='add_dog'></view>
+<view class='more'>
+  <text>下拉查看更多</text>
+</view>

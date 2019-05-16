@@ -1,0 +1,105 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+     <!--溯源ID：-->
+      <view class='device item'>
+        <view class='left'>
+          <view class='must'>
+            <text>溯源ID：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="traceId"  value='{{ traceId }}' disabled></input>
+        </view>
+      </view>
+
+      <view class='item'>
+        <view class='left'></view>
+        <view class='right dog-info'>
+          <view>犬名: {{ dogInfo.dogName}}</view>
+          <view>犬主: {{ dogInfo.ownerName}}</view>
+        </view>
+      </view>
+
+      <!--处理方法：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>处理方法：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <picker bindchange='bindManureHandleChange' range='{{ manureHandle.manureHandleArray }}' range-key='name' value='{{ manureHandle.manureHandleArray[manureHandle.manureHandleIndex].value }}'  name="processMode">
+            <view class='picker drop-down'>
+              {{ manureHandle.manureHandleArray[manureHandle.manureHandleIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+
+      <!--方法说明：-->
+      <view class='methodDes item'>
+        <view class='left'>
+          <view class='must'>
+            <text>方法说明：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <textarea name="methodDes"></textarea>
+        </view>
+      </view>
+
+      <!--处理周期：-->
+      <!-- <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>处理周期：</text>
+          </view>
+        </view>
+        <view class='right'>
+            <input  name="period"  placeholder='周' placeholder-style='text-align: right;color: #999999;'></input>
+        </view>
+      </view> -->
+
+      <!--照片：-->
+      <view class='item manure-image'>
+        <view class='left'>
+          <view>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--视频：-->
+      <view class='item manure-image'>
+        <view class='left'>
+          <view>
+            <text>视频：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+       <!--描述：-->
+      <view class='description item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

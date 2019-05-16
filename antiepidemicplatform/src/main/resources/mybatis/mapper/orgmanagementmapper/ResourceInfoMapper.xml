@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.orgmanagement.dao.ResourceInfoDao">
+
+	<select id="get" resultType="com.entities.ResourceInfo">
+		select `id`,`pid`,`name`,`url`,`perms`,`type`,`icon`,`order_num`,`create_date`,`update_date` from t_resource_info where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.entities.ResourceInfo">
+		select `id`,`pid`,`name`,`url`,`perms`,`type`,`icon`,`order_num`,`create_date`,`update_date` from t_resource_info
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="perms != null and perms != ''"> and perms = #{perms} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="icon != null and icon != ''"> and icon = #{icon} </if>
+		  		  <if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_resource_info
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="perms != null and perms != ''"> and perms = #{perms} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="icon != null and icon != ''"> and icon = #{icon} </if>
+		  		  <if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.ResourceInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into t_resource_info
+		(
+			`pid`, 
+			`name`, 
+			`url`, 
+			`perms`, 
+			`type`, 
+			`icon`, 
+			`order_num`, 
+			`create_date`, 
+			`update_date`
+		)
+		values
+		(
+			#{pid}, 
+			#{name}, 
+			#{url}, 
+			#{perms}, 
+			#{type}, 
+			#{icon}, 
+			#{orderNum}, 
+			#{createDate}, 
+			#{updateDate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.ResourceInfo">
+		update t_resource_info 
+		<set>
+			<if test="pid != null">`pid` = #{pid}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="perms != null">`perms` = #{perms}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="icon != null">`icon` = #{icon}, </if>
+			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_resource_info where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_resource_info where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+
+	<!--根据用户id查询菜单-->
+
+	<select id="listMenuByUserId" resultType="com.entities.ResourceInfo">
+		select menu.id ,menu.name,menu.pid,menu.url,menu.perms,menu.type ,menu.icon ,menu.order_num
+		,menu.create_date,menu.update_date  from t_resource_info menu  LEFT JOIN t_role_ref_resource ref
+		on ref.r_id = menu.id LEFT JOIN t_user_ref_role ur
+		on ur.role_id = ref.role_id
+		where ur.user_id= #{id}
+		and menu.type in (0,1)
+		order by menu.order_num;
+	</select>
+
+	<!--根据用户id查询菜单(多语言)-->
+
+	<select id="listMenuByUserIdI18n" parameterType="map" resultType="com.entities.ResourceInfo">
+		select menu.id ,nr.name,menu.pid,menu.url,menu.perms,menu.type ,menu.icon ,menu.order_num
+		,menu.create_date,menu.update_date  from t_resource_info menu  LEFT JOIN t_role_ref_resource ref
+		on ref.r_id = menu.id LEFT JOIN t_user_ref_role ur
+		on ur.role_id = ref.role_id
+		left join t_name_ref nr on (nr.resource_id = menu.name_id and nr.type = #{type})
+		where ur.user_id= #{id}
+		and menu.type in (0,1)
+		order by menu.order_num;
+	</select>
+
+	<!--根据用户id查询资源权限-->
+
+	<select id="listUserPerms" resultType="string">
+		select  DISTINCT menu.perms  from t_resource_info menu  LEFT JOIN t_role_ref_resource ref
+		on ref.r_id = menu.id LEFT JOIN t_user_ref_role ur
+		on ur.role_id = ref.role_id
+		where ur.user_id= #{id}
+	</select>
+
+</mapper>

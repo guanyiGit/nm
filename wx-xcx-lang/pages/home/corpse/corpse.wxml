@@ -1,0 +1,42 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}"  query ="{{ query }}"
+  bind:searchEvent="searchCorpse"  bind:scanSearchEvent="scanSearchCorpse"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ corpseArray }}" wx:key="index">
+      <view class='container_item drop-right' bindtap='toCorpseInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.imageList[0].url }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle">
+            <!-- <view>{{ item.traceId||'未知' }}</view> -->
+            <view>{{ item.traceId||LG.get(L,"weizhi")}}</view>
+          </view>
+          <view class='right_body'>
+            <!-- <view class='texthide'>犬名：{{ item.dog.dogName||'未知' }}</view> -->
+            <view>{{ LG.get(L,"quanming") }}：{{ item.dog.dogName||LG.get(L,"weizhi") }}</view>
+            <!-- <view class='texthide'>犬主：{{ item.dogOwner.name||'未知' }}</view> -->
+            <view>{{ LG.get(L,"quanzhu") }}：{{ item.dogOwner.name||LG.get(L,"weizhi") }}</view>
+          </view>
+          <view class='right_foot'>
+            <!-- <view>处理时间：{{ item.dealTime||'未知' }}</view> -->
+            <view>{{ LG.get(L,"chulishijian") }}：{{ item.dealTime||LG.get(L,"weizhi") }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_dog' catchtap='toDogUtilPage' data-type='3' >
+  <text class='qscl_element'>{{ LG.get(L,"quanshi_chuli") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

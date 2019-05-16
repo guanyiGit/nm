@@ -1,0 +1,105 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogName }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬主：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerName }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫类型：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.type }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.antiepidemicDate }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫药品：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.drugName }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫周期：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.antiepidemicPeriod }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫员：</text>
+        </view>
+        <view class='right'>
+            <text>{{ antiepidemic.name }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right '>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视频：</text>
+        </view>
+        <view class='right '>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            {{ antiepidemic.description }}
+        </view>
+    </view>
+</view>

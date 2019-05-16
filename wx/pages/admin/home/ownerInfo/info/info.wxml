@@ -1,0 +1,191 @@
+<view class='owner_title'>
+  <text>犬主信息</text>
+</view>
+<view class='container'>
+  <!--犬主详情-->
+  <view class='info'>
+    <!--犬主信息下半部分-->
+    <view class='foot_body'>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>犬主姓名：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.name?ownerInfo.name:"未知" }}</text>
+        </view>
+      </view>
+      <!--性别-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>性别：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.sex==0?"男":"女" }}</text>
+        </view>
+      </view>
+      <!--出生日期-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>出生日期：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.birthDay?ownerInfo.birthDay:"未知" }}</text>
+        </view>
+      </view>
+      <!--民族-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>名族：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.nation?ownerInfo.nation:"未知" }}</text>
+        </view>
+      </view>
+      <!--文化程度：-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>文化程度：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.degreeOfEducation?ownerInfo.degreeOfEducation:"未知" }}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>联系电话：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.phoneNum?ownerInfo.phoneNum:"未知"}}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>证件类型：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.cardType==0?"居民身份证":"居民户口簿" }}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>证件号码：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.cardNum?ownerInfo.cardNum:"未知"}}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>草场面积：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.grassLandArea?ownerInfo.grassLandArea:"未知" }}亩</text>
+        </view>
+      </view>
+
+      <!--暂无数据-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>所属乡镇：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.town?ownerInfo.town:"未知" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>所属村委会：</text>
+        </view>
+        <!--未定id-->
+        <view class='foot_body_item_right texthide'>
+          <text>{{ ownerInfo.tCommittee.name?ownerInfo.tCommittee.name:"未知" }}</text>
+        </view>
+      </view>
+
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>门牌号：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.no?ownerInfo.no:"未知" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>防疫员：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.protectorName?ownerInfo.protectorName:"未知" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>录入时间：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.createDate?ownerInfo.createDate:"未知" }}</text>
+        </view>
+      </view>
+      <!--暂未循环展示 -->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>照片：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <block wx:for="{{ ownerInfo.imageList }}" wx:key="index">
+            <image src='{{ ownerInfo.imageList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+          </block>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <text>描述：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.discription?ownerInfo.discription:'' }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ ishasDog }}">
+    <view class="dogInfo">
+      <text>犬只信息</text>
+    </view>
+    <!--犬只列表-->
+    <view>
+      <view class='container_body'>
+        <block wx:for="{{ dogInfos }}" wx:key="index">
+          <view class='container_item drop-right' bindtap='toDogPage' data-index='{{ index }}'>
+            <view class='left'>
+              <image src='{{ item.dogSmallUrl }}'></image>
+            </view>
+            <view class='right'>
+              <view class="right_headle {{ item.isExpire?'expire':'normal' }}">
+                <view>{{ item.deviceNo?item.deviceNo:"未知" }}</view>
+              </view>
+              <view class='right_body'>
+                <view>{{ item.dogName?item.dogName:"未知" }}</view>
+                <!-- 犬主 -->
+                <view>{{ item.breed?item.breed:"未知" }}</view>
+                <view>{{ item.age?item.age:"未知" }}岁</view>
+                <view>{{ item.sex ==0?"公":"母" }}</view>
+                <view>{{ item.hairColor?item.hairColor:"未知" }}</view>
+              </view>
+              <view class='right_foot'>
+                <view>犬主：{{ ownerInfo.name?ownerInfo.name:"未知" }}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部 -->
+<view class="foot">
+  <text>到底啦</text>
+</view>

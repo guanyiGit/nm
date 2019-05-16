@@ -1,0 +1,66 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--发放数量：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>发放数量：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="amount"></input>
+        </view>
+      </view>
+
+      <!--接收单位：-->
+      <view class='item'  wx:if="{{ !isTownAdmin }}">
+        <view class='left'>
+          <view class='must'>
+            <text>接收单位：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <picker bindchange='bindOrgChange' range='{{ org.orgArray }}' range-key='departName' value='{{ org.orgArray[org.orgIndex].id }}'  name="receiveOrg">
+            <view class='picker drop-down'>
+              {{ org.orgArray[org.orgIndex].departName }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+
+       <!--如果是乡级：-->
+      <view class='item' wx:if="{{ isTownAdmin }}">
+        <view class='left'>
+          <view class='must'>
+            <text>接收人：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <picker bindchange='bindProtectorChange' range='{{ protector.protectorArray }}' range-key='name' value='{{ protector.protectorArray[protector.protectorIndex].id }}'  name="receiver">
+            <view class='picker drop-down'>
+              {{ protector.protectorArray[protector.protectorIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+       <!--如果是州级和县级：-->
+      <view class='item' wx:if="{{ !isTownAdmin }}">
+        <view class='left'>
+          <view>
+            <text>接收人：</text>
+          </view>
+        </view>
+        <view class='right'>
+           <input name="receiverName"></input>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

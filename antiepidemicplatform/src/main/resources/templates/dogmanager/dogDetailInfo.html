@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>犬只详情</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<link rel="stylesheet" href="/css/RL.css">
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="/biz/dogInfo/dogMasterFile" th:text="#{dogManage}">犬只管理></a></li>
+			<li class="fl"><a href="/biz/dogInfo/dogMasterFile"  th:text="#{dogManage.dogInfo}+'>'">犬只信息></a></li>
+			<li class="fl" th:text="#{dogManage.viewDetail}">查看详情</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<p class="fs16 cor0" th:text="#{dogManage.viewDetail}">查看详情<a href="javascript:window.history.back(-1);" class="dinb fr hov8"><img src="/images/42.png" alt=""></a></p>
+
+
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table31">
+				<tbody>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.traceId}">溯源ID</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.traceId}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.deviceNo}">设备编号</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.deviceNo}"></td>
+
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogName}">犬名</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.dogName}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.enterTime}">入栏时间</td>
+						<td class="cor9 ww30 h54"  th:text="${#dates.format(dogInfoVO.dogInfo.createDate,'yyyy-MM-dd HH:mm')}"></td>
+
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogColor}">毛色</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.hairColor}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogBreed}">犬种</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.breed}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogWeight}">体重(公斤)</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.weight}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.sex}">性别</td>
+						<!--<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.sex==0?'公':'母'}"></td>-->
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.sex}==0? #{dogManage.male}:#{dogManage.female}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogAge}">犬龄(岁)</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.age}"></td>
+						<td class="cor0 ww20 h54" th:text="#{antiepidemicManage.protector}">防疫员</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.name1}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.protectorPhone}">防疫员电话</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.pphone}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.ownerName}">犬主</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.ownerName}">塞拉</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.phone}">犬主电话</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.ownerPhone}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.ID}">犬主身份证</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.cardNum}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.town}">所属乡镇</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.town}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.address}">详细地址</td>
+						<td class="cor9 ww30 h54" th:text="${dogInfoVO.dogInfo.pname}+${dogInfoVO.dogInfo.no}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20" th:text="#{dogManage.dogPhoto}">照片</td>
+						<td class="cor9 ww30 pdt35 pdb35">
+							<span th:each="picUrl:${dogInfoVO.picList}">
+								<img th:src="${picUrl.thumbnail_url}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td class="cor0 ww20" th:text="#{dogManage.description}">描述</td>
+						<td class="cor9 ww30" style="word-break: break-all;" th:text="${dogInfoVO.dogInfo.description}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<p class="fs16 cor0 mgt25" th:text="#{dogManage.springAntiepidemic}">春防信息</p>
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table32">
+				<tbody>
+					<tr>
+						<td th:text="#{dogManage.dogPhoto}">照片</td>
+						<td th:text="#{antiepidemicManage.antiepidemicDrug}">防疫药品</td>
+						<td th:text="#{antiepidemicManage.antiepidemicTime}">防疫时间</td>
+						<td th:text="#{antiepidemicManage.antiepidemicPeriod}">防疫周期(月)</td>
+						<td th:text="#{antiepidemicManage.protector}">防疫员</td>
+					</tr>
+					<tr th:each="item,itemStat : ${dogInfoVO.chunfang}">
+						<td>
+							<span th:each="picUrl:${item.picList}">
+								<img th:src="${picUrl.thumbnailUrl}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td th:text="${item.drugName}"></td>
+						<td th:text="${#dates.format(item.antiepidemicDate,'yyyy-MM-dd HH:mm')}">2017-03-10</td>
+						<td th:text="${item.antiepidemicPeriod}">12个月</td>
+						<td th:text="${item.name2}">扎西吉</td>
+						<!--<td th:text="${item.description}">注意防寒保暖</td>-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="fs16 cor0 mgt25" th:text="#{dogManage.autmnAntiepidemic}">秋防信息</p>
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table32">
+				<tbody>
+					<tr>
+						<td th:text="#{dogManage.dogPhoto}">照片</td>
+						<td th:text="#{antiepidemicManage.antiepidemicDrug}">防疫药品</td>
+						<td th:text="#{antiepidemicManage.antiepidemicTime}">防疫时间</td>
+						<td th:text="#{antiepidemicManage.antiepidemicPeriod}">防疫周期(月)</td>
+						<td th:text="#{antiepidemicManage.protector}">防疫员</td>
+					</tr>
+					<tr th:each="item,itemStat : ${dogInfoVO.qiufang}">
+						<td>
+							<span th:each="picUrl:${item.picList}">
+								<img th:src="${picUrl.thumbnailUrl}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td th:text="${item.drugName}"></td>
+						<td th:text="${#dates.format(item.antiepidemicDate,'yyyy-MM-dd HH:mm')}">2017-03-10</td>
+						<td th:text="${item.antiepidemicPeriod}">12个月</td>
+						<td th:text="${item.name2}">扎西吉</td>
+						<!--<td th:text="${item.description}">注意防寒保暖</td>-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="fs16 cor0 mgt25" th:text="#{dogManage.monthAntiepidemic}">月月投药</p>
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table32">
+				<tbody>
+					<tr>
+						<td th:text="#{dogManage.dogPhoto}">照片</td>
+						<td th:text="#{antiepidemicManage.antiepidemicDrug}">防疫药品</td>
+						<td th:text="#{antiepidemicManage.antiepidemicTime}">防疫时间</td>
+						<td th:text="#{antiepidemicManage.antiepidemicPeriod}">防疫周期(月)</td>
+						<td th:text="#{antiepidemicManage.protector}">防疫员</td>
+					</tr>
+					<tr th:each="item,itemStat : ${dogInfoVO.yueyue}">
+						<td>
+							<span th:each="picUrl:${item.picList}">
+								<img th:src="${picUrl.thumbnailUrl}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td th:text="${item.drugName}"></td>
+						<td th:text="${#dates.format(item.antiepidemicDate,'yyyy-MM-dd HH:mm')}">2017-03-10</td>
+						<td th:text="${item.antiepidemicPeriod}">12个月</td>
+						<td th:text="${item.name2}">扎西吉</td>
+						<!--<td th:text="${item.description}">注意防寒保暖</td>-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<!--内容区END-->
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posiition.mapper.DeviceFenceMapper">
+
+    <resultMap id="TFenceDefResultMap" type="com.entities.TFenceDef">
+        <id column="id" property="id"></id>
+        <result property="fence_type" column="fence_type"></result>
+        <result property="create_by" column="create_by"></result>
+        <result property="status" column="status"></result>
+        <result property="start_time" column="start_time"></result>
+        <result property="area_id" column="area_id"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="expire_date" column="expire_date"></result>
+        <result property="org_id" column="org_id"></result>
+        <result property="fence_name" column="fence_name"></result>
+    </resultMap>
+
+    <resultMap id="FcnceRefFenceDetailResultMap" type="com.posiition.VO.FcnceRefFenceDetail">
+        <association property="tFenceDef" javaType="com.entities.TFenceDef" resultMap="TFenceDefResultMap"></association>
+        <association property="orgInfo" javaType="com.entities.OrgInfo" autoMapping="true"></association>
+        <collection property="tFenceDetail" ofType="com.entities.TFenceDetail" autoMapping="true"></collection>
+    </resultMap>
+    
+    
+    <resultMap id="fenceRefFenceDetailResultMap" type="com.posiition.VO.FcnceRefFenceDetail">
+        <association property="tFenceDef" autoMapping="true"></association>
+        <association property="tFenceDetail" autoMapping="true"></association>
+    </resultMap>
+
+    <resultMap id="YLFcnceRefFenceDetailResultMap" type="com.posiition.VO.fenceDetailVO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="fence_name" property="fenceName" jdbcType="VARCHAR"/>
+        <collection property="tFenceDetail" ofType="com.entities.TFenceDetail" >
+            <result column="lng" property="lng" jdbcType="DOUBLE" />
+            <result column="lat" property="lat" jdbcType="DOUBLE" />
+        </collection>
+    </resultMap>
+
+    <!--查询用户的电子围栏信息-->
+    <select id="findFencesByUserId" resultMap="TFenceDefResultMap">
+        SELECT * from t_fence_def f
+        WHERE f.create_by = #{userId}
+        <if test="orgIds != null">
+            OR f.org_id IN
+            <foreach collection="orgIds" item="item" open="(" separator="," close=")">
+                f.orgid = #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据id删除围栏-->
+    <delete id="removeById" parameterType="java.lang.Integer">
+        DELETE  FROM  t_fence_def WHERE id = #{_parameter}
+    </delete>
+
+    <!--根据id修改围栏信息-->
+    <update id="modifyByid" parameterType="com.entities.TFenceDef">
+        UPDATE t_fence_def f
+        <set>
+            <if test="_parameter.fenceName != null ">
+                f.fence_name = #{_parameter.fence_name},
+            </if>
+            <if test="_parameter.status != null ">
+                f.status = #{_parameter.status},
+            </if>
+            <if test="_parameter.status != null ">
+                f.start_time =  #{_parameter.star_tTime}
+            </if>
+        </set>
+    </update>
+
+    <!--保存围栏信息-->
+    <insert id="saves" parameterType="com.entities.TFenceDef">
+        INSERT INTO t_fence_def (
+            fence_type, create_by, status,area_id,org_id,start_time
+        <if test="_parameter.create_date != null">
+            ,create_date
+        </if>
+        <if test="_parameter.expire_date != null">
+            ,expire_date
+        </if>
+        <if test="_parameter.fence_name != null">
+            ,fence_name
+        </if>
+        <if test="_parameter.fence_no != null">
+            ,fence_no
+        </if>
+        ) VALUES (
+        #{_parameter.fence_type}, #{_parameter.create_by}, #{_parameter.status},
+        #{_parameter.area_id},#{_parameter.org_id},#{_parameter.start_time},
+        <if test="_parameter.create_date != null">
+            ,#{_parameter.create_date}
+        </if>
+        <if test="_parameter.expire_date != null">
+            ,#{_parameter.expire_date}
+        </if>
+        <if test="_parameter.fence_name != null">
+            ,#{_parameter.fence_name}
+        </if>
+        <if test="_parameter.fence_no != null">
+            ,#{_parameter.fence_no}
+        </if>
+        )
+    </insert>
+
+    <!--查询围栏详情信息-->
+    <select id="findFencesInfoList" resultMap="fenceRefFenceDetailResultMap">
+        SELECT * from t_fence_def f
+        LEFT JOIN t_fence_detail fd ON f.id = fd.fence_id
+        WHERE f.create_by = 1
+        <if test="orgIds != null">
+            OR f.org_id IN
+            <foreach collection="orgIds" item="item" open="(" separator="," close=")">
+                f.orgid = #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!--删除围栏详情-->
+    <delete id="removeFenceDetail" parameterType="java.lang.Integer">
+        DELETE FROM t_fence_detail WHERE id IN
+        <foreach collection="_parameter" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--根据围栏id查询围栏详情-->
+    <select id="findDetailsByid" resultType="com.entities.TFenceDetail" parameterType="java.lang.Integer">
+        SELECT * from t_fence_detail f WHERE f.fence_id = #_{parameter}
+    </select>
+
+    <!--保存围栏详情信息-->
+    <insert id="saveDetails" parameterType="com.entities.TFenceDetail">
+        INSERT INTO t_fence_detail (
+            fence_id, create_date, lng, lat,
+            <if test="_parameter.order != null">
+                order,
+            </if>
+            <if test="_parameter.update_date != null">
+                update_date,
+            </if>
+        ) VALUES
+        <foreach collection="_parameter" item="item" open="(" separator="),(" close=")">
+            #{_parameter.fence_id}, #{_parameter.create_date}, #{_parameter.lng}, #{_parameter.lat},
+            <if test="_parameter.order != null">
+                #{_parameter.order},
+            </if>
+            <if test="_parameter.update_date != null">
+                #{_parameter.update_date},
+            </if>
+        </foreach>
+    </insert>
+
+    <!--修改围栏详情信息-->
+    <update id="modefyDetail" parameterType="com.entities.TFenceDetail">
+        UPDATE t_fence_detail f
+        <set>
+            <if test="_parameter.fenceId != null">
+                f.fence_id = #{_parameter.fenceId},
+            </if>
+            <if test="_parameter.lng != null">
+                f.lng = #{_parameter.lng},
+            </if>
+            <if test="_parameter.lat != null">
+                f.lat = #{_parameter.lat},
+            </if>
+            <if test="_parameter.order != null">
+                f.order = #{_parameter.order},
+            </if>
+            <if test="_parameter.updateDate != null">
+                f.update_date = #{_parameter.updateDate},
+            </if>
+        </set>
+       WHERE id = #{_parameter.id}
+    </update>
+
+    <!--查询我的围栏-->
+    <select id="findFcnceRefFenceDetailByUserId" resultMap="FcnceRefFenceDetailResultMap">
+        SELECT * from t_fence_def f
+        LEFT JOIN t_fence_detail fd ON f.id = fd.fence_id
+        LEFT JOIN t_org_info o ON o.id = f.org_id
+        WHERE (f.create_by = #{userId}
+        <if test="orgIds != null">
+            OR f.org_id IN
+            <foreach collection="orgIds" item="item" open="(" separator="," close=")">
+                f.orgid = #{item}
+            </foreach>
+        </if>)
+        <if test="keyWord != null and keyWord != ''">
+            AND f.fence_name LIKE CONCAT('%',#{keyWord},'%')
+            OR f.fence_no LIKE CONCAT('%',#{keyWord},'%')
+        </if>
+    </select>
+
+    <!--查询我的围栏-->
+    <select id="findfenRefDetailsByid" resultMap="FcnceRefFenceDetailResultMap">
+        SELECT * from t_fence_def f
+        LEFT JOIN t_fence_detail fd ON f.id = fd.fence_id
+        WHERE f.id = #{_parameter}
+    </select>
+
+
+
+
+    <select id="findFenceList" resultMap="YLFcnceRefFenceDetailResultMap" parameterType="java.util.HashMap">
+        SELECT
+        fd.id,fd.fence_name ,fdt.lat,fdt.lng
+        FROM
+        t_fence_def  fd
+        LEFT JOIN t_fence_detail fdt
+        ON fd.id=fdt.fence_id
+        <where>
+            <if test="orgList !=null and orgList.size>0">
+                AND  (fd.org_id in
+                <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+                )
+            </if>
+            <if test="operator !=null and operator!=''">
+                AND fd.create_by=#{operator}
+            </if>
+        </where>
+    </select>
+
+
+	<!-- 根据犬只id查找电子围栏 -->
+	<select id="findFenceByDogId" resultMap="YLFcnceRefFenceDetailResultMap">
+	       SELECT d.id,detail.lng,detail.lat 
+	       		FROM t_dog_info d LEFT JOIN t_fence_detail detail 
+	       			on d.fence_id =detail.fence_id
+		WHERE d.id=#{id}
+    </select>
+
+</mapper>

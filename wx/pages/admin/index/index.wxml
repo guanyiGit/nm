@@ -1,0 +1,139 @@
+<view class="container">
+  <!-- <view class='scanning'>
+    <image src='{{ icon.scanning }}' bindtap='scanCode'></image>
+  </view> -->
+  <!-- 首页头部 -->
+  <view class='header'>
+    <view class='setUp' bindtap='toMessagePage'>
+      <image src='{{ icon.messageIcon }}'></image>
+    </view>
+    <view class='userIcon' bindtap='toUserInfoPage'>
+      <image src='{{ userIcon }}'></image>
+    </view>
+    <view class='name'>
+      <text>{{ name }}</text>
+    </view>
+    <view class='roleName'>
+      <text>{{ roleName }}</text>
+    </view>
+  </view>
+  <view class='body'>
+    <!-- 犬只犬主 -->
+    <view class='dogAndOwner body-after'>
+      <view class='title'>
+        <image src='{{ icon.dogAndOwner }}'></image>
+        <text>犬只犬主</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/ownerInfo/ownerInfo'>
+          <image src='{{ icon.ownerIcon }}'></image>
+          <text>犬主管理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/dogInfo/dogInfo'>
+          <image src='{{ icon.dogIcon }}'></image>
+          <text>犬只管理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/strayDog/strayDog'>
+          <image src='{{ icon.strayDogIcon }}'></image>
+          <text>流浪犬管理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/dogStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <text>统计信息</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 防疫管理 -->
+    <view class='epidemicManager body-after'>
+      <view class='title'>
+        <image src='{{ icon.eqidemicManager }}'></image>
+        <text>防疫管理</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/antiepidemic/antiepidemic'>
+          <image src='{{ icon.epidemicIcon }}'></image>
+          <text>犬只防疫</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/manure/manure'>
+          <image src='{{ icon.manureIcon }}'></image>
+          <text>犬粪处理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/corpse/corpse'>
+          <image src='{{ icon.corpseIcon }}'></image>
+          <text>犬尸处理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/antigen/antigen' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.antigenIcon }}'></image>
+          <text>犬粪抗原检测</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/anatomy/anatomy' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.anatomyIcon }}'></image>
+          <text>犬只解剖</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/cattleandsheepAntigen/cattleandsheepAntigen' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.CattleandsheepAntigen }}'></image>
+          <text>牛羊抗体检测</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/visceraOfCattleAndSheep/visceraOfCattleAndSheep' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.VisceraOfCattleAndSheep }}'></image>
+          <text>牛羊脏器处理</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/epidemicStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <text>统计信息</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 物资管理 -->
+    <view class='materialManager body-after'>
+      <view class='title'>
+        <image src='{{ icon.materialManager }}'></image>
+        <text>物资管理</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/material/material'>
+          <image src='{{ icon.materialIcon }}'></image>
+          <text>防护物资</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/deviceDistribution/deviceDistribution'>
+          <image src='{{ icon.deviceIcon }}'></image>
+          <text>犬只项圈</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/materialStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <text>统计信息</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 宣传培训 -->
+    <view class='propaganda body-after'>
+      <view class='title'>
+        <image src='{{ icon.propagandaManager }}'></image>
+        <text>宣传培训</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/publicityActivity/publicityActivity'>
+          <image src='{{ icon.propagandaIcon }}'></image>
+          <text>宣传活动</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/trainActivity/trainActivity'>
+          <image src='{{ icon.trainIcon }}'></image>
+          <text>培训活动</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/pubAndTrainStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <text>统计信息</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>
+<view class='foot'>
+  <text>到底啦</text>
+</view>

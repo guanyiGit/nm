@@ -1,0 +1,114 @@
+Page {
+  background-color: #EEEEEE
+}
+
+.input-placeholder {
+  font-size: 14px;
+}
+
+.container_body image{
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.container_body video{
+  width: 200rpx;
+  height: 200rpx;
+}
+
+
+.container_body text{
+  margin-left: 28rpx;
+  font-size: 16px;
+}
+
+.left {
+ width: 38%;
+}
+
+.right {
+  width: 61%;
+  border: 1rpx solid black;
+  background-color: white;
+  font-size: 16px;
+}
+
+.dog-info {
+  border: 0rpx solid black;
+  background-color: #EEEEEE;
+  color: #999999;
+  display: flex;
+  font-size: 23rpx;
+}
+
+.dog-info view{
+  width: 300rpx;
+}
+
+.right textarea{
+  width: 98%;
+  height: 150rpx;
+}
+
+.item {
+  display: flex;
+  margin-top: 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.manure-image {
+  height: 230rpx;
+}
+
+.dog_pic image{
+  width: 188rpx;
+  height: 188rpx;
+}
+
+.submit_button {
+  display: flex;
+  width: 80%;
+  height: 200rpx;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.submit {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: #3545A6;
+  color: white;
+}
+
+.reset {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: white;
+}
+
+.scan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+picker,input{
+  padding-left: 5rpx;
+}
+.scanIcon image{
+  margin-top: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.methodDes {
+  height: 180rpx;
+}
+
+.description {
+  height: 180rpx;
+}

@@ -1,0 +1,122 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!-- 犬主-->
+      <!-- <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>流浪犬编号：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="no" value='{{ no }}' disabled='true'></input>
+        </view>
+      </view> -->
+      <!--品种-->
+      <view class='item'>
+        <view class='left'>
+          <view class=''>
+            <text>犬种：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindBreedChange' value='{{ breed.breedArray[breed.breedIndex].name }}' range='{{ breed.breedArray }}' range-key='name' name="breed">
+            <view class='picker drop-down'>
+              {{ breed.breedArray[breed.breedIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+     <!--年龄：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <text>犬龄：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="age"  placeholder='岁' placeholder-style='text-align: right;color: #999999;'></input>
+        </view>
+      </view>
+
+      <!--性别：-->
+      <view class='item'>
+        <view class='left'>
+          <view class=''>
+            <text>性别：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindSexChange' value='{{ sex.sexIndex }}' range='{{ sex.sexArray }}' name="sex">
+            <view class='picker drop-down'>
+              {{ sex.sexArray[sex.sexIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!--毛色-->
+      <view class='item'>
+        <view class='left'>
+          <view class=''>
+            <text>毛色 :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="hairColor"></input>
+        </view>
+      </view>
+      <!--体重-->
+      <view class='item'>
+        <view class='left'>
+          <view class=''>
+            <text>体重(公斤) :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="weight"></input>
+        </view>
+      </view>
+
+      <!--处理方式：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>处理方式：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="processMode"></input>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item strayDag-image'>
+        <view class='left'>
+          <view>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+            <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--描述：-->
+      <view class='item description'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

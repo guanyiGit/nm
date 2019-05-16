@@ -1,0 +1,19 @@
+<!-- <active-box></active-box> -->
+<!-- <statistics-box></statistics-box> -->
+<!-- <search-org is-material="{{ components.isMaterial }}" placeholder-text="{{ components.placeholderText }}"  bind:searchMaterial="searchMaterial" bind:orgEvent="orgEvent" bind:dateEvent = "dateEvent"></search-org> -->
+<search-org is-detection="{{ components.isDetection }}" bind:orgEvent="orgEvent" bind:dateEvent = "dateEvent"></search-org>
+<!-- <search-box ></search-box> -->
+<!-- <view class='test'></view> -->
+
+<!-- <zhe-zhao></zhe-zhao> -->
+<!-- 
+<search-org bind:dataEvent="getdata"></search-org>
+ -->
+ <!-- <date-selector></date-selector> -->
+ <!-- <view bindtap='chooseImage'>添加</view>
+  -->
+
+  <dogInfo class='otherview'/>
+
+
+

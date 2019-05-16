@@ -1,0 +1,179 @@
+<!doctype html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">>
+<head  th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A19-犬只更换记录</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+
+
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###">犬只管理></a></li>
+			<li class="fl"><a href="###">犬只档案></a></li>
+			<li class="fl">新增犬只</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+
+	<form id="springAdd" >
+			<div class="pdl0 pdr50">
+				<!---->
+				<!--修改部分-->
+				<div class="ovh ww92">
+					<div class="ovh ww50 mgt10 fl">
+						<div class="fl w70 cor3 h50 lh50 t-r">*防疫药品</div>
+						<div class="mgl90">
+							<select   id="drugs" name = "drugId"  class="ww100 h50 lh50 bore ras4 pdl30 cor9 pc22 ">
+							</select>
+						</div>
+					</div>
+
+					<div class="ovh ww50 mgt10 fl">
+						<div class="fl w90 pdl20 cor3 h50 lh50 t-r">*防疫时间</div>
+						<div class="mgl110">
+							<input  name="antiepidemicDate" id="dts" type="text" class="ww100 h50 lh50 bore ras4 pdl30 pic3">
+						</div>
+					</div>
+				</div>
+
+				<div class="ovh ww92">
+					<div class="ovh ww50 fl mgt10">
+						<div class="fl w70 cor3 h50 lh50 t-r">*防疫周期</div>
+						<div class="mgl90">
+							<select  name="antiepidemicPeriod"  class="ww100 h50 lh50 bore ras4 pdl30 cor9 pc22">
+								<option value="1" select="true">1年</option>
+								<option value="12">2年</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="ovh ww50 fl mgt10">
+						<div class="fl w90 pdl20 cor3 h50 lh50 t-r">*防疫员</div>
+						<div class="mgl110">
+							<select id="selectProtector" name="protector" class="ww100 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="ovh ww92 mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*溯源ID</div>
+					<div class="mgl90">
+						<input  name="traceabilityNum" type="text" class="ww100 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<!--&lt;!&ndash;修改部分END&ndash;&gt;-->
+				<!--&lt;!&ndash;v-model="pro.picUrl" &ndash;&gt;-->
+				<div class="ovh mgt10">
+						<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+						<div class="mgl90 ww87 ">
+							<div class="pdt20 pdb20">
+								<input id="file-1" name="files" type="file" multiple="multiple" class="file" >
+							</div>
+						</div>
+				</div>
+
+				<div class="ovh mgt10 ">
+					<div class="fl w70 cor3 h50 lh50 t-r">*video</div>
+					<div class="mgl90 ww87">
+							<div class="file-loading" style="height: 100px">
+								<input name="videoUrl" id="file-2" type="file" multiple class="file" >
+							</div>
+					</div>
+				</div>
+
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">描述</div>
+					<div class="mgl90">
+						<textarea name="description" class="ww92 h70 bore pdl30 pdt10 pdb10 pdr30" placeholder="10年"></textarea>
+					</div>
+				</div>
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input onclick="addSpringPro()" class="a6 dinb bort hov8" type="button" value="保存">
+						<input onclick="uploadPic()" class="a6 dinb bort hov8" type="button" value="上传图片">
+						<a href="###" class="a6 dinb hov8">取消</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+</body>
+<script type="text/javascript">
+    function uploadPic() {
+        $("#file-1").fileinput("upload");
+    }
+
+    $("#file-1").fileinput({
+        enctype: 'multipart/form-data',
+        theme: 'fa',
+        uploadUrl: '/biz/antiepidemic/uploadPic', // you must set a valid URL here else you will get an error
+        // allowedFileExtensions: ['jpg', 'png', 'gif','video','flash'],
+        overwriteInitial: false,
+        maxFileSize: 0,
+        // maxFilesNum: 10,
+        // allowedFileTypes:['jpg', 'png', 'gif','video','flash'],
+        // previewFileType:['video', 'flash'],
+        showUpload:true,
+        showCancel:true,
+        uploadAsync:false,
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+        // maxFileCount:4,
+        // previewFileIcon:"<iclass='glyphicon glyphicon-king'></i>",
+        // uploadAsync:false,
+    });
+
+    $("#file-2").fileinput({
+        enctype: 'multipart/form-data',
+        theme: 'fa',
+        uploadUrl: '/biz/antiepidemic/uploadVio', // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        allowedFileTypes: ['video', 'flash'],
+        previewFileType:['video', 'flash'],
+        showUpload:true,
+        showCancel:true,
+        uploadAsync:false,
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+
+
+</script>
+</html>
+<script src="/epmanagement/SpringDefendInfoAdd.js"></script>

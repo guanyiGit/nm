@@ -1,0 +1,63 @@
+Page{
+  background-color: #eee;
+}
+
+.page text {
+  margin-left: 28rpx;
+  font-size: 16px;
+}
+
+.item {
+  display: flex;
+  margin-top: 60rpx;
+  height: 70rpx;
+}
+
+.remarks {
+ margin-top: 20rpx;
+ color: red;
+ font-size: 15px;
+}
+
+.scan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  width: 200rpx;
+  line-height: 70rpx;
+}
+
+.right {
+  width: 530rpx;
+  border: 1rpx solid black;
+  background-color: white;
+  font-size: 16px;
+  line-height: 70rpx;
+}
+
+.scanIcon image {
+  margin-top: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100%;
+}
+
+.button {
+  width: 40%;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background-color: #3545A6;
+  color: white;
+  font-size: 14px;
+}

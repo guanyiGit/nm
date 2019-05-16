@@ -1,0 +1,54 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<view wx:if="{{ ishasData }}">
+<!-- <search placeholder-text="{{ component.placeholderText }}" is-show="{{ isShow }}" bind:searchEvent="searchStrayDog"></search> -->
+  <view class='container_scan'>
+    <view class='search_input'>
+      <image src='{{ searchIcon }}' bindtap="searchStrayDog"></image>
+      <view class='search-date'>
+        <picker mode="date" bindchange='bindStartDateChange'>
+          <view class='picker'>
+            {{ startDate }}
+          </view>
+        </picker> 至
+        <picker mode="date" bindchange='bindEndDateChange'>
+          <view class='picker'>
+            {{ endDate }}
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ strayDogArray }}" wx:key="index" wx:if="{{ index<maxLength }}">
+        <view class='container_item drop-right' bindtap='toStrayDogPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.smallUrl }}'></image>
+          </view>
+          <view class='right'>
+            <!--bug-->
+            <view class='right_body'>
+              <view>{{ item.breed||'' }}</view>
+              <view>{{ item.age||'未知' }}{{ item.age?'岁':'' }}</view>
+              <view>{{ item.sex ==0?"公":"母" }}</view>
+              <view>{{ item.hairColor||'未知' }}</view>
+            </view>
+            <view class="right_headle">
+              <view class='texthide'><text class='gray'>处理方式：</text>{{ item.processMode||'未知' }}</view>
+            </view>
+            <view class='right_foot'>
+              <view><text class='gray'>处理时间：</text>{{ item.dealTime||'未知' }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='add_dog' bindtap='toStrayDogAddPage'></view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>下拉查看更多</text>
+</view>

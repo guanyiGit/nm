@@ -1,0 +1,47 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>发放数量：</text>
+        </view>
+        <view class='right'>
+            <text>{{ deviceDistribution.amount }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>发放单位：</text>
+        </view>
+        <view class='right'>
+            <text>{{ deviceDistribution.distributeOrgName }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>发放时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ deviceDistribution.distributeDate }}</text>
+        </view>
+    </view>
+
+    <view class='item' wx:if="{{ deviceDistribution.ishasReceiveOrg }}">
+        <view class='left'>
+            <text>接收单位：</text>
+        </view>
+        <view class='right'>
+            <text>{{ deviceDistribution.receiveOrgName }}</text>
+        </view>
+    </view>
+
+    <view class='item' >
+        <view class='left'>
+            <text>接收人：</text>
+        </view>
+        <view class='right'>
+            <text>{{ deviceDistribution.ishasReceiveOrg?deviceDistribution.receiverName:deviceDistribution.receivorName }}</text>
+        </view>
+    </view>
+</view>
