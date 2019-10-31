@@ -1,0 +1,28 @@
+.video-group {
+  display: flex;
+  white-space: nowrap;
+}
+.video-group video {
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+
+.video-group image {
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+
+.videoItem {
+  display: inline-block;
+}
+
+.uploadVideo {
+  display: inline-block;
+}
+

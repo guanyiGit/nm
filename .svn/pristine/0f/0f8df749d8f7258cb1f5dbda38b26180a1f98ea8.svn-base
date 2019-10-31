@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soholy.cb.dao.otherDb.WifiMapper" >
+  <resultMap id="BaseResultMap" type="com.soholy.cb.entity.otherDb.po.Wifi" >
+    <id column="pri_id" property="priId" jdbcType="VARCHAR" />
+    <result column="bssid1" property="bssid1" jdbcType="VARCHAR" />
+    <result column="rssi1" property="rssi1" jdbcType="REAL" />
+    <result column="bssid2" property="bssid2" jdbcType="VARCHAR" />
+    <result column="rssi2" property="rssi2" jdbcType="REAL" />
+    <result column="bssid3" property="bssid3" jdbcType="VARCHAR" />
+    <result column="rssi3" property="rssi3" jdbcType="REAL" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="radius" property="radius" jdbcType="REAL" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pri_id, bssid1, rssi1, bssid2, rssi2, bssid3, rssi3, longitude, latitude, radius, 
+    address, remark, update_time, creation_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.soholy.cb.entity.otherDb.po.WifiExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wifi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wifi
+    where pri_id = #{priId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wifi
+    where pri_id = #{priId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.soholy.cb.entity.otherDb.po.WifiExample" >
+    delete from wifi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.soholy.cb.entity.otherDb.po.Wifi" >
+    insert into wifi (pri_id, bssid1, rssi1, 
+      bssid2, rssi2, bssid3, 
+      rssi3, longitude, latitude, 
+      radius, address, remark, 
+      update_time, creation_time)
+    values (#{priId,jdbcType=VARCHAR}, #{bssid1,jdbcType=VARCHAR}, #{rssi1,jdbcType=REAL}, 
+      #{bssid2,jdbcType=VARCHAR}, #{rssi2,jdbcType=REAL}, #{bssid3,jdbcType=VARCHAR}, 
+      #{rssi3,jdbcType=REAL}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{radius,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{creationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.soholy.cb.entity.otherDb.po.Wifi" >
+    insert into wifi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priId != null" >
+        pri_id,
+      </if>
+      <if test="bssid1 != null" >
+        bssid1,
+      </if>
+      <if test="rssi1 != null" >
+        rssi1,
+      </if>
+      <if test="bssid2 != null" >
+        bssid2,
+      </if>
+      <if test="rssi2 != null" >
+        rssi2,
+      </if>
+      <if test="bssid3 != null" >
+        bssid3,
+      </if>
+      <if test="rssi3 != null" >
+        rssi3,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="radius != null" >
+        radius,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priId != null" >
+        #{priId,jdbcType=VARCHAR},
+      </if>
+      <if test="bssid1 != null" >
+        #{bssid1,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi1 != null" >
+        #{rssi1,jdbcType=REAL},
+      </if>
+      <if test="bssid2 != null" >
+        #{bssid2,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi2 != null" >
+        #{rssi2,jdbcType=REAL},
+      </if>
+      <if test="bssid3 != null" >
+        #{bssid3,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi3 != null" >
+        #{rssi3,jdbcType=REAL},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="radius != null" >
+        #{radius,jdbcType=REAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.soholy.cb.entity.otherDb.po.WifiExample" resultType="java.lang.Integer" >
+    select count(*) from wifi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wifi
+    <set >
+      <if test="record.priId != null" >
+        pri_id = #{record.priId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bssid1 != null" >
+        bssid1 = #{record.bssid1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rssi1 != null" >
+        rssi1 = #{record.rssi1,jdbcType=REAL},
+      </if>
+      <if test="record.bssid2 != null" >
+        bssid2 = #{record.bssid2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rssi2 != null" >
+        rssi2 = #{record.rssi2,jdbcType=REAL},
+      </if>
+      <if test="record.bssid3 != null" >
+        bssid3 = #{record.bssid3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rssi3 != null" >
+        rssi3 = #{record.rssi3,jdbcType=REAL},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.radius != null" >
+        radius = #{record.radius,jdbcType=REAL},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creationTime != null" >
+        creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wifi
+    set pri_id = #{record.priId,jdbcType=VARCHAR},
+      bssid1 = #{record.bssid1,jdbcType=VARCHAR},
+      rssi1 = #{record.rssi1,jdbcType=REAL},
+      bssid2 = #{record.bssid2,jdbcType=VARCHAR},
+      rssi2 = #{record.rssi2,jdbcType=REAL},
+      bssid3 = #{record.bssid3,jdbcType=VARCHAR},
+      rssi3 = #{record.rssi3,jdbcType=REAL},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      radius = #{record.radius,jdbcType=REAL},
+      address = #{record.address,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      creation_time = #{record.creationTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.soholy.cb.entity.otherDb.po.Wifi" >
+    update wifi
+    <set >
+      <if test="bssid1 != null" >
+        bssid1 = #{bssid1,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi1 != null" >
+        rssi1 = #{rssi1,jdbcType=REAL},
+      </if>
+      <if test="bssid2 != null" >
+        bssid2 = #{bssid2,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi2 != null" >
+        rssi2 = #{rssi2,jdbcType=REAL},
+      </if>
+      <if test="bssid3 != null" >
+        bssid3 = #{bssid3,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi3 != null" >
+        rssi3 = #{rssi3,jdbcType=REAL},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="radius != null" >
+        radius = #{radius,jdbcType=REAL},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pri_id = #{priId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.soholy.cb.entity.otherDb.po.Wifi" >
+    update wifi
+    set bssid1 = #{bssid1,jdbcType=VARCHAR},
+      rssi1 = #{rssi1,jdbcType=REAL},
+      bssid2 = #{bssid2,jdbcType=VARCHAR},
+      rssi2 = #{rssi2,jdbcType=REAL},
+      bssid3 = #{bssid3,jdbcType=VARCHAR},
+      rssi3 = #{rssi3,jdbcType=REAL},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      radius = #{radius,jdbcType=REAL},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP}
+    where pri_id = #{priId,jdbcType=VARCHAR}
+  </update>
+</mapper>

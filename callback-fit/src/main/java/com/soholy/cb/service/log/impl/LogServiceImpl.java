@@ -23,6 +23,7 @@ import java.util.List;
 
 @Service
 public class LogServiceImpl implements LogService {
+
     @Autowired
     private IotPropertiesConfig conf;
 
@@ -32,26 +33,31 @@ public class LogServiceImpl implements LogService {
     public void saveLog(CodecBean codecBean, byte[] inputBinary, String fullStr) {
         if (StringUtils.isNotBlank(fullStr))
             fullStr = fullStr.replaceAll("\"", "'");
+
+        String codecStr = null;
+        T_iot_data data = new T_iot_data();
+        int type = 0;
         if (codecBean != null) {
-            int type = 0;
-            T_iot_data data = new T_iot_data();
             DecodeRsp rsp = codecBean.getDecodeRsp();
             UploadBean up = codecBean.getUploadBean();
             if (up != null) {
-                data.setCodec(JSON.toJSONString(up, new SerializerFeature[]{SerializerFeature.UseSingleQuotes}));
+                codecStr = JSON.toJSONString(up, new SerializerFeature[]{SerializerFeature.UseSingleQuotes});
                 type = 1;
             } else if (rsp != null) {
-                data.setCodec(JSON.toJSONString(rsp, new SerializerFeature[]{SerializerFeature.UseSingleQuotes}));
+                codecStr = JSON.toJSONString(rsp, new SerializerFeature[]{SerializerFeature.UseSingleQuotes});
                 type = 2;
             } else if (inputBinary != null) {
                 type = 3;
             }
-            data.setSource(ByteUtils.byte2ToIntegerStr(inputBinary, 0, inputBinary.length).replaceAll("(.{2})", "0x$1 "));
-            data.setFull(fullStr);
-            data.setLocal_Time(LocalDateTime.now());
-            data.setType(Integer.valueOf(type));
-            this.iotDataDb_dev.saves(Arrays.asList(new T_iot_data[]{data}));
         }
+
+        data.setSource(ByteUtils.byte2ToIntegerStr(inputBinary, 0, inputBinary.length).replaceAll("(.{2})", "0x$1 "));
+        data.setFull(fullStr);
+        data.setCodec(codecStr);
+        data.setLocal_Time(LocalDateTime.now());
+        data.setType(type);
+        this.iotDataDb_dev.saves(Arrays.asList(new T_iot_data[]{data}));
+
     }
 
     public List<T_iot_data> findLog(String imei, int pageNo, int pageSize) {

@@ -13,7 +13,9 @@
         <module name="eureka03" />
         <module name="eureka02" />
         <module name="eureka01" />
+        <module name="callback-lwm2m" />
         <module name="antiepidemicplatform" />
+        <module name="convert-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +23,8 @@
       <module name="api" target="1.8" />
       <module name="callback" target="1.8" />
       <module name="callback-fit" target="1.8" />
+      <module name="callback-lwm2m" target="1.8" />
+      <module name="convert-service" target="1.8" />
       <module name="eureka01" target="1.8" />
       <module name="eureka02" target="1.8" />
       <module name="eureka03" target="1.8" />

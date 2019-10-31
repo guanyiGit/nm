@@ -1,0 +1,79 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.activityTime }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>地点：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.activityAddress }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>举办单位：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.holdOrgName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>主题：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.activitySubject }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>发放宣传品数量：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.amount }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>内容：</text>
+        </view>
+        <view class='right'>
+            <text>{{ activityInfo.activityContent }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ activityInfo.picUrlList }}" wx:key="index">
+               <image src='{{ activityInfo.picUrlList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视屏：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ activityInfo.videoUrlList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>

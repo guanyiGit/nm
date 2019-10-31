@@ -1,0 +1,50 @@
+<view class="container">
+  <view class='body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='items'>
+        <view class='item'>
+          <view class='left'>
+            <!-- <view>旧密码</view> -->
+            <view>{{ LG.get(L,"jiumima") }}</view>
+          </view>
+          <view class='right'>
+            <input name="pwdOld" type='password' focus="{{ focus }}"></input>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='left'>
+            <!-- <view>新密码</view> -->
+            <view>{{ LG.get(L,"xinmima") }}</view>
+          </view>
+          <view class='right'>
+            <input name="pwdNew" bindblur='bindNewPassword' type='password'></input>
+          </view>
+        </view>
+        <view class='item last'>
+          <view class='left'>
+            <!-- <view>确认密码</view> -->
+            <view>{{ LG.get(L,"querenmima") }}</view>
+          </view>
+          <view class='right'>
+            <input name="checkPassword"  type='password'></input>
+          </view>
+        </view>
+        <!-- <view class='item last'>
+          <view class='code'>
+            <view class='left'>验证码</view>
+            <input name="code"></input>
+          </view>
+          <view class='getCode'>
+            <button class='code-button' disabled='{{ countdown.disabled }}' bindtap='getVerificationCode'>{{ countdown.time }} </button>
+          </view>
+        </view> -->
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>{{ LG.get(L,"save") }}</button>
+        <button class='reset' formType="reset">{{ LG.get(L,"cancel") }}</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

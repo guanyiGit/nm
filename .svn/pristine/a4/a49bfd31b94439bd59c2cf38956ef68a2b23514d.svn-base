@@ -1,0 +1,29 @@
+<!--components/searchBox/other/antiepidemicOther.wxml-->
+<view class='container-or'>
+  <!-- <view>
+    <view class='title'>防疫类型</view>
+    <view class='seitem'>
+      <text class='cjeck {{index == typeRange.index ? "checkSex":""}}' bindtap="checkdTypeHandel" wx:for="{{typeRange.array}}" data-index='{{index}}' wx:key="{{index}}">{{item}}</text>
+    </view>
+  </view> -->
+  <view>
+    <view class='title'>录入时间</view>
+    <view class='seitem input'>
+      <picker class='picker-or' mode="date" value="{{selectDate.start}}" fields="month" bindchange="dateChange_start">
+        <view class="picker">
+          {{selectDate.start}}
+        </view>
+      </picker>
+      <text class='input-line'>—</text>
+      <picker class='picker-or' mode="date" value="{{selectDate.end}}" fields="month" bindchange="dateChange_end">
+        <view class="picker">
+          {{selectDate.end}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='btns'>
+    <view class='reset' bindtap='reset'>重 置</view>
+    <view class='confirm' bindtap='confirm'>确 定</view>
+  </view>
+</view>

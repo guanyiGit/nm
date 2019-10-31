@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A19-犬只更换记录</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<link rel="stylesheet" href="css/RL.css">
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="/biz/strayDog/StrayDogFile" th:text="#{dogManage}">犬只管理></a></li>
+			<li class="fl"><a href="/biz/strayDog/StrayDogFile"th:text="#{dogManage.handleStrayDog}+'>'">流浪犬处理></a></li>
+			<li class="fl"th:text="#{dogManage.add}">新增流浪犬</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75">
+		<form action="" id="myFrom3">
+			<div class="pdl0 pdr50">
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属乡镇</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div>-->
+				
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*流浪犬编号</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30" name="no" id="no" onblur="checkNo(this);" readonly >
+					</div>
+				</div>-->
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.dogBreed2}">*犬种</div>
+					<div class="mgl90">
+						<select class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22" name="breedId" id="selectBreed">
+						</select>
+					</div>
+				</div>
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.dogAge}">犬龄</div>
+					<div class="mgl90">
+							<input type="text" class="ww92 h50 lh50 bore ras4 pdl30" name="age" onblur="checkAge(this);" id="age">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.sex2}">*性别</div>
+					<div class="mgl90">
+						<select class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22" name="sex">
+							<option value="0"  th:text="#{dogManage.male}">公</option>
+							<option value="1"  th:text="#{dogManage.female}">母</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.dogColor}">毛色</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30" name="hairColor" id="hairColor">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{dogManage.dogWeight}">体重</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30"  name="weight" onblur="checkWeight(this);" id="weight">
+					</div>
+				</div>
+				
+				<!--<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*处理时间</div>
+					<div class="mgl90">
+						<input id="dealTime" type="text" class="ww92 h50 lh50 bore ras4 pdl30 " name="dealTime" readonly>
+					</div>
+				</div>-->
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{dogManage.handleWay2}">*处理方式</div>
+					<div class="mgl90">
+						<input type="text" class="ww92 h50 lh50 bore ras4 pdl30"  name="processMode" id="processMode">
+					</div>
+				</div>
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.dogPhoto2}">*照片</div>
+					<div class="mgl90 ww87 ">
+						<div class="pdt20 pdb20">
+							<input id="file-1" name="files" type="file" multiple="multiple" class="file" >
+						</div>
+					</div>
+				</div>
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.description}">描述</div>
+					<div class="mgl90">
+						<textarea class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" name="description" id="description"></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button" th:value="#{dogManage.sure}" id="ajaxBtn">
+						<a href="/biz/strayDog/StrayDogFile" class="a6 dinb hov8" th:text="#{dogManage.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script src="/dogmanager/YLUtils.js"></script>
+<script src="/dogmanager/addStrayDog.js"></script>
+</body>
+</html>
+<script th:inline="javascript">
+    var falseAge=[[#{dogManage.falseAge}]];
+    var falseWeight=[[#{dogManage.falseWeight}]];
+    var falseHandleWay=[[#{dogManage.falseHandleWay}]];
+    var pleaseSelectPhoto=[[#{dogManage.pleaseSelectPhoto}]];
+    var operationSuccess=[[#{operationSuccess}]];
+    var operationFailure=[[#{operationFailure}]];
+    var sure5=[[#{dogManage.sure}]];
+    var failUpPhoto=[[#{dogManage.failUpPhoto}]];
+    var yesT=[[#{deviceData.yesT}]]
+</script>

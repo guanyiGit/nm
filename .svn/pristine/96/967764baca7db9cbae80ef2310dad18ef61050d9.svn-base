@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+      <style>
+        html, body, #container {
+            height: 100%;
+            width: 100%;
+        }
+		
+		.test{
+			position: fixed;
+			width: auto;
+		    top: 1rem;
+		    right: 1rem;	
+			 padding: .75rem 1.25rem;
+		    margin-bottom: 1rem;
+		    border-radius: .25rem;
+		    
+		    background-color: white;
+		    
+		    min-width: 22rem;
+		    border-width: 1px;
+            font-size: 15px;
+		    box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+		}
+		.return{
+			position: fixed;
+			 top: 1rem;
+		    left: 1rem;
+		}
+		
+		
+		
+        .custom-input-card{
+            width: 18rem;
+        }
+
+        .custom-input-card .btn:last-child{
+            margin-left: 1rem;
+        }
+
+        .content-window-card{
+            position: relative;
+            width: 23rem;
+            padding: 0.75rem 0 0 1.25rem;
+            box-shadow: none;
+            bottom: 0;
+            left: 0;
+        }
+
+        .content-window-card p{
+            height: 2rem;
+        }
+    </style>
+    <title>折线的绘制和编辑</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://webapi.amap.com/maps?v=1.4.10&key=97580a2aac84a3c383abdf17352c24ac&plugin=AMap.PolyEditor"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/plugins/layer/layer.js"></script>
+	<script src="/devicemanagement/path/path_Detail.js"></script>
+	<!-- <script src="/devicemanagement/path/test.js"></script> -->
+</head>
+<body>
+<div id="container"></div>
+<div class="input-card custom-input-card">
+   <!--  <div class="info">
+        <input type="button" class="btn" value="打开信息窗体" onClick="openInfo()"/>
+        <input type="button" class="btn" value="关闭信息窗体" onClick="infoWindow.close()"/>
+    </div> -->
+    <div class="return">
+        <a onclick="javascript:history.go(-1)"><img src="/images/return.png"></a>
+    </div>
+    
+    <div class="test">
+        <!--<input type="button" class="btn" value="打开信息窗体" onClick="openInfo()"/>
+        <input type="button" class="btn" value="关闭信息窗体" onClick="infoWindow.close()"/>-->
+         <div>
+            <span th:text="#{antiepidemicManage.dogName}">犬只:</span>
+            <span id="dog"></span>
+        </div>
+        <div>
+            <span th:text="#{antiepidemicManage.ownerName}">犬主:</span>
+            <span id="owner"></span>
+        </div>
+        <div>
+      	  <span th:text="#{deviceData.dis}">活动距离:</span>
+         <span id="dis"></span>
+        <!--  <span>
+            <button type="button" onclick="history.go(-1);return false;" style="float: right">返回</button>
+         </span> -->
+        </div>
+       	<div>
+            <span th:text="#{deviceData.actDate}">活动日期:</span>
+            <span id="detailDate"></span>
+        </div>
+    </div> 
+</div>
+</body>
+</html>
+<script th:inline="javascript">
+    var record = [[${record}]];
+    var fence = [[${fence}]];
+    var detaiDate=[[${selectedDate}]];
+    var  ownerNameAndDogName =[[${ownerNameAndDogName}]];
+    var failMap = [[#{deviceData.failMap}]];
+    var failPath = [[#{deviceData.failPath}]];
+    var failFence = [[#{deviceData.failFence}]]
+</script>

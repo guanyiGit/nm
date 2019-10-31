@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/devicemanagement/path/path_List.js"></script>
+<!--wrap-->
+<div class="wrap">
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+	<div id="innerdiv" style="position:absolute;">
+		<img id="bigimg" style="border:5px solid #fff;" src="" />
+	</div>
+</div>
+<!--内容栏-->
+<div class="section2" shiro:hasPermission="/biz/path/toPath_List">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###"th:text="#{deviceData}">设备数据></a></li>
+			<li class="fl"th:text="#{deviceData.path}">活动轨迹</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	<div class="mySearch">
+		<div>
+			<lable ><span th:text="#{deviceData.searchKey}"></span>
+				<input type="text" id="searchKey" th:placeholder="#{deviceData.searchKeyVal}" >
+			</lable>
+		</div>
+		<div class="dateMy">
+			<lable><span th:text="#{deviceData.date}"></span>
+				<input type="text" id="selectedDate">
+			</lable>
+		</div>
+			<button type="button" onclick="reLoad();" th:text="#{deviceData.get}">查询</button>
+	</div>
+	<style type="text/css">
+		.mySearch{
+			height: 50px;
+			line-height: 50px;
+			display: flex;
+			align-items: center;
+			padding-top: 20px;
+		}
+		.mySearch button{
+		width: 87px;
+			display: inline-block;
+			vertical-align: middle;
+			height: 38px;
+			line-height: 38px;
+			padding: 0 18px;
+			background-color: #006cb5;
+			color: #fff;
+			white-space: nowrap;
+			text-align: center;
+			font-size: 15px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-left: 10px;
+		}
+		.dateMy{
+			margin-left: 50px;
+		}
+		.mySearch input{
+			height: 37px;
+			line-height: 37px;
+			border-radius: 5px ;
+			padding-left: 10px;
+			border: solid 1px  rgb(149,184,231);
+			width: 225px;
+		}
+	</style>
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<div class="ovh">
+			<!-- <ul class="ul04 fl">
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="/biz/drug/addDrug">
+					<a href="/biz/drug/antiepidemic_Drug_Add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt="">新增</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt="">导入</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+				</li>
+				<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+					<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+				</li>
+			</ul> -->
+			<!-- <div class="fr">
+				<div class="db ovh" id="enterKey">
+					<input id="searchKey" type="text" class="db input1 w250 h40 lh40 pdl15 fl" placeholder="防疫药品名称">
+					<input  type="text" class="db fl pc5 hov8" value="" onclick="reLoad();">
+				</div>
+			</div> -->
+		</div>
+		<table id="exampleTable" data-mobile-responsive="true">
+		</table>
+
+	</div>
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+         var s_check_h = 'hidden'; 
+    </script>
+</div>
+ <div >
+    <script type="text/javascript" shiro:hasPermission="/biz/path/getDogPath">
+    s_check_h = '';
+    </script>
+</div>
+</body>
+</html>
+<script th:inline="javascript">
+    var photo5 = [[#{antiepidemicManage.photo}]];
+    var elecrail5 = [[#{dogManage.elecrail2}]];
+    var dogBreed5 = [[#{dogManage.dogBreed}]];
+    var sex5 = [[#{dogManage.sex}]];
+    var male5 = [[#{dogManage.male}]];
+    var female5 = [[#{dogManage.female}]];
+    var dogAge5 = [[#{dogManage.dogAge}]];
+    var traceID5 = [[#{antiepidemicManage.traceID}]];
+    var dogName5 = [[#{antiepidemicManage.dogName}]];
+    var ownerName5 = [[#{antiepidemicManage.ownerName}]];
+    var phone5 = [[#{antiepidemicManage.phone}]];
+    var town5 = [[#{antiepidemicManage.town}]];
+    var ID5 = [[#{dogManage.ID}]];
+    var operation5 = [[#{dogManage.operation}]];
+    var getPath = [[#{deviceData.getPath}]];
+
+</script>

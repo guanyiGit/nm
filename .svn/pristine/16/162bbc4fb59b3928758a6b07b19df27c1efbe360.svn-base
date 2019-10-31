@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-action-sheet": "../../../../dist/action-sheet/index",
+    "i-button": "../../../../dist/button/index",
+    "i-cell-group": "../../../../dist/cell-group/index",
+    "i-cell": "../../../../dist/cell/index"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "语言"
+}

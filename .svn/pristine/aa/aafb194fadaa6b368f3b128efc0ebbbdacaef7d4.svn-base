@@ -1,0 +1,109 @@
+Page {
+  background-color: #eee;
+}
+
+.input-placeholder {
+  font-size: 14px;
+}
+
+.container_body image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.container_body video {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.container_body text {
+  margin-left: 28rpx;
+  font-size: 15px;
+}
+
+.left {
+  width: 30%;
+}
+
+.texthide2 {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.right {
+  width: 68%;
+  border: 1rpx solid black;
+  background-color: white;
+  font-size: 16px;
+}
+
+.right textarea {
+  width: 100%;
+  height: 100%;
+}
+
+.dog-info {
+  border: 0rpx solid black;
+  background-color: #eee;
+  color: #999;
+  display: flex;
+}
+
+.dog-info view {
+  width: 50%;
+}
+
+.item {
+  display: flex;
+  margin-top: 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.antiepidemic-image {
+  height: 230rpx;
+}
+
+.scan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scanIcon image {
+  margin-top: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.dog_pic image {
+  width: 188rpx;
+  height: 188rpx;
+}
+
+.submit_button {
+  display: flex;
+  width: 80%;
+  height: 200rpx;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.submit {
+  width: 236rpx;
+  height: 60rpx;
+  font-size: 14px;
+  background-color: #3545a6;
+  color: white;
+}
+
+.reset {
+  width: 236rpx;
+  height: 60rpx;
+  font-size: 14px;
+  background-color: white;
+}
+
+.description {
+  height: 170rpx;
+}

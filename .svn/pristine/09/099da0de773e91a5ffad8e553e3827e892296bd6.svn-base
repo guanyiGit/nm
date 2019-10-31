@@ -1,0 +1,128 @@
+<head th:fragment="header">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link href="/css/font-awesome.css"  rel="stylesheet">
+	<link href="/css/plugins/bootstrap-table/bootstrap-table.min.css"  rel="stylesheet">
+	<link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
+	<link href="/css/plugins/jqTreeGrid/jquery.treegrid.css" rel="stylesheet">
+	<!--summernote css -->
+	<link href="/css/plugins/summernote/summernote-0.8.8.css"
+		  rel="stylesheet">
+	<link href="/css/animate.css" rel="stylesheet">
+	<link href="/css/plugins/chosen/chosen.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/css/common.css"/>
+	<link rel="stylesheet" href="/css/css.css">
+	<link rel="stylesheet" href="/css/RL.css">
+
+
+	<!--bootstrap-fileinput 图片上传插件-->
+	<link href="/css/bootstrap.min.css"  rel="stylesheet"/>
+
+	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">-->
+	<link href="/js/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+	<link href="/js/bootstrap-fileinput/themes/explorer-fa/theme.css" media="all" rel="stylesheet" type="text/css"/>
+
+	<!--引入bootstrap datepicker-->
+	<!-- <link rel="stylesheet" href="/js/plugins/datepicker/bootstrap-datepicker.min.css"> -->
+	<!--日历控件 laydate.css-->
+
+	<link href="/js/layDate-v5.0.9/laydate/theme/default/laydate.css" media="all" rel="stylesheet" type="text/css"/>
+
+	<!--引入easy.css 组件-->
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/icon.css">
+	<link rel="stylesheet" type="text/css" href="/js/easyui/css/demo.css">
+
+	<link href="/css/layui.css" rel="stylesheet">
+	<!--自定义下拉框样式-->
+	<style type="text/css">
+		.tree-title {
+			font-size:14px;
+		}
+		.textbox .textbox-text{
+			font-size: 14px;
+		}
+		.myselect-input{
+			height: 27px;
+			width: 150px;
+		}
+	</style>
+</head>
+
+
+<div th:fragment="footer" >
+	<script src="/js/jquery.min.js"></script>
+	<!--<script src="/js/jquery-1.11.3.min.js"></script>-->
+	<script src="/js/bootstrap.min.js"></script>
+
+	<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+	<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+	<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+	<script src="/js/plugins/validate/messages_zh.min.js"></script>
+	<script src="/js/plugins/jsTree/jstree.min.js"></script>
+	<script src="/js/plugins/jqTreeGrid/jquery.treegrid.min.js"></script>
+	<script src="/js/plugins/jqTreeGrid/jquery.treegrid.extension.js"></script>
+	<script src="/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
+	<script src="/js/plugins/chosen/chosen.jquery.js"></script>
+	<script src="/js/plugins/layer/layer.js"></script>
+	<script src="/js/content.js"></script>
+	<!--summernote-->
+	<script src="/js/plugins/summernote/summernote.js"></script>
+	<script src="/js/plugins/summernote/summernote-zh-CN.min.js"></script>
+	<script src="/js/ajax-util.js"></script>
+
+	<script src="/js/js.js"></script>
+	<script src="/js/echarts.min.js"></script>
+
+	<!--&lt;!&ndash;日期格式化工具&ndash;&gt;-->
+	<script src="/utils/DateUtils.js"></script>
+	<!--&lt;!&ndash;StringBuffer.js&ndash;&gt;-->
+	<script src="/utils/stringBuffer.js"></script>
+	<!--&lt;!&ndash;vue.js&ndash;&gt;-->
+	<script src="/js/vue.min.js" ></script>
+
+	<!--bootstrap-fileinput 图片上传插件-->
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+	<script src="/js/bootstrap-fileinput/plugins/sortable.js" type="text/javascript"></script>
+	<script src="/js/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+	<script src="/js/bootstrap-fileinput/locales/fr.js" type="text/javascript"></script>
+	<script src="/js/bootstrap-fileinput/locales/es.js" type="text/javascript"></script>
+	<script src="/js/bootstrap-fileinput/themes/explorer-fa/theme.js" type="text/javascript"></script>
+	<script src="/js/bootstrap-fileinput/themes/fa/theme.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>-->
+
+	<!--日历控件 laydate.js-->
+	<script src="/js/layDate-v5.0.9/laydate/laydate.js"></script>
+
+
+	<!--引入自定义 搜素控件-->
+	<script src="/utils/MySelect.js"></script>
+
+	<!--引入axios.min.js-->
+	<!--<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>-->
+	<script src="/utils/View_Original_Image.js"></script>
+	<!--引入layui.js-->
+	<script src="/js/layui.js"></script>
+
+
+</div>
+
+<div th:fragment="form">
+	<form id="mainForm">
+
+	</form>
+
+</div>

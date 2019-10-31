@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.OuterDao">
+    <select id="getLiveDog" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count(dog.id) amount
+        FROM
+            `t_dog_info` dog
+            LEFT JOIN t_protector pro ON pro.id = dog.protector
+        <where>
+            dog.STATUS = 0
+            <if test="nextMonth != null">AND dog.create_date <![CDATA[ < ]]> #{nextMonth}</if>
+            <if test="userId != null">AND pro.user_id = #{userId}</if>
+        </where>
+
+    </select>
+    
+    <select id="getNewDogNum" parameterType="map" resultType="java.lang.Integer">
+        select count(dog.id) amount from t_dog_info dog
+        LEFT JOIN t_protector pro ON pro.id = dog.protector
+        <where>
+            <if test="searMonth != null">AND dog.create_date like concat(#{searMonth},'%')</if>
+            <if test="userId != null">AND pro.user_id = #{userId}</if>
+        </where>
+    </select>
+
+    <select id="getCancelDogNum" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( dog.id ) amount
+        FROM
+            t_dog_info dog
+        LEFT JOIN t_protector pro ON pro.id = dog.protector
+        <where>
+            dog.STATUS IN ( 2, 3 )
+            <if test="searMonth != null">AND dog.create_date like concat(#{searMonth},'%')</if>
+            <if test="userId != null">AND pro.user_id = #{userId}</if>
+        </where>
+    </select>
+    <select id="getOwnerNewNum" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count(OWNER.id) amount
+        FROM
+            t_dog_owner OWNER
+        <where>
+            <if test="searMonth != null">AND OWNER.create_date like concat(#{searMonth},'%')</if>
+            <if test="userId != null">AND OWNER.operator_id = #{userId}</if>
+        </where>
+    </select>
+
+    <select id="getAntiedemicTimes" parameterType="map" resultType="java.lang.Integer">
+        select count(*) amount from antiepidemic
+        LEFT JOIN t_protector pro ON pro.id = antiepidemic.protector
+        <where>
+            <if test="searMonth != null">AND antiepidemic.antiepidemic_date like concat(#{searMonth},'%')</if>
+            <if test="userId != null">AND antiepidemic.protector = #{userId}</if>
+        </where>
+    </select>
+
+    <select id="getDogCorpseNum" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count( corpse.id) amount
+        FROM
+            `t_corpse_disposal` corpse
+        <where>
+            <if test="userId != null">and corpse.operator_id = #{userId}</if>
+            <if test="searMonth != null">AND corpse.deal_time like concat(#{searMonth},'%')</if>
+        </where>
+    </select>
+
+
+    <select id="getManureDealTimes" parameterType="map" resultType="java.lang.Integer">
+        select count(manure.id) amount from t_manure_disposal manure
+        <where>
+            <if test="userId != null">and manure.operator = #{userId}</if>
+            <if test="searMonth != null">AND manure.deal_time like concat(#{searMonth},'%')</if>
+        </where>
+    </select>
+
+    <select id="getStrayDogTimes" parameterType="map" resultType="java.lang.Integer">
+        select count(stray.id) amount from t_stray_dog stray
+        <where>
+            <if test="userId != null">and stray.operator = #{userId}</if>
+            <if test="searMonth != null">AND stray.deal_time like concat(#{searMonth},'%')</if>
+        </where>
+    </select>
+
+    <select id="getNectletTimes" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+            count(neck.id) amount
+        FROM
+            `t_necklet_change` neck
+        <where>
+            <if test="userId != null">and neck.operator = #{userId}</if>
+            <if test="searMonth != null">AND neck.createtime like concat(#{searMonth},'%')</if>
+        </where>
+    </select>
+
+</mapper>

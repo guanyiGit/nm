@@ -1,0 +1,41 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}"  is-show="{{ component.isShow }}"   bind:searchEvent="searchAntiepidemic"></search>
+   <search-box bind:dataEvent="searchAntiepidemicByBox" otherType="3" bind:conditionChanged="conditionChanged"></search-box>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ antiepidemicArray }}" wx:key="index" wx:if="{{ index < maxLength }}"  >
+      <view class='container_item drop-right' bindtap='toantiepidemicInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.bigUrl }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle {{ item.typeClass }}" >
+            <text>{{ item.traceId?item.traceId:'' }}</text>
+          </view>
+          <view class='right_body'>
+            <!-- <view>犬名：{{ item.dogName?item.dogName:'' }}</view> -->
+            <view class='texthide'>{{ LG.get(L,"quanming") }}：{{ item.dogName?item.dogName:'' }}</view>
+            <!-- <view>犬主：{{ item.ownerName?item.ownerName:'' }}</view> -->
+            <view class='texthide'>{{ LG.get(L,"quanzhu") }}：{{ item.ownerName?item.ownerName:'' }}</view>
+          </view>
+          <view class='right_foot'>
+            <!-- <view>防疫时间：{{ item.date?item.date:'' }}</view> -->
+            <view>{{ LG.get(L,"fangyishijan") }}：{{ item.date?item.date:'' }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='statistical-details' bindtap='toStatisticalDetailsPage'>
+  <text class='fytj_element'>{{ LG.get(L,"fangyitongji") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

@@ -1,0 +1,49 @@
+<view class="map_box">
+  <view wx:if="{{ showSearch }}" class='showSearch'>
+    <search is-show="{{ component.isShow }}" placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchDog"></search>
+  </view>
+  <!-- 查询犬只轨迹  -->
+  <view wx:if="{{ showContrail }}" class='showContrail'>
+    <form bindsubmit="formSubmit">
+      <view class='item'>
+        <!-- <view class='left'>
+          溯源号：
+        </view> -->
+          <view class='left'>
+          {{ LG.get(L,"suyuan_ID") }}：
+        </view>
+        <view class='right'>
+          <input name="traceId"></input>
+        </view>
+      </view>
+      <view class='item'>
+        <!-- <view class='left'>
+          日期：
+        </view> -->
+        <view class='left'>
+          {{ LG.get(L,"riqi") }}：
+        </view>
+        <view class='right'>
+          <picker mode="date" bindchange='bindDataChange' value='{{ contrailDate }}' name="date">
+            <view class='picker drop-down'>
+              {{ contrailDate }}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!-- <button class='searchButton' form-type='submit'>提交</button> -->
+      <button class='searchButton' form-type='submit'>{{ LG.get(L,"submit") }}</button>
+      <!-- <view class='searchButton' bindtap='contrailSearch'>查 询</view> -->
+    </form>
+  </view>
+
+  <map id="map" longitude="{{ longitude }}" latitude="{{ latitude }}" polyline='{{ polyline }}' scale="14" markers="{{ markers }}" bindmarkertap="markerClick">
+    <!-- <cover-view class='location-query' bindtap='toLocationPage'>定位查询</cover-view> -->
+    <cover-view class='location-query' bindtap='toLocationPage'>{{ LG.get(L,"dinweichaxun") }}</cover-view>
+    <!-- <cover-view class='contrail-query' bindtap='toContrailPage'>轨迹查询</cover-view> -->
+    <cover-view class='contrail-query' bindtap='toContrailPage'>{{ LG.get(L,"guijichaxun") }}</cover-view>
+  </map>
+
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

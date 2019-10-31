@@ -1,0 +1,78 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理方法：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.modeName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>方法说明：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.methodDes }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.dealTime }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理人员：</text>
+        </view>
+        <view class='right'>
+            <text>{{ protecterName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ picUrlList }}" wx:key="index">
+               <image src='{{ picUrlList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+    
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视频：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoUrlList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.description }}</text>
+        </view>
+    </view>
+</view>

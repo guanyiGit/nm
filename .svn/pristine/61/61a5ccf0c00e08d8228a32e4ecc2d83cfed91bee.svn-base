@@ -1,0 +1,108 @@
+<view class='container'>
+  <view class='search'>
+    <view class='search-input'>
+      <picker mode="date" bindchange='bindDataChange' name="birthday">
+        <view class='picker'>
+          <view>{{ date }}</view>
+          <image src='{{ dataIcon }}'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='search-button'>
+      <view class='button'>查询</view>
+    </view>
+  </view>
+  <view class='body'>
+    <view class='items'>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>犬只存栏数量</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.xxx }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <text>新增犬只数量</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.xxx }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>注销犬只数量</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.xxx }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <text>新增犬主数量</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>防疫次数</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <text>犬尸处理数量</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>犬只存栏数量</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <text>粪便处理次数</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>流浪犬处理数量</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <text>犬主更换次数</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <text>项圈更换次数</text>
+        </view>
+        <view class='right'>
+          <text>{{  }}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

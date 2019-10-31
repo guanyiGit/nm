@@ -1,0 +1,27 @@
+<view class='page'>
+  <view class='selector-container' hidden="{{ isShow }}">
+    <view class='selector-title'>举办时间</view>
+    <view class='selector-body'>
+      <picker mode="date" bindchange='bindStartDateChange'>
+        <view class='picker'>
+          <view>{{ startDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker> —
+      <picker mode="date" bindchange='bindEndDateChange'>
+        <view class='picker'>
+          <view>{{ endDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='button-line'></view>
+    <view class='selector-foot'>
+      <view class='button-group'>
+        <view class='reset' bindtap='reset'>重置</view>
+        <view class='confirm' bindtap='confirm'>确定</view>
+      </view>
+    </view>
+    <view class='zhezhao'></view>
+  </view>
+</view>

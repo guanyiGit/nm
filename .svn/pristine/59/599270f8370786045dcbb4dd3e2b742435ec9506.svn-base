@@ -1,0 +1,40 @@
+<view wx:if="{{ ishasData }}">
+  <search-org is-material="{{ component.isMaterial }}" placeholder-text="{{ component.placeholderText }}"  bind:searchMaterial="searchMaterial" bind:orgEvent="orgEvent" bind:dateEvent="dateEvent"></search-org>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ materialArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+        <view class='container_item drop-right' bindtap='toMaterialInfoPage' data-index='{{ index }}'>
+          <view class='left'>
+            <view class="left_headle texthide">
+              <view>{{item.goodsName}}</view>
+              <!-- <view class="fts14">发放</view> -->
+              <view class="fts14">{{ LG.get(L,"fafang") }}</view>
+              <view>{{item.goodsAmount}}</view>
+              <view class='fts14'>{{item.distributeDate}}</view>
+            </view>
+            <view class='left_body'>
+              <view class='cfts14'>
+                <text class='fts14'>{{ LG.get(L,"fafangdanwei") }}：</text>{{item.distributorName}}</view>
+            </view>
+            <view class='left_foot'>
+              <view class='cfts14'>
+                <!-- <text class='fts14'>{{item.orgName==null?'接收人':'接收单位'}}： </text> {{ item.orgName==null?item.receiverName:item.orgName }}</view> -->
+                <text class='fts14'>{{item.orgName==null? LG.get(L,"jieshouren")  :  LG.get(L,"jieshoudanwei") }}： </text> {{ item.orgName==null?item.receiverName:item.orgName }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_anatomy' bindtap='toMaterialAddPage'>
+  <text class='xz_element'>{{ LG.get(L,"xinzeng") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

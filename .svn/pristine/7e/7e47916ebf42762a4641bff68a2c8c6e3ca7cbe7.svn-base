@@ -1,0 +1,61 @@
+<view class="container">
+    <view class='body'>
+      <view class='items'>
+          <view class='item'>
+              <!-- <view>所属乡镇</view> -->
+              <view>{{ LG.get(L,"suoshuxiangzhen") }}</view>
+              <view>{{ userInfo.town }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>姓名</view> -->
+              <view>{{ LG.get(L,"xingming") }}</view>
+              <view>{{ userInfo.name }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>性别</view> -->
+              <view>{{ LG.get(L,"xingbie") }}</view>
+              <!-- <view>{{ userInfo.sex == 0?'男':'女' }}</view> -->
+              <view>{{ userInfo.sex == 0?LG.get(L,"nan"):LG.get(L,"nv")}}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>出生日期</view> -->
+              <view>{{ LG.get(L,"chushengriqi") }}</view>
+              <view>{{ userInfo.birthDay }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>名族</view> -->
+               <view>{{ LG.get(L,"mingzu") }}</view>
+              <view>{{ userInfo.nation }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>文化程度</view> -->
+              <view>{{ LG.get(L,"wenhuachengdu") }}</view>
+              <view>{{ userInfo.degreeOfEducation }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>证件类型</view> -->
+              <view>{{ LG.get(L,"zhengjian_leix") }}</view>
+              <!-- <view>{{ userInfo.cardType==0?'居民身份证':'房产证' }}</view> -->
+              <view>{{ userInfo.cardType==0?LG.get(L,"qumingshengfengzheng"):LG.get(L,"fangchanzhe") }}</view>
+          </view>
+
+          <view class='item'>
+              <!-- <view>证件号码</view> -->
+              <view>{{ LG.get(L,"zhengjian_haoma") }}</view>
+              <view>{{ userInfo.cardNum }}</view>
+          </view>
+          <view class='item'>
+              <!-- <view>联系电话</view> -->
+              <view>{{ LG.get(L,"lianxidianhua") }}</view>
+              <view>{{ userInfo.phoneNum }}</view>
+          </view>
+          <view class='item last'>
+              <!-- <view>详细地址</view> -->
+              <view>{{ LG.get(L,"xiangxidizhi") }}</view>
+              <view>{{ userInfo.orgInfo.departName }}</view>
+          </view>
+      </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

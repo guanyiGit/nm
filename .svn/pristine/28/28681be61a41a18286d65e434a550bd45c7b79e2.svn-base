@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.orgmanagement.dao.UserInfoDao">
+
+
+
+	<!--根据用户名查询用户-->
+	<select id="">
+		select account from t_user_info where account=#{userName}
+	</select>
+
+	<!--&lt;!&ndash;查询处理人下拉列表&ndash;&gt;-->
+	<select id="userSelList" resultType="com.orgmanagement.vo.UserSelVO">
+		select user.id,user.name from t_user_info user
+	</select>
+
+
+	<!--
+		select `id` user_id,`name` name,`account` username,`passwd` password,`org_id` dept_id,`email`,`phone_num` mobile,
+			`status`,`create_by` user_id_create,`create_date` gmt_create,`update_date` gmt_modified,`sex` ,area_id areaId
+			from t_user_info where id = #{value}
+	-->
+
+	<select id="get" resultMap="baseMap">
+		<include refid="base"></include>
+		where  inf.id = #{userId}
+	</select>
+
+
+
+	<sql id="base">
+			SELECT
+			inf.`id` user_id,
+			inf.`name` name,
+			inf.`account` username,
+			inf.`passwd` password,
+			inf.`email`,
+			inf.`phone_num` mobile,
+			inf.`status`,
+			inf.`create_by` user_id_create,
+			inf.`create_date` gmt_create,
+			inf.`update_date` gmt_modified,
+			inf.`sex`,
+			area.id areaId,
+		    area.`name` areaName,
+		    org.id deptId,
+		 	org.depart_name deptName,
+		 	org.type orgType,
+		 	org.pid,
+			role.id roleId,
+			role.role_name roleName,
+			role.role_sign roleSign,
+			role.type
+
+		FROM
+			t_user_info inf
+		LEFT JOIN t_area_info area on area.id = inf.area_id
+		LEFT JOIN t_org_info org on org.id = inf.org_id
+		LEFT JOIN t_user_ref_role ref on ref.user_id = inf.id
+		LEFT JOIN t_role_info role on role.id = ref.role_id
+	</sql>
+
+	<resultMap id="baseMap" type="com.orgmanagement.domain.UserDO">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="user_id_create" property="userIdCreate" jdbcType="INTEGER" />
+		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="areaId" property="areaId" jdbcType="INTEGER" />
+		<result column="areaName" property="areaName" jdbcType="VARCHAR" />
+
+		<result column="deptId" property="deptId" jdbcType="INTEGER" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="orgType" property="orgType" jdbcType="INTEGER" />
+		<result column="deptName" property="deptName" jdbcType="VARCHAR" />
+
+		<collection property="roles"  ofType="com.orgmanagement.domain.RoleDO"  >
+			<result column="roleId" property="roleId" jdbcType="INTEGER" />
+			<result column="roleName" property="roleName" jdbcType="VARCHAR" />
+			<result column="roleSign" property="roleSign" jdbcType="INTEGER" />
+			<result column="type" property="type" jdbcType="INTEGER" />
+		</collection>
+
+
+	</resultMap>
+
+
+	<select id="list" resultMap="baseMap">
+		<include refid="base"></include>
+		<where>
+			<if test="userId != null and userId != ''"> and inf.id = #{userId} </if>
+			<if test="username != null and username != ''"> and inf.account = #{username} </if>
+			<if test="name != null and name != ''"> and inf.name = #{name} </if>
+			<if test="password != null and password != ''"> and inf.passwd = #{password} </if>
+			<if test="deptId != null and deptId != ''"> and inf.org_id = #{deptId} </if>
+			<if test="email != null and email != ''"> and inf.email = #{email} </if>
+			<if test="mobile != null and mobile != ''"> and inf.phone_num = #{mobile} </if>
+			<if test="status != null and status != ''"> and inf.status = #{status} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and inf.create_by = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and inf.create_date = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and inf.update_date = #{gmtModified} </if>
+			<if test="sex != null and sex != ''"> and inf.sex = #{sex} </if>
+		</where>
+	</select>
+
+	<select id="pageList" resultType="com.orgmanagement.domain.UserDO">
+		select inf.`id` user_id,inf.`name` name,`account` username,`passwd` password,`org_id` deptId,org.depart_name deptName,`email`,`phone_num` mobile,
+		`status`,`create_by` user_id_create,inf.`create_date` gmt_create,inf.`update_date` gmt_modified,`sex`
+		from t_user_info inf left join t_org_info org on inf.org_id = org.id
+		<where>
+			<if test="userId != null and userId != ''"> and inf.id = #{userId} </if>
+			<if test="username != null and username != ''"> and inf.account = #{username} </if>
+			<if test="name != null and name != ''"> and CONCAT(inf.name,inf.phone_num) like '%' #{name} '%' </if>
+			<if test="password != null and password != ''"> and inf.passwd = #{password} </if>
+			<if test="email != null and email != ''"> and inf.email = #{email} </if>
+			<if test="mobile != null and mobile != ''"> and inf.phone_num = #{mobile} </if>
+			<if test="status != null and status != ''"> and inf.status = #{status} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and inf.create_date = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and inf.update_date = #{gmtModified} </if>
+			<if test="sex != null and sex != ''"> and inf.sex = #{sex} </if>
+
+			<!--<if test="orgIds !=null and orgIds.size()>0">-->
+				<!--and inf.org_id in-->
+				<!--<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">-->
+					<!--#{orgId}-->
+				<!--</foreach>-->
+			<!--</if>-->
+			<if test="userIdCreate != null and userIdCreate != ''"> and  inf.create_by = #{userIdCreate} </if>
+
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by inf.id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_user_info inf left join t_org_info org on inf.org_id = org.id
+
+		<where>
+			<if test="userId != null and userId != ''"> and inf.id = #{userId} </if>
+			<if test="username != null and username != ''"> and inf.account = #{username} </if>
+			<if test="name != null and name != ''"> and CONCAT(inf.name,inf.phone_num) like '%' #{name} '%' </if>
+			<if test="password != null and password != ''"> and inf.passwd = #{password} </if>
+
+			<if test="email != null and email != ''"> and inf.email = #{email} </if>
+			<if test="mobile != null and mobile != ''"> and inf.phone_num = #{mobile} </if>
+			<if test="status != null and status != ''"> and inf.status = #{status} </if>
+			<!--<if test="userIdCreate != null and userIdCreate != ''"> and inf.create_by = #{userIdCreate} </if>-->
+			<if test="gmtCreate != null and gmtCreate != ''"> and inf.create_date = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and inf.update_date = #{gmtModified} </if>
+			<if test="sex != null and sex != ''"> and inf.sex = #{sex} </if>
+			<!--<if test="orgIds !=null and orgIds.size()>0">-->
+				<!--and inf.org_id in-->
+				<!--<foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">-->
+					<!--#{orgId}-->
+				<!--</foreach>-->
+			<!--</if>-->
+			<if test="userIdCreate != null and userIdCreate != ''"> and  inf.create_by = #{userIdCreate} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.orgmanagement.domain.UserDO" useGeneratedKeys="true" keyProperty="userId">
+		insert into t_user_info
+		(
+			`name`,
+			`account`,
+			`passwd`,
+			`org_id`,
+			`email`,
+			`phone_num`,
+			`status`,
+			`create_by`,
+			`create_date`,
+			`update_date`,
+			`sex`,
+			area_id
+		)
+		values
+		(
+			#{name},
+			#{username},
+			#{password},
+			#{deptId},
+			#{email},
+			#{mobile},
+			#{status},
+			#{userIdCreate},
+			#{gmtCreate},
+			#{gmtModified},
+			#{sex},
+			#{areaId}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.orgmanagement.domain.UserDO">
+		update t_user_info
+		<set>
+			<if test="userId != null and userId != ''"> id = #{userId}, </if>
+			<if test="username != null and username != ''">  account = #{username} ,</if>
+			<if test="name != null and name != ''">  name = #{name}, </if>
+			<if test="password != null and password != ''">  passwd = #{password}, </if>
+			<if test="deptId != null and deptId != ''">  org_id = #{deptId}, </if>
+			<if test="email != null and email != ''">  email = #{email}, </if>
+			<if test="mobile != null and mobile != ''">  phone_num = #{mobile}, </if>
+			<if test="status != null and status != -1">  status = #{status}, </if>
+			<if test="userIdCreate != null and userIdCreate != ''">  create_by = #{userIdCreate}, </if>
+			<if test="gmtCreate != null ">  create_date = #{gmtCreate}, </if>
+			<if test="gmtModified != null ">  update_date = #{gmtModified} ,</if>
+			<if test="sex != null and sex != ''">  sex = #{sex}, </if>
+			<if test="areaId != null and areaId != ''">  area_id = #{areaId}, </if>
+		</set>
+		where id = #{userId}
+	</update>
+
+	<delete id="remove">
+		delete from t_user_info where id = #{value}
+
+	</delete>
+
+	<delete id="batchRemove">
+		delete from t_user_info where id in
+		<foreach item="userId" collection="array" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+	</delete>
+
+	<select id="listAllDept" resultType="long">
+				select DISTINCT org_id from t_user_info
+	</select>
+
+	<select id="selecAccount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM t_user_info WHERE `name`=#{userName}
+	</select>
+	
+	<select id="checkAccountRepeat" resultType="int">
+		SELECT COUNT(*) FROM t_user_info WHERE account=#{account}
+	</select>
+</mapper>

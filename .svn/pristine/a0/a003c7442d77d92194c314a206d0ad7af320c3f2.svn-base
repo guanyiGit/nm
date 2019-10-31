@@ -1,0 +1,110 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--溯源ID(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>溯源ID：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="traceId" value='{{ traceId }}' disabled></input>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'></view>
+        <view class='right dog-info'>
+          <view class='texthide'>犬名: {{ dogInfo.dogName}}</view>
+          <view class='texthide'>犬主: {{ dogInfo.ownerName}}</view>
+        </view>
+      </view>
+      <!--防疫类型：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>防疫类型：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindTypeChange' value='{{ type.typeIndex }}' range='{{ type.typeArray }}' name="type">
+            <view class='picker drop-down'>
+              {{ type.typeArray[type.typeIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--防疫药品(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>防疫药品：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindDrugChange' value='{{ drug.drugArray[drug.drugIndex].id }}' range='{{ drug.drugArray }}' range-key='name'  name="drugId">
+            <view class='picker drop-down'>
+              {{ drug.drugArray[drug.drugIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--防疫周期：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must texthide2'>
+            <text>防疫周期(月):</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindAntiepidemicPeriodChange' value='{{ antiepidemicPeriod.antiepidemicPeriodArray[antiepidemicPeriod.antiepidemicPeriodIndex] }}' range='{{ antiepidemicPeriod.antiepidemicPeriodArray }}' name="antiepidemicPeriod">
+            <view class='picker drop-down'>
+              {{ antiepidemicPeriod.antiepidemicPeriodArray[antiepidemicPeriod.antiepidemicPeriodIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item antiepidemic-image'>
+        <view class='left'>
+          <view>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--视频：-->
+      <view class='item antiepidemic-image'>
+        <view class='left'>
+          <view>
+            <text>视频：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+      <!--描述：-->
+      <view class='description item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

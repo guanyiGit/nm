@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soholy.cb.dao.AlarmRelatedInforMapper" >
+    <resultMap id="req_map" type="com.soholy.cb.entity.iot.check.RequiredForAlarm">
+        <result column="imei" property="imei" jdbcType="VARCHAR"/>
+        <result column="device_no" property="deviceNo" jdbcType="VARCHAR"/>
+        <!--<result column="dog_id" property="dogId" jdbcType="INTEGER"/>-->
+        <result column="trace_id" property="traceId" jdbcType="VARCHAR"/>
+        <result column="fence_id" property="fenceId" jdbcType="INTEGER" />
+        <result column="id" property="ownerId" jdbcType="INTEGER"/>
+        <result column="name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="phone_num" property="ownerPhone" jdbcType="VARCHAR"/>
+        <result column="user_id" property="protectorId" jdbcType="INTEGER"/>
+        <result column="protectorName" property="protectorName" jdbcType="VARCHAR"/>
+        <result column="protectorPhone" property="protectorPhone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryInfo"  resultMap="req_map">
+        SELECT
+        A.imei,
+        A.device_no,
+        B.trace_id,
+        C.fence_id,
+        D.id,
+        D.name,
+        D.phone_num,
+        E.user_id,
+        E.name protectorName,
+        E.phone_num protectorPhone
+        FROM t_device_info A
+        LEFT JOIN t_device_ref_dog B
+        ON B.device_no=A.device_no
+        LEFT JOIN t_dog_info C
+        ON C.trace_id=B.trace_id
+        LEFT JOIN t_dog_owner D
+        ON D.id=C.owner
+        LEFT JOIN t_protector E
+        ON E.id=C.protector
+        WHERE A.imei = #{imei}
+    </select>
+
+
+    <select id="queryAllInfo"  resultMap="req_map">
+        SELECT
+        A.imei,
+        A.device_no,
+        B.trace_id,
+        C.fence_id,
+        D.id,
+        D.name,
+        D.phone_num,
+        E.user_id,
+        E.name protectorName,
+        E.phone_num protectorPhone
+        FROM t_device_info A
+        LEFT JOIN t_device_ref_dog B
+        ON B.device_no=A.device_no
+        LEFT JOIN t_dog_info C
+        ON C.trace_id=B.trace_id
+        LEFT JOIN t_dog_owner D
+        ON D.id=C.owner
+        LEFT JOIN t_protector E
+        ON E.id=C.protector
+    </select>
+
+    <!--查犬只所属围栏坐标-->
+    <select id="queryPoints" resultType="com.soholy.cb.entity.iot.check.Point">
+        SELECT
+        lng longitude,
+        lat latitude
+        FROM
+        t_fence_detail
+        WHERE
+        fence_id=#{fenceId}
+        AND
+        fence_id!=1
+    </select>
+    <insert id="insertMsg" parameterType="com.soholy.cb.entity.iot.check.Msg" useGeneratedKeys="true" keyColumn="id" keyProperty="msg.id">
+        INSERT INTO t_msg
+        (title,content,status,type,create_date)
+        VALUES
+        (#{msg.title},#{msg.content},#{msg.status},#{msg.type},#{msg.createDate})
+    </insert>
+
+    <insert id="refMsg">
+        INSERT INTO t_user_ref_msg
+        (receiver,msg_id)
+        VALUES
+        (#{receiver},#{msgId})
+    </insert>
+</mapper>

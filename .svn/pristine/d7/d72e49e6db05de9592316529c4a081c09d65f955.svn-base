@@ -1,0 +1,71 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--原项圈：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>原项圈：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindOldNeckletNoChange' value='{{ age.ageIndex }}' range='{{ age.ageArray }}' name="oldNeckletNo">
+            <view class='picker drop-down'>
+              {{ age.ageArray[age.ageIndex] }}
+            </view>
+          </picker>
+
+        </view>
+      </view>
+      <view class='EmptyDiv'>
+        <text>（原溯源ID）</text>
+      </view>
+      <!--新项圈：(待优化)-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>新项圈：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindNewNeckletNoChange' value='{{ age.ageIndex }}' range='{{ age.ageArray }}' name="oldNeckletNo">
+            <view class='picker drop-down'>
+              {{ age.ageArray[age.ageIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class='EmptyDiv'>
+        <text>（新溯源ID）</text>
+      </view>
+      <!--更换原因：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>更换原因： :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="changeReasons"></input>
+        </view>
+      </view>
+
+
+      <!--描述：-->
+      <view class='item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

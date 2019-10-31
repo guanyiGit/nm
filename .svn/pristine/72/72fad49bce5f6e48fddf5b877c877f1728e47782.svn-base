@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>更换犬主</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="/biz/dogInfo/dogMasterFile">犬只管理></a></li>
+			<li class="fl"><a href="/biz/dogInfo/dogMasterFile">犬只信息></a></li>
+			<li class="fl">犬主更换</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" id="app1">
+		<form action="#" @submit.prevent="submit">
+			<div class="pdl0 pdr50">
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*旧犬主</div>
+					<!--<div class="mgl90 cor3 h50 lh50 pdl30" >塞拉</div>-->
+					<div class="mgl90">
+						<input class="ww92 h50 lh50 bore ras4 pdl30" v-model="oldOwnerName" readonly>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*犬主</div>
+					<div class="mgl90">
+						<select class="ww92 h50 lh50 bore ras4 pdl30 pc22" v-model="ownerChange.newOwner">
+							<option :value="item.id" v-for="(item,index) in dogOwnerList" v-text="item.name"></option>
+						</select>
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*更换原因</div>
+					<div class="mgl90">
+						<input class="ww92 h50 lh50 bore ras4 pdl30" v-model="ownerChange.changeReasons">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">描述</div>
+					<div class="mgl90">
+						<textarea class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" v-model="ownerChange.description"></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="submit" value="保存">
+						<a href="/biz/dogInfo/dogMasterFile" class="a6 dinb hov8">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/axios-0.16.0.js"></script>
+<script src="/dogmanager/YLUtils.js"></script>
+<script src="/dogmanager/addOwnerChange.js"></script>
+</body>
+</html>

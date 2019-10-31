@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soholy.cb.dao.TDeviceRecordDb">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soholy.cb.entity.TDeviceRecordEntity">
+        <id column="id" property="id" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+        <result column="quantity" property="quantity" />
+        <result column="device_no" property="deviceNo" />
+        <result column="create_date" property="createDate" />
+        <result column="data_time" property="dataTime" />
+        <result column="upload_time" property="uploadTime" />
+        <result column="data_type" property="dataType" />
+        <result column="trace_id" property="traceId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, lng, lat, quantity, device_no, create_date, data_time, upload_time, data_type, trace_id
+    </sql>
+
+</mapper>

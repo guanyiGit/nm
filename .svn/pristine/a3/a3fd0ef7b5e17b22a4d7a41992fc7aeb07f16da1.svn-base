@@ -1,0 +1,59 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}"  query ="{{ query }}" bind:scanSearchEvent="scanSearchAntiepidemic"  bind:searchEvent="searchAntiepidemic"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ antiepidemicArray }}" wx:key="index" wx:if="{{ index < maxLength }}"  >
+      <view class='container_item drop-right' bindtap='toantiepidemicInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.bigUrl }}'></image>
+        </view>
+        <view class='right'>
+          <!-- <view class="right_headle {{ item.typeClass }}" > -->
+          <view class="right_headle" >
+            <!-- <text>{{ item.traceId||'未知' }}</text> -->
+            <text>{{ item.traceId||LG.get(L,"weizhi") }}</text>
+            <view class='{{ item.typeClass }}'>
+              {{
+                item.typeClass == "spring-epidemic"?LG.get(L,"chunfang"):
+                item.typeClass == "fall-epidemic"?LG.get(L,"qiufang"):
+                item.typeClass == "month-epidemic"?LG.get(L,"yueyuetouyao"):"none"
+              }}
+            </view>
+            <!-- 
+              if (antiepidemicArray[index].type == 0){
+                antiepidemicArray[index].typeClass = "spring-epidemic"
+              } else if (antiepidemicArray[index].type == 1) {
+                antiepidemicArray[index].typeClass = "fall-epidemic"
+              } else if (antiepidemicArray[index].type == 2) {
+                antiepidemicArray[index].typeClass = "month-epidemic"
+              }
+             -->
+          </view>
+          <view class='right_body'>
+            <!-- <view class='texthide'>犬名：{{ item.dogName||'未知' }}</view> -->
+            <view class='texthide'>{{ LG.get(L,"quanming") }}：{{ item.dogName||LG.get(L,"weizhi") }}</view>
+            <!-- <view class='texthide'>犬主：{{ item.ownerName||'未知' }}</view> -->
+            <view class='texthide'>{{ LG.get(L,"quanzhu") }}：{{ item.ownerName||LG.get(L,"weizhi") }}</view>
+          </view>
+          <view class='right_foot'>
+            <!-- <view>防疫时间：{{ item.date||'未知' }}</view> -->
+            <view>{{ LG.get(L,"fangyishijan") }}：{{ item.date||'未知' }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_antiepidemic' bindtap='toDogUtilPage' data-type='1'>
+  <text class='element'>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

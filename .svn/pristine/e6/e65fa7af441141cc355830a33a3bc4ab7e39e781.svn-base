@@ -1,0 +1,27 @@
+package com.soholy;
+
+import com.soholy.config.DruidConfig;
+import lombok.extern.java.Log;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@Import({DruidConfig.class})
+@SpringBootApplication
+@EnableTransactionManagement
+@MapperScan("com.soholy.mapper*")
+@Log
+@EnableJms
+@PropertySource(value = {"classpath:config/aep.properties"})
+public class CallbackLwm2mApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CallbackLwm2mApplication.class, args);
+        log.info("===============================  启动完成  ===============================");
+    }
+
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "image-upload": "/components/imageUpload/upload",
+    "video-upload": "/components/videoUpload/videoUpload",
+    "date-select": "/components/date-select/date-select"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "新增牛羊抗体检测"
+}

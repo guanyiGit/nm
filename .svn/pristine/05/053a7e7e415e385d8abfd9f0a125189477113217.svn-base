@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/dogOwner/dogOwner_Update.js"></script>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{binformation}">基础信息</a>></li>
+			<li class="fl"><a href="/biz/dogOwner/dogOwner_List" th:text="#{binformation.ownerInfo}">犬主信息</a>></li>
+			<li class="fl" th:text="#{binformation.update}">修改</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" >
+		<form action="#" id="dogOwnerUpdate">
+			<div class="pdl50 pdr50">
+				<!-- <div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属乡镇</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div> -->
+				
+			<input name="id" type="text" hidden="hidden"  class="ww92 h50 lh50 bore ras4 pdl30" th:value="${dogOwnerVO.id}">
+				
+				<!-- 待完善 -->
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.villageCommittee}">所属村委会</span></div>
+					<div class="mgl90">
+						<select name="pastoralCommitteeId" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="p : ${pastoralList}" th:text="${p.name}" th:value="${p.id}"  
+							th:selected="${p.remarks=='checked'}"
+							   ></option>
+						</select>
+					</div>
+				</div> 
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.houseNumber}">门牌号</div>
+					<div class="mgl90">
+						<!-- <select class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">632623100001001（根据所属委员会自动生成）1</option>
+							<option value="1">632623100001001（根据所属委员会自动生成）2</option>
+						</select> -->
+						<input name="no" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="" th:value="${dogOwnerVO.no}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.pastureArea}">草场面积</div>
+					<div class="mgl90">
+						<input name="grassLandArea" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="" th:value="${dogOwnerVO.grassLandArea}
+						">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.ownerName}">犬主姓名</span></div>
+					<div class="mgl90">
+						<input name="name" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="" th:value="${dogOwnerVO.name}">
+					</div>
+				</div>
+				
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.gender}">性别</span></div>
+					<div class="mgl90">
+						<select name="sex" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="0" th:selected="${dogOwnerVO.sex==0}" th:text="#{ownerMale}">男</option>
+							<option value="1" th:selected="${dogOwnerVO.sex==1}" th:text="#{ownerFemale}">女</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.birthday}">出生日期</span></div>
+					<div class="mgl90">
+						<input id="birth" name="birthDay" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${dogOwnerVO.birthDay==null}?'':${#dates.format(dogOwnerVO.birthDay, 'yyyy-MM-dd')}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.national}">民族</span></div>
+					<div class="mgl90">
+						<select name="nationId" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="n : ${nationList}" th:text="${n.name}" th:value="${n.value}"
+							th:selected="${n.remarks=='checked'}"
+							   ></option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.levelEducation}">文化程度</span></div>
+					<div class="mgl90">
+						<select name="degreeOfEducation" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="n : ${edBaList}" th:text="${n.name}" th:value="${n.value}"
+									 th:selected="${n.remarks=='checked'}"
+							></option>
+							<!--<option value="0" th:selected="${dogOwnerVO.degreeOfEducation=='小学'}" th:text="#{binformation.primarySchool}">小学</option>-->
+							<!--<option value="1" th:selected="${dogOwnerVO.degreeOfEducation=='初中'}" th:text="#{binformation.juHiSchool}">初中</option>-->
+							<!--<option value="2" th:selected="${dogOwnerVO.degreeOfEducation=='高中'}" th:text="#{binformation.highSchool}">高中</option>-->
+							<!--<option value="3" th:selected="${dogOwnerVO.degreeOfEducation=='大专'}" th:text="#{binformation.college}">大专</option>-->
+							<!--<option value="4" th:selected="${dogOwnerVO.degreeOfEducation=='本科及以上'}" th:text="#{binformation.baDeAbove}">本科及以上</option>-->
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.contactPhone}">联系电话</span></div>
+					<div class="mgl90">
+						<input name="phoneNum" type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${dogOwnerVO.phoneNum}">
+					</div>
+				</div>
+				
+
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.documentType}">证件类型</span></div>
+					<div class="mgl90">
+						<select name="cardType" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="0" th:selected="${dogOwnerVO.cardType==0}" th:text="#{binformation.idCard}">身份证</option>
+							<option value="1" th:selected="${dogOwnerVO.cardType==1}" th:text="#{binformation.residenceBooklet}">户口簿</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*<span th:text="#{binformation.certificateNumber}">证件号码</span></div>
+					<div class="mgl90">
+						<input name="cardNum" type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${dogOwnerVO.cardNum}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r" th:text="#{binformation.describe}">描述</div>
+					<div class="mgl90">
+						<textarea name="discription" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" 
+						 th:text="${dogOwnerVO.discription}"></textarea>
+					</div>
+				</div> 
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input id="saveb" class="a6 dinb bort hov8" type="button" value="保存" onclick="updateDogOwner(this.form)">
+						<a href="/biz/dogOwner/dogOwner_List" class="a6 dinb hov8" th:text="#{binformation.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+</body>
+</html>
+<script th:inline="javascript">
+    var save = [[#{binformation.save}]];
+    $("#saveb").val(save)
+    var qxzfyyzp=[[#{binformation.qxzfyyzp}]];//请选择防疫员照片!
+    var qxzfyyxm=[[#{binformation.qxzfyyxm}]];//请输入防疫员姓名!
+    var qsrfyydh=[[#{binformation.qsrfyydh}]];//请输入防疫员电话!
+    var qsrfyydhhm=[[#{binformation.qsrfyydhhm}]];//请输入防疫员证件号码!
+    var qsrzzsjhm=[[#{binformation.qsrzzsjhm}]];//请输入正确的手机号码!
+    var qsrzzsfzhm=[[#{binformation.qsrzzsfzhm}]];//请输入正确的身份证号码!
+    var gsfzhmyjczqcxsr=[[#{binformation.gsfzhmyjczqcxsr}]];//该身份证号码已经存在!请重新输入!
+    var wzcwqlxgly=[[#{binformation.wzcwqlxgly}]];//未知错误!请联系管理员!
+    var xzfyysb=[[#{binformation.xzfyysb}]];//新增防疫员失败
+    var gfyyyczqcxsr=[[#{binformation.gfyyyczqcxsr}]];//该防疫员已经存在,请重新输入!
+    var updateSuccess=[[#{binformation.updateSuccess}]];//修改成功!
+    var gdhhmyjczqcxsr=[[#{binformation.gdhhmyjczqcxsr}]];//该电话号码已经存在!请重新输入!
+    var determine=[[#{determine}]];//确定
+    var qxzqzzp=[[#{binformation.qxzqzzp}]];//请选择犬主照片!
+    var qsrqzxm=[[#{binformation.qsrqzxm}]];//请输入犬主姓名!
+    var qsrqzdh=[[#{binformation.qsrqzdh}]];//请输入犬主电话!
+    var qsrqzzjhm=[[#{binformation.qsrqzzjhm}]];//请输入犬主证件号码!
+    var qsrzqdsjhm=[[#{binformation.qsrzqdsjhm}]];//请输入正确的手机号码!
+</script>

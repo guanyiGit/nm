@@ -1,0 +1,48 @@
+package com.soholy.controller;
+
+import com.soholy.pojo.aep.em.CmdType_lwM2M;
+import com.soholy.service.command.DeviceCommandIotService;
+import com.soholy.utils.R;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/lwm2m")
+public class AepCommandController {
+
+
+    @Autowired
+    DeviceCommandIotService deviceCommandIotService;
+
+    //http://localhost:9000/nm/lwm2m/command/5005fd3312394dd69275763273c531ad?mode=1&mVal=1
+    //http://localhost:9000/nm/lwm2m/command/5005fd3312394dd69275763273c531ad?mode=2&mVal=300
+    /**
+     * type:命令类型,非空，int32
+     * 		1模式切换 2设置上传间隔时间
+     * 	val:命令值,非空,int32
+     * 		type=1  -->（0普通模式 1省电模式）
+     * 		type=2  -->（间隔的时间长短,单位秒）
+     * 	time:命令下发时间
+     * @param iotId
+     * @param mode
+     * @param mVal
+     * @return
+     */
+    @RequestMapping("/command/{iotId}")
+    public R sender(@PathVariable String iotId,
+                    @RequestParam Integer mode,
+                    @RequestParam Integer mVal) {
+
+        if (StringUtils.isNotBlank(iotId)) {
+            //  1模式切换 2其他
+            // （0健康管理模式 1追踪模式）
+            CmdType_lwM2M cmdType = mode == 1 ? CmdType_lwM2M.PATTERN_CHCKD : CmdType_lwM2M.SET_INTERVAL;
+            return R.ok(deviceCommandIotService.sendCommand_v2_lwM2M(cmdType, "" + mVal, null, iotId));
+        }
+        return R.error();
+    }
+}

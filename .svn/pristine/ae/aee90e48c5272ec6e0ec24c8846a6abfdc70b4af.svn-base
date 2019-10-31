@@ -1,0 +1,35 @@
+package com.soholy.pojo.aep.vo_v2;
+
+import com.soholy.entity.TDeviceRecord;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+/*
+ALTER TABLE t_device_data  ADD column  `mode` int default '0' comment '1健康管理模式 2追踪模式';
+ALTER TABLE t_device_data  ADD column  `info_type` int default '0' comment '1心跳包 2正常包';
+ */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class TData extends TDeviceRecord implements Serializable {
+
+    /**
+     * 设备模式
+     * 1健康管理模式 2追踪模式
+     */
+    private Integer mode;
+
+    /**
+     * 数据包类型
+     * 1心跳包 2正常包
+     */
+    private Integer info_type;
+
+    /**
+     * 电压（单位mv）
+     */
+    private Integer voltage_int;
+}

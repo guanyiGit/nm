@@ -1,0 +1,48 @@
+<view class='page' catchtouchmove="move">
+  <!-- 所属区域/下拉框 -->
+  <view class='nav splitLine' wx:if="{{ !isTownAdmin }}">
+    <picker mode="multiSelector" range="{{ regionArray }}" range-key='areaName' value='{{ regionIndex }}' bindchange='changeEvent' bindcolumnchange="changeRegionColumn">
+      <view wx:if="{{ !isChoose }}" class='drop-down'>
+        <!-- 选择区域 -->
+        {{ LG.get(L,"xuanzhequyu") }}
+      </view>
+      <view wx:if="{{ isChoose }}" class='drop-down'>
+        {{ regionString }}
+      </view>
+    </picker>
+  </view>
+  <view class='nav splitLine' wx:if="{{ isTownAdmin }}">
+    <picker range="{{ protector.protectorArray }}" range-key='text' bindchange='changeEvent'>
+      <view wx:if="{{ !protector.isChoose }}" class='drop-down'>
+        <!-- 所属防疫员 -->
+        {{ LG.get(L,"suoshufangyiyuan") }}
+      </view>
+      <view wx:if="{{ protector.isChoose }}" class='drop-down'>
+        {{ protector.protectorArray[protector.protectorIndex].text }}
+      </view>
+    </picker>
+  </view>
+  <view class='nav'>
+    <!-- <picker range="{{ month.array }}" range-key='text' bindchange='changeEvent'>
+      <view class='drop-down'>
+        更多11
+      </view>
+    </picker> -->
+    <view class='drop-down' bindtap='more'>
+      <!-- 更多 -->
+      {{ LG.get(L,"gengduo") }}
+    </view>
+    <!-- wx:show="{{isOther}} {{isOther?"":"none"}}-->
+    <view class='otherview {{isOther?"":"none"}}'>
+
+      <!-- 犬主页面 更多 -->
+      <owner-other wx:if="{{otherType == 1}}" />
+      <!-- 犬只防疫 更多 -->
+      <antiepidemic-other bind:conditionChanged="antiepidemicChanged" wx:if="{{otherType == 3}}" />
+
+      <view style='height:100%;' bindtap='more'></view>
+    </view>
+  </view>
+</view>
+
+<wxs module="LG" src="../../utils/lang.wxs" />

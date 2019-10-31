@@ -1,0 +1,53 @@
+package com.soholy.service.codec.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.soholy.pojo.aep.command.rq.BaseCommandAepRq;
+import com.soholy.pojo.aep.em.CmdType_lwM2M;
+import com.soholy.service.codec.CodecService;
+import org.springframework.stereotype.Service;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+@Service
+public class CodecServiceImpl implements CodecService {
+
+
+    @Override
+    public byte[] generateComanmd_lwM2M(CmdType_lwM2M cmdType, String cmdValue, Long mid) {
+        BaseCommandAepRq rq = new BaseCommandAepRq();
+        rq.setMid(String.valueOf(mid));
+        List<BaseCommandAepRq.CommandAepRqMode> modes = new ArrayList<>();
+        rq.setModes(modes);
+        BaseCommandAepRq.CommandAepRqMode e = new BaseCommandAepRq.CommandAepRqMode();
+        e.setType(String.valueOf(CmdType_lwM2M.PATTERN_CHCKD.getType()));
+        e.setTime(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+        e.setVal(cmdValue);
+        modes.add(e);
+
+        if (CmdType_lwM2M.PATTERN_CHCKD.equals(cmdType)) {//模式切換
+            try {
+                e.setType(String.valueOf(CmdType_lwM2M.PATTERN_CHCKD.getType()));
+                return JSON.toJSONString(rq).getBytes("UTF-8");
+            } catch (UnsupportedEncodingException e1) {
+            }
+        } else if (CmdType_lwM2M.STARTING_UP.equals(cmdType)) { //开机激活
+            try {
+                e.setType(String.valueOf(0));
+                //1 成功 2 失败
+                return JSON.toJSONString(rq).getBytes("UTF-8");
+            } catch (UnsupportedEncodingException e1) {
+            }
+        } else if (CmdType_lwM2M.SET_INTERVAL.equals(cmdType)) { //间隔时间设置
+            try {
+                e.setType(String.valueOf(CmdType_lwM2M.SET_INTERVAL.getType()));
+                return JSON.toJSONString(rq).getBytes("UTF-8");
+            } catch (UnsupportedEncodingException e1) {
+            }
+        }
+
+        return null;
+    }
+}

@@ -1,0 +1,121 @@
+Page {
+  background-color: #eee;
+}
+
+.header {
+  width: 100%;
+  height: 400rpx;
+  background: gray url("https://nm.soholy.cn/pic/group1/M00/00/22/rBLbnVwTcoyAEH1DAASFcCDzCNE258.jpg") no-repeat;
+  background-size: 750rpx 400rpx;
+}
+
+.userIcon image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.setUp {
+  width: 97%;
+  padding-top: 20rpx;
+  text-align: right;
+}
+
+.setUp image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.userIcon {
+  display: flex;
+  justify-content: center;
+  margin-top: 50rpx;
+}
+
+.name {
+  text-align: center;
+  color: #3545a6;
+  font-size: 16px;
+  margin-top: 20rpx;
+  font-weight: 600;
+}
+
+.roleName {
+  text-align: center;
+  color: #3545a6;
+  font-size: 14px;
+  margin-top: 10rpx;
+  font-weight: 800;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.body-after {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+.title {
+  display: flex;
+  align-items: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 16px;
+  margin-left: 20rpx;
+  
+}
+
+.title image {
+  height: 48rpx;
+  width: 48rpx;
+  margin-right: 20rpx;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 180rpx;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.item image {
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.body_item image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.scanning {
+  position: absolute;
+  right: 10rpx;
+  top: 350rpx;
+}
+
+.scanning image {
+  height: 100rpx;
+  width: 100rpx;
+}
+
+
+.foot {
+  width: 100%;
+  height: 68rpx;
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 68rpx;
+  text-align: center;
+}

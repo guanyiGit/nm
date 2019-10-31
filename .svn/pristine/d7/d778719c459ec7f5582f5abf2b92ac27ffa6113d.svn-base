@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>A28-项圈管理(未激活)</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/RL.css">
+<script src="http://www.itakeo.com/down/calender2.js"></script>
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl0">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="/biz/dogCancel/dogCancelFile" th:text="#{dogManage}">犬只管理></a></li>
+			<li class="fl"><a href="/biz/dogCancel/dogCancelFile"th:text="#{dogManage.cancelDog}+'>'">犬只注销></a></li>
+			<li class="fl" th:text="#{dogManage.viewDetail}">查看详情</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdl0 pdr50 pdt5 pdb75">
+		<p class="fs16 cor0"th:text="#{dogManage.viewDetail}">查看详情<a href="javascript:window.history.back(-1);" class="dinb fr hov8"><img src="/images/42.png" alt=""></a></p>
+		<div class="mgt25">
+			<table width="100%" border="1" class="t-c table31">
+				<tbody>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.traceId}">溯源ID</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.traceId}">GDQ201707006214</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogName}">犬只名称</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.dogName}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.dogBreed}">犬种</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.breed}">12345632146</td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.cancelReason}">注销原因</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.reason}">12345632146</td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.cancelTime}">注销时间</td>
+						<td class="cor9 ww30 h54" th:text="${#dates.format(dogCancel.CanselDate,'yyyy-MM-dd HH:mm')}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.neckLetHandle}">项圈处理</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.deviceDealWay} == null ? #{dogManage.unbindNeck} : ${dogCancel.deviceDealWay}"/></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.ownerName}">犬主姓名</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.name}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.phone}">犬主电话</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.phoneNum}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.ID}">犬主身份证号</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.cardNum}"></td>
+						<td class="cor0 ww20 h54" th:text="#{antiepidemicManage.protector}">防疫员姓名</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.porName}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.protectorPhone}">防疫员电话</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.porPhoneNum}"></td>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.town}">所属乡镇</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.town}"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 h54" th:text="#{dogManage.address}">详细地址</td>
+						<td class="cor9 ww30 h54" th:text="${dogCancel.pcName}+${dogCancel.no}"></td>
+						<td class="cor0 ww20 h54"></td>
+						<td class="cor9 ww30 h54"></td>
+					</tr>
+					<tr>
+						<td class="cor0 ww20 pdt22 pdb136" th:text="#{dogManage.dogPhoto}">照片</td>
+						<td class="cor9 ww30 pdt22 pdb60">
+							<span th:each="picUrl:${picList}">
+								<img th:src="${picUrl.thumbnail_url}" th:onclick="'javascript:openImgShow(&quot;'+${picUrl.url}+'&quot;);'">
+							</span>
+						</td>
+						<td class="cor0 ww20 pdt22 pdb136" th:text="#{dogManage.description}">描述</td>
+						<td class="cor9 ww30" style="word-break: break-all;" th:text="${dogCancel.description}"></td>
+					</tr>
+			</table>
+		</div>
+		
+		
+		
+	</div>
+
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/axios-0.16.0.js"></script>
+<script src="/dogmanager/YLUtils.js"></script>
+<script src="/dogmanager/dogCancelFile.js"></script>
+</body>
+</html>
+<script th:inline="javascript">
+	var unbindNeck = [[#{dogManage.unbindNeck}]];
+</script>

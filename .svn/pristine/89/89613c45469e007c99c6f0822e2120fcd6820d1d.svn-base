@@ -1,0 +1,39 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" is-show="{{ component.isShow }}"  bind:searchEvent="searchManure"  ></search>
+  <search-box bind:dataEvent="searchManureByBox"></search-box>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ manureArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+        <view class='container_item drop-right' bindtap='tomanureInfoPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.url }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <view>{{ item.traceId||'' }}</view>
+            </view>
+            <view class='right_body'>
+             <!-- <view>犬名：{{ item.dogName||'' }}</view> -->
+             <view class='texthide'>{{ LG.get(L,"quanming") }}：{{ item.dogName||'' }}</view>
+             <!-- <view>犬主：{{ item.ownerName||''}}</view> -->
+             <view class='texthide'>{{ LG.get(L,"quanzhu") }}：{{ item.ownerName||''}}</view>
+            </view>
+            <view class='right_foot'>
+              <!-- <view>处理时间：{{ item.dealTime||'' }}</view> -->
+              <view>{{ LG.get(L,"chulishijian") }}：{{ item.dealTime||'' }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- <view class='manure_add' bindtap='tomanureAddPage'></view> -->
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

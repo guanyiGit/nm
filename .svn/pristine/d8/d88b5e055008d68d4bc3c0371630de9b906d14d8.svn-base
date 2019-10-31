@@ -1,0 +1,10 @@
+<!--test/test.wxml-->
+<text>{{language.language}}</text>
+
+<view>
+     <picker mode="selector" range="{{languages}}" value="{{langIndex}}" bindchange="changeLanguage">
+        <view class="picker">
+          {{languages[langIndex]}} <!-- (1) -->
+        </view>
+      </picker>
+</view>

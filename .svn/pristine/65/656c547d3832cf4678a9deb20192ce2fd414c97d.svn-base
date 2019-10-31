@@ -1,0 +1,36 @@
+package com.soholy.service.command;
+
+
+import com.alibaba.fastjson.JSONObject;
+import com.soholy.pojo.aep.em.CmdType_lwM2M;
+
+public interface DeviceCommandIotService {
+
+
+    /**
+     * @param cmdType     命令类型
+     * @param cmdValue    命令值
+     * @param mid
+     * @param deviceIdIot
+     * @return returnJson.put(" commandId ", resultCmd.getTaskId ());
+     * returnJson.put("result", resultCmd.getCommand());
+     * @throws Exception
+     * @Description (给设备发送命令)
+     */
+    JSONObject sendCommand_v2_lwM2M(CmdType_lwM2M cmdType, String cmdValue, Long mid, String deviceIdIot);
+
+    /**
+     * 检查命令并下发
+     *
+     * @param iemi
+     * @param deviceIdIot
+     */
+    boolean depositoryCommandCheckAndSend(String iemi, String deviceIdIot);
+
+    /**
+     * 生成命令的 mid
+     *
+     * @return
+     */
+    long generateMid();
+}

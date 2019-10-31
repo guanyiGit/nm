@@ -1,0 +1,7 @@
+.test {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid #9b9b9b;
+}
+

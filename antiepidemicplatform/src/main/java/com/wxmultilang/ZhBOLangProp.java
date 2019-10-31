@@ -5,6 +5,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
+ * Guany 20190522
+ *
  * @author linchong
  * @create 2019-04-22 10:27
  */
@@ -12,545 +14,1833 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "zh_BO")
 @PropertySource(value = "multi_lang.properties")
 public class ZhBOLangProp {
-
+/** Guany 20190522藏文  20190521*/
+    /**
+     * Guany 20190522
+     * 语言
+     */
+    private String language;
+    /**
+     * Guany 20190522
+     * 犬防疫
+     */
+    private String quanfangyi;
+    /**
+     * Guany 20190522
+     * 到底了
+     */
+    private String daodile;
+    /**
+     * Guany 20190522
+     * 未知
+     */
+    private String weizhi;
+    /**
+     * Guany 20190522
+     * 亩
+     */
+    private String mu;
+    /**
+     * Guany 20190522
+     * 下拉显示更多
+     */
+    private String xialagengduo;
+    /**
+     * Guany 20190522
+     * 公斤
+     */
+    private String gongjin;
+    /**
+     * Guany 20190522
+     * 年
+     */
+    private String year;
+    /**
+     * Guany 20190522
+     * 月
+     */
+    private String month;
+    /**
+     * Guany 20190522
+     * 日
+     */
+    private String day;
+    /**
+     * Guany 20190522
+     * 岁
+     */
+    private String sui;
+    /**
+     * Guany 20190522
+     * 请输入用户名
+     */
+    private String pl_username;
+    /**
+     * Guany 20190522
+     * 请输入密码
+     */
+    private String pl_passwrod;
+    /**
+     * Guany 20190522
+     * 提交
+     */
+    private String submit;
+    /**
+     * Guany 20190522
+     * 保存
+     */
+    private String save;
+    /**
+     * Guany 20190522
+     * 重置
+     */
+    private String reset;
+    /**
+     * Guany 20190522
+     * 取消
+     */
+    private String cancel;
+    /**
+     * Guany 20190522
+     * 犬只犬主
+     */
+    private String uanzhi_quanzhu;
+    /**
+     * Guany 20190522
+     * 犬主管理
+     */
+    private String quanzhu_guanli;
+    /**
+     * Guany 20190522
+     * 犬只管理
+     */
+    private String quanzhi_guanli;
+    /**
+     * Guany 20190522
+     * 流浪犬管理
+     */
+    private String liulangquan_guanli;
+    /**
+     * Guany 20190522
+     * 统计信息
+     */
+    private String tongjixinxi;
+    /**
+     * Guany 20190522
+     * 周边犬只
+     */
+    private String quanzhi_zhoubian;
+    /**
+     * Guany 20190522
+     * 防治管理
+     */
+    private String fangzhi_guanli;
+    /**
+     * Guany 20190522
+     * 犬只防疫
+     */
+    private String quanzhi_fangyi;
+    /**
+     * Guany 20190522
+     * 犬粪处理
+     */
+    private String quanfen_chuli;
+    /**
+     * Guany 20190522
+     * 犬尸处理
+     */
+    private String quanshi_chuli;
+    /**
+     * Guany 20190522
+     * 犬粪抗原检测
+     */
+    private String quanfenkangyuan_jiance;
+    /**
+     * Guany 20190522
+     * 犬只解刨
+     */
+    private String quanhzi_jiepao;
+    /**
+     * Guany 20190522
+     * 牛羊抗体检测
+     */
+    private String niuyangkangti_jiance;
+    /**
+     * Guany 20190522
+     * 牛羊脏器处理
+     */
+    private String niuyangzangqi_chuli;
+    /**
+     * Guany 20190522
+     * 统计信息
+     */
+    private String tongji_xinxi;
+    /**
+     * Guany 20190522
+     * 物资管理
+     */
+    private String wuzi_guanli;
+    /**
+     * Guany 20190522
+     * 防护物资
+     */
+    private String fanghuwuzi;
+    /**
+     * Guany 20190522
+     * 犬只项圈
+     */
+    private String quanzhu_xianquan;
+    /**
+     * Guany 20190522
+     * 宣传培训
+     */
+    private String xuanchuan_peixun;
+    /**
+     * Guany 20190522
+     * 宣传活动
+     */
+    private String xuanchuan_huodong;
+    /**
+     * Guany 20190522
+     * 培训活动
+     */
+    private String peixunhuodong;
+    /**
+     * Guany 20190522
+     * 犬主信息
+     */
+    private String quanzhu_xinxi;
+    /**
+     * Guany 20190522
+     * 犬主姓名
+     */
+    private String quanzhu_xingming;
+    /**
+     * Guany 20190522
+     * 性别
+     */
+    private String xingbie;
+    /**
+     * Guany 20190522
+     * 男
+     */
+    private String nan;
+    /**
+     * Guany 20190522
+     * 女
+     */
+    private String nv;
+    /**
+     * Guany 20190522
+     * 出生日期
+     */
+    private String chushengriqi;
+    /**
+     * Guany 20190522
+     * 名族
+     */
+    private String mingzu;
+    /**
+     * Guany 20190522
+     * 文化程度
+     */
+    private String wenhuachengdu;
+    /**
+     * Guany 20190522
+     * 联系电话
+     */
+    private String lianxidianhua;
+    /**
+     * Guany 20190522
+     * 证件类型
+     */
+    private String zhengjian_leix;
+    /**
+     * Guany 20190522
+     * 证件号码
+     */
+    private String zhengjian_haoma;
+    /**
+     * Guany 20190522
+     * 草场面积
+     */
+    private String caochangmianji;
+    /**
+     * Guany 20190522
+     * 所属乡镇
+     */
+    private String suoshuxiangzhen;
+    /**
+     * Guany 20190522
+     * 所属村委会
+     */
+    private String suoshucunweihui;
+    /**
+     * Guany 20190522
+     * 门牌号
+     */
+    private String menpaihao;
+    /**
+     * Guany 20190522
+     * 防疫员
+     */
+    private String fangyiyuan;
+    /**
+     * Guany 20190522
+     * 录入时间
+     */
+    private String lvrushijian;
+    /**
+     * Guany 20190522
+     * 照片
+     */
+    private String zhaopian;
+    /**
+     * Guany 20190522
+     * 描述
+     */
+    private String miaoshu;
+    /**
+     * Guany 20190522
+     * 犬只信息
+     */
+    private String quanzhi_xinxi;
+    /**
+     * Guany 20190522
+     * 未绑定项圈
+     */
+    private String weibangdxiangquan;
+    /**
+     * Guany 20190522
+     * 阳性率
+     */
+    private String yangxinglv;
+    /**
+     * Guany 20190522
+     * 检测时间
+     */
+    private String jianceshijian;
+    /**
+     * Guany 20190522
+     * 检测单位
+     */
+    private String jiancedanwei;
+    /**
+     * Guany 20190522
+     * 检测数
+     */
+    private String jianceshu;
+    /**
+     * Guany 20190522
+     * 阳性数
+     */
+    private String yangxingshu;
+    /**
+     * Guany 20190522
+     * 无害化
+     */
+    private String wuhaihua;
+    /**
+     * Guany 20190522
+     * 图片
+     */
+    private String tupian;
+    /**
+     * Guany 20190522
+     * 视频
+     */
+    private String shipin;
+    /**
+     * Guany 20190522
+     * 防疫时间
+     */
+    private String fangyishijan;
+    /**
+     * Guany 20190522
+     * 犬名
+     */
+    private String quanming;
+    /**
+     * Guany 20190522
+     * 犬主
+     */
+    private String quanzhu;
+    /**
+     * Guany 20190522
+     * 溯源ID
+     */
+    private String suyuan_ID;
+    /**
+     * Guany 20190522
+     * 项圈编号
+     */
+    private String xiangquanbianhao;
+    /**
+     * Guany 20190522
+     * 犬主电话
+     */
+    private String quanzhudianhua;
+    /**
+     * Guany 20190522
+     * 犬主身份证
+     */
+    private String quanzhushengfengzheng;
+    /**
+     * Guany 20190522
+     * 所属乡镇
+     */
+    private String shusuoxiangzheng;
+    /**
+     * Guany 20190522
+     * 详细地址
+     */
+    private String xiangxidizhi;
+    /**
+     * Guany 20190522
+     * 防疫类型
+     */
+    private String fangyileixin;
+    /**
+     * Guany 20190522
+     * 防疫时间
+     */
+    private String fangyishijian;
+    /**
+     * Guany 20190522
+     * 防疫药品
+     */
+    private String fangyiyaopin;
+    /**
+     * Guany 20190522
+     * 防疫周期
+     */
+    private String fangyizhouqi;
+    /**
+     * Guany 20190522
+     * 防疫员电话
+     */
+    private String fangyiyuandianhua;
+    /**
+     * Guany 20190522
+     * 合格数
+     */
+    private String hegeshu;
+    /**
+     * Guany 20190522
+     * 合格率
+     */
+    private String hegelv;
+    /**
+     * Guany 20190522
+     * 处理时间
+     */
+    private String chulishijian;
+    /**
+     * Guany 20190522
+     * 死亡原因
+     */
+    private String siwangshijian;
+    /**
+     * Guany 20190522
+     * 处理方法
+     */
+    private String chulifangfa;
+    /**
+     * Guany 20190522
+     * 方法说明
+     */
+    private String fangfashuoming;
+    /**
+     * Guany 20190522
+     * 处理人员
+     */
+    private String chulirenyuan;
+    /**
+     * Guany 20190522
+     * 接收单位
+     */
+    private String jieshoudanwei;
+    /**
+     * Guany 20190522
+     * 接收人
+     */
+    private String jieshouren;
+    /**
+     * Guany 20190522
+     * 发放单位
+     */
+    private String fafangdanwei;
+    /**
+     * Guany 20190522
+     * 发放
+     */
+    private String fafang;
+    /**
+     * Guany 20190522
+     * 发放数量
+     */
+    private String fafangshuliang;
+    /**
+     * Guany 20190522
+     * 发放时间
+     */
+    private String fafangshijian;
+    /**
+     * Guany 20190522
+     * 入栏时间
+     */
+    private String rulanshijian;
+    /**
+     * Guany 20190522
+     * 体重
+     */
+    private String tizhong;
+    /**
+     * Guany 20190522
+     * 毛色
+     */
+    private String maose;
+    /**
+     * Guany 20190522
+     * 犬龄
+     */
+    private String quanling;
+    /**
+     * Guany 20190522
+     * 犬种
+     */
+    private String quanzhong;
+    /**
+     * Guany 20190522
+     * 犬只存栏数量
+     */
+    private String quanzhicunlanshuliang;
+    /**
+     * Guany 20190522
+     * 所属州
+     */
+    private String suoshuzhou;
+    /**
+     * Guany 20190522
+     * 所属县
+     */
+    private String suoshuxian;
+    /**
+     * Guany 20190522
+     * 所属乡
+     */
+    private String suoshuxiang;
+    /**
+     * Guany 20190522
+     * 所属防疫员
+     */
+    private String suoshufangyiyuan;
+    /**
+     * Guany 20190522
+     * 数量
+     */
+    private String shuliang;
+    /**
+     * Guany 20190522
+     * 犬主数量
+     */
+    private String quanzhushuliang;
+    /**
+     * Guany 20190522
+     * 流浪犬处理数量
+     */
+    private String liulangquanchulishuliang;
+    /**
+     * Guany 20190522
+     * 防疫次数
+     */
+    private String fangyicishu;
+    /**
+     * Guany 20190522
+     * 犬尸处理次数
+     */
+    private String shitichulicishu;
+    /**
+     * Guany 20190522
+     * 犬粪处理次数
+     */
+    private String quanfenchulicishu;
+    /**
+     * Guany 20190522
+     * 犬粪抗原检测次数
+     */
+    private String quanfenkangyuancishu;
+    /**
+     * Guany 20190522
+     * 犬只解剖次数
+     */
+    private String quanzhijiepaocishu;
+    /**
+     * Guany 20190522
+     * 牛羊抗体检测次数
+     */
+    private String niuyangjiancecishu;
+    /**
+     * Guany 20190522
+     * 牛羊脏器处理次数
+     */
+    private String niuyangzangqichulicishu;
+    /**
+     * Guany 20190522
+     * 次数
+     */
+    private String cishu;
+    /**
+     * Guany 20190522
+     * 设备编号
+     */
+    private String shebeibianhao;
+    /**
+     * Guany 20190522
+     * 身份证号码
+     */
+    private String shenfengzhenghaoma;
+    /**
+     * Guany 20190522
+     * 物资类型
+     */
+    private String wuzileixing;
+    /**
+     * Guany 20190522
+     * 物资名称
+     */
+    private String wuzimingcheng;
+    /**
+     * Guany 20190522
+     * 发送时间
+     */
+    private String fasongshijian;
+    /**
+     * Guany 20190522
+     * 居民身份证
+     */
+    private String qumingshengfengzheng;
+    /**
+     * Guany 20190522
+     * 居民户口簿
+     */
+    private String juminghukoubo;
+    /**
+     * Guany 20190522
+     * 粪便处理信息
+     */
+    private String fenbianchulixinxi;
+    /**
+     * Guany 20190522
+     * 防疫信息
+     */
+    private String fangyixinxi;
+    /**
+     * Guany 20190522
+     * 所属牧委会
+     */
+    private String suoshumoweihui;
+    /**
+     * Guany 20190522
+     * 电子围栏
+     */
+    private String dianziweilan;
+    /**
+     * Guany 20190522
+     * 活动时间
+     */
+    private String huodongshijian;
+    /**
+     * Guany 20190522
+     * 举办单位
+     */
+    private String jibandanwei;
+    /**
+     * Guany 20190522
+     * 内容
+     */
+    private String neirong;
+    /**
+     * Guany 20190522
+     * 发放宣传品数量
+     */
+    private String fafangxuanchuanpinshuliang;
+    /**
+     * Guany 20190522
+     * 主题
+     */
+    private String zhuti;
+    /**
+     * Guany 20190522
+     * 地点
+     */
+    private String didian;
+    /**
+     * Guany 20190522
+     * 时间
+     */
+    private String shijian;
+    /**
+     * Guany 20190522
+     * 退出登录
+     */
+    private String tuichudenglu;
+    /**
+     * Guany 20190522
+     * 密码设置
+     */
+    private String miamashezhi;
+    /**
+     * Guany 20190522
+     * 个人信息
+     */
+    private String gerenxinxi;
+    /**
+     * Guany 20190522
+     * 确认密码
+     */
+    private String querenmima;
+    /**
+     * Guany 20190522
+     * 新密码
+     */
+    private String xinmima;
+    /**
+     * Guany 20190522
+     * 旧密码
+     */
+    private String jiumima;
+    /**
+     * Guany 20190522
+     * 犬只数
+     */
+    private String quanzhishu;
+    /**
+     * Guany 20190522
+     * 已防疫
+     */
+    private String yifangyi;
+    /**
+     * Guany 20190522
+     * 未防疫
+     */
+    private String weifangyi;
+    /**
+     * Guany 20190522
+     * 处理方式
+     */
+    private String chulifangshi;
+    /**
+     * Guany 20190522
+     * 公
+     */
+    private String gong_sex;
+    /**
+     * Guany 20190522
+     * 母
+     */
+    private String mu_sex;
+    /**
+     * Guany 20190522
+     * 处理人
+     */
+    private String chuliren;
+    /**
+     * Guany 20190522
+     * 品种
+     */
+    private String pingzhong;
+    /**
+     * Guany 20190522
+     * 流浪犬编号
+     */
+    private String liulangquanbianhao;
+    /**
+     * Guany 20190522
+     * 参与人数
+     */
+    private String caiyurenshu;
+    /**
+     * Guany 20190522
+     * 培训对象
+     */
+    private String peixunduixiang;
+    /**
+     * Guany 20190522
+     * 用户名
+     */
+    private String yonghuming;
+    /**
+     * Guany 20190522
+     * 姓名
+     */
+    private String xingming;
+    /**
+     * Guany 20190522
+     * 所属区域
+     */
+    private String suoshuquyu;
+    /**
+     * Guany 20190522
+     * 所属组织
+     */
+    private String suoshuzuzhi;
+    /**
+     * Guany 20190522
+     * 病变脏器处理
+     */
+    private String binbianzangqichuli;
+    /**
+     * Guany 20190522
+     * 病变脏器处理数
+     */
+    private String binbianzangqichulishu;
+    /**
+     * Guany 20190522
+     * 感染数
+     */
+    private String ganranshu;
+    /**
+     * Guany 20190522
+     * 调查数
+     */
+    private String diaochashu;
+    /**
+     * Guany 20190522
+     * 项圈处理
+     */
+    private String xiangquanchuli;
+    /**
+     * Guany 20190522
+     * 电话
+     */
+    private String dianhua;
+    /**
+     * Guany 20190522
+     * 电话号码
+     */
+    private String dianhuahaoma;
+    /**
+     * Guany 20190522
+     * 注销时间
+     */
+    private String zhuxiaoshijian;
+    /**
+     * Guany 20190522
+     * 注销原因
+     */
+    private String zhuxiaoyuanyin;
+    /**
+     * Guany 20190522
+     * 防疫员姓名
+     */
+    private String fangyiyuanxingming;
+    /**
+     * Guany 20190522
+     * 确认绑定
+     */
+    private String querenbangdin;
+    /**
+     * Guany 20190522
+     * 未定
+     */
+    private String weidin;
+    /**
+     * Guany 20190522
+     * 请扫描二维码绑定项圈
+     */
+    private String scan_bind_device;
+    /**
+     * Guany 20190522
+     * 暂不绑定
+     */
+    private String zanbubangdin;
+    /**
+     * Guany 20190522
+     * 定位查询
+     */
+    private String dinweichaxun;
+    /**
+     * Guany 20190522
+     * 轨迹查询
+     */
+    private String guijichaxun;
+    /**
+     * Guany 20190522
+     * 日期
+     */
+    private String riqi;
+    /**
+     * Guany 20190522
+     * 未读消息
+     */
+    private String weiduxiaoxi;
+    /**
+     * Guany 20190522
+     * 已读消息
+     */
+    private String yiduxiaoxi;
+    /**
+     * Guany 20190522
+     * 详情
+     */
+    private String xiangqing;
+    /**
+     * Guany 20190522
+     * 标题
+     */
+    private String biaoti;
+    /**
+     * Guany 20190522
+     * 更换为
+     */
+    private String genghuanwei;
+    /**
+     * Guany 20190522
+     * 更换时间
+     */
+    private String genghuanshijian;
+    /**
+     * Guany 20190522
+     * 更换原因
+     */
+    private String genghuanyuanyin;
+    /**
+     * Guany 20190522
+     * 新设备编号
+     */
+    private String xinshebeibianhao;
+    /**
+     * Guany 20190522
+     * 旧设备编号
+     */
+    private String jiushebeibianhao;
+    /**
+     * Guany 20190522
+     * 原项圈处理
+     */
+    private String yuanxiangquanchuli;
+    /**
+     * Guany 20190522
+     * 新项圈
+     */
+    private String xinxiangquan;
+    /**
+     * Guany 20190522
+     * 新犬主
+     */
+    private String xinquanzhu;
+    /**
+     * Guany 20190522
+     * 旧犬主
+     */
+    private String jiuquanzhu;
+    /**
+     * Guany 20190522
+     * 语言设置
+     */
+    private String yuyanshezhi;
+    /**
+     * Guany 20190522
+     * 开启
+     */
+    private String kaiqi;
+    /**
+     * Guany 20190522
+     * 关闭
+     */
+    private String guanbi;
+    /**
+     * Guany 20190522
+     * 项圈更换次数
+     */
+    private String xiangquangenghuancishu;
+    /**
+     * Guany 20190522
+     * 粪便处理次数
+     */
+    private String fengbianchulicishu;
+    /**
+     * Guany 20190522
+     * 犬尸处理数量
+     */
+    private String quanshichulishuliang;
+    /**
+     * Guany 20190522
+     * 新增犬主数量
+     */
+    private String xinzengquanzhushuliang;
+    /**
+     * Guany 20190522
+     * 注销犬只数量
+     */
+    private String zhuxiaoquanzhishuliang;
+    /**
+     * Guany 20190522
+     * 新增犬只数量
+     */
+    private String xinzengquanzhishuliang;
+    /**
+     * Guany 20190522
+     * 查询
+     */
+    private String chaxun;
+    /**
+     * Guany 20190522
+     * 至
+     */
+    private String zhi;
+    /**
+     * Guany 20190522
+     * 房产证
+     */
+    private String fangchanzhe;
+    /**
+     * Guany 20190522
+     * 我的消息
+     */
+    private String wodexiaoxi;
+    /**
+     * Guany 20190522
+     * 定位轨迹
+     */
+    private String dinweiguiji;
+    /**
+     * Guany 20190522
+     * 犬只注销
+     */
+    private String quanzhizhuxiao;
+    /**
+     * Guany 20190522
+     * 项圈更换
+     */
+    private String xiangquangenghuan;
+    /**
+     * Guany 20190522
+     * 流浪犬处理
+     */
+    private String liulangquanchuli;
+    /**
+     * Guany 20190522
+     * 粪便处理
+     */
+    private String fenbianchuli;
+    /**
+     * Guany 20190522
+     * 确定
+     */
+    private String quedin;
+    /**
+     * Guany 20190522
+     * 举办时间
+     */
+    private String jubanshijian;
+    /**
+     * Guany 20190522
+     * 更多
+     */
+    private String gengduo;
+    /**
+     * Guany 20190522
+     * 选择区域
+     */
+    private String xuanzhequyu;
+    /**
+     * Guany 20190522
+     * 年龄
+     */
+    private String nianling;
+    /**
+     * Guany 20190522
+     * 手机号
+     */
+    private String shoujihao;
+    /**
+     * Guany 20190522
+     * 防疫登记
+     */
+    private String fangyidengji;
+    /**
+     * Guany 20190522
+     * 新增犬主
+     */
+    private String xinzengquanzhu;
+    /**
+     * Guany 20190522
+     * 项圈绑定
+     */
+    private String xiangquanbangdin;
+    /**
+     * Guany 20190522
+     * 新增犬只
+     */
+    private String xinzengquanzxhi;
+    /**
+     * Guany 20190522
+     * 查看详情
+     */
+    private String chakanxiangqing;
+    /**
+     * Guany 20190522
+     * 犬主详情
+     */
+    private String quanzhuxiangqing;
+    /**
+     * Guany 20190522
+     * 犬主信息录入
+     */
+    private String quanzhuxinxilvru;
+    /**
+     * Guany 20190522
+     * 犬只信息录入
+     */
+    private String quanzhixinxilvru;
+    /**
+     * Guany 20190522
+     * 绑定项圈
+     */
+    private String bangdinxiangquan;
+    /**
+     * Guany 20190522
+     * 防疫信息录入
+     */
+    private String fangyixinxilvru;
+    /**
+     * Guany 20190522
+     * 尸体无害化处理
+     */
+    private String shitiwuhaihuachuli;
+    /**
+     * Guany 20190522
+     * 开始时间
+     */
+    private String kaishishijian;
+    /**
+     * Guany 20190522
+     * 结束时间
+     */
+    private String jieshushijian;
+    /**
+     * Guany 20190522
+     * 流浪犬处理录入
+     */
+    private String liulangquanchulilvru;
+    /**
+     * Guany 20190522
+     * 登录
+     */
+    private String denglv;
+    /**
+     * Guany 20190522
+     * 未能识别二维码
+     */
+    private String weinengshibieerweima;
+    /**
+     * Guany 20190522
+     * 提示
+     */
+    private String tishi;
+    /**
+     * Guany 20190522
+     * 该溯源Id不存在
+     */
+    private String gaisuyuanidbucunzai;
+    /**
+     * Guany 20190522
+     * 该设备未绑定任何犬只
+     */
+    private String gaishebeiweibangdinquanzhi;
+    /**
+     * Guany 20190522
+     * 添加成功
+     */
+    private String tianjiachenggong;
+    /**
+     * Guany 20190522
+     * 犬只解剖
+     */
+    private String quanzhijiepao;
+    /**
+     * Guany 20190522
+     * 新增犬只解剖
+     */
+    private String xinzengquanzhijiepao;
+    /**
+     * Guany 20190522
+     * 新增犬粪抗原检测
+     */
+    private String xinzengquanfenkanyuanjiance;
+    /**
+     * Guany 20190522
+     * 新增牛羊抗体检测
+     */
+    private String xinzengniuyangkanyuanjiance;
+    /**
+     * Guany 20190522
+     * 项圈发放
+     */
+    private String xiangquanfafang;
+    /**
+     * Guany 20190522
+     * 新增宣传活动
+     */
+    private String xinzengxuanchuanhuodong;
+    /**
+     * Guany 20190522
+     * 设置
+     */
+    private String shezhi;
+    /**
+     * Guany 20190522
+     * 新增培训活动
+     */
+    private String xinzengpeixunhuodong;
+    /**
+     * Guany 20190522
+     * 新增牛羊脏器处理
+     */
+    private String xinzengniuyangzangqichuli;
+    /**
+     * Guany 20190522
+     * 防疫统计
+     */
+    private String fangyitongji;
+    /**
+     * Guany 20190522
+     * 新增
+     */
+    private String xinzeng;
+    /**
+     * Guany 20190522
+     * 加载中
+     */
+    private String jiazaizhong;
+    /**
+     * Guany 20190522
+     * 登录超时
+     */
+    private String denglvchaoshi;
+    /**
+     * Guany 20190522
+     * 请重新登录
+     */
+    private String chongxindenglv;
+    /**
+     * Guany 20190522
+     * 请输入有效的数字
+     */
+    private String qingshuruyouxiaoshuzi;
+    /**
+     * Guany 20190522
+     * 请输入正确的数字
+     */
+    private String qingshuruzhegnqueshuzi;
+    /**
+     * Guany 20190522
+     * 请正确输入数据参数
+     */
+    private String qingshurushujucanshu;
+    /**
+     * Guany 20190522
+     * 我的位置
+     */
+    private String wodeweizhi;
+    /**
+     * Guany 20190522
+     * 更改密码成功
+     */
+    private String genghuanmimachengg;
+    /**
+     * Guany 20190522
+     * 请重新登录
+     */
+    private String qingchongxdenglv;
+    /**
+     * Guany 20190522
+     * 两次输入密码不一致
+     */
+    private String liangcimimabuyizhi;
+    /**
+     * Guany 20190522
+     * 请重新输入
+     */
+    private String qingchongxinshuru;
+    /**
+     * Guany 20190522
+     * 感染数必须小于调查数
+     */
+    private String ganranshubixuxiaoyutiaochashu;
+    /**
+     * Guany 20190522
+     * 修改成功
+     */
+    private String xiugaichenggong;
+    /**
+     * Guany 20190522
+     * 修改失败
+     */
+    private String xiugaishibai;
+    /**
+     * Guany 20190522
+     * 该设备不存在
+     */
+    private String gaishebeibucunzai;
+    /**
+     * Guany 20190522
+     * 该设备已被绑定
+     */
+    private String gaishebeiyibeibangdin;
+    /**
+     * Guany 20190522
+     * 请绑定项圈
+     */
+    private String qingbangdinxiangquan;
+    /**
+     * Guany 20190522
+     * 绑定成功
+     */
+    private String bingdinchenggong;
+    /**
+     * Guany 20190522
+     * 绑定失败
+     */
+    private String bingdinshibai;
+    /**
+     * Guany 20190522
+     * 无犬只定位信息
+     */
+    private String wuquanzhidinweixinxi;
+    /**
+     * Guany 20190522
+     * 当天无数据
+     */
+    private String wudangtianshuju;
+    /**
+     * Guany 20190522
+     * 无对应犬只或者犬主
+     */
+    private String wuduiyinquanzhiquanzhu;
+    /**
+     * Guany 20190522
+     * 添加失败
+     */
+    private String tianjiashibai;
+    /**
+     * Guany 20190522
+     * 请稍后再试
+     */
+    private String qingshaohouzaishi;
+    /**
+     * Guany 20190522
+     * 失败
+     */
+    private String shibai;
+    /**
+     * Guany 20190522
+     * 更换成功
+     */
+    private String genghuanchenggong;
+    /**
+     * Guany 20190522
+     * 证件号码已存在
+     */
+    private String zhengjianhaomayicunzai;
+    /**
+     * Guany 20190522
+     * 电话号码已存在
+     */
+    private String dianhuahaomayicunzai;
+    /**
+     * Guany 20190522
+     * 操作失败
+     */
+    private String caozuoshibai;
+    /**
+     * Guany 20190522
+     * 用户电话或证书号码重复
+     */
+    private String yonghudianhuahaomachongfu;
 
     /**
-     * language : 语言
-     * quanfangyi : 犬防疫
-     * daodile : 到底了
-     * weizhi : 未知
-     * mu : 亩
-     * xialagengduo : 下拉显示更多
-     * gongjin : 公斤
-     * year : 年
-     * month : 月
-     * day : 日
-     * sui : 岁
-     * pl_username : 请输入用户名
-     * pl_passwrod : 请输入密码
-     * submit : 提交
-     * save : 保存
-     * reset : 重置
-     * cancel : 取消
-     * quanzhi_quanzhu : 犬只犬主
-     * quanzhu_guanli : 犬主管理
-     * quanzhi_guanli : 犬只管理
-     * liulangquan_guanli : 流浪犬管理
-     * tongjixinxi : 统计信息
-     * quanzhi_zhoubian : 周边犬只
-     * fangzhi_guanli : 防治管理
-     * quanzhi_fangyi : 犬只防疫
-     * quanfen_chuli : 犬粪处理
-     * quanshi_chuli : 犬尸处理
-     * quanfenkangyuan_jiance : 犬粪抗原检测
-     * quanhzi_jiepao : 犬只解刨
-     * niuyangkangti_jiance : 牛羊抗体检测
-     * niuyangzangqi_chuli : 牛羊脏器处理
-     * tongji_xinxi : 统计信息
-     * wuzi_guanli : 物资管理
-     * fanghuwuzi : 防护物资
-     * quanzhu_xianquan : 犬只项圈
-     * xuanchuan_peixun : 宣传培训
-     * xuanchuan_huodong : 宣传活动
-     * peixunhuodong : 培训活动
-     * quanzhu_xinxi : 犬主信息
-     * quanzhu_xingming : 犬主姓名
-     * xingbie : 性别
-     * nan : 男
-     * nv : 女
-     * chushengriqi : 出生日期
-     * mingzu : 名族
-     * wenhuachengdu : 文化程度
-     * lianxidianhua : 联系电话
-     * zhengjian_leix : 证件类型
-     * zhengjian_haoma : 证件号码
-     * caochangmianji : 草场面积
-     * suoshuxiangzhen : 所属乡镇
-     * suoshucunweihui : 所属村委会
-     * menpaihao : 门牌号
-     * fangyiyuan : 防疫员
-     * lvrushijian : 录入时间
-     * zhaopian : 照片
-     * miaoshu : 描述
-     * quanzhi_xinxi : 犬只信息
-     * weibangdxiangquan : 未绑定项圈
-     * yangxinglv : 阳性率
-     * jianceshijian : 检测时间
-     * jiancedanwei : 检测单位
-     * jianceshu : 检测数
-     * yangxingshu : 阳性数
-     * wuhaihua : 无害化
-     * tupuai : 图片
-     * shipin : 视频
-     * fangyishijan : 防疫时间
-     * quanming : 犬名
-     * quanzhu : 犬主
-     * suyuan_ID : 溯源ID
-     * xiangquanbianhao : 项圈编号
-     * quanzhudianhua : 犬主电话
-     * quanzhushengfengzheng : 犬主身份证
-     * shusuoxiangzheng : 所属乡镇
-     * xiangxidizhi : 详细地址
-     * fangyileixin : 防疫类型
-     * fangyiyaopin : 防疫药品
-     * fangyizhouqi : 防疫周期
-     * fangyiyuandianhua : 防疫员电话
-     * hegeshu : 合格数
-     * hegelv : 合格率
-     * chulishijian : 处理时间
-     * siwangshijian : 死亡原因
-     * chulifnagfa : 处理方法
-     * fangfashuoming : 方法说明
-     * chulirenyuan : 处理人员
-     * jieshoudanwei : 接收单位
-     * jieshouren : 接收人
-     * fafangdanwei : 发放单位
-     * fafang : 发放
-     * fafangshuliang : 发放数量
-     * fafangshijian : 发放时间
-     * rulanshijian : 入栏时间
-     * tizhong : 体重
-     * maose : 毛色
-     * quanling : 犬龄
-     * quanzhong : 犬种
-     * quanzhicunlanshuliang : 犬只存栏数量
-     * suoshuzhou : 所属州
-     * suoshuxian : 所属县
-     * suoshuxiang : 所属乡
-     * suoshufangyiyuan : 所属防疫员
-     * shuliang : 数量
-     * quanzhushuliang : 犬主数量
-     * liulangquanchulishuliang : 流浪犬处理数量
-     * fangyicishu : 防疫次数
-     * shitichulicishu : 犬尸处理次数
-     * quanfenchulicishu : 犬粪处理次数
-     * quanfenkangyuancishu : 犬粪抗原检测次数
-     * quanzhijiepaocishu : 犬只解剖次数
-     * niuyangjiancecishu : 牛羊抗体检测次数
-     * niuyangzangqichulicishu : 牛羊脏器处理次数
-     * cishu : 次数
-     * shebeibianhao : 设备编号
-     * shenfengzhenghaoma : 身份证号码
-     * wuzileixing : 物资类型
-     * wuzimingcheng : 物资名称
-     * fasongshijian : 发送时间
-     * qumingshengfengzheng : 居民身份证
-     * juminghukoubo : 居民户口簿
-     * fenbianchulixinxi : 粪便处理信息
-     * suoshumoweihui : 所属牧委会
-     * dianziweilan : 电子围栏
-     * huodongshijian : 活动时间
-     * jibandanwei : 举办单位
-     * neirong : 内容
-     * fafangneirongshuliang : 发放宣传品数量
-     * zhuti : 主题
-     * didian : 地点
-     * shijian : 时间
-     * tuichudenglu : 退出登录
-     * miamashezhi : 密码设置
-     * gerenxinxi : 个人信息
-     * querenmima : 确认密码
-     * xinmima : 新密码
-     * jiumima : 旧密码
-     * quanzhishu : 犬只数
-     * yifangyi : 已防疫
-     * weifangyi : 未防疫
-     * chulifangshi : 处理方式
-     * gong_sex : 公
-     * mu_sex : 母
-     * chuliren : 处理人
-     * pingzhong : 品种
-     * liulangquanbianhao : 流浪犬编号
-     * caiyurenshu : 参与人数
-     * peixunduixiang : 培训对象
-     * yonghuming : 用户名
-     * xingming : 姓名
-     * suoshuquyu : 所属区域
-     * suoshuzuzhi : 所属组织
-     * binbianzangqichuli : 病变脏器处理
-     * binbianzangqichulishu : 病变脏器处理数
-     * ganranshu : 感染数
-     * diaochashu : 调查数
-     * xiangquanchuli : 项圈处理
-     * dianhua : 电话
-     * dianhuahaoma : 电话号码
-     * zhuxiaoshijian : 注销时间
-     * zhuxiaoyuanyin : 注销原因
-     * fangyiyuanxingming : 防疫员姓名
-     * querenbangdin : 确认绑定
-     * weidin : 未定
-     * scan_bind_device : 请扫描二维码绑定项圈
-     * zanbubangdin : 暂不绑定
-     * dinweichaxun : 定位查询
-     * guijichaxun : 轨迹查询
-     * riqi : 日期
-     * weiduxiaoxi : 未读消息
-     * yiduxiaoxi : 已读消息
-     * xiangqing : 详情
-     * biaoti : 标题
-     * genghuanwei : 更换为
-     * genghuanshijian : 更换时间
-     * genghuanyuanyin : 更换原因
-     * xinshebeibianhao : 新设备编号
-     * jiushebeibianhao : 旧设备编号
-     * yuanxiangquanchuli : 原项圈处理
-     * xinxiangquan : 新项圈
-     * xinquanzhu : 新犬主
-     * jiuquanzhu : 旧犬主
-     * yuyanshezhi : 语言设置
-     * kaiqi : 开启
-     * guanbi : 关闭
-     * xiangquangenghuancishu : 项圈更换次数
-     * fengbianchulicishu : 粪便处理次数
-     * quanshichulishuliang : 犬尸处理数量
-     * xinzengquanzhushuliang : 新增犬主数量
-     * zhuxiaoquanzhishuliang : 注销犬只数量
-     * xinzengquanzhishuliang : 新增犬只数量
-     * chaxun : 查询
-     * zhi : 至
-     * fangchanzhe : 房产证
-     * wodexiaoxi : 我的消息
-     * dinweiguiji : 定位轨迹
-     * quanzhizhuxiao : 犬只注销
-     * xiangquangenghuan : 项圈更换
-     * liulangquanchuli : 流浪犬处理
-     * fenbianchuli : 粪便处理
-     * quedin : 确定
-     * jubanshijian : 举办时间
-     * gengduo : 更多
-     * xuanzhequyu : 选择区域
-     * nianling : 年龄
-     * shoujihao : 手机号
-     * fangyidengji : 防疫登记
-     * xinzengquanzhu : 新增犬主
-     * xiangquanbangdin : 项圈绑定
-     * xinzengquanzxhi : 新增犬只
-     * chakanxiangqing : 查看详情
-     * quanzhuxiangqing : 犬主详情
-     * quanzhuxinxilvru : 犬主信息录入
-     * quanzhixinxilvru : 犬只信息录入
-     * bangdinxiangquan : 绑定项圈
-     * fangyixinxilvru : 防疫信息录入
-     * shitiwuhaihuachuli : 尸体无害化处理
-     * kaishishijian : 开始时间
-     * jieshushijian : 结束时间
-     * liulangquanchulilvru : 流浪犬处理录入
-     * denglv : 登录
-     * weinengshibieerweima : 未能识别二维码
-     * tishi : 提示
-     * gaisuyuanidbucunzai : 该溯源Id不存在
-     * gaishebeiweibangdinquanzhi : 该设备未绑定任何犬只
-     * tianjiachenggong : 添加成功
-     * quanzhijiepao : 犬只解剖
-     * xinzengquanzhijiepao : 新增犬只解剖
-     * xinzengquanfenkanyuanjiance : 新增犬粪抗原检测
-     * xinzengniuyangkanyuanjiance : 新增牛羊抗体检测
-     * xiangquanfafang : 项圈发放
-     * xinzengxuanchuanhuodong : 新增宣传活动
-     * shezhi : 设置
-     * xinzengpeixunhuodong : 新增培训活动
-     * xinzengniuyangzangqichuli : 新增牛羊脏器处理
-     * fangyitongji : 防疫统计
-     * xinzeng : 新增
-     * jiazaizhong : 加载中
-     * denglvchaoshi : 登录超时
-     * chongxindenglv : 请重新登录
-     * qingshuruyouxiaoshuzi : 请输入有效的数字
-     * qingshuruzhegnqueshuzi : 请输入正确的数字
-     * qingshurushujucanshu : 请正确输入数据参数
-     * wodeweizhi : 我的位置
-     * genghuanmimachengg : 更改密码成功
-     * qingchongxdenglv : 请重新登录
-     * liangcimimabuyizhi : 两次输入密码不一致
-     * qingchongxinshuru : 请重新输入
-     * ganranshubixuxiaoyutiaochashu : 感染数必须小于调查数
-     * xiugaichenggong : 修改成功
-     * xiugaishibai : 修改失败
-     * gaishebeibucunzai : 该设备不存在
-     * gaishebeiyibeibangdin : 该设备已被绑定
-     * qingbangdinxiangquan : 请绑定项圈
-     * bingdinchenggong : 绑定成功
-     * bingdinshibai : 绑定失败
-     * wuquanzhidinweixinxi : 无犬只定位信息
-     * wudangtianshuju : 当天无数据
-     * wuduiyinquanzhiquanzhu : 无对应犬只或者犬主
-     * tianjiashibai : 添加失败
-     * qingshaohouzaishi : 请稍后再试
-     * shibai : 失败
-     * genghuanchenggong : 更换成功
-     * zhengjianhaomayicunzai : 证件号码已存在
-     * dianhuahaomayicunzai : 电话号码已存在
-     * caozuoshibai : 操作失败
-     * yonghudianhuahaomachongfu : 用户电话或证书号码重复
+     * Guany 20190522
+     * 这是必填字段
      */
-
-    private String language;
-    private String quanfangyi;
-    private String daodile;
-    private String weizhi;
-    private String mu;
-    private String xialagengduo;
-    private String gongjin;
-    private String year;
-    private String month;
-    private String day;
-    private String sui;
-    private String pl_username;
-    private String pl_passwrod;
-    private String submit;
-    private String save;
-    private String reset;
-    private String cancel;
-    private String quanzhi_quanzhu;
-    private String quanzhu_guanli;
-    private String quanzhi_guanli;
-    private String liulangquan_guanli;
-    private String tongjixinxi;
-    private String quanzhi_zhoubian;
-    private String fangzhi_guanli;
-    private String quanzhi_fangyi;
-    private String quanfen_chuli;
-    private String quanshi_chuli;
-    private String quanfenkangyuan_jiance;
-    private String quanhzi_jiepao;
-    private String niuyangkangti_jiance;
-    private String niuyangzangqi_chuli;
-    private String tongji_xinxi;
-    private String wuzi_guanli;
-    private String fanghuwuzi;
-    private String quanzhu_xianquan;
-    private String xuanchuan_peixun;
-    private String xuanchuan_huodong;
-    private String peixunhuodong;
-    private String quanzhu_xinxi;
-    private String quanzhu_xingming;
-    private String xingbie;
-    private String nan;
-    private String nv;
-    private String chushengriqi;
-    private String mingzu;
-    private String wenhuachengdu;
-    private String lianxidianhua;
-    private String zhengjian_leix;
-    private String zhengjian_haoma;
-    private String caochangmianji;
-    private String suoshuxiangzhen;
-    private String suoshucunweihui;
-    private String menpaihao;
-    private String fangyiyuan;
-    private String lvrushijian;
-    private String zhaopian;
-    private String miaoshu;
-    private String quanzhi_xinxi;
-    private String weibangdxiangquan;
-    private String yangxinglv;
-    private String jianceshijian;
-    private String jiancedanwei;
-    private String jianceshu;
-    private String yangxingshu;
-    private String wuhaihua;
-    private String tupuai;
-    private String shipin;
-    private String fangyishijan;
-    private String quanming;
-    private String quanzhu;
-    private String suyuan_ID;
-    private String xiangquanbianhao;
-    private String quanzhudianhua;
-    private String quanzhushengfengzheng;
-    private String shusuoxiangzheng;
-    private String xiangxidizhi;
-    private String fangyileixin;
-    private String fangyiyaopin;
-    private String fangyizhouqi;
-    private String fangyiyuandianhua;
-    private String hegeshu;
-    private String hegelv;
-    private String chulishijian;
-    private String siwangshijian;
-    private String chulifnagfa;
-    private String fangfashuoming;
-    private String chulirenyuan;
-    private String jieshoudanwei;
-    private String jieshouren;
-    private String fafangdanwei;
-    private String fafang;
-    private String fafangshuliang;
-    private String fafangshijian;
-    private String rulanshijian;
-    private String tizhong;
-    private String maose;
-    private String quanling;
-    private String quanzhong;
-    private String quanzhicunlanshuliang;
-    private String suoshuzhou;
-    private String suoshuxian;
-    private String suoshuxiang;
-    private String suoshufangyiyuan;
-    private String shuliang;
-    private String quanzhushuliang;
-    private String liulangquanchulishuliang;
-    private String fangyicishu;
-    private String shitichulicishu;
-    private String quanfenchulicishu;
-    private String quanfenkangyuancishu;
-    private String quanzhijiepaocishu;
-    private String niuyangjiancecishu;
-    private String niuyangzangqichulicishu;
-    private String cishu;
-    private String shebeibianhao;
-    private String shenfengzhenghaoma;
-    private String wuzileixing;
-    private String wuzimingcheng;
-    private String fasongshijian;
-    private String qumingshengfengzheng;
-    private String juminghukoubo;
-    private String fenbianchulixinxi;
-    private String suoshumoweihui;
-    private String dianziweilan;
-    private String huodongshijian;
-    private String jibandanwei;
-    private String neirong;
-    private String fafangneirongshuliang;
-    private String zhuti;
-    private String didian;
-    private String shijian;
-    private String tuichudenglu;
-    private String miamashezhi;
-    private String gerenxinxi;
-    private String querenmima;
-    private String xinmima;
-    private String jiumima;
-    private String quanzhishu;
-    private String yifangyi;
-    private String weifangyi;
-    private String chulifangshi;
-    private String gong_sex;
-    private String mu_sex;
-    private String chuliren;
-    private String pingzhong;
-    private String liulangquanbianhao;
-    private String caiyurenshu;
-    private String peixunduixiang;
-    private String yonghuming;
-    private String xingming;
-    private String suoshuquyu;
-    private String suoshuzuzhi;
-    private String binbianzangqichuli;
-    private String binbianzangqichulishu;
-    private String ganranshu;
-    private String diaochashu;
-    private String xiangquanchuli;
-    private String dianhua;
-    private String dianhuahaoma;
-    private String zhuxiaoshijian;
-    private String zhuxiaoyuanyin;
-    private String fangyiyuanxingming;
-    private String querenbangdin;
-    private String weidin;
-    private String scan_bind_device;
-    private String zanbubangdin;
-    private String dinweichaxun;
-    private String guijichaxun;
-    private String riqi;
-    private String weiduxiaoxi;
-    private String yiduxiaoxi;
-    private String xiangqing;
-    private String biaoti;
-    private String genghuanwei;
-    private String genghuanshijian;
-    private String genghuanyuanyin;
-    private String xinshebeibianhao;
-    private String jiushebeibianhao;
-    private String yuanxiangquanchuli;
-    private String xinxiangquan;
-    private String xinquanzhu;
-    private String jiuquanzhu;
-    private String yuyanshezhi;
-    private String kaiqi;
-    private String guanbi;
-    private String xiangquangenghuancishu;
-    private String fengbianchulicishu;
-    private String quanshichulishuliang;
-    private String xinzengquanzhushuliang;
-    private String zhuxiaoquanzhishuliang;
-    private String xinzengquanzhishuliang;
-    private String chaxun;
-    private String zhi;
-    private String fangchanzhe;
-    private String wodexiaoxi;
-    private String dinweiguiji;
-    private String quanzhizhuxiao;
-    private String xiangquangenghuan;
-    private String liulangquanchuli;
-    private String fenbianchuli;
-    private String quedin;
-    private String jubanshijian;
-    private String gengduo;
-    private String xuanzhequyu;
-    private String nianling;
-    private String shoujihao;
-    private String fangyidengji;
-    private String xinzengquanzhu;
-    private String xiangquanbangdin;
-    private String xinzengquanzxhi;
-    private String chakanxiangqing;
-    private String quanzhuxiangqing;
-    private String quanzhuxinxilvru;
-    private String quanzhixinxilvru;
-    private String bangdinxiangquan;
-    private String fangyixinxilvru;
-    private String shitiwuhaihuachuli;
-    private String kaishishijian;
-    private String jieshushijian;
-    private String liulangquanchulilvru;
-    private String denglv;
-    private String weinengshibieerweima;
-    private String tishi;
-    private String gaisuyuanidbucunzai;
-    private String gaishebeiweibangdinquanzhi;
-    private String tianjiachenggong;
-    private String quanzhijiepao;
-    private String xinzengquanzhijiepao;
-    private String xinzengquanfenkanyuanjiance;
-    private String xinzengniuyangkanyuanjiance;
-    private String xiangquanfafang;
-    private String xinzengxuanchuanhuodong;
-    private String shezhi;
-    private String xinzengpeixunhuodong;
-    private String xinzengniuyangzangqichuli;
-    private String fangyitongji;
-    private String xinzeng;
-    private String jiazaizhong;
-    private String denglvchaoshi;
-    private String chongxindenglv;
-    private String qingshuruyouxiaoshuzi;
-    private String qingshuruzhegnqueshuzi;
-    private String qingshurushujucanshu;
-    private String wodeweizhi;
-    private String genghuanmimachengg;
-    private String qingchongxdenglv;
-    private String liangcimimabuyizhi;
-    private String qingchongxinshuru;
-    private String ganranshubixuxiaoyutiaochashu;
-    private String xiugaichenggong;
-    private String xiugaishibai;
-    private String gaishebeibucunzai;
-    private String gaishebeiyibeibangdin;
-    private String qingbangdinxiangquan;
-    private String bingdinchenggong;
-    private String bingdinshibai;
-    private String wuquanzhidinweixinxi;
-    private String wudangtianshuju;
-    private String wuduiyinquanzhiquanzhu;
-    private String tianjiashibai;
-    private String qingshaohouzaishi;
-    private String shibai;
-    private String genghuanchenggong;
-    private String zhengjianhaomayicunzai;
-    private String dianhuahaomayicunzai;
-    private String caozuoshibai;
-    private String yonghudianhuahaomachongfu;
+    private String zheshibitianziduan;
+    /**
+     * Guany 20190522
+     * 请输入有效的电子邮件地址
+     */
+    private String qingshuruyouxiaodedianziyoujiandizhi;
+    /**
+     * Guany 20190522
+     * 请输入11位的手机号码
+     */
+    private String qingshuru11weishoujihao;
+    /**
+     * Guany 20190522
+     * 请输入有效的网址
+     */
+    private String qingshuruyouxiaodewangzhi;
+    /**
+     * Guany 20190522
+     * 请输入有效的日期
+     */
+    private String qingshuruyouxiaoriqi;
+    /**
+     * Guany 20190522
+     * 例如
+     */
+    private String liru;
+    /**
+     * Guany 20190522
+     * 只能输入数字
+     */
+    private String zhinengshurushuzi;
+    /**
+     * Guany 20190522
+     * 请输入18位的有效身份证
+     */
+    private String qingshuru18weiyouxiaozhenghao;
+    /**
+     * Guany 20190522
+     * 输入值必须等于
+     */
+    private String shuruzhibixudengyu;
+    /**
+     * Guany 20190522
+     * 输入值必须包含
+     */
+    private String shuruzhibixubaohan;
+    /**
+     * Guany 20190522
+     * 输入最低长度为
+     */
+    private String shuruzuixiaochangduwei;
+    /**
+     * Guany 20190522
+     * 输入最大长度为
+     */
+    private String shuruzuidachangduwei;
+    /**
+     * Guany 20190522
+     * 个字符
+     */
+    private String gezifu;
+    /**
+     * Guany 20190522
+     * 输入长度范围必须为
+     */
+    private String shuruchangdubixuwei;
+    /**
+     * Guany 20190522
+     * 请输入不小于
+     */
+    private String qingshurubuxiaoyu;
+    /**
+     * Guany 20190522
+     * 请输入不大于
+     */
+    private String qingshurubudayu;
+    /**
+     * Guany 20190522
+     * 输入范围在
+     */
+    private String shurufanweizai;
+    /**
+     * Guany 20190522
+     * 请填写检测数
+     */
+    private String qingtianxiejianceshu;
+    /**
+     * Guany 20190522
+     * 检测数填写不正确
+     */
+    private String jianceshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写阳性数
+     */
+    private String qingtianxieyangxingshu;
+    /**
+     * Guany 20190522
+     * 阳性数填写不正确
+     */
+    private String yangxingshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写阳性率
+     */
+    private String qingtianxieyangxinglv;
+    /**
+     * Guany 20190522
+     * 阳性率填写不正确
+     */
+    private String yangxinglvtianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写无害化处理数
+     */
+    private String qingtianxiewuhaihuachulishu;
+    /**
+     * Guany 20190522
+     * 无害化处理数填写不正确
+     */
+    private String wuhaihuachulishutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写合格数
+     */
+    private String qingtianxiehegeshu;
+    /**
+     * Guany 20190522
+     * 合格数填写不正确
+     */
+    private String hegeshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写溯源id
+     */
+    private String qingtianxieshuyuanID;
+    /**
+     * Guany 20190522
+     * 请输入正确的数量
+     */
+    private String qingshuruzhengquedeshuliang;
+    /**
+     * Guany 20190522
+     * 未防疫犬只
+     */
+    private String weifangyiquanzhi;
+    /**
+     * Guany 20190522
+     * 已防疫犬只
+     */
+    private String yifangyiquanzhi;
+    /**
+     * Guany 20190522
+     * 请填写地点
+     */
+    private String qingtianxiedidian;
+    /**
+     * Guany 20190522
+     * 请填写主题
+     */
+    private String qingtianxiezhuti;
+    /**
+     * Guany 20190522
+     * 请填写宣传品数量
+     */
+    private String qingtianxiexuanchuanppingshuliang;
+    /**
+     * Guany 20190522
+     * 宣传品数量填写不正确
+     */
+    private String xuanchuanpingchuliangbuzhenfgque;
+    /**
+     * Guany 20190522
+     * 请填写内容
+     */
+    private String qingtianxieneirong;
+    /**
+     * Guany 20190522
+     * 旧密码不能为空
+     */
+    private String jiumimabunengweikong;
+    /**
+     * Guany 20190522
+     * 新密码不能为空
+     */
+    private String xinmimabunengweikong;
+    /**
+     * Guany 20190522
+     * 确认密码不能为空
+     */
+    private String querenmimabunengweikong;
+    /**
+     * Guany 20190522
+     * 请填写处理方式
+     */
+    private String qingtianxiechulifangshi;
+    /**
+     * Guany 20190522
+     * 请填写参与人数
+     */
+    private String qingtianxiecanyurenshu;
+    /**
+     * Guany 20190522
+     * 参与人数填写不正确
+     */
+    private String canshurenshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写培训对象
+     */
+    private String qingtianxiepeixunduixiang;
+    /**
+     * Guany 20190522
+     * 请填写调查数
+     */
+    private String qingtianxiedianchashu;
+    /**
+     * Guany 20190522
+     * 调查数填写不正确
+     */
+    private String dianchashutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写感染数
+     */
+    private String qingtianxieganranshu;
+    /**
+     * Guany 20190522
+     * 感染数填写不正确
+     */
+    private String ganranshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写病变处理数
+     */
+    private String qingtianxiebingbianchulishu;
+    /**
+     * Guany 20190522
+     * 病变处理数填写不正确
+     */
+    private String bingbianshutianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 请填写犬名
+     */
+    private String qingshuruquanming;
+    /**
+     * Guany 20190522
+     * 请填写处理方法
+     */
+    private String qingtianxiechulifangfa;
+    /**
+     * Guany 20190522
+     * 请填写方法说明
+     */
+    private String qingtianxiefangfashuoming;
+    /**
+     * Guany 20190522
+     * 请填写新项圈编号
+     */
+    private String qingtianxiexinxiangquanbianhao;
+    /**
+     * Guany 20190522
+     * 请填写门牌号
+     */
+    private String tianxiexinxiangquanbianhao;
+    /**
+     * Guany 20190522
+     * 请填写犬主姓名
+     */
+    private String qingtianxiequanzhuxinming;
+    /**
+     * Guany 20190522
+     * 请填写电话号码
+     */
+    private String qingtianxiedianhuahao;
+    /**
+     * Guany 20190522
+     * 请输入正确的电话号码
+     */
+    private String qingshuruzhengquededianhuahaoma;
+    /**
+     * Guany 20190522
+     * 请填写证件号码
+     */
+    private String qingtianxiezhengjianhaoma;
+    /**
+     * Guany 20190522
+     * 请输入正确的证件号码
+     */
+    private String qingshuruzhegnquedezhengjianhaoma;
+    /**
+     * Guany 20190522
+     * 账号不能为空
+     */
+    private String zhanghaobunengweikong;
+    /**
+     * Guany 20190522
+     * 密码不能为空
+     */
+    private String mimabunengweikong;
+    /**
+     * Guany 20190522
+     * 至今
+     */
+    private String zhijin;
+    /**
+     * Guany 20190522
+     * 请选择开始时间
+     */
+    private String qingxuanzekaishishijian;
+    /**
+     * Guany 20190522
+     * 全部
+     */
+    private String quanbu;
+    /**
+     * Guany 20190522
+     * 敬请期待
+     */
+    private String jingqingqidai;
+    /**
+     * Guany 20190522
+     * 不限
+     */
+    private String buxian;
+    /**
+     * Guany 20190522
+     * 该设备已丢失
+     */
+    private String gaishebeiyidiushi;
+    /**
+     * Guany 20190522
+     * 该设备已损坏
+     */
+    private String gaishebeiyisunhuai;
+    /**
+     * Guany 20190522
+     * 用户名或密码错误
+     */
+    private String yonghuminghuomimacuowu;
+    /**
+     * Guany 20190522
+     * 阳性数不能大于检测数
+     */
+    private String yangxinshubunengdayujianceshu;
+    /**
+     * Guany 20190522
+     * 合格数不能大于检测数
+     */
+    private String hegeshubunengdayujianceshu;
+    /**
+     * Guany 20190522
+     * 新增防护物资
+     */
+    private String xinzengfanghuwuzi;
+    /**
+     * Guany 20190522
+     * 请填写物资名称
+     */
+    private String qingtianxiewuzimingcheng;
+    /**
+     * Guany 20190522
+     * 请填写发放数量
+     */
+    private String qingtianxiefafangshuliang;
+    /**
+     * Guany 20190522
+     * 数量填写不正确
+     */
+    private String shuliangtianxiebuzhengque;
+    /**
+     * Guany 20190522
+     * 输入的旧密码有误
+     */
+    private String shurudejiumimayouwu;
+    /**
+     * Guany 20190522
+     * 确定要删除此图片吗
+     */
+    private String quedingyaoshanchucitupianma;
+    /**
+     * Guany 20190522
+     * 最多上传三张
+     */
+    private String zuiduoshangchuansanzhang;
+    /**
+     * Guany 20190522
+     * 汉族
+     */
+    private String hanzu;
+    /**
+     * Guany 20190522
+     * 藏族
+     */
+    private String zangzu;
+    /**
+     * Guany 20190522
+     * 小学
+     */
+    private String xiaoxue;
+    /**
+     * Guany 20190522
+     * 初中
+     */
+    private String chuzhong;
+    /**
+     * Guany 20190522
+     * 高中
+     */
+    private String gaozhong;
+    /**
+     * Guany 20190522
+     * 中专
+     */
+    private String zhongzhuan;
+    /**
+     * Guany 20190522
+     * 大专
+     */
+    private String dazhuan;
+    /**
+     * Guany 20190522
+     * 本科及以上
+     */
+    private String benkejiyishang;
+    /**
+     * Guany 20190522
+     * 正常
+     */
+    private String zhengchang;
+    /**
+     * Guany 20190522
+     * 免疫超期
+     */
+    private String mianyichaoqi;
+    /**
+     * Guany 20190522
+     * 暂未绑定项圈
+     */
+    private String zanweibangdinxiangquan;
+    /**
+     * Guany 20190522
+     * 春防
+     */
+    private String chunfang;
+    /**
+     * Guany 20190522
+     * 秋防
+     */
+    private String qiufang;
+    /**
+     * Guany 20190522
+     * 月月投药
+     */
+    private String yueyuetouyao;
+    /**
+     * Guany 20190522
+     * 下载中
+     */
+    private String xiazaizhong;
+    /**
+     * Guany 20190522
+     * 更新提示
+     */
+    private String gengxintishi;
+    /**
+     * Guany 20190522
+     * 新版本已下载完毕，请点击确定更新
+     */
+    private String dowloadAndupdate;
+    /**
+     * Guany 20190522
+     * 新版本下载失败，请检查网络并重新更新
+     */
+    private String dowloadFailAndCheckd;
 
     public String getLanguage() {
         return language;
@@ -688,12 +1978,12 @@ public class ZhBOLangProp {
         this.cancel = cancel;
     }
 
-    public String getQuanzhi_quanzhu() {
-        return quanzhi_quanzhu;
+    public String getUanzhi_quanzhu() {
+        return uanzhi_quanzhu;
     }
 
-    public void setQuanzhi_quanzhu(String quanzhi_quanzhu) {
-        this.quanzhi_quanzhu = quanzhi_quanzhu;
+    public void setUanzhi_quanzhu(String uanzhi_quanzhu) {
+        this.uanzhi_quanzhu = uanzhi_quanzhu;
     }
 
     public String getQuanzhu_guanli() {
@@ -1072,12 +2362,12 @@ public class ZhBOLangProp {
         this.wuhaihua = wuhaihua;
     }
 
-    public String getTupuai() {
-        return tupuai;
+    public String getTupian() {
+        return tupian;
     }
 
-    public void setTupuai(String tupuai) {
-        this.tupuai = tupuai;
+    public void setTupian(String tupian) {
+        this.tupian = tupian;
     }
 
     public String getShipin() {
@@ -1168,6 +2458,14 @@ public class ZhBOLangProp {
         this.fangyileixin = fangyileixin;
     }
 
+    public String getFangyishijian() {
+        return fangyishijian;
+    }
+
+    public void setFangyishijian(String fangyishijian) {
+        this.fangyishijian = fangyishijian;
+    }
+
     public String getFangyiyaopin() {
         return fangyiyaopin;
     }
@@ -1224,12 +2522,12 @@ public class ZhBOLangProp {
         this.siwangshijian = siwangshijian;
     }
 
-    public String getChulifnagfa() {
-        return chulifnagfa;
+    public String getChulifangfa() {
+        return chulifangfa;
     }
 
-    public void setChulifnagfa(String chulifnagfa) {
-        this.chulifnagfa = chulifnagfa;
+    public void setChulifangfa(String chulifangfa) {
+        this.chulifangfa = chulifangfa;
     }
 
     public String getFangfashuoming() {
@@ -1528,6 +2826,14 @@ public class ZhBOLangProp {
         this.fenbianchulixinxi = fenbianchulixinxi;
     }
 
+    public String getFangyixinxi() {
+        return fangyixinxi;
+    }
+
+    public void setFangyixinxi(String fangyixinxi) {
+        this.fangyixinxi = fangyixinxi;
+    }
+
     public String getSuoshumoweihui() {
         return suoshumoweihui;
     }
@@ -1568,12 +2874,12 @@ public class ZhBOLangProp {
         this.neirong = neirong;
     }
 
-    public String getFafangneirongshuliang() {
-        return fafangneirongshuliang;
+    public String getFafangxuanchuanpinshuliang() {
+        return fafangxuanchuanpinshuliang;
     }
 
-    public void setFafangneirongshuliang(String fafangneirongshuliang) {
-        this.fafangneirongshuliang = fafangneirongshuliang;
+    public void setFafangxuanchuanpinshuliang(String fafangxuanchuanpinshuliang) {
+        this.fafangxuanchuanpinshuliang = fafangxuanchuanpinshuliang;
     }
 
     public String getZhuti() {
@@ -2344,12 +3650,773 @@ public class ZhBOLangProp {
         this.gaisuyuanidbucunzai = gaisuyuanidbucunzai;
     }
 
-    public String getGaishebeiweibangdinquanzhi() {
-        return gaishebeiweibangdinquanzhi;
+
+    public String getZheshibitianziduan() {
+        return zheshibitianziduan;
     }
 
-    public void setGaishebeiweibangdinquanzhi(String gaishebeiweibangdinquanzhi) {
-        this.gaishebeiweibangdinquanzhi = gaishebeiweibangdinquanzhi;
+    public void setZheshibitianziduan(String zheshibitianziduan) {
+        this.zheshibitianziduan = zheshibitianziduan;
+    }
+
+    public String getQingshuruyouxiaodedianziyoujiandizhi() {
+        return qingshuruyouxiaodedianziyoujiandizhi;
+    }
+
+    public void setQingshuruyouxiaodedianziyoujiandizhi(String qingshuruyouxiaodedianziyoujiandizhi) {
+        this.qingshuruyouxiaodedianziyoujiandizhi = qingshuruyouxiaodedianziyoujiandizhi;
+    }
+
+    public String getQingshuru11weishoujihao() {
+        return qingshuru11weishoujihao;
+    }
+
+    public void setQingshuru11weishoujihao(String qingshuru11weishoujihao) {
+        this.qingshuru11weishoujihao = qingshuru11weishoujihao;
+    }
+
+    public String getQingshuruyouxiaodewangzhi() {
+        return qingshuruyouxiaodewangzhi;
+    }
+
+    public void setQingshuruyouxiaodewangzhi(String qingshuruyouxiaodewangzhi) {
+        this.qingshuruyouxiaodewangzhi = qingshuruyouxiaodewangzhi;
+    }
+
+    public String getQingshuruyouxiaoriqi() {
+        return qingshuruyouxiaoriqi;
+    }
+
+    public void setQingshuruyouxiaoriqi(String qingshuruyouxiaoriqi) {
+        this.qingshuruyouxiaoriqi = qingshuruyouxiaoriqi;
+    }
+
+    public String getLiru() {
+        return liru;
+    }
+
+    public void setLiru(String liru) {
+        this.liru = liru;
+    }
+
+    public String getZhinengshurushuzi() {
+        return zhinengshurushuzi;
+    }
+
+    public void setZhinengshurushuzi(String zhinengshurushuzi) {
+        this.zhinengshurushuzi = zhinengshurushuzi;
+    }
+
+    public String getQingshuru18weiyouxiaozhenghao() {
+        return qingshuru18weiyouxiaozhenghao;
+    }
+
+    public void setQingshuru18weiyouxiaozhenghao(String qingshuru18weiyouxiaozhenghao) {
+        this.qingshuru18weiyouxiaozhenghao = qingshuru18weiyouxiaozhenghao;
+    }
+
+    public String getShuruzhibixudengyu() {
+        return shuruzhibixudengyu;
+    }
+
+    public void setShuruzhibixudengyu(String shuruzhibixudengyu) {
+        this.shuruzhibixudengyu = shuruzhibixudengyu;
+    }
+
+    public String getShuruzhibixubaohan() {
+        return shuruzhibixubaohan;
+    }
+
+    public void setShuruzhibixubaohan(String shuruzhibixubaohan) {
+        this.shuruzhibixubaohan = shuruzhibixubaohan;
+    }
+
+    public String getShuruzuixiaochangduwei() {
+        return shuruzuixiaochangduwei;
+    }
+
+    public void setShuruzuixiaochangduwei(String shuruzuixiaochangduwei) {
+        this.shuruzuixiaochangduwei = shuruzuixiaochangduwei;
+    }
+
+    public String getShuruzuidachangduwei() {
+        return shuruzuidachangduwei;
+    }
+
+    public void setShuruzuidachangduwei(String shuruzuidachangduwei) {
+        this.shuruzuidachangduwei = shuruzuidachangduwei;
+    }
+
+    public String getGezifu() {
+        return gezifu;
+    }
+
+    public void setGezifu(String gezifu) {
+        this.gezifu = gezifu;
+    }
+
+    public String getShuruchangdubixuwei() {
+        return shuruchangdubixuwei;
+    }
+
+    public void setShuruchangdubixuwei(String shuruchangdubixuwei) {
+        this.shuruchangdubixuwei = shuruchangdubixuwei;
+    }
+
+    public String getQingshurubuxiaoyu() {
+        return qingshurubuxiaoyu;
+    }
+
+    public void setQingshurubuxiaoyu(String qingshurubuxiaoyu) {
+        this.qingshurubuxiaoyu = qingshurubuxiaoyu;
+    }
+
+    public String getQingshurubudayu() {
+        return qingshurubudayu;
+    }
+
+    public void setQingshurubudayu(String qingshurubudayu) {
+        this.qingshurubudayu = qingshurubudayu;
+    }
+
+    public String getShurufanweizai() {
+        return shurufanweizai;
+    }
+
+    public void setShurufanweizai(String shurufanweizai) {
+        this.shurufanweizai = shurufanweizai;
+    }
+
+    public String getQingtianxiejianceshu() {
+        return qingtianxiejianceshu;
+    }
+
+    public void setQingtianxiejianceshu(String qingtianxiejianceshu) {
+        this.qingtianxiejianceshu = qingtianxiejianceshu;
+    }
+
+    public String getJianceshutianxiebuzhengque() {
+        return jianceshutianxiebuzhengque;
+    }
+
+    public void setJianceshutianxiebuzhengque(String jianceshutianxiebuzhengque) {
+        this.jianceshutianxiebuzhengque = jianceshutianxiebuzhengque;
+    }
+
+    public String getQingtianxieyangxingshu() {
+        return qingtianxieyangxingshu;
+    }
+
+    public void setQingtianxieyangxingshu(String qingtianxieyangxingshu) {
+        this.qingtianxieyangxingshu = qingtianxieyangxingshu;
+    }
+
+    public String getYangxingshutianxiebuzhengque() {
+        return yangxingshutianxiebuzhengque;
+    }
+
+    public void setYangxingshutianxiebuzhengque(String yangxingshutianxiebuzhengque) {
+        this.yangxingshutianxiebuzhengque = yangxingshutianxiebuzhengque;
+    }
+
+    public String getQingtianxieyangxinglv() {
+        return qingtianxieyangxinglv;
+    }
+
+    public void setQingtianxieyangxinglv(String qingtianxieyangxinglv) {
+        this.qingtianxieyangxinglv = qingtianxieyangxinglv;
+    }
+
+    public String getYangxinglvtianxiebuzhengque() {
+        return yangxinglvtianxiebuzhengque;
+    }
+
+    public void setYangxinglvtianxiebuzhengque(String yangxinglvtianxiebuzhengque) {
+        this.yangxinglvtianxiebuzhengque = yangxinglvtianxiebuzhengque;
+    }
+
+    public String getQingtianxiewuhaihuachulishu() {
+        return qingtianxiewuhaihuachulishu;
+    }
+
+    public void setQingtianxiewuhaihuachulishu(String qingtianxiewuhaihuachulishu) {
+        this.qingtianxiewuhaihuachulishu = qingtianxiewuhaihuachulishu;
+    }
+
+    public String getWuhaihuachulishutianxiebuzhengque() {
+        return wuhaihuachulishutianxiebuzhengque;
+    }
+
+    public void setWuhaihuachulishutianxiebuzhengque(String wuhaihuachulishutianxiebuzhengque) {
+        this.wuhaihuachulishutianxiebuzhengque = wuhaihuachulishutianxiebuzhengque;
+    }
+
+    public String getQingtianxiehegeshu() {
+        return qingtianxiehegeshu;
+    }
+
+    public void setQingtianxiehegeshu(String qingtianxiehegeshu) {
+        this.qingtianxiehegeshu = qingtianxiehegeshu;
+    }
+
+    public String getHegeshutianxiebuzhengque() {
+        return hegeshutianxiebuzhengque;
+    }
+
+    public void setHegeshutianxiebuzhengque(String hegeshutianxiebuzhengque) {
+        this.hegeshutianxiebuzhengque = hegeshutianxiebuzhengque;
+    }
+
+    public String getQingtianxieshuyuanID() {
+        return qingtianxieshuyuanID;
+    }
+
+    public void setQingtianxieshuyuanID(String qingtianxieshuyuanID) {
+        this.qingtianxieshuyuanID = qingtianxieshuyuanID;
+    }
+
+    public String getQingshuruzhengquedeshuliang() {
+        return qingshuruzhengquedeshuliang;
+    }
+
+    public void setQingshuruzhengquedeshuliang(String qingshuruzhengquedeshuliang) {
+        this.qingshuruzhengquedeshuliang = qingshuruzhengquedeshuliang;
+    }
+
+    public String getWeifangyiquanzhi() {
+        return weifangyiquanzhi;
+    }
+
+    public void setWeifangyiquanzhi(String weifangyiquanzhi) {
+        this.weifangyiquanzhi = weifangyiquanzhi;
+    }
+
+    public String getYifangyiquanzhi() {
+        return yifangyiquanzhi;
+    }
+
+    public void setYifangyiquanzhi(String yifangyiquanzhi) {
+        this.yifangyiquanzhi = yifangyiquanzhi;
+    }
+
+    public String getQingtianxiedidian() {
+        return qingtianxiedidian;
+    }
+
+    public void setQingtianxiedidian(String qingtianxiedidian) {
+        this.qingtianxiedidian = qingtianxiedidian;
+    }
+
+    public String getQingtianxiezhuti() {
+        return qingtianxiezhuti;
+    }
+
+    public void setQingtianxiezhuti(String qingtianxiezhuti) {
+        this.qingtianxiezhuti = qingtianxiezhuti;
+    }
+
+    public String getQingtianxiexuanchuanppingshuliang() {
+        return qingtianxiexuanchuanppingshuliang;
+    }
+
+    public void setQingtianxiexuanchuanppingshuliang(String qingtianxiexuanchuanppingshuliang) {
+        this.qingtianxiexuanchuanppingshuliang = qingtianxiexuanchuanppingshuliang;
+    }
+
+    public String getXuanchuanpingchuliangbuzhenfgque() {
+        return xuanchuanpingchuliangbuzhenfgque;
+    }
+
+    public void setXuanchuanpingchuliangbuzhenfgque(String xuanchuanpingchuliangbuzhenfgque) {
+        this.xuanchuanpingchuliangbuzhenfgque = xuanchuanpingchuliangbuzhenfgque;
+    }
+
+    public String getQingtianxieneirong() {
+        return qingtianxieneirong;
+    }
+
+    public void setQingtianxieneirong(String qingtianxieneirong) {
+        this.qingtianxieneirong = qingtianxieneirong;
+    }
+
+    public String getJiumimabunengweikong() {
+        return jiumimabunengweikong;
+    }
+
+    public void setJiumimabunengweikong(String jiumimabunengweikong) {
+        this.jiumimabunengweikong = jiumimabunengweikong;
+    }
+
+    public String getXinmimabunengweikong() {
+        return xinmimabunengweikong;
+    }
+
+    public void setXinmimabunengweikong(String xinmimabunengweikong) {
+        this.xinmimabunengweikong = xinmimabunengweikong;
+    }
+
+    public String getQuerenmimabunengweikong() {
+        return querenmimabunengweikong;
+    }
+
+    public void setQuerenmimabunengweikong(String querenmimabunengweikong) {
+        this.querenmimabunengweikong = querenmimabunengweikong;
+    }
+
+    public String getQingtianxiechulifangshi() {
+        return qingtianxiechulifangshi;
+    }
+
+    public void setQingtianxiechulifangshi(String qingtianxiechulifangshi) {
+        this.qingtianxiechulifangshi = qingtianxiechulifangshi;
+    }
+
+    public String getQingtianxiecanyurenshu() {
+        return qingtianxiecanyurenshu;
+    }
+
+    public void setQingtianxiecanyurenshu(String qingtianxiecanyurenshu) {
+        this.qingtianxiecanyurenshu = qingtianxiecanyurenshu;
+    }
+
+    public String getCanshurenshutianxiebuzhengque() {
+        return canshurenshutianxiebuzhengque;
+    }
+
+    public void setCanshurenshutianxiebuzhengque(String canshurenshutianxiebuzhengque) {
+        this.canshurenshutianxiebuzhengque = canshurenshutianxiebuzhengque;
+    }
+
+    public String getQingtianxiepeixunduixiang() {
+        return qingtianxiepeixunduixiang;
+    }
+
+    public void setQingtianxiepeixunduixiang(String qingtianxiepeixunduixiang) {
+        this.qingtianxiepeixunduixiang = qingtianxiepeixunduixiang;
+    }
+
+    public String getQingtianxiedianchashu() {
+        return qingtianxiedianchashu;
+    }
+
+    public void setQingtianxiedianchashu(String qingtianxiedianchashu) {
+        this.qingtianxiedianchashu = qingtianxiedianchashu;
+    }
+
+    public String getDianchashutianxiebuzhengque() {
+        return dianchashutianxiebuzhengque;
+    }
+
+    public void setDianchashutianxiebuzhengque(String dianchashutianxiebuzhengque) {
+        this.dianchashutianxiebuzhengque = dianchashutianxiebuzhengque;
+    }
+
+    public String getQingtianxieganranshu() {
+        return qingtianxieganranshu;
+    }
+
+    public void setQingtianxieganranshu(String qingtianxieganranshu) {
+        this.qingtianxieganranshu = qingtianxieganranshu;
+    }
+
+    public String getGanranshutianxiebuzhengque() {
+        return ganranshutianxiebuzhengque;
+    }
+
+    public void setGanranshutianxiebuzhengque(String ganranshutianxiebuzhengque) {
+        this.ganranshutianxiebuzhengque = ganranshutianxiebuzhengque;
+    }
+
+    public String getQingtianxiebingbianchulishu() {
+        return qingtianxiebingbianchulishu;
+    }
+
+    public void setQingtianxiebingbianchulishu(String qingtianxiebingbianchulishu) {
+        this.qingtianxiebingbianchulishu = qingtianxiebingbianchulishu;
+    }
+
+    public String getBingbianshutianxiebuzhengque() {
+        return bingbianshutianxiebuzhengque;
+    }
+
+    public void setBingbianshutianxiebuzhengque(String bingbianshutianxiebuzhengque) {
+        this.bingbianshutianxiebuzhengque = bingbianshutianxiebuzhengque;
+    }
+
+    public String getQingshuruquanming() {
+        return qingshuruquanming;
+    }
+
+    public void setQingshuruquanming(String qingshuruquanming) {
+        this.qingshuruquanming = qingshuruquanming;
+    }
+
+    public String getQingtianxiechulifangfa() {
+        return qingtianxiechulifangfa;
+    }
+
+    public void setQingtianxiechulifangfa(String qingtianxiechulifangfa) {
+        this.qingtianxiechulifangfa = qingtianxiechulifangfa;
+    }
+
+    public String getQingtianxiefangfashuoming() {
+        return qingtianxiefangfashuoming;
+    }
+
+    public void setQingtianxiefangfashuoming(String qingtianxiefangfashuoming) {
+        this.qingtianxiefangfashuoming = qingtianxiefangfashuoming;
+    }
+
+    public String getQingtianxiexinxiangquanbianhao() {
+        return qingtianxiexinxiangquanbianhao;
+    }
+
+    public void setQingtianxiexinxiangquanbianhao(String qingtianxiexinxiangquanbianhao) {
+        this.qingtianxiexinxiangquanbianhao = qingtianxiexinxiangquanbianhao;
+    }
+
+    public String getTianxiexinxiangquanbianhao() {
+        return tianxiexinxiangquanbianhao;
+    }
+
+    public void setTianxiexinxiangquanbianhao(String tianxiexinxiangquanbianhao) {
+        this.tianxiexinxiangquanbianhao = tianxiexinxiangquanbianhao;
+    }
+
+    public String getQingtianxiequanzhuxinming() {
+        return qingtianxiequanzhuxinming;
+    }
+
+    public void setQingtianxiequanzhuxinming(String qingtianxiequanzhuxinming) {
+        this.qingtianxiequanzhuxinming = qingtianxiequanzhuxinming;
+    }
+
+    public String getQingtianxiedianhuahao() {
+        return qingtianxiedianhuahao;
+    }
+
+    public void setQingtianxiedianhuahao(String qingtianxiedianhuahao) {
+        this.qingtianxiedianhuahao = qingtianxiedianhuahao;
+    }
+
+    public String getQingshuruzhengquededianhuahaoma() {
+        return qingshuruzhengquededianhuahaoma;
+    }
+
+    public void setQingshuruzhengquededianhuahaoma(String qingshuruzhengquededianhuahaoma) {
+        this.qingshuruzhengquededianhuahaoma = qingshuruzhengquededianhuahaoma;
+    }
+
+    public String getQingtianxiezhengjianhaoma() {
+        return qingtianxiezhengjianhaoma;
+    }
+
+    public void setQingtianxiezhengjianhaoma(String qingtianxiezhengjianhaoma) {
+        this.qingtianxiezhengjianhaoma = qingtianxiezhengjianhaoma;
+    }
+
+    public String getQingshuruzhegnquedezhengjianhaoma() {
+        return qingshuruzhegnquedezhengjianhaoma;
+    }
+
+    public void setQingshuruzhegnquedezhengjianhaoma(String qingshuruzhegnquedezhengjianhaoma) {
+        this.qingshuruzhegnquedezhengjianhaoma = qingshuruzhegnquedezhengjianhaoma;
+    }
+
+    public String getZhanghaobunengweikong() {
+        return zhanghaobunengweikong;
+    }
+
+    public void setZhanghaobunengweikong(String zhanghaobunengweikong) {
+        this.zhanghaobunengweikong = zhanghaobunengweikong;
+    }
+
+    public String getMimabunengweikong() {
+        return mimabunengweikong;
+    }
+
+    public void setMimabunengweikong(String mimabunengweikong) {
+        this.mimabunengweikong = mimabunengweikong;
+    }
+
+    public String getZhijin() {
+        return zhijin;
+    }
+
+    public void setZhijin(String zhijin) {
+        this.zhijin = zhijin;
+    }
+
+    public String getQingxuanzekaishishijian() {
+        return qingxuanzekaishishijian;
+    }
+
+    public void setQingxuanzekaishishijian(String qingxuanzekaishishijian) {
+        this.qingxuanzekaishishijian = qingxuanzekaishishijian;
+    }
+
+    public String getQuanbu() {
+        return quanbu;
+    }
+
+    public void setQuanbu(String quanbu) {
+        this.quanbu = quanbu;
+    }
+
+    public String getJingqingqidai() {
+        return jingqingqidai;
+    }
+
+    public void setJingqingqidai(String jingqingqidai) {
+        this.jingqingqidai = jingqingqidai;
+    }
+
+    public String getBuxian() {
+        return buxian;
+    }
+
+    public void setBuxian(String buxian) {
+        this.buxian = buxian;
+    }
+
+    public String getGaishebeiyidiushi() {
+        return gaishebeiyidiushi;
+    }
+
+    public void setGaishebeiyidiushi(String gaishebeiyidiushi) {
+        this.gaishebeiyidiushi = gaishebeiyidiushi;
+    }
+
+    public String getGaishebeiyisunhuai() {
+        return gaishebeiyisunhuai;
+    }
+
+    public void setGaishebeiyisunhuai(String gaishebeiyisunhuai) {
+        this.gaishebeiyisunhuai = gaishebeiyisunhuai;
+    }
+
+    public String getYonghuminghuomimacuowu() {
+        return yonghuminghuomimacuowu;
+    }
+
+    public void setYonghuminghuomimacuowu(String yonghuminghuomimacuowu) {
+        this.yonghuminghuomimacuowu = yonghuminghuomimacuowu;
+    }
+
+    public String getYangxinshubunengdayujianceshu() {
+        return yangxinshubunengdayujianceshu;
+    }
+
+    public void setYangxinshubunengdayujianceshu(String yangxinshubunengdayujianceshu) {
+        this.yangxinshubunengdayujianceshu = yangxinshubunengdayujianceshu;
+    }
+
+    public String getHegeshubunengdayujianceshu() {
+        return hegeshubunengdayujianceshu;
+    }
+
+    public void setHegeshubunengdayujianceshu(String hegeshubunengdayujianceshu) {
+        this.hegeshubunengdayujianceshu = hegeshubunengdayujianceshu;
+    }
+
+    public String getXinzengfanghuwuzi() {
+        return xinzengfanghuwuzi;
+    }
+
+    public void setXinzengfanghuwuzi(String xinzengfanghuwuzi) {
+        this.xinzengfanghuwuzi = xinzengfanghuwuzi;
+    }
+
+    public String getQingtianxiewuzimingcheng() {
+        return qingtianxiewuzimingcheng;
+    }
+
+    public void setQingtianxiewuzimingcheng(String qingtianxiewuzimingcheng) {
+        this.qingtianxiewuzimingcheng = qingtianxiewuzimingcheng;
+    }
+
+    public String getQingtianxiefafangshuliang() {
+        return qingtianxiefafangshuliang;
+    }
+
+    public void setQingtianxiefafangshuliang(String qingtianxiefafangshuliang) {
+        this.qingtianxiefafangshuliang = qingtianxiefafangshuliang;
+    }
+
+    public String getShuliangtianxiebuzhengque() {
+        return shuliangtianxiebuzhengque;
+    }
+
+    public void setShuliangtianxiebuzhengque(String shuliangtianxiebuzhengque) {
+        this.shuliangtianxiebuzhengque = shuliangtianxiebuzhengque;
+    }
+
+    public String getShurudejiumimayouwu() {
+        return shurudejiumimayouwu;
+    }
+
+    public void setShurudejiumimayouwu(String shurudejiumimayouwu) {
+        this.shurudejiumimayouwu = shurudejiumimayouwu;
+    }
+
+    public String getQuedingyaoshanchucitupianma() {
+        return quedingyaoshanchucitupianma;
+    }
+
+    public void setQuedingyaoshanchucitupianma(String quedingyaoshanchucitupianma) {
+        this.quedingyaoshanchucitupianma = quedingyaoshanchucitupianma;
+    }
+
+    public String getZuiduoshangchuansanzhang() {
+        return zuiduoshangchuansanzhang;
+    }
+
+    public void setZuiduoshangchuansanzhang(String zuiduoshangchuansanzhang) {
+        this.zuiduoshangchuansanzhang = zuiduoshangchuansanzhang;
+    }
+
+    public String getHanzu() {
+        return hanzu;
+    }
+
+    public void setHanzu(String hanzu) {
+        this.hanzu = hanzu;
+    }
+
+    public String getZangzu() {
+        return zangzu;
+    }
+
+    public void setZangzu(String zangzu) {
+        this.zangzu = zangzu;
+    }
+
+    public String getXiaoxue() {
+        return xiaoxue;
+    }
+
+    public void setXiaoxue(String xiaoxue) {
+        this.xiaoxue = xiaoxue;
+    }
+
+    public String getChuzhong() {
+        return chuzhong;
+    }
+
+    public void setChuzhong(String chuzhong) {
+        this.chuzhong = chuzhong;
+    }
+
+    public String getGaozhong() {
+        return gaozhong;
+    }
+
+    public void setGaozhong(String gaozhong) {
+        this.gaozhong = gaozhong;
+    }
+
+    public String getZhongzhuan() {
+        return zhongzhuan;
+    }
+
+    public void setZhongzhuan(String zhongzhuan) {
+        this.zhongzhuan = zhongzhuan;
+    }
+
+    public String getDazhuan() {
+        return dazhuan;
+    }
+
+    public void setDazhuan(String dazhuan) {
+        this.dazhuan = dazhuan;
+    }
+
+    public String getBenkejiyishang() {
+        return benkejiyishang;
+    }
+
+    public void setBenkejiyishang(String benkejiyishang) {
+        this.benkejiyishang = benkejiyishang;
+    }
+
+    public String getZhengchang() {
+        return zhengchang;
+    }
+
+    public void setZhengchang(String zhengchang) {
+        this.zhengchang = zhengchang;
+    }
+
+    public String getMianyichaoqi() {
+        return mianyichaoqi;
+    }
+
+    public void setMianyichaoqi(String mianyichaoqi) {
+        this.mianyichaoqi = mianyichaoqi;
+    }
+
+    public String getZanweibangdinxiangquan() {
+        return zanweibangdinxiangquan;
+    }
+
+    public void setZanweibangdinxiangquan(String zanweibangdinxiangquan) {
+        this.zanweibangdinxiangquan = zanweibangdinxiangquan;
+    }
+
+    public String getChunfang() {
+        return chunfang;
+    }
+
+    public void setChunfang(String chunfang) {
+        this.chunfang = chunfang;
+    }
+
+    public String getQiufang() {
+        return qiufang;
+    }
+
+    public void setQiufang(String qiufang) {
+        this.qiufang = qiufang;
+    }
+
+    public String getYueyuetouyao() {
+        return yueyuetouyao;
+    }
+
+    public void setYueyuetouyao(String yueyuetouyao) {
+        this.yueyuetouyao = yueyuetouyao;
+    }
+
+    public String getXiazaizhong() {
+        return xiazaizhong;
+    }
+
+    public void setXiazaizhong(String xiazaizhong) {
+        this.xiazaizhong = xiazaizhong;
+    }
+
+    public String getGengxintishi() {
+        return gengxintishi;
+    }
+
+    public void setGengxintishi(String gengxintishi) {
+        this.gengxintishi = gengxintishi;
+    }
+
+    public String getDowloadAndupdate() {
+        return dowloadAndupdate;
+    }
+
+    public void setDowloadAndupdate(String dowloadAndupdate) {
+        this.dowloadAndupdate = dowloadAndupdate;
+    }
+
+    public String getDowloadFailAndCheckd() {
+        return dowloadFailAndCheckd;
+    }
+
+    public void setDowloadFailAndCheckd(String dowloadFailAndCheckd) {
+        this.dowloadFailAndCheckd = dowloadFailAndCheckd;
     }
 
     public String getTianjiachenggong() {
@@ -2688,276 +4755,11 @@ public class ZhBOLangProp {
         this.yonghudianhuahaomachongfu = yonghudianhuahaomachongfu;
     }
 
-    @Override
-    public String toString() {
-        return "ZhBOLangProp{" +
-                "language='" + language + '\'' +
-                ", quanfangyi='" + quanfangyi + '\'' +
-                ", daodile='" + daodile + '\'' +
-                ", weizhi='" + weizhi + '\'' +
-                ", mu='" + mu + '\'' +
-                ", xialagengduo='" + xialagengduo + '\'' +
-                ", gongjin='" + gongjin + '\'' +
-                ", year='" + year + '\'' +
-                ", month='" + month + '\'' +
-                ", day='" + day + '\'' +
-                ", sui='" + sui + '\'' +
-                ", pl_username='" + pl_username + '\'' +
-                ", pl_passwrod='" + pl_passwrod + '\'' +
-                ", submit='" + submit + '\'' +
-                ", save='" + save + '\'' +
-                ", reset='" + reset + '\'' +
-                ", cancel='" + cancel + '\'' +
-                ", quanzhi_quanzhu='" + quanzhi_quanzhu + '\'' +
-                ", quanzhu_guanli='" + quanzhu_guanli + '\'' +
-                ", quanzhi_guanli='" + quanzhi_guanli + '\'' +
-                ", liulangquan_guanli='" + liulangquan_guanli + '\'' +
-                ", tongjixinxi='" + tongjixinxi + '\'' +
-                ", quanzhi_zhoubian='" + quanzhi_zhoubian + '\'' +
-                ", fangzhi_guanli='" + fangzhi_guanli + '\'' +
-                ", quanzhi_fangyi='" + quanzhi_fangyi + '\'' +
-                ", quanfen_chuli='" + quanfen_chuli + '\'' +
-                ", quanshi_chuli='" + quanshi_chuli + '\'' +
-                ", quanfenkangyuan_jiance='" + quanfenkangyuan_jiance + '\'' +
-                ", quanhzi_jiepao='" + quanhzi_jiepao + '\'' +
-                ", niuyangkangti_jiance='" + niuyangkangti_jiance + '\'' +
-                ", niuyangzangqi_chuli='" + niuyangzangqi_chuli + '\'' +
-                ", tongji_xinxi='" + tongji_xinxi + '\'' +
-                ", wuzi_guanli='" + wuzi_guanli + '\'' +
-                ", fanghuwuzi='" + fanghuwuzi + '\'' +
-                ", quanzhu_xianquan='" + quanzhu_xianquan + '\'' +
-                ", xuanchuan_peixun='" + xuanchuan_peixun + '\'' +
-                ", xuanchuan_huodong='" + xuanchuan_huodong + '\'' +
-                ", peixunhuodong='" + peixunhuodong + '\'' +
-                ", quanzhu_xinxi='" + quanzhu_xinxi + '\'' +
-                ", quanzhu_xingming='" + quanzhu_xingming + '\'' +
-                ", xingbie='" + xingbie + '\'' +
-                ", nan='" + nan + '\'' +
-                ", nv='" + nv + '\'' +
-                ", chushengriqi='" + chushengriqi + '\'' +
-                ", mingzu='" + mingzu + '\'' +
-                ", wenhuachengdu='" + wenhuachengdu + '\'' +
-                ", lianxidianhua='" + lianxidianhua + '\'' +
-                ", zhengjian_leix='" + zhengjian_leix + '\'' +
-                ", zhengjian_haoma='" + zhengjian_haoma + '\'' +
-                ", caochangmianji='" + caochangmianji + '\'' +
-                ", suoshuxiangzhen='" + suoshuxiangzhen + '\'' +
-                ", suoshucunweihui='" + suoshucunweihui + '\'' +
-                ", menpaihao='" + menpaihao + '\'' +
-                ", fangyiyuan='" + fangyiyuan + '\'' +
-                ", lvrushijian='" + lvrushijian + '\'' +
-                ", zhaopian='" + zhaopian + '\'' +
-                ", miaoshu='" + miaoshu + '\'' +
-                ", quanzhi_xinxi='" + quanzhi_xinxi + '\'' +
-                ", weibangdxiangquan='" + weibangdxiangquan + '\'' +
-                ", yangxinglv='" + yangxinglv + '\'' +
-                ", jianceshijian='" + jianceshijian + '\'' +
-                ", jiancedanwei='" + jiancedanwei + '\'' +
-                ", jianceshu='" + jianceshu + '\'' +
-                ", yangxingshu='" + yangxingshu + '\'' +
-                ", wuhaihua='" + wuhaihua + '\'' +
-                ", tupuai='" + tupuai + '\'' +
-                ", shipin='" + shipin + '\'' +
-                ", fangyishijan='" + fangyishijan + '\'' +
-                ", quanming='" + quanming + '\'' +
-                ", quanzhu='" + quanzhu + '\'' +
-                ", suyuan_ID='" + suyuan_ID + '\'' +
-                ", xiangquanbianhao='" + xiangquanbianhao + '\'' +
-                ", quanzhudianhua='" + quanzhudianhua + '\'' +
-                ", quanzhushengfengzheng='" + quanzhushengfengzheng + '\'' +
-                ", shusuoxiangzheng='" + shusuoxiangzheng + '\'' +
-                ", xiangxidizhi='" + xiangxidizhi + '\'' +
-                ", fangyileixin='" + fangyileixin + '\'' +
-                ", fangyiyaopin='" + fangyiyaopin + '\'' +
-                ", fangyizhouqi='" + fangyizhouqi + '\'' +
-                ", fangyiyuandianhua='" + fangyiyuandianhua + '\'' +
-                ", hegeshu='" + hegeshu + '\'' +
-                ", hegelv='" + hegelv + '\'' +
-                ", chulishijian='" + chulishijian + '\'' +
-                ", siwangshijian='" + siwangshijian + '\'' +
-                ", chulifnagfa='" + chulifnagfa + '\'' +
-                ", fangfashuoming='" + fangfashuoming + '\'' +
-                ", chulirenyuan='" + chulirenyuan + '\'' +
-                ", jieshoudanwei='" + jieshoudanwei + '\'' +
-                ", jieshouren='" + jieshouren + '\'' +
-                ", fafangdanwei='" + fafangdanwei + '\'' +
-                ", fafang='" + fafang + '\'' +
-                ", fafangshuliang='" + fafangshuliang + '\'' +
-                ", fafangshijian='" + fafangshijian + '\'' +
-                ", rulanshijian='" + rulanshijian + '\'' +
-                ", tizhong='" + tizhong + '\'' +
-                ", maose='" + maose + '\'' +
-                ", quanling='" + quanling + '\'' +
-                ", quanzhong='" + quanzhong + '\'' +
-                ", quanzhicunlanshuliang='" + quanzhicunlanshuliang + '\'' +
-                ", suoshuzhou='" + suoshuzhou + '\'' +
-                ", suoshuxian='" + suoshuxian + '\'' +
-                ", suoshuxiang='" + suoshuxiang + '\'' +
-                ", suoshufangyiyuan='" + suoshufangyiyuan + '\'' +
-                ", shuliang='" + shuliang + '\'' +
-                ", quanzhushuliang='" + quanzhushuliang + '\'' +
-                ", liulangquanchulishuliang='" + liulangquanchulishuliang + '\'' +
-                ", fangyicishu='" + fangyicishu + '\'' +
-                ", shitichulicishu='" + shitichulicishu + '\'' +
-                ", quanfenchulicishu='" + quanfenchulicishu + '\'' +
-                ", quanfenkangyuancishu='" + quanfenkangyuancishu + '\'' +
-                ", quanzhijiepaocishu='" + quanzhijiepaocishu + '\'' +
-                ", niuyangjiancecishu='" + niuyangjiancecishu + '\'' +
-                ", niuyangzangqichulicishu='" + niuyangzangqichulicishu + '\'' +
-                ", cishu='" + cishu + '\'' +
-                ", shebeibianhao='" + shebeibianhao + '\'' +
-                ", shenfengzhenghaoma='" + shenfengzhenghaoma + '\'' +
-                ", wuzileixing='" + wuzileixing + '\'' +
-                ", wuzimingcheng='" + wuzimingcheng + '\'' +
-                ", fasongshijian='" + fasongshijian + '\'' +
-                ", qumingshengfengzheng='" + qumingshengfengzheng + '\'' +
-                ", juminghukoubo='" + juminghukoubo + '\'' +
-                ", fenbianchulixinxi='" + fenbianchulixinxi + '\'' +
-                ", suoshumoweihui='" + suoshumoweihui + '\'' +
-                ", dianziweilan='" + dianziweilan + '\'' +
-                ", huodongshijian='" + huodongshijian + '\'' +
-                ", jibandanwei='" + jibandanwei + '\'' +
-                ", neirong='" + neirong + '\'' +
-                ", fafangneirongshuliang='" + fafangneirongshuliang + '\'' +
-                ", zhuti='" + zhuti + '\'' +
-                ", didian='" + didian + '\'' +
-                ", shijian='" + shijian + '\'' +
-                ", tuichudenglu='" + tuichudenglu + '\'' +
-                ", miamashezhi='" + miamashezhi + '\'' +
-                ", gerenxinxi='" + gerenxinxi + '\'' +
-                ", querenmima='" + querenmima + '\'' +
-                ", xinmima='" + xinmima + '\'' +
-                ", jiumima='" + jiumima + '\'' +
-                ", quanzhishu='" + quanzhishu + '\'' +
-                ", yifangyi='" + yifangyi + '\'' +
-                ", weifangyi='" + weifangyi + '\'' +
-                ", chulifangshi='" + chulifangshi + '\'' +
-                ", gong_sex='" + gong_sex + '\'' +
-                ", mu_sex='" + mu_sex + '\'' +
-                ", chuliren='" + chuliren + '\'' +
-                ", pingzhong='" + pingzhong + '\'' +
-                ", liulangquanbianhao='" + liulangquanbianhao + '\'' +
-                ", caiyurenshu='" + caiyurenshu + '\'' +
-                ", peixunduixiang='" + peixunduixiang + '\'' +
-                ", yonghuming='" + yonghuming + '\'' +
-                ", xingming='" + xingming + '\'' +
-                ", suoshuquyu='" + suoshuquyu + '\'' +
-                ", suoshuzuzhi='" + suoshuzuzhi + '\'' +
-                ", binbianzangqichuli='" + binbianzangqichuli + '\'' +
-                ", binbianzangqichulishu='" + binbianzangqichulishu + '\'' +
-                ", ganranshu='" + ganranshu + '\'' +
-                ", diaochashu='" + diaochashu + '\'' +
-                ", xiangquanchuli='" + xiangquanchuli + '\'' +
-                ", dianhua='" + dianhua + '\'' +
-                ", dianhuahaoma='" + dianhuahaoma + '\'' +
-                ", zhuxiaoshijian='" + zhuxiaoshijian + '\'' +
-                ", zhuxiaoyuanyin='" + zhuxiaoyuanyin + '\'' +
-                ", fangyiyuanxingming='" + fangyiyuanxingming + '\'' +
-                ", querenbangdin='" + querenbangdin + '\'' +
-                ", weidin='" + weidin + '\'' +
-                ", scan_bind_device='" + scan_bind_device + '\'' +
-                ", zanbubangdin='" + zanbubangdin + '\'' +
-                ", dinweichaxun='" + dinweichaxun + '\'' +
-                ", guijichaxun='" + guijichaxun + '\'' +
-                ", riqi='" + riqi + '\'' +
-                ", weiduxiaoxi='" + weiduxiaoxi + '\'' +
-                ", yiduxiaoxi='" + yiduxiaoxi + '\'' +
-                ", xiangqing='" + xiangqing + '\'' +
-                ", biaoti='" + biaoti + '\'' +
-                ", genghuanwei='" + genghuanwei + '\'' +
-                ", genghuanshijian='" + genghuanshijian + '\'' +
-                ", genghuanyuanyin='" + genghuanyuanyin + '\'' +
-                ", xinshebeibianhao='" + xinshebeibianhao + '\'' +
-                ", jiushebeibianhao='" + jiushebeibianhao + '\'' +
-                ", yuanxiangquanchuli='" + yuanxiangquanchuli + '\'' +
-                ", xinxiangquan='" + xinxiangquan + '\'' +
-                ", xinquanzhu='" + xinquanzhu + '\'' +
-                ", jiuquanzhu='" + jiuquanzhu + '\'' +
-                ", yuyanshezhi='" + yuyanshezhi + '\'' +
-                ", kaiqi='" + kaiqi + '\'' +
-                ", guanbi='" + guanbi + '\'' +
-                ", xiangquangenghuancishu='" + xiangquangenghuancishu + '\'' +
-                ", fengbianchulicishu='" + fengbianchulicishu + '\'' +
-                ", quanshichulishuliang='" + quanshichulishuliang + '\'' +
-                ", xinzengquanzhushuliang='" + xinzengquanzhushuliang + '\'' +
-                ", zhuxiaoquanzhishuliang='" + zhuxiaoquanzhishuliang + '\'' +
-                ", xinzengquanzhishuliang='" + xinzengquanzhishuliang + '\'' +
-                ", chaxun='" + chaxun + '\'' +
-                ", zhi='" + zhi + '\'' +
-                ", fangchanzhe='" + fangchanzhe + '\'' +
-                ", wodexiaoxi='" + wodexiaoxi + '\'' +
-                ", dinweiguiji='" + dinweiguiji + '\'' +
-                ", quanzhizhuxiao='" + quanzhizhuxiao + '\'' +
-                ", xiangquangenghuan='" + xiangquangenghuan + '\'' +
-                ", liulangquanchuli='" + liulangquanchuli + '\'' +
-                ", fenbianchuli='" + fenbianchuli + '\'' +
-                ", quedin='" + quedin + '\'' +
-                ", jubanshijian='" + jubanshijian + '\'' +
-                ", gengduo='" + gengduo + '\'' +
-                ", xuanzhequyu='" + xuanzhequyu + '\'' +
-                ", nianling='" + nianling + '\'' +
-                ", shoujihao='" + shoujihao + '\'' +
-                ", fangyidengji='" + fangyidengji + '\'' +
-                ", xinzengquanzhu='" + xinzengquanzhu + '\'' +
-                ", xiangquanbangdin='" + xiangquanbangdin + '\'' +
-                ", xinzengquanzxhi='" + xinzengquanzxhi + '\'' +
-                ", chakanxiangqing='" + chakanxiangqing + '\'' +
-                ", quanzhuxiangqing='" + quanzhuxiangqing + '\'' +
-                ", quanzhuxinxilvru='" + quanzhuxinxilvru + '\'' +
-                ", quanzhixinxilvru='" + quanzhixinxilvru + '\'' +
-                ", bangdinxiangquan='" + bangdinxiangquan + '\'' +
-                ", fangyixinxilvru='" + fangyixinxilvru + '\'' +
-                ", shitiwuhaihuachuli='" + shitiwuhaihuachuli + '\'' +
-                ", kaishishijian='" + kaishishijian + '\'' +
-                ", jieshushijian='" + jieshushijian + '\'' +
-                ", liulangquanchulilvru='" + liulangquanchulilvru + '\'' +
-                ", denglv='" + denglv + '\'' +
-                ", weinengshibieerweima='" + weinengshibieerweima + '\'' +
-                ", tishi='" + tishi + '\'' +
-                ", gaisuyuanidbucunzai='" + gaisuyuanidbucunzai + '\'' +
-                ", gaishebeiweibangdinquanzhi='" + gaishebeiweibangdinquanzhi + '\'' +
-                ", tianjiachenggong='" + tianjiachenggong + '\'' +
-                ", quanzhijiepao='" + quanzhijiepao + '\'' +
-                ", xinzengquanzhijiepao='" + xinzengquanzhijiepao + '\'' +
-                ", xinzengquanfenkanyuanjiance='" + xinzengquanfenkanyuanjiance + '\'' +
-                ", xinzengniuyangkanyuanjiance='" + xinzengniuyangkanyuanjiance + '\'' +
-                ", xiangquanfafang='" + xiangquanfafang + '\'' +
-                ", xinzengxuanchuanhuodong='" + xinzengxuanchuanhuodong + '\'' +
-                ", shezhi='" + shezhi + '\'' +
-                ", xinzengpeixunhuodong='" + xinzengpeixunhuodong + '\'' +
-                ", xinzengniuyangzangqichuli='" + xinzengniuyangzangqichuli + '\'' +
-                ", fangyitongji='" + fangyitongji + '\'' +
-                ", xinzeng='" + xinzeng + '\'' +
-                ", jiazaizhong='" + jiazaizhong + '\'' +
-                ", denglvchaoshi='" + denglvchaoshi + '\'' +
-                ", chongxindenglv='" + chongxindenglv + '\'' +
-                ", qingshuruyouxiaoshuzi='" + qingshuruyouxiaoshuzi + '\'' +
-                ", qingshuruzhegnqueshuzi='" + qingshuruzhegnqueshuzi + '\'' +
-                ", qingshurushujucanshu='" + qingshurushujucanshu + '\'' +
-                ", wodeweizhi='" + wodeweizhi + '\'' +
-                ", genghuanmimachengg='" + genghuanmimachengg + '\'' +
-                ", qingchongxdenglv='" + qingchongxdenglv + '\'' +
-                ", liangcimimabuyizhi='" + liangcimimabuyizhi + '\'' +
-                ", qingchongxinshuru='" + qingchongxinshuru + '\'' +
-                ", ganranshubixuxiaoyutiaochashu='" + ganranshubixuxiaoyutiaochashu + '\'' +
-                ", xiugaichenggong='" + xiugaichenggong + '\'' +
-                ", xiugaishibai='" + xiugaishibai + '\'' +
-                ", gaishebeibucunzai='" + gaishebeibucunzai + '\'' +
-                ", gaishebeiyibeibangdin='" + gaishebeiyibeibangdin + '\'' +
-                ", qingbangdinxiangquan='" + qingbangdinxiangquan + '\'' +
-                ", bingdinchenggong='" + bingdinchenggong + '\'' +
-                ", bingdinshibai='" + bingdinshibai + '\'' +
-                ", wuquanzhidinweixinxi='" + wuquanzhidinweixinxi + '\'' +
-                ", wudangtianshuju='" + wudangtianshuju + '\'' +
-                ", wuduiyinquanzhiquanzhu='" + wuduiyinquanzhiquanzhu + '\'' +
-                ", tianjiashibai='" + tianjiashibai + '\'' +
-                ", qingshaohouzaishi='" + qingshaohouzaishi + '\'' +
-                ", shibai='" + shibai + '\'' +
-                ", genghuanchenggong='" + genghuanchenggong + '\'' +
-                ", zhengjianhaomayicunzai='" + zhengjianhaomayicunzai + '\'' +
-                ", dianhuahaomayicunzai='" + dianhuahaomayicunzai + '\'' +
-                ", caozuoshibai='" + caozuoshibai + '\'' +
-                ", yonghudianhuahaomachongfu='" + yonghudianhuahaomachongfu + '\'' +
-                '}';
+    public String getGaishebeiweibangdinquanzhi() {
+        return gaishebeiweibangdinquanzhi;
+    }
+
+    public void setGaishebeiweibangdinquanzhi(String gaishebeiweibangdinquanzhi) {
+        this.gaishebeiweibangdinquanzhi = gaishebeiweibangdinquanzhi;
     }
 }

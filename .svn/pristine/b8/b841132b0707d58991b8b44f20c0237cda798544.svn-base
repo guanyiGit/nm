@@ -1,0 +1,79 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>检测数：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.testAmount }}公斤</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>阳性数：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.positiveAmount }}公斤</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>阳性率：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.positiveRate }}%</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <text>无害化：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.harmlessTreatAmount }}公斤</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>检测时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.testDate }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>检测单位：</text>
+        </view>
+        <view class='right'>
+            <text>{{ anatomyInfo.orgInfo.departName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>视屏：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>

@@ -1,0 +1,14 @@
+aep.nb.appKey=Cct2uFNROy5
+aep.nb.appSecret=Azw8zqilPt
+
+
+##dev lwm2m
+#aep.nb.subUrl=http://119.147.209.163:9000/nm
+#aep.nb.MasterKey=a6cd6a0a104e4a07874b44190a3fd416
+#aep.nb.productId=10014104
+
+#prod nb-old
+aep.nb.subUrl=http://223.221.36.42:29000
+aep.nb.MasterKey=a6cd6a0a104e4a07874b44190a3fd416
+aep.nb.productId=10014104
+

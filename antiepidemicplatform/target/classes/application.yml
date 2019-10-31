@@ -35,7 +35,7 @@ spring:
   messages:
     basename: i18n/i18n
 dfs:
-  prefix: https://nm.soholy.cn/pic/
+  prefix: https://qlw.soholy.cn/pic/
   confs:
     - 120.78.137.116:22122
 

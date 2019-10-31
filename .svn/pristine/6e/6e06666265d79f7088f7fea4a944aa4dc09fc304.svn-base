@@ -1,0 +1,161 @@
+server:
+  port: 8001
+  session-timeout: 5184000 #session过期时间为2个月(60天)
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.entities    # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml  # mapper映射文件
+
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+#  servlet:
+#    multipart:
+#      max-file-size: 50Mb
+#      max-request-size: 50Mb
+  http:
+    multipart:
+      maxFileSize: 50MB
+      maxRequestSize: 50MB
+
+    devtools:
+      restart:
+        enabled: true
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:config/ehcache.xml
+  messages:
+    basename: i18n/i18n
+dfs:
+  prefix: https://nm.soholy.cn/pic/
+  confs:
+    - 120.78.137.116:22122
+
+
+
+
+
+
+
+---
+
+  ############################################################# 开发环境 ################################################
+
+spring:
+#   application:
+#    name: nm
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.0.69:3308/nm?useUnicode=true&characterEncoding=utf8              # 数据库名称
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                 # 等待连接获取的最大超时时间
+   profiles: dev
+   aop:
+     proxy-target-class: true
+   redis:
+     host: 192.168.0.69
+     port: 6379
+     password:
+     timeout: 10000
+     pool:
+       max-active: 100
+       min-idle: 10
+       max-idle: 8
+       max-wait: -1
+   http:
+     multipart:
+       max-file-size: 20mb
+       max-request-size: 20mb
+
+sms:
+  SMS_BASE_URL: http://192.168.0.69:8888/dogmanager-sms/sms
+  type: 15
+
+
+
+
+
+#eureka:
+#  client: #客户端注册进eureka服务列表内
+#    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#  instance:
+#    instance-id: antiepidemicplatform:8001   #自定义服务名称信息
+#    prefer-ip-address: true     #访问路径可以显示IP地址
+
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+server:
+  port: 8001
+---
+############################################################# 生产环境环境 ################################################
+
+spring:
+  #   application:
+  #    name: nm
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://120.78.137.116:3306/nm?useUnicode=true&characterEncoding=utf8              # 数据库名称
+#    username: nm_0820
+#    password: Shl@0820
+    username: root-shl
+    password: mysql@shl0408
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+  profiles: pro
+  aop:
+    proxy-target-class: true
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 10000
+    pool:
+      max-active: 100
+      min-idle: 10
+      max-idle: 8
+      max-wait: -1
+
+sms:
+  SMS_BASE_URL: http://nm.soholy.cn:10080/dogmanager-sms/sms
+  type: 15
+
+
+#eureka:
+#  client: #客户端注册进eureka服务列表内
+#    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#  instance:
+#    instance-id: antiepidemicplatform:8001   #自定义服务名称信息
+#    prefer-ip-address: true     #访问路径可以显示IP地址
+
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

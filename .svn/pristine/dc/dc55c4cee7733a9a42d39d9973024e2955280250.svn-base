@@ -1,0 +1,83 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>调查数：</text> -->
+             <text>{{ LG.get(L,"diaochashu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ infectionInfo.detectionAmount }}公斤</text> -->
+            <text>{{ infectionInfo.detectionAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>感染数：</text> -->
+             <text>{{ LG.get(L,"ganranshu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ infectionInfo.infectionAmount }}公斤</text> -->
+            <text>{{ infectionInfo.infectionAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>病变脏器处理数：</text> -->
+            <text>{{ LG.get(L,"binbianzangqichulishu") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ infectionInfo.harmlessTreatAmount }}公斤</text> -->
+            <text>{{ infectionInfo.harmlessTreatAmount }}{{ LG.get(L,"gongjin") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测时间：</text> -->
+            <text>{{ LG.get(L,"jianceshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ infectionInfo.detectionDate }}</text>
+        </view>
+    </view>
+  
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>检测单位：</text> -->
+             <text>{{ LG.get(L,"jiancedanwei") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ infectionInfo.orgInfo.departName }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+            <text>{{ LG.get(L,"tupian") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>视屏：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+        </view>
+        <view class='right'>
+           <block wx:for="{{ videoList }}" wx:key="index">
+               <video src='{{ item.url }}' objectFit="contain"></video>
+           </block>
+        </view>
+    </view>
+
+</view>
+
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

@@ -1,0 +1,27 @@
+<search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchAntiepidemic"></search>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ dogCancelArray }}" wx:key="index">
+      <view class='container_item drop-right' bindtap='toDogCancelInfoPage' data-index='{{ idnex }}'>
+        <view class='left'>
+          <image src='{{ item.dogCancelImage }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle">
+            <view>{{ item.deviceNo }}</view>
+          </view>
+          <view class='right_body'>
+            <view>注销原因：{{ item.reason }}</view>
+          </view>
+          <view class='right_foot'>
+            <view>注销时间：{{ item.canselDate }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='add_dog'></view>
+<view class='more'>
+    <text>下拉查看更多</text>
+</view>

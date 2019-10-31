@@ -1,0 +1,6 @@
+<view class="container">
+     <i-switch value="xxx" size="large" bind:change="onChange" slot="footer">
+            <view slot="open">开启</view>
+            <view slot="close">关闭</view>
+        </i-switch>
+</view>

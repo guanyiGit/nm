@@ -1,0 +1,171 @@
+package com.soholy.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.soholy.entity.BaseRt;
+import com.soholy.mapper.AepDataMapper;
+import com.soholy.service.AepCbService;
+import com.soholy.utils.R;
+import com.soholy.utils.ReqPage;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+/**
+ * @author guanY
+ * @version 1.0.0
+ * @ClassName CallbackControlller
+ * @Description (电信平台回调)
+ * @Date 2018年4月12日 下午2:36:20
+ */
+
+@RestController
+@RequestMapping(value = "/callback", produces = {"application/json;charset=UTF-8"})
+public class AepCbController {
+
+    private static final Logger logger = Logger.getLogger(String.valueOf(AepCbController.class));
+
+    @Autowired
+    private AepCbService aepService;
+
+    @Autowired
+    private AepDataMapper aepDataMapper;
+
+
+    @GetMapping("/test")
+    public R test(){return R.ok();}
+
+    /**
+     * 测试用 数据推送
+     *
+     * @param body
+     * @return
+     */
+    @RequestMapping(value = "/lwm2m")
+    public R callback(@RequestBody String body) {
+        System.err.println(body);
+        String payload = JSON.parseObject(body).getString("payload");
+        if (StringUtils.isNotBlank(payload)) {
+            try {
+                String base64Str = JSON.parseObject(payload).getString("APPdata");
+                byte[] input = Base64.getDecoder().decode(base64Str);
+                String dataStr = new String(input, "utf-8");
+                System.err.println("input str:" + dataStr);
+                if (1 != aepDataMapper.saves(Arrays.asList(dataStr))) {
+                    return R.error();
+                }
+                this.deviceDatasChanged_v2(body);
+            } catch (Exception e) {
+            }
+        }
+
+        return R.ok();
+    }
+
+
+    /**
+     * @param body
+     * @throws Exception
+     * @Description (批量设备数据_v2)
+     */
+    @RequestMapping(value = "/deviceDatasChanged_v2")
+    public R deviceDatasChanged_v2(@RequestBody String body) throws Exception {
+        logger.info(body);
+        try {
+            JSONObject json = JSON.parseObject(body);
+            aepService.deviceDatasChangedMsg_v2(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("回调解析错误！");
+        }
+        return R.ok();
+    }
+
+    /**
+     * 测试用  查询接口
+     * hhttp://119.147.209.163:8081/nm/callback/lwm2m/data
+     *
+     * @param imei
+     * @param format
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "/lwm2m/data")
+    public R callback(@RequestParam(value = "imei", required = false) String imei,
+                      @RequestParam(value = "format", required = false) boolean format,
+                      @RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
+                      @RequestParam(value = "pageSize", required = false, defaultValue = "50") Integer pageSize) {
+
+        imei = imei == null || imei.trim().length() == 0 ? null : imei;
+        ReqPage page = new ReqPage(pageNo, pageSize);
+        logger.info(page.getOffset() + "   " + page.getLimit());
+
+        List<BaseRt> rest = aepDataMapper.findDatas(page.getOffset(), page.getLimit(), imei);
+        if (rest != null) {
+            return R.ok(rest.stream()
+                    .map((BaseRt x) -> {
+                        final String str = (String) x.getContent();
+                        try {
+                            final JSONObject jsonObject = JSON.parseObject(str);
+                            if (format) { // 格式化时间格式
+                                final String[] formatKeys = {"time", "start_time"};
+                                final String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+                                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                                jsonObject.entrySet().stream()
+                                        .forEach(z -> {
+                                            Object val = z.getValue();
+                                            if (val instanceof JSONArray) {
+                                                JSONArray arrJson = (JSONArray) val;
+                                                arrJson.stream().forEach(n -> {
+                                                    JSONObject objJson = (JSONObject) n;
+                                                    Arrays.stream(formatKeys)
+                                                            .filter(objJson::containsKey)
+                                                            .forEach(t -> {
+                                                                Long time = objJson.getLong(t);
+                                                                objJson.put(t, sdf.format(new Date(time)));
+                                                            });
+                                                });
+                                            } else if (val instanceof JSONObject) {
+                                                JSONObject objJson = (JSONObject) val;
+                                                Arrays.stream(formatKeys)
+                                                        .filter(objJson::containsKey)
+                                                        .forEach(t -> {
+                                                            Long time = objJson.getLong(t);
+                                                            objJson.put(t, sdf.format(new Date(time)));
+                                                        });
+                                            }
+                                        });
+                            }
+                            x.setContent(jsonObject);
+                            return x;
+                        } catch (Exception e) {
+                            return x;
+                        }
+                    }).collect(Collectors.toList()));
+        }
+        return R.error();
+    }
+
+    /**
+     * @param body
+     * @throws Exception
+     * @Description (其他推送通知)
+     */
+    @RequestMapping(value = "/other_v2")
+    public R other_v2(@RequestBody String body) throws Exception {
+        logger.info(body);
+        return R.ok();
+    }
+
+
+}

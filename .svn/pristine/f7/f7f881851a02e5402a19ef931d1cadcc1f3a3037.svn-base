@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head  th:include="include :: header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>A4-防疫管理-春防信息</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<style type="text/css">
+	.tree-title{
+		font-size: 14px;
+	}
+	.textbox .textbox-text{
+		font-size: 14px;
+	}
+</style>
+<!--wrap-->
+<div class="wrap">
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+	<!--内容栏-->
+	<div class="section2">
+		<!--面包屑-->
+		<div class="tit pdl50">
+			<ul class="ul03 ovh" >
+				<li class="fl"><a href="###" th:text="#{antiepidemicManage}">防疫管理></a></li>
+				<li class="fl" th:text="#{antiepidemicManage.manureHandle}">粪便无害化处理</li>
+			</ul>
+		</div>
+		<!--面包屑END-->
+
+		<!--内容区-->
+		<div class="pdl0 pdr50 pdt20 pdb75">
+			<div class="h40 pdl0 pdr0">
+				<ul class="ul04 fl">
+					<li class="fl t-c w280 mgr4 rel li1"><!--class="fl t-c pc20 w252 mgr4 rel li1"-->
+						<div class="ovh mgt1" style="margin-left: -108px" shiro:hasPermission="/biz/org/initOrgSelect2">
+							<div class="mgl90">
+								<input id="orgSelect" style="width: 210px"><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+						<div class="ovh mgt1" style="margin-left: -150px" shiro:hasPermission="/biz/dogInfo/findProtector">
+							<div class="mgl90" >
+								<!--<a style="color:#337AB7" onclick="getAll();">全部</a>-->
+								<input id="proSelect" ><!--class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22"-->
+							</div>
+						</div>
+					</li>
+					<li shiro:hasPermission="biz:manureDisposal:manureDisposalAdd"  class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a  href="/biz/manureDisposal/manureDisposalAdd" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""th:text="#{dogManage.add}"></a>
+					</li>
+					<li shiro:hasPermission="biz:manureDisposal:import"  class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-2.png" alt="">导入</a>
+					</li>
+					<li shiro:hasPermission="biz:manureDisposal:export" class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt="">导出</a>
+					</li>
+					<li shiro:hasPermission="biz:manureDisposal:acurateSerach" class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt="">精确搜索</a>
+					</li>
+				</ul>
+				<div class="fr ovh" >
+					<div class="mgr0 db ovh" id="so">
+						<input id="traceId"  type="text" class="db input1 w280 h40 lh40 pdl15 fl"  th:placeholder="#{dogManage.searcheKey}">
+						<input type="button" onclick="reLoad()" class="db fl pc5 hov8" value="">
+					</div>
+				</div>
+			</div>
+			<table id="exampleTable" data-mobile-responsive="true"></table>
+		</div>
+	</div>
+	<!--内容栏END-->
+
+</div>
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+	<script type="text/javascript">
+        var s_check_h = 'hidden';
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+	</script>
+</div>
+<div shiro:hasPermission="biz:manureDisposal:check">
+	<script type="text/javascript">
+        var s_check_h = '';
+	</script>
+</div>
+<div shiro:hasPermission="biz:manureDisposal:edit">
+	<script type="text/javascript">
+        s_edit_h = '';
+	</script>
+</div>
+<div shiro:hasPermission="biz:manureDisposal:remove">
+	<script type="text/javascript">
+        var s_remove_h = '';
+	</script>
+</div>
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+<script src="/epmanagement/manureDisposal.js"></script>
+</body>
+<!--引入自定js-->
+
+</html>
+<script th:inline="javascript">
+    let type = [[${user.roles[0].type}]];
+    var photo5 = [[#{antiepidemicManage.photo}]];
+    var antiepidemicDrug5 = [[#{antiepidemicManage.antiepidemicDrug}]];
+    var antiepidemicTime5 = [[#{antiepidemicManage.antiepidemicTime}]];
+    var antiepidemicPeriod5 = [[#{antiepidemicManage.antiepidemicPeriod}]];
+    var protector5 = [[#{antiepidemicManage.protector}]];
+    var traceID5 = [[#{antiepidemicManage.traceID}]];
+    var dogName5 = [[#{antiepidemicManage.dogName}]];
+    var ownerName5 = [[#{antiepidemicManage.ownerName}]];
+    var phone5 = [[#{antiepidemicManage.phone}]];
+    var town5 = [[#{antiepidemicManage.town}]];
+    var address5 = [[#{antiepidemicManage.address}]];
+    var operation5 = [[#{dogManage.operation}]];
+    var detail5 = [[#{dogManage.detail}]];
+    var edit5 = [[#{dogManage.edit}]];
+    var delete5 = [[#{dogManage.delete}]];
+    var handleDate5 = [[#{dogManage.handleDate}]];
+    var handlePerson5= [[#{dogManage.handlePerson}]];
+    var handleWay5 = [[#{dogManage.handleWay}]];
+    var sureDeleteSelectedRecord=[[#{sureDeleteSelectedRecord}]];
+    var sure5=[[#{dogManage.sure}]];
+    var cancel5=[[#{dogManage.cancel}]];
+    var operationSuccess=[[#{operationSuccess}]];
+    var operationFailure=[[#{operationFailure}]];
+</script>

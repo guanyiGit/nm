@@ -1,0 +1,38 @@
+<view wx:if="{{ ishasData }}">
+<search-org is-detection="{{ component.isDetection }}" bind:orgEvent="orgEvent" bind:dateEvent = "dateEvent"></search-org>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ visceraOfCattleAndSheepArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+      <view class='container_item drop-right' bindtap='tovisceraOfCattleAndSheepInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.imageList[0].url }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle">
+            <!-- <text>病变脏器处理:{{ item.harmlessTreatAmount }}公斤</text> -->
+            <text>{{ LG.get(L,"binbianzangqichuli") }}:{{ item.harmlessTreatAmount }}{{ LG.get(L,"gongjin") }}</text>
+          </view>
+          <view class='right_body'>
+            <!-- <view class='texthide'>检测单位：{{ item.orgInfo.departName }}</view> -->
+            <view class='texthide'>{{ LG.get(L,"jiancedanwei") }}：{{ item.orgInfo.departName }}</view>
+          </view>
+          <view class='right_foot'>
+             <!-- <view>检测时间：{{ item.detectionDate }}</view> -->
+             <view> {{ LG.get(L,"jianceshijian") }}：{{ item.detectionDate }}</view>
+            
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_visceraOfCattleAndSheep' bindtap='toVisceraOfCattleAndSheepAddPage' wx:if="{{ isCountyAdmin }}"></view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>{{ LG.get(L,"xialagengduo") }}</text>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

@@ -1,6 +1,7 @@
 server:
-  port: 8082
-
+  port: 18082
+  servlet:
+    path: /callback-fit
 spring:
   profiles:
     active: dev
@@ -8,8 +9,8 @@ spring:
     proxy-target-class: true
 
   activemq:
-    ActiveMQTopic: nm_topic
-    ActiveMQQueue: nm_queue
+    ActiveMQTopic: nm_topic_test
+    ActiveMQQueue: nm_queue_test
     user: admin
     password: admin
     broker-url: tcp://192.168.0.69:61616
@@ -27,7 +28,7 @@ mybatis-plus:
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.soholy.cb.entity
   # 支持统配符 * 或者 ; 分割
-  typeEnumsPackage: com.soholy.cb.entity.entity.enums
+  typeEnumsPackage: com.soholy.cb.enums
 
   #conf
   globalConfig:

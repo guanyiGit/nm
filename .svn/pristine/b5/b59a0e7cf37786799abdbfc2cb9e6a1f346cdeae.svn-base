@@ -1,0 +1,14 @@
+.test {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid #9b9b9b;
+}
+
+.otherview{
+  width:100vh;
+  height:200rpx;
+  background-color:#ddd;
+  opacity: 0.5;
+  margin-top:285rpx;
+}

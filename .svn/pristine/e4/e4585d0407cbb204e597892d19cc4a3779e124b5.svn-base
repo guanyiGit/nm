@@ -1,0 +1,64 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>溯源ID：</text> -->
+            <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>旧犬主：</text> -->
+            <text>{{ LG.get(L,"jiuquanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.oldOwner }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>新犬主：</text> -->
+            <text>{{ LG.get(L,"xinquanzhu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.newOwner }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>更换原因：</text> -->
+            <text>{{ LG.get(L,"genghuanyuanyin") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.changeReasons }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>更换时间：</text> -->
+            <text>{{ LG.get(L,"genghuanshijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.createtime }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ ownerChange.description }}</text>
+        </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

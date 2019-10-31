@@ -5,15 +5,21 @@
     <file type="web" url="file://$PROJECT_DIR$/../callback-fit" />
     <file type="web" url="file://$PROJECT_DIR$/../sms" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../callback-fit/pom.xml" />
+        <option value="$PROJECT_DIR$/callback-lwm2m/pom.xml" />
+        <option value="$PROJECT_DIR$/otherdb/pom.xml" />
+        <option value="$PROJECT_DIR$/convert-service/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8.0_162" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12_PREVIEW" default="false" project-jdk-name="jdk1.8.0_162" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
 </project>

@@ -1,0 +1,102 @@
+package com.soholy.controller;
+
+import com.soholy.entity.TDeviceInfo;
+import com.soholy.service.aep.AepService;
+import com.soholy.service.aep.DeviceService_v2;
+import com.soholy.utils.R;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/v2/device", produces = "application/json;charset=utf-8")
+public class DeviceManagerControllerV2 {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private DeviceService_v2 deviceService_v2;
+
+    @Autowired
+    private AepService aepService;
+
+
+    /**
+     * http://119.147.209.163:8081/nm//v2/device/register/151964040592562?deviceBrand=test&deviceBatch=test
+     *
+     * @param imei        设备imei号
+     * @param deviceBrand 品牌信息 可没有
+     * @param deviceBatch 批次信息 可没有
+     * @return
+     * @throws Exception
+     * @Description (设备注册)
+     */
+    @ResponseBody
+    @RequestMapping(value = "/register/{imei}")
+    public R register(@PathVariable(value = "imei") String imei,
+                      String deviceBrand,
+                      String deviceBatch) {
+        logger.info("注册设备");
+        if (StringUtils.isNotBlank(imei)) {
+            return R.ok(deviceService_v2.register(imei, deviceBrand, deviceBatch));
+        }
+        return R.error();
+    }
+
+    /**
+     * http://119.147.209.163:8081/nm//v2/device/logout/151964040592562?type=1
+     * 注销设备 默认传入平台id
+     *
+     * @param id
+     * @param type (0、iotid 1、imei)  默认 iotid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/logout/{id}")
+    public R logout(@PathVariable(value = "id") String id,
+                    Integer type) {
+
+        logger.info("注销设备");
+        if (StringUtils.isNotBlank(id)) {
+            if (type == null || type == 0) {
+                return R.ok(deviceService_v2.logout(id, null));
+            }
+            return R.ok(deviceService_v2.logout(null, id));
+        }
+        return R.error();
+    }
+
+
+    /**
+     * http://119.147.209.163:8081/nm//v2/device/151964040592562
+     * 查询设备信息
+     *
+     * @param imei
+     * @param meta 是否查询原信息
+     * @return
+     */
+    @RequestMapping(value = "/{imei}")
+    public R info(@PathVariable("imei") String imei,
+                  @RequestParam(value = "meta", required = false, defaultValue = "true") boolean meta) {
+        try {
+            List<TDeviceInfo> devices = deviceService_v2.findDeviceInifo(imei, 1);
+            if (meta && devices != null && devices.size() == 1) {
+                String fullStr = aepService.findDevie(devices.get(0).getDeviceIotId());
+                fullStr = fullStr.replaceAll("\"", "'");
+                devices.get(0).setPsk(fullStr);
+                return R.ok(devices);
+            }
+
+            return R.ok(devices);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.error();
+        }
+    }
+
+
+}

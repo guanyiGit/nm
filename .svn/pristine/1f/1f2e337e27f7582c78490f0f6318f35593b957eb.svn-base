@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.devicemanagement.dao.FenceDao">
+
+
+    <sql id="base">
+        SELECT
+	fence.id,fence.fence_no fenceNo,fence.fence_name fenceName,inf.name createBy,
+    fence.create_date createDate FROM t_fence_def fence left join t_user_info inf on inf.id = fence.create_by
+    </sql>
+
+    <select id="list" resultType="map">
+        <include refid="base"></include>
+        <where>
+            <if test="userIds !=null and userIds.size()>0">
+                and fence.create_by  in
+                <foreach collection="userIds" index="index" item="userId" open="(" separator="," close=")">
+                    #{userId}
+                </foreach>
+            </if>
+            <if test="orgIds !=null and orgIds.size()>0">
+                and fence.org_id  in
+                <foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+                    #{orgId}
+                </foreach>
+            </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by fence.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from t_fence_def fence
+        <where>
+            <if test="userIds !=null and userIds.size()>0">
+                and fence.create_by  in
+                <foreach collection="userIds" index="index" item="userId" open="(" separator="," close=")">
+                    #{userId}
+                </foreach>
+            </if>
+            <if test="orgIds !=null and orgIds.size()>0">
+                and fence.org_id  in
+                <foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+                    #{orgId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <!--根据fence_id 查询详情-->
+    <select id="getFenceDetailByFenceId" resultType="map">
+      SELECT dt.id,dt.fence_id,dt.lng,dt.lat from t_fence_detail dt
+      where  dt.fence_id = #{id}
+    </select>
+
+
+
+    <resultMap id="allFence" type="com.entities.TFenceDef">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <collection property="list"  ofType="com.entities.TFenceDetail"  >
+            <result column="lng" property="lng" jdbcType="DOUBLE" />
+            <result column="lat" property="lat" jdbcType="DOUBLE" />
+        </collection>
+    </resultMap>
+
+    <!--查看所有围栏-->
+    <select id="getAllFences" resultMap="allFence">
+        SELECT fence.id,fd.lng,fd.lat from t_fence_def fence LEFT JOIN t_fence_detail fd
+        on fd.fence_id = fence.id
+        <where>
+            <if test="userIds !=null and userIds.size()>0">
+                and fence.create_by  in
+                <foreach collection="userIds" index="index" item="userId" open="(" separator="," close=")">
+                    #{userId}
+                </foreach>
+            </if>
+            <if test="orgIds !=null and orgIds.size()>0">
+                and fence.org_id  in
+                <foreach collection="orgIds" index="index" item="orgId" open="(" separator="," close=")">
+                    #{orgId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <!--删除围栏-->
+    <delete id="deleteFenceById">
+          delete from t_fence_def where id = #{id}
+    </delete>
+
+    <!--删除围栏详情-->
+    <delete id="deleteFenceDetailByFenceId">
+      delete from t_fence_detail where fence_id = #{fenceId}
+    </delete>
+
+    <!--插入围栏-->
+    <insert id="saveFence" parameterType="com.entities.TFenceDef" useGeneratedKeys="true" keyProperty="id">
+		insert into t_fence_def
+		(
+            fence_type,
+            create_by,
+            status,
+            start_time,
+            area_id,
+            create_date,
+            expire_date,
+            fence_name,
+            fence_no,
+            org_id
+		)
+		values
+		(
+			#{fence_type},
+			#{create_by},
+			#{status},
+			#{start_time},
+			#{area_id},
+			#{create_date},
+			#{expire_date},
+			#{fence_name},
+			#{fence_no},
+			#{org_id}
+		)
+	</insert>
+
+    <!--批量插入围栏详情-->
+    <insert id="batchSaveFenceDetail" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_fence_detail (
+        fence_id,
+        lng,
+        lat,
+        `order`,
+        create_date,
+        update_date
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.fenceId}, #{item.lng}, #{item.lat}, #{item.order}, #{item.createDate}, #{item.updateDate})
+        </foreach>
+    </insert>
+</mapper>

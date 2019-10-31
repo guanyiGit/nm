@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.DogAmountDao">
+    <select id="getDogsByTime" parameterType="java.util.Map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time,cancel.create_date cancelTime
+        from t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref on ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        left join t_protector protector on protector.id = dog.protector
+        left join t_dog_cancel cancel on cancel.trace_id = dog.trace_id
+        <where>
+            dog.create_date <![CDATA[ < ]]> #{endTime}
+            <if test="userId != null and userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size != ''">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getDogDeadTime" parameterType="java.util.Map" resultType="java.util.Date">
+        select deal_time from t_corpse_disposal
+        where deal_time <![CDATA[ > ]]> #{startTime} and deal_time <![CDATA[ < ]]> #{endTime}
+    </select>
+
+    <select id="getDogCancelTime" parameterType="java.util.Map" resultType="java.util.Date">
+        select tdc.create_date from t_dog_info tdi
+        left JOIN t_dog_cancel tdc on tdc.dog_id = tdi.id
+        where tdi.status = 2 and tdc.create_date <![CDATA[ > ]]>  #{startTime} and tdc.create_date <![CDATA[ < ]]> #{endTime}
+    </select>
+
+
+    <select id="getDogAmount1" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time
+        from t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref on ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        left join t_protector protector on protector.id = dog.protector
+        where dog.create_date <![CDATA[ < ]]> #{nextMonth} and protector.user_id = #{userId}
+    </select>
+    <select id="getDogAmount2" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time
+        from t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref on ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        where dog.create_date <![CDATA[ < ]]> #{nextMonth} AND dog.org_id = #{orgId}
+    </select>
+    <select id="getDogAmount3" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time from t_dog_info dog
+--         LEFT JOIN t_device_ref_dog ref on ref.dog_id = dog.id
+        LEFT JOIN t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        where dog.create_date <![CDATA[ < ]]>  #{nextMonth} and dog.org_id in (
+        select org.id from t_org_info org
+        where  org.area_id = #{areaId}
+        )
+    </select>
+    <select id="getDogAmount4" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time from t_dog_info dog
+--         left join t_device_ref_dog ref on ref.dog_id = dog.id
+        left join t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        where dog.create_date <![CDATA[ < ]]>  #{nextMonth} and dog.org_id in (
+            select org2.id from t_org_info org2 where org2.pid in (
+               select org.id from t_org_info org where org.area_id = #{areaId})
+        )
+    </select>
+    <select id="getAreaInfoByOrgId" parameterType="map" resultType="com.entities.AreaInfo">
+        select DISTINCT(org.area_id) id,area.name from t_org_info org
+        left join t_area_info area on area.id = org.area_id
+        where org.pid = #{orgId}  and area.id is not null
+    </select>
+
+    <select id="getLiveNumber" parameterType="map" resultType="com.statisanalysis.entity.DogVO">
+        select dog.create_date,corpse.deal_time from t_dog_info dog
+--         left join t_device_ref_dog ref on  dog.id = ref.dog_id
+        left join t_corpse_disposal corpse on corpse.trace_id = dog.trace_id
+        LEFT JOIN t_protector protector ON protector.id = dog.protector
+        <where>
+            dog.create_date <![CDATA[ < ]]> #{nextMonth}
+            <if test="userId != null">AND protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size != ''">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by dog.create_date
+    </select>
+    <select id="getNewNumber" parameterType="map" resultType="java.util.Date">
+        select dog.create_date from t_dog_info dog
+        LEFT JOIN t_protector protector ON protector.id = dog.protector
+        <where>
+            dog.create_date <![CDATA[ > ]]> #{startTime} and dog.create_date <![CDATA[ < ]]> #{nextMonth}
+            <!--<if test="protectorId != null">and dog.protector = #{protectorId}</if>-->
+            <if test="userId != null">AND protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size != ''">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getDeadNumber" parameterType="map" resultType="java.util.Date">
+        select corpse.deal_time from t_corpse_disposal corpse
+        <where>
+            corpse.deal_time <![CDATA[ > ]]> #{startTime} and corpse.deal_time <![CDATA[ < ]]> #{nextMonth}
+            <if test="userId != null">and corpse.operator_id = #{userId}</if>
+            <if test="lists != null and lists.size != ''">
+                and corpse.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY
+        corpse.trace_id
+    </select>
+    <select id="getCancelNumber" parameterType="map" resultType="java.util.Date">
+        select dog.cancel_date from t_dog_info dog
+        LEFT JOIN t_protector protector ON protector.id = dog.protector
+        <where>
+            dog.status = 2
+            and dog.cancel_date <![CDATA[ > ]]> #{startTime} and dog.cancel_date <![CDATA[ < ]]> #{nextMonth}
+            <if test="userId != null">and protector.user_id = #{userId}</if>
+            <if test="lists != null and lists.size != ''">
+                and dog.org_id in
+                <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

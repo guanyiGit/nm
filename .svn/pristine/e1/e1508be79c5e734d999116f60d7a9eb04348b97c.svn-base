@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dogmanager.dao.TStrayDogMapper" >
+  <resultMap id="BaseResultMap" type="com.entities.TStrayDog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="breed" property="breed" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="DOUBLE" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="hair_color" property="hairColor" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+    <result column="process_mode" property="processMode" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapVO" type="com.dogmanager.VO.StrayDogVO" extends="BaseResultMap">
+    <result column="thumbnail_url" property="smallUrl" jdbcType="VARCHAR" />
+    <result column="url" property="bigUrl" jdbcType="VARCHAR" />
+    <result column="dealName" property="dealName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, area_id, `no`, breed, age, sex, hair_color, weight, deal_time, process_mode, description,
+    operator, org_id, create_date, update_date
+  </sql>
+
+  <select id="findStrayDogList" resultMap="BaseResultMapVO" parameterType="map">
+    SELECT
+    sd.id,nr.name breed,sd.`age`,sd.`sex`,sd.`hair_color`,sd.`weight`,sd.`deal_time`,sd.process_mode,sd.operator,
+    sd.`description`,sd.`create_date`,sd.`update_date`,ui.`name` dealName,mi.`thumbnail_url`,mi.url
+    FROM t_stray_dog sd
+    LEFT JOIN t_media_ref mr
+    ON mr.`ref_id`=sd.`id` AND mr.`type`=1
+    LEFT JOIN t_media_info mi
+    ON mr.`media_id`=mi.`id`
+    LEFT JOIN t_user_info ui
+    ON sd.`operator`=ui.`id`
+    left join t_sys_dict dict on dict.value = sd.breed_id and dict.type = 'dog_breed'
+    left join t_name_ref nr on nr.resource_id = dict.name_id and nr.type = #{langType}
+    <where>
+      <if test="startDate !=null and startDate !=''">
+            sd.deal_time <![CDATA[>]]> #{startDate}
+      </if>
+      <if test="endDate !=null and endDate !=''">
+        AND sd.deal_time <![CDATA[<]]> #{endDate}
+      </if>
+      <if test="string !=null and string !=''">
+        AND  sd.breed like "%"#{string}"%"
+      </if>
+      <if test="orgList !=null and orgList.size>0">
+        AND  (sd.`org_id` in
+        <foreach collection="orgList" index="index" item="orgList" open="(" separator="," close=")">#{orgList}</foreach>
+        )
+      </if>
+      <if test="operator !=null and operator!=''">
+        AND sd.`operator`=#{operator}
+      </if>
+    </where>
+    group by sd.id ORDER BY sd.create_date DESC
+  </select>
+
+
+
+<select id="findStrayDogById" resultMap="BaseResultMapVO" parameterType="int">
+ SELECT
+    sd.id,sd.`breed`,sd.`age`,sd.`sex`,sd.`hair_color`,sd.`weight`,sd.`deal_time`,sd.process_mode,sd.operator,
+    sd.`description`,sd.`create_date`,sd.`update_date`,ui.`name` dealName
+    FROM t_stray_dog sd
+    LEFT JOIN t_user_info ui
+    ON sd.`operator`=ui.`id`
+  WHERE sd.id=#{Id}
+</select>
+
+  <select id="findStrayDogByIdI18N" resultMap="BaseResultMapVO" parameterType="map">
+ SELECT
+    sd.id,nr.name breed,sd.breed_id,sd.`age`,sd.`sex`,sd.`hair_color`,sd.`weight`,sd.`deal_time`,sd.process_mode,sd.operator,
+    sd.`description`,sd.`create_date`,sd.`update_date`,ui.`name` dealName
+    FROM t_stray_dog sd
+    LEFT JOIN t_user_info ui
+    ON sd.`operator`=ui.`id`
+    left join t_sys_dict dict on dict.value = sd.breed_id and dict.type = 'dog_breed'
+    left join t_name_ref nr on nr.resource_id = dict.name_id and nr.type = #{langType}
+  WHERE sd.id=#{Id}
+</select>
+
+
+<select id="checkNo" resultType="string" parameterType="string">
+  SELECT  `no` FROM t_stray_dog WHERE `no`=#{no}
+</select>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entities.TStrayDogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_stray_dog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_stray_dog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_stray_dog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.entities.TStrayDogExample" >
+    delete from t_stray_dog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entities.TStrayDog" >
+    insert into t_stray_dog (id, area_id, no, 
+      breed, age, sex, hair_color, 
+      weight, deal_time, process_mode, 
+      description, operator, org_id, 
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, 
+      #{breed,jdbcType=VARCHAR}, #{age,jdbcType=DOUBLE}, #{sex,jdbcType=INTEGER}, #{hairColor,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=DOUBLE}, #{dealTime,jdbcType=TIMESTAMP}, #{processMode,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{operator,jdbcType=INTEGER}, #{orgId,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entities.TStrayDog" >
+    insert into t_stray_dog
+    <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="breedId != null" >
+        breed_id,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="hairColor != null" >
+        hair_color,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+      <if test="processMode != null" >
+        process_mode,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="breedId != null" >
+        #{breedId,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=DOUBLE},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="hairColor != null" >
+        #{hairColor,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processMode != null" >
+        #{processMode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entities.TStrayDogExample" resultType="java.lang.Integer" >
+    select count(*) from t_stray_dog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_stray_dog
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.no != null" >
+        no = #{record.no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.breed != null" >
+        breed = #{record.breed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.hairColor != null" >
+        hair_color = #{record.hairColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.dealTime != null" >
+        deal_time = #{record.dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.processMode != null" >
+        process_mode = #{record.processMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null" >
+        operator = #{record.operator,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_stray_dog
+    set id = #{record.id,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      no = #{record.no,jdbcType=VARCHAR},
+      breed = #{record.breed,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=DOUBLE},
+      sex = #{record.sex,jdbcType=INTEGER},
+      hair_color = #{record.hairColor,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      deal_time = #{record.dealTime,jdbcType=TIMESTAMP},
+      process_mode = #{record.processMode,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=INTEGER},
+      org_id = #{record.orgId,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entities.TStrayDog" >
+    update t_stray_dog
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="breed != null" >
+        breed = #{breed,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=DOUBLE},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="hairColor != null" >
+        hair_color = #{hairColor,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processMode != null" >
+        process_mode = #{processMode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entities.TStrayDog" >
+    update t_stray_dog
+    set
+      breed_id = #{breedId,jdbcType=VARCHAR},
+      age = #{age,jdbcType=DOUBLE},
+      sex = #{sex,jdbcType=INTEGER},
+      hair_color = #{hairColor,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      process_mode = #{processMode,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

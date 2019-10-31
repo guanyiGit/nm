@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/veterinarian/veterinarian_Update.js"></script>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###">基础信息></a></li>
+			<li class="fl"><a href="###">兽医信息></a></li>
+			<li class="fl">修改兽医</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" >
+		<form action="#" id="vetrinarianUpdate">
+			<div class="pdl50 pdr50">
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属乡镇</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div>
+				
+				<input type="text" name="id" th:value="${veterinarian.id}" hidden="hidden">			
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*兽医姓名</div>
+					<div class="mgl90">
+						<input name="name" type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${veterinarian.name}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*上传照片</div>
+					<div class="file rel mgl90">
+						<input type="file">
+						<img src="/images/44.png"> 
+					</div>
+				
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*性别</div>
+					<div class="mgl90">
+						<select name="sex" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option th:selected="${veterinarian.sex==0}" value="0">男</option>
+							<option th:selected="${veterinarian.sex==1}" value="1">女</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*出生日期</div>
+					<div class="mgl90">
+						<input id="birth" name="birthDay" type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${veterinarian.birthDay==null}?'':${#dates.format(veterinarian.birthDay, 'yyyy-MM-dd')}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*民族</div>
+					<div class="mgl90">
+						<select name="nation" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="n : ${nationList}" th:text="${n.name}" th:value="${n.name}"  
+							th:selected="${n.remarks=='checked'}"
+							   ></option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*文化程度</div>
+					<div class="mgl90">
+						<select name="degreeOfEducation" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option th:selected="${veterinarian.degreeOfEducation=='小学'}" value="小学">小学</option>
+							<option th:selected="${veterinarian.degreeOfEducation=='初中'}" value="初中">初中</option>
+							<option th:selected="${veterinarian.degreeOfEducation=='高中'}" value="高中">高中</option>
+							<option th:selected="${veterinarian.degreeOfEducation=='本科及以上'}" value="本科及以上">本科及以上</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*职称</div>
+					<div class="mgl90">
+						<select name="professionalLevel" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option th:selected="${veterinarian.professionalLevel==0}" value="0">初级</option>
+							<option th:selected="${veterinarian.professionalLevel==1}" value="1">中级</option>
+							<option th:selected="${veterinarian.professionalLevel==2}" value="2">高级</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*联系电话</div>
+					<div class="mgl90">
+						<input name="phoneNum" type="text" class="ww92 h50 lh50 bore ras4 pdl30"
+						 placeholder="" th:value="${veterinarian.phoneNum}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*详细地址</div>
+					<div class="mgl90">
+						<input name="address" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${veterinarian.address}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*证件类型</div>
+					<div class="mgl90">
+						<select name="cardType" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option th:selected="${veterinarian.cardType==0}" value="0">身份证</option>
+							<option th:selected="${veterinarian.cardType==1}" value="1">户口簿</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*证件号码</div>
+					<div class="mgl90">
+						<input name="cardNum" type="text" class="ww92 h50 lh50 bore ras4 pdl30" 
+						placeholder="" th:value="${veterinarian.cardNum}">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">描述</div>
+					<div class="mgl90">
+						<textarea name="description" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" 
+						placeholder="10年" th:text="${veterinarian.description}"></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button" id="save" value="保存">
+						<a href="/biz/veterinarian/veterinarian_List" class="a6 dinb hov8">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+</body>
+</html>

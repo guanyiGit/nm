@@ -1,0 +1,45 @@
+package com.soholy.pojo.aep.command.rq;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class BaseCommandAepRq implements Serializable {
+
+    /**
+     * 命令id,非空，string
+     */
+    private String mid;
+    /**
+     * 命令,非空,多组
+     */
+    private List<CommandAepRqMode> modes;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class CommandAepRqMode {
+        /**
+         * 命令,非空,多组   --->1模式切换 2设置上传间隔时间
+         */
+        private String type;
+        /**
+         * 命令值
+         * type=1  -->（0普通模式 1省电模式）
+         * type=2  -->（间隔的时间长短,单位秒）
+         */
+        private String val;
+        /**
+         * 命令下发时间
+         */
+        private String time;
+
+    }
+
+}

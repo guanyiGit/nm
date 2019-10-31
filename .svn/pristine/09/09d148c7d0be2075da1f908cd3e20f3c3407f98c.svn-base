@@ -1,0 +1,33 @@
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" is-show="{{ component.isShow }}" query ="{{ query }}" bind:searchEvent="searchManure"  bind:scanSearchEvent="scanSearchManure"></search>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ manureArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+        <view class='container_item drop-right' bindtap='tomanureInfoPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.url }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <view>{{ item.traceId||'' }}</view>
+            </view>
+            <view class='right_body'>
+             <view class='texthide'>犬名：{{ item.dogName||'' }}</view>
+             <view class='texthide'>犬主：{{ item.ownerName||'' }}</view>
+            </view>
+            <view class='right_foot'>
+              <view>处理时间：{{ item.dealTime||'' }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='manure_add' bindtap='toDogUtilPage' data-type='2'></view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+    <text>下拉查看更多</text>
+</view>

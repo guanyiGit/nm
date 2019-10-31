@@ -1,0 +1,71 @@
+package com.soholy.pojo.aep.rq;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class BaseAepRq implements Serializable {
+
+    /**
+     * 数据包类型,非空,int32
+     * 0:健康管理模式    
+     * 1:追踪模式
+     * 2:普通模式
+     */
+    private Integer mode;
+    /**
+     * 数据包类型,非空,int32
+     * 0：心跳包
+     *  1：正常数据包
+     * 2：开机激活
+     */
+    private Integer info_type;
+    /**
+     * 协议版本号,固定2.0,string 
+     */
+    private String version = Float.valueOf(2.0f).toString();
+    /**
+     * 设备信息,非空
+     */
+    private AepDevice device;
+
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class AepDevice {
+        /**
+         * 设备imei号,非空,string
+         */
+        private String imei;
+        /**
+         * 电量,非空,float32
+         */
+        private Float elec_val;
+
+        /**
+         * 电压（单位mv） int32
+         */
+        private Integer voltage;
+        /**
+         * 上传时间,非空,int64
+         */
+        private Long time;
+
+        /**
+         * 设备 id 自定义 上传不包含
+         */
+        private Long deviceId;
+
+        /**
+         * 设备平台id  自定义 上传不包含
+         */
+        private String deviceIdIot;
+    }
+
+}

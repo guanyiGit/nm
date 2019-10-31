@@ -1,0 +1,140 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.traceId||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.dogName||"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬种：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.breed||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>注销原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.reason||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>注销时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.canselDate||"" }}</text>
+        </view>
+    </view>
+
+     <view class='item'>
+        <view class='left'>
+            <text>项圈处理：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.deviceDealWay||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬主姓名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.name||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬主电话：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.phoneNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>身份证号码：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.cardNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫员姓名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.porName||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫员电话：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.porPhoneNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>所属乡镇：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.town||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>详细地址：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogCancel.pcName||"" }}{{ dogCancel.no||"" }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ picList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ manure.description }}</text>
+        </view>
+    </view>
+</view>

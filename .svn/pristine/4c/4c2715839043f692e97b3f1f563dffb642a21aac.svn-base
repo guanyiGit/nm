@@ -1,0 +1,36 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" is-show="{{ component.isShow }}" bind:searchEvent="searchOwner"></search>
+  <search-box bind:dataEvent="searchOwnerByBox"></search-box>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ ownerInfos }}" wx:key="index" wx:if="{{ index<maxLength }}">
+        <view class='container_item drop-right' bindtap='toOwnerPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.imageList[0].url }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle">
+              <view>{{ item.name?item.name:"未知" }}</view>
+            </view>
+            <view class='right_body'>
+              <view>{{ item.sex ==0?"男":"女" }}</view>
+              <view>{{ item.nation?item.nation:"未知" }}</view>
+              <view>{{ item.birthDay?item.birthDay:"未知" }}</view>
+            </view>
+            <view class='right_foot'>
+              <view>联系电话：{{ item.phoneNum?item.phoneNum:"未知" }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<!-- <view class='add_owner' bindtap='toOwnerAddPage'></view> -->
+<view class='more' wx:if="{{ !ishasData }}">
+  <text>下拉查看更多</text>
+</view>

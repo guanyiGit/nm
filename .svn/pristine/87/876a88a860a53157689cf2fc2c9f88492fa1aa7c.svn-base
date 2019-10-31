@@ -1,0 +1,57 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--溯源ID：(待优化)-->
+      <view class='device item'>
+        <view class='left'>
+          <view class='must'>
+            <text>溯源ID：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="deviceNo" bindinput='searchDevice'></input>
+        </view>
+      </view>
+
+      <!--死亡原因：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>注销原因：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input  name="reason"></input>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image></image>
+        </view>
+      </view>
+
+       <!--描述：-->
+      <view class='dog_description item'>
+        <view class='left'>
+          <view>
+            <text>描述：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

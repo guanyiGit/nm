@@ -1,0 +1,110 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>品种：</text> -->
+            <text>{{ LG.get(L,"pingzhong") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.breed?strayDog.breed:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>性别：</text> -->
+            <text>{{ LG.get(L,"xingbie") }}：</text>
+        </view>
+        <view class='right'>
+            <!-- <text>{{ strayDog.sex?"公":"母" }}</text> -->
+            <text>{{ strayDog.sex? LG.get(L,"gong_sex") : LG.get(L,"mu_sex") }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>犬龄：</text> -->
+            <text>{{ LG.get(L,"quanling") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.age?strayDog.age:"" }}{{ strayDog.age?"岁":"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>毛色：</text> -->
+            <text>{{ LG.get(L,"maose") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.hairColor?strayDog.hairColor:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>体重：</text> -->
+            <text>{{ LG.get(L,"tizhong") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.weight?strayDog.weight:"" }}{{ strayDog.weight?"kg":"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理时间：</text> -->
+            <text>{{ LG.get(L,"chulishijian") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.dealTime?strayDog.dealTime:"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理方式：</text> -->
+            <text>{{ LG.get(L,"chulifangshi") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.processMode?strayDog.processMode:"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <!-- <text>处理人</text> -->
+            <text>{{ LG.get(L,"chuliren") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.dealName?strayDog.dealName:"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <!-- <text>图片：</text> -->
+            <text>{{ LG.get(L,"zhaopian") }}：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ item.url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+
+    <view class='item describe'>
+        <view class='left'>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.description?strayDog.description:"" }}</text>
+        </view>
+    </view>
+</view>
+
+<wxs module="LG" src="../../../../../utils/lang.wxs" />

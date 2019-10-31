@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/epmanagement/corpseDisposal_Update.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###"th:text="#{antiepidemicManage}">防疫管理></a></li>
+			<li class="fl"><a href="/biz/corpseDisposal/toCorpseDisposal"th:text="#{antiepidemicManage.corpseHandle}">尸体无害化处理></a></li>
+			<li class="fl"th:text="#{dogManage.edit2}">修改</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" id="app">
+		<form action="#"  id="corpseUpdate">
+			<div class="pdl50 pdr50">
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属组织</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div>
+			<input th:value="${corpse.id}" name="id" type="text" hidden="hidden">
+				
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.traceId2}">*溯源ID</div>
+					<div class="mgl90">
+						<input  th:value="${corpse.traceId}" name="traceId" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.deathReason2}">*死亡原因</div>
+					<div class="mgl90">
+							<!--<select name="causeOfDeath" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option  th:each="d : ${deathList}" th:text="${d.name}" th:value="${d.value}"  
+							th:selected="${d.isCheck=='checked'}"
+							   ></option>
+						</select>-->
+						<select id="causeOfDeath" name="causeOfDeath" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.handleWay2}">*处理方法</div>
+					<div class="mgl90">
+						<!--<select  name="processingMethod" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">-->
+							<!--<option  th:each="h : ${handleList}" th:text="${h.name}" th:value="${h.value}"  -->
+							<!--th:selected="${h.isCheck=='checked'}"-->
+							   <!--&gt;</option>-->
+						<!--</select>-->
+						<select id="processingMethod"  name="processingMethod" class="ww92 h50 lh50 bore ras4 pdl30 cor9 pc22">
+
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{antiepidemicManage.methodDescription}">方法说明</div>
+					<div class="mgl90">
+						<textarea  th:text="${corpse.methodDescription}" name="methodDescription" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" placeholder=""></textarea>
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.handleDate}">*处理时间</div>
+					<div class="mgl90" >
+						<input th:value="${#dates.format(corpse.dealTime, 'yyyy-MM-dd HH:mm:ss')}" type="text" class="ww92 h50 lh50 bore ras4 pdl30" readonly="readonly">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*照片</div>
+					<div class="mgl90 ww87 ">
+						<div class="pdt20 pdb20">
+							<input id="file-1" name="files" type="file" multiple="multiple" class="file" >
+						</div>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*视频</div>
+					<div class="mgl90 ww87">
+							<div class="file-loading" style="height: 100px">
+								<input id="file-2" name="video"  type="file" multiple class="file" >
+							</div>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r"th:text="#{dogManage.description}">描述</div>
+					<div class="mgl90">
+						<textarea th:text="${corpse.description}" name="description" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30" ></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="button" id="save" th:value="#{dogManage.save}">
+						<a href="/biz/corpseDisposal/toCorpseDisposal" class="a6 dinb hov8"th:text="#{dogManage.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+</body>
+</html>
+<script th:inline="javascript">
+	var svDeath=[[${corpse.causeOfDeath}]];
+	var svMethod=[[${corpse.processingMethod}]];
+    var updateSuccess= [[#{binformation.updateSuccess}]] ;
+    var sure5=[[#{dogManage.sure}]];
+    var unKnownError =[[#{antiepidemicManage.unKnownError}]];
+</script>

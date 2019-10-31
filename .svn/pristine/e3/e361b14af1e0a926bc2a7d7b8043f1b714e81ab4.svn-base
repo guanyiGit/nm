@@ -1,0 +1,41 @@
+<view wx:if="{{ ishasData }}">
+ <search-org is-detection="{{ component.isDetection }}" bind:orgEvent="orgEvent" bind:dateEvent = "dateEvent"></search-org>
+<view class='container'>
+  <view class='container_body'>
+    <block wx:for="{{ anatomyArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+      <view class='container_item drop-right' bindtap='toAnatomyInfoPage' data-index='{{ index }}'>
+        <view class='left'>
+          <image src='{{ item.imageList[0].url }}'></image>
+        </view>
+        <view class='right'>
+          <view class="right_headle">
+            <!-- <text>阳性率:{{ item.positiveRate }}%</text> -->
+            <text>{{ lang.get(L,"yangxinglv") }}:{{ item.positiveRate }}%</text>
+          </view>
+          <view class='right_body'>
+            <!-- <view class='texthide'>检测单位：{{ item.orgInfo.departName }}</view> -->
+            <view class='texthide'>{{ lang.get(L,"jiancedanwei") }}：{{ item.orgInfo.departName }}</view>
+          </view>
+          <view class='right_foot'>
+             <!-- <view>检测时间：{{ item.testDate }}</view> -->
+             <text>{{ lang.get(L,"jianceshijian") }}：{{ item.testDate }}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_anatomy' bindtap='toAnatomyAddPage'>
+  <text class='xz_element'>{{ lang.get(L,"xinzeng") }}</text>
+</view>
+<view class='more' wx:if="{{ ishasData }}">
+    <!-- <text>下拉查看更多</text> -->
+    <text>{{ lang.get(L,"xinzeng") }}</text>
+</view>
+
+<wxs module="lang" src="../../../../utils/lang.wxs" />
+<lang/>

@@ -1,0 +1,26 @@
+<view class="container">
+    <view class='body'>
+      <view class='items'>
+          <view class='item'>
+              <view>所属组织</view>
+              <view>{{ userInfo.deptName }}</view>
+          </view>
+          <view class='item'>
+              <view>所属区域</view>
+              <view>{{ userInfo.areaName }}</view>
+          </view>
+          <view class='item'>
+              <view>姓名</view>
+              <view>{{ userInfo.name }}</view>
+          </view>
+          <view class='item'>
+              <view>用户名</view>
+              <view>{{ userInfo.username }}</view>
+          </view>
+          <view class='item'>
+              <view>联系电话</view>
+              <view>{{ userInfo.mobile }}</view>
+          </view>
+      </view>
+    </view>
+</view>

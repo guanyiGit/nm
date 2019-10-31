@@ -1,0 +1,8 @@
+[2019-05-16 21:27:14]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{},"serviceId":"service"}}
+[2019-05-16 21:28:01]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{},"serviceId":"service"}}
+[2019-05-16 21:32:25]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{},"serviceId":"service"}}
+[2019-05-16 21:35:18]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{},"serviceId":"service"}}
+[2019-05-16 21:38:40]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{"value":"qgYd8VzdZ5T/"},"serviceId":"service"}}
+[2019-05-16 21:38:40]bytes:0x01 0x70 0x06 0x29 0x02 0x41 0x92 0x02 0x21 0x01 0x03 0x01 0x48 0x02 0x55 
+[2019-05-16 21:47:00]{"callbackUrl":"https://119.147.209.163:9000/callback/cmdrsp","deviceId":"3f618136-043c-4051-abe2-b41c4f9fbabb","command":{"method":"CMD","paras":{"value":"qgYCqVzdabT/"},"serviceId":"service"}}
+[2019-05-16 21:47:00]bytes:0x01 0x70 0x06 0x02 0x01 0x69 0x92 0x02 0x21 0x01 0x05 0x01 0x80 0x02 0x55 

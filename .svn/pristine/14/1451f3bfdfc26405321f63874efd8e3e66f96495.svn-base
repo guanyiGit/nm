@@ -1,0 +1,39 @@
+<view wx:if="{{ ishasData }}">
+  <search-org is-material="{{ component.isMaterial }}" search-is-show="{{ component.searchIsShow }}"  placeholder-text="{{ components.placeholderText }}"  bind:searchMaterial="searchMaterial" bind:orgEvent="orgEvent" bind:dateEvent = "dateEvent"></search-org>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ deviceDistributionArray }}" wx:key="index" wx:if="{{ index < maxLength }}">
+        <view class='container_item drop-right' bindtap='toDeviceDistributionInfoPage' data-index='{{ index }}'>
+          <view class='item-body'>
+            <view class="headle">
+              <view>犬只项圈</view>
+              <view>
+                <text class="gray">发放</text>
+              </view>
+              <view>{{ item.amount }}</view>
+              <view>
+                <text class="gray">{{ item.distributeDate }}</text>
+              </view>
+            </view>
+            <view class='body'>
+              <view class='texthide'>
+                <text class="gray">发放单位：</text> {{ item.distributeOrgName }}</view>
+            </view>
+            <view class='foot'>
+              <view>
+                <text class="gray">{{ item.ishasReceiveOrg?'接收单位':'接收人'}}：</text> {{ item.ishasReceiveOrg?item.receiveOrgName:item.receivorName }}</view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='nodata' wx:if="{{ !ishasData }}">
+  <image src='/assets/image/nodata.png'></image>
+</view>
+<view class='add_DeviceDistribution' bindtap='toDeviceDistributionAddPage'></view>
+<view class='more' wx:if="{{ ishasData }}">
+  <text>下拉查看更多</text>
+</view>

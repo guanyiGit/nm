@@ -1,0 +1,130 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'>
+    <view class='item'>
+        <view class='left'>
+            <text>所属乡镇：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.address }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>犬主：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.ownerName }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>犬名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.dogName }}</text>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.deviceNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬种：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.breed }}</text>
+        </view>
+    </view>
+
+  <view class='item'>
+        <view class='left'>
+            <text>犬龄(岁)：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.age }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>性别：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.sex==0?'公':'母' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>毛色：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.hairColor }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>体重(公斤)：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.weight }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>入栏时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.createDate }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫员：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.name1 }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>联系电话：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.ownerPhone }}</text>
+        </view>
+    </view>
+
+    <!--暂未循环展示 -->
+    <view class='item'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ dogPicList }}" wx:key="index">
+               <image src='{{ dogPicList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+    <view class='item'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ dogInfo.description }}</text>
+        </view>
+    </view>
+
+    <!-- <view class='edit_dog' bindtap='toDogEditPage'></view> -->
+</view>

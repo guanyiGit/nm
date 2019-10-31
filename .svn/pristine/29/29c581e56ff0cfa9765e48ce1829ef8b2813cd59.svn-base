@@ -1,0 +1,25 @@
+<!--登录页-->
+<view class='warp'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='login_title'>
+      <image src='{{ login.imageUrl }}'></image>
+    </view>
+    <view class='login_body'>
+      <view class='username'>
+        <image src='{{ login.username_icon }}'></image>
+        <!-- 用户名 -->
+        <input placeholder-class="input-placeholder" placeholder='{{LG.get(L,"pl_username")}}' name="username"></input>
+      </view>
+      <view class='password'>
+        <image src='{{ login.password_icon }}'></image>
+        <!-- 密码 -->
+        <input placeholder-class="input-placeholder" placeholder='{{LG.get(L,"pl_passwrod")}}' name="password" type='password'> </input>
+      </view>
+    </view>
+    <!-- 登录 -->
+    <button class='submit_button' form-type='submit'>{{ LG.get(L,"denglv") }}</button>
+  </form>
+</view>
+
+<wxs module="LG" src="../../utils/lang.wxs" />
+<lang/>

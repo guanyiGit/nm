@@ -1,0 +1,68 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--检测数：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>检测数(公斤)：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="testAmount" bindinput="gettestAmount" value='{{ testAmount }}'></input>
+        </view>
+      </view>
+
+       <!--阳性数：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>阳性数(公斤)：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="positiveAmount"  bindinput="getpositiveAmount" value='{{ positiveAmount }}' ></input>
+        </view>
+      </view>
+
+       <!--阳性率：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>阳性率(%)：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="positiveRate" value='{{ positiveRate }}' bindinput='checkPositiveRate' disabled ></input>
+        </view>
+      </view>
+      <!--照片：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <text>照片：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+      <!--视频：-->
+      <view class='item anatomy-image'>
+        <view class='left'>
+          <view>
+            <text>视频：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

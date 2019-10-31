@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "image-upload": "/components/imageUpload/upload",
+    "video-upload": "/components/videoUpload/videoUpload",
+    "date-select": "/components/date-select/date-select",
+    "i-toast": "/dist/toast/index"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "新增牛羊脏器处理"
+}

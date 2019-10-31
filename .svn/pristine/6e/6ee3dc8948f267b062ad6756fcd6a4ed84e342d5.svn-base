@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "image-upload": "/components/imageUpload/upload",
+    "video-upload": "/components/videoUpload/videoUpload",
+    "i-toast": "/dist/toast/index"
+  },
+  "navigationBarBackgroundColor": "#3343A5",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "新增犬只解剖"
+}

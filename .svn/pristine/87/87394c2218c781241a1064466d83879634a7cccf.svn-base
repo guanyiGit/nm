@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<div th:include="include::footer"></div>
+<!--引入自定js-->
+<script src="/basicInfo/pad/pad_Add.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###">基础信息></a></li>
+			<li class="fl"><a href="###">手持PAD信息></a></li>
+			<li class="fl">新增PAD</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75" id="app">
+		<form action="#" @submit.prevent="submit">
+			<div class="pdl50 pdr50">
+				<div class="ovh mgt10" hidden="hidden">
+					<div class="fl w70 cor3 h50 lh50 t-r">*所属乡镇</div>
+					<div class="mgl90">
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">州</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22" style="margin-right: .75%;">
+							<option value="1">县</option>
+						</select>
+						<select class="ww30 h50 lh50 bore ras4 pdl30 cor9 pc22">
+							<option value="1">乡</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*PAD编号</div>
+					<div class="mgl90">
+						<input  v-model="pad.padNo" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*验证密码</div>
+					<div class="mgl90">
+						<input v-model="pad.passwd"  type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">*领用人</div>
+					<div class="mgl90">
+						<input v-model="pad.recipient" type="text" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				
+				<div class="ovh mgt10">
+					<div class="fl w70 cor3 h50 lh50 t-r">描述</div>
+					<div class="mgl90">
+						<textarea v-model="pad.description" class="ww92 h140 bore pdl30 pdt10 pdb10 pdr30"></textarea>
+					</div>
+				</div>
+				
+				<div class="ovh mgt40">
+					<div class="mgl90">
+						<input class="a6 dinb bort hov8" type="submit" value="保存">
+						<a href="/biz/pad/pad_List" class="a6 dinb hov8">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<!--wrap End-->
+</body>
+</html>

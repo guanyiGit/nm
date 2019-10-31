@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/../antiepidemicplatform" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../callback" charset="UTF-8" />
@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/../eureka02" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../eureka03" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/callback-lwm2m" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/convert-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../sms" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

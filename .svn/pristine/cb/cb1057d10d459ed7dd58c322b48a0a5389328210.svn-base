@@ -1,0 +1,51 @@
+.page {
+  display: flex;
+  border-bottom: 2rpx solid #cdcdcd;
+  height: 80rpx;
+  align-items: center;
+  background-color: white;
+  margin-top: 10rpx;
+}
+
+.nav {
+  font-size: 14px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.drop-down {
+  display: flex;
+  align-items: center;
+}
+
+.drop-down::after {
+  content: "";
+  width: 15rpx;
+  height: 15rpx;
+  margin-left: 20rpx;
+  border-bottom: 2rpx solid black;
+  border-right: 2rpx solid black;
+  transform: rotate(45deg);
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.splitLine {
+  border-right: 2rpx solid #cdcdcd;
+}
+
+.otherview {
+  width: 62vh;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: rgba(204, 204, 204, 0.5);
+  margin-top: 197rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.none{
+  display: none;
+}

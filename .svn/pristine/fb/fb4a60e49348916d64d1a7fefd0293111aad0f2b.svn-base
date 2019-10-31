@@ -1,0 +1,91 @@
+<view class='container'>
+  <view class='container_body'>
+    <form  bindsubmit="formSubmit" bindreset="formReset">
+      <!--物资类型-->
+      <view class='dog_owner item'>
+        <view class='left'>
+          <view class='must'>
+            <text>物资类型 :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindMaterialTypeChange' value='{{ material.materialType[material.materialIndex].value }}' range='{{ material.materialType }}' range-key="name" name="goodsType">
+            <view class='picker drop-down'>
+              {{ material.materialType[material.materialIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!--物资名称：-->
+      <view class='device item'>
+        <view class='left'>
+          <view class='must'>
+            <text>物资名称：</text>
+          </view>
+        </view>
+       <view class='right'>
+          <input name="goodsName"  placeholder-style='text-align: right;color: #999999;'></input>
+        </view>
+      </view>
+      <!--发放数量：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <text>发放数量：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="goodsAmount"></input>
+        </view>
+      </view>
+      <!--接收单位-->
+      <view class='fence item' wx:if='{{orgShow}}'>
+        <view class='left'>
+          <view class='must'>
+            <text>接收单位：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindReceiveOrgChange' value='{{ org.orgArray[org.orgIndex].id }}' range='{{ org.orgArray }}' range-key="departName" name="receiveOrg">
+            <view class='picker drop-down'>
+              {{ org.orgArray[org.orgIndex].departName }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--防疫员接收人-->
+      <view class='dog_breed item' wx:if="{{proShow}}">
+        <view class='left'>
+          <view class='must'>
+            <text>接收人：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindReceiverChange' value='{{ receiver.receiverArray[receiver.receiverIndex].id }}' range='{{ receiver.receiverArray }}' range-key="name" name="receiver">
+            <view class='picker drop-down'>
+              {{ receiver.receiverArray[receiver.receiverIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--组织接收人：-->
+      <view class='dog_age item' wx:if="{{orgShow}}">
+        <view class='left'>
+          <view>
+            <text>接收人：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="orgReceiverName"  placeholder-style='text-align: right;color: #999999;'></input>
+        </view>
+      </view>
+
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>提交</button>
+        <button class='reset' formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>

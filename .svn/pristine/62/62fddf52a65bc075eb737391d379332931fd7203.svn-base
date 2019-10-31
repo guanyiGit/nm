@@ -1,0 +1,138 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>溯源ID：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.traceId||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>旧设备编号：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.oldNeckletNo||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>新设备编号：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.newNeckletNo||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.changeReason||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.createtime||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬名：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.dogName||"" }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬种：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.breed||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬主：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.name||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬主电话：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.phoneNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>身份证号码：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.cardNum||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>所属乡镇：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.town||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>详细地址：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.pcName||"" }}{{ neckletChange.no||"" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>防疫员：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.porName||""  }}</text>
+        </view>
+    </view>
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>防疫员电话：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.porPhoneNum||""  }}</text>
+        </view>
+    </view>
+
+    <view class='item describe'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.description||"" }}</text>
+        </view>
+    </view>
+</view>

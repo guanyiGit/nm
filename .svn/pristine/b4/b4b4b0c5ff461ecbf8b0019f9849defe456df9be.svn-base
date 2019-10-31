@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.epmanagement.dao.ManureDisposalDao">
+
+	<select id="get" resultType="com.epmanagement.vo.ManureDisposalVO">
+-- 		select `id`,`title`,`process_mode`,`method_des`,`period`,`deal_time`,`operator`,`description`,`org_id`,`create_date`,`update_date`
+-- 		 from t_manure_disposal
+	    select manure.id,manure.title,manure.process_mode processMode,dict.name modeName,manure.method_des methodDes,
+		       manure.period ,manure.deal_time dealTime,manure.operator,`user`.`name` protecterName,manure.description,manure.trace_id
+		       ,rd.device_no deviceNo,dog.dog_name dogName,dog.breed,owner.area_id areaId,concat(comm.name,owner.no) detailAddress
+		       ,owner.phone_num phoneNum,owner.card_num cardNum,owner.name ownerName
+		 from t_manure_disposal manure
+		 left join t_device_ref_dog rd on rd.trace_id = manure.trace_id
+		 LEFT JOIN t_user_info user on `user`.id = manure.operator
+-- 		 LEFT JOIN t_media_ref ref on ref.ref_id = manure.id
+-- 		 LEFT JOIN t_media_info med on med.id = ref.media_id
+		 left join t_sys_dict dict on dict.value = manure.process_mode and dict.type = 'process_mode'
+		 left join t_dog_info dog on dog.trace_id = manure.trace_id
+		 left join t_dog_owner owner on owner.id = dog.owner
+		 left join t_pastoral_committee comm on comm.id = owner.pastoral_committee_id
+		 where manure.id = #{value}
+-- 		 group by manure.id
+	</select>
+
+	<select id="getI18N" parameterType="map" resultType="com.epmanagement.vo.ManureDisposalVO">
+
+	    select manure.id,manure.title,manure.process_mode processMode,nr.name modeName,manure.method_des methodDes,
+		       manure.period ,manure.deal_time dealTime,manure.operator,`user`.`name` protecterName,manure.description,manure.trace_id
+		       ,rd.device_no deviceNo,dog.dog_name dogName,nr1.name breed,owner.area_id areaId,concat(comm.name,owner.no) detailAddress
+		       ,owner.phone_num phoneNum,owner.card_num cardNum,owner.name ownerName
+		 from t_manure_disposal manure
+		 left join t_device_ref_dog rd on rd.trace_id = manure.trace_id
+		 LEFT JOIN t_user_info user on `user`.id = manure.operator
+		 left join t_sys_dict dict on dict.value = manure.process_mode and dict.type = 'process_mode'
+		 left join t_name_ref nr on dict.name_id = nr.resource_id and nr.type = #{langType}
+		 left join t_dog_info dog on dog.trace_id = manure.trace_id
+		 left join t_sys_dict sd1 on sd1.value = dog.breed_id and sd1.type = 'dog_breed'
+		 left join t_name_ref nr1 on sd1.name_id = nr1.resource_id and nr1.type = #{langType}
+		 left join t_dog_owner owner on owner.id = dog.owner
+		 left join t_pastoral_committee comm on comm.id = owner.pastoral_committee_id
+		 where manure.id = #{id}
+-- 		 group by manure.id
+	</select>
+
+	<select id="getMediaUrlById" parameterType="java.lang.Integer" resultType="com.epmanagement.vo.MediaUrl">
+		SELECT
+			media.url,
+			media.thumbnail_url,
+			ref.is_video
+		FROM
+			`t_media_ref` ref
+			LEFT JOIN t_media_info media ON ref.media_id = media.id
+		WHERE
+			ref.ref_id = #{id} and ref.type = 6
+	</select>
+
+	<sql id="base">
+		select manure.id,manure.trace_id traceId,rd.device_no deviceNo,med.thumbnail_url thumbnailUrl ,med.url url,manure.title,nr.name mode,manure.method_des methodDes,
+		manure.period ,manure.deal_time dealTime,`user`.`name` ,manure.description,dog.dog_name dogName,nr1.name breed,owner.name ownerName,owner.area_id areaId,concat(comm.name,owner.no) detailAddress,
+		owner.phone_num phoneNum,owner.card_num cardNum
+		 from t_manure_disposal manure
+		 left join t_device_ref_dog rd on rd.trace_id = manure.trace_id
+		 LEFT JOIN t_user_info user on `user`.id = manure.operator
+		 LEFT JOIN t_media_ref ref on ref.ref_id = manure.id and ref.type = 6 and ref.is_video = 0
+		 LEFT JOIN t_media_info med on med.id = ref.media_id
+		 left join t_sys_dict dict on dict.value = manure.process_mode and dict.type = 'process_mode'
+		 left join t_name_ref nr on nr.resource_id = dict.name_id and nr.type = #{langType}
+-- 		left join t_device_ref_dog ref_dog on ref_dog.trace_id = manure.trace_id
+		left join t_dog_info dog on dog.trace_id = manure.trace_id
+		left join t_sys_dict sd1 on sd1.value = dog.breed_id and sd1.type = 'dog_breed'
+		left join t_name_ref nr1 on nr1.resource_id = sd1.name_id and nr1.type = #{langType}
+		left join t_dog_owner owner on owner.id = dog.owner
+		left join t_pastoral_committee comm on comm.id = owner.pastoral_committee_id
+	</sql>
+
+	<!--根据title查询-->
+	<select id="selectByTitle" resultType="map">
+		<include refid="base"></include>
+		<where>
+			1=1
+			<if test="title != null and title != ''">and manure.title = #{title} </if>
+			<if test="orgId != null and orgId != ''"> and manure.org_id in (#{orgId}) </if>
+		</where>
+	</select>
+
+	<select id="list" resultType="map">
+		<include refid="base"></include>
+		<where>
+			<!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+			<!--<if test="title != null and title != ''"> and title = #{title} </if>-->
+			<!--<if test="processMode != null and processMode != ''"> and process_mode = #{processMode} </if>-->
+			<!--<if test="methodDes != null and methodDes != ''"> and method_des = #{methodDes} </if>-->
+			<!--<if test="period != null and period != ''"> and period = #{period} </if>-->
+			<!--<if test="dealTime != null and dealTime != ''"> and deal_time = #{dealTime} </if>-->
+			<if test="operator != null and operator != ''"> and manure.operator = #{operator} </if>
+			<!--<if test="description != null and description != ''"> and description = #{description} </if>-->
+			<!--<if test="orgId != null and orgId != ''"> and manure.org_id in (#{orgId}) </if>-->
+			<if test="lists != null and lists.size != ''">
+				and manure.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<!--traceId可能为： 溯源ID/设备编号/犬主姓名/电话号码/身份证号-->
+			<if test="traceId != null and traceId.trim != ''">
+				and (
+					manure.trace_id = #{traceId} or
+					rd.device_no = #{traceId} or
+					owner.name like concat('%',#{traceId},'%') or
+					owner.phone_num = #{traceId} or
+					owner.card_num = #{traceId}
+				)
+			</if>
+			<!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+			<!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		</where>
+		group by manure.id
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by manure.id desc
+			</otherwise>
+		</choose>
+
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(distinct(manure.id))
+		from t_manure_disposal manure
+		left join t_device_ref_dog rd on rd.trace_id = manure.trace_id
+		LEFT JOIN t_user_info user on `user`.id = manure.operator
+		LEFT JOIN t_media_ref ref on ref.ref_id = manure.id and ref.type = 6 and ref.is_video = 0
+		LEFT JOIN t_media_info med on med.id = ref.media_id
+		left join t_dog_info dog on dog.trace_id = manure.trace_id
+		left join t_dog_owner owner on owner.id = dog.owner
+		<where>
+			<!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+			<!--<if test="title != null and title != ''"> and title = #{title} </if>-->
+			<!--<if test="processMode != null and processMode != ''"> and process_mode = #{processMode} </if>-->
+			<!--<if test="methodDes != null and methodDes != ''"> and method_des = #{methodDes} </if>-->
+			<!--<if test="period != null and period != ''"> and period = #{period} </if>-->
+			<!--<if test="dealTime != null and dealTime != ''"> and deal_time = #{dealTime} </if>-->
+			<if test="operator != null and operator != ''"> and operator = #{operator} </if>
+			<!--<if test="description != null and description != ''"> and description = #{description} </if>-->
+			<!--<if test="orgId != null and orgId != ''"> and manure.org_id in (#{orgId}) </if>-->
+			<if test="lists != null and lists.size != ''">
+				and manure.org_id in
+				<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<!--traceId可能为： 溯源ID/设备编号/犬主姓名/电话号码/身份证号-->
+			<if test="traceId != null and traceId.trim != ''">
+				and (
+				manure.trace_id = #{traceId} or
+				rd.device_no = #{traceId} or
+				owner.name like concat('%',#{traceId},'%') or
+				owner.phone_num = #{traceId} or
+				owner.card_num = #{traceId}
+				)
+			</if>
+			<!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+			<!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.entities.ManureDisposal" useGeneratedKeys="true" keyProperty="id">
+		insert into t_manure_disposal
+		(
+			`title`,
+			`process_mode`,
+			`method_des`,
+			`period`,
+			`deal_time`,
+			`operator`,
+			`description`,
+			`org_id`,
+			`create_date`,
+			`update_date`,
+			`trace_id`
+		)
+		values
+		(
+			#{title},
+			#{processMode},
+			#{methodDes},
+			#{period},
+			#{dealTime},
+			#{operator},
+			#{description},
+			#{orgId},
+			#{createDate},
+			#{updateDate},
+			#{traceId}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.entities.ManureDisposal">
+		update t_manure_disposal
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="processMode != null">`process_mode` = #{processMode}, </if>
+			<if test="methodDes != null">`method_des` = #{methodDes}, </if>
+			<if test="period != null">`period` = #{period}, </if>
+			<if test="dealTime != null">`deal_time` = #{dealTime}, </if>
+			<if test="operator != null">`operator` = #{operator}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="orgId != null">`org_id` = #{orgId}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}</if>
+			<if test="traceId != null">`trace_id` = #{traceId}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="remove">
+		delete t_manure_disposal,t_media_ref,t_media_info from t_manure_disposal
+		left join t_media_ref on t_media_ref.ref_id = t_manure_disposal.id and t_media_ref.type = 6
+		left join t_media_info on t_media_info.id = t_media_ref.media_id
+		where t_manure_disposal.id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from t_manure_disposal where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<select id="getDictData" parameterType="map" resultType="com.epmanagement.vo.SelectVO">
+		SELECT
+			dict.value,
+			ref.NAME
+		FROM
+			t_sys_dict dict
+		LEFT JOIN t_name_ref ref ON dict.name_id = ref.resource_id AND ref.type = #{langType}
+		WHERE
+			dict.type = #{type}
+	</select>
+
+
+
+
+</mapper>

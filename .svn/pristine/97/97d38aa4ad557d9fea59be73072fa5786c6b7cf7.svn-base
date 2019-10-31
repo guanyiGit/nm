@@ -1,0 +1,8 @@
+{
+    "navigationBarBackgroundColor": "#3343A5",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "犬防疫",
+    "usingComponents": {
+      "lang": "/components/lang/lang"
+    }
+}

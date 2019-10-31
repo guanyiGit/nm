@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: root-shl
+    password: mysql@shl0408
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://223.221.36.152:3306/nm?useUnicode=true&characterEncoding=utf8&useSSL=false
+  activemq:
+    broker-url: tcp://223.221.36.132:61616
+
+logging:
+  level:
+    root: info
+    org.apache.http: DEBUG
+    com.soholy.cb: DEBUG
+
+

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.epmanagement.dao.AntiepidemicDao">
+
+	<select id="get" resultType="com.epmanagement.vo.AntiepidemicVO">
+		SELECT
+		 pro.user_id protectBy,
+		  pro.name, pro.phone_num proPhoneNum,drug.drug_name drugName,di.dog_name dogName,
+		  di.breed,dow.name ownerName,dow.phone_num phoneNum,dow.card_num cardNum,dow.no,ac.id,ac.trace_id traceId,ac.type,
+		  ac.antiepidemic_date `date`,ac.antiepidemic_period period,ac.area_id town,pc.name pcName,ac.description,drd.device_no deviceNo
+		FROM
+		  antiepidemic ac
+		  LEFT JOIN t_drug_info drug
+			ON ac.drug_id = drug.id
+		  LEFT JOIN t_protector pro
+			ON pro.id = ac.protector
+		  LEFT JOIN t_dog_info di
+			ON ac.trace_id = di.trace_id
+		  LEFT JOIN t_dog_owner dow
+			ON di.`owner` = dow.`id`
+		  LEFT JOIN t_device_ref_dog drd
+			ON  di.trace_id=drd.trace_id
+		  LEFT JOIN t_pastoral_committee pc
+			ON dow.pastoral_committee_id=pc.id
+		WHERE ac.id=#{value}
+	</select>
+
+	<sql id="base">
+		 SELECT
+		 pro.user_id protectBy,
+		  pro.name, pro.phone_num proPhoneNum,medio.thumbnail_url smallUrl,medio.url bigUrl,drug.drug_name drugName,di.dog_name dogName,
+		  di.breed,dow.name ownerName,dow.phone_num phoneNum,dow.card_num cardNum,dow.no,ac.id,ac.trace_id traceId,ac.type,
+		  ac.antiepidemic_date `date`,ac.antiepidemic_period period,ac.area_id town,pc.name pcName,ac.description,drd.device_no deviceNo
+		FROM
+		  antiepidemic ac
+		  LEFT JOIN t_drug_info drug
+			ON ac.drug_id = drug.id
+		  LEFT JOIN t_protector pro
+			ON pro.id = ac.protector
+		  LEFT JOIN t_media_ref ref
+			ON ref.ref_id = ac.id AND ref.`type`=3 AND ref.`is_video`=0
+		  LEFT JOIN t_media_info medio
+			ON medio.id = ref.media_id
+		  LEFT JOIN t_dog_info di
+			ON ac.trace_id = di.trace_id
+		  LEFT JOIN t_dog_owner dow
+			ON di.`owner` = dow.`id`
+		  LEFT JOIN t_device_ref_dog drd
+			ON  di.trace_id=drd.trace_id
+		  LEFT JOIN t_pastoral_committee pc
+			ON dow.pastoral_committee_id=pc.id
+	</sql>
+	<!--根据溯源id或防疫药品查询-->
+	<select id="selectBySidOrDrugName" resultType="map">
+			SELECT medio.thumbnail_url url ,drug.drug_name drugName,ac.antiepidemic_date date
+			,ac.antiepidemic_period period ,pro.name,device.device_no deviceNo,device.id deviceId
+			from
+			antiepidemic ac left join t_drug_info  drug
+			on ac.drug_id=drug.id left join t_protector pro
+			on pro.id = ac.protector left join t_device_info device
+			on ac.device_no = device.device_no left join t_media_ref ref
+			on ref.ref_id=ac.id left join t_media_info medio
+			on medio.id=ref.media_id;
+			<where>
+				1=1
+				<if test="deviceId != null and deviceId != ''"> and ac.device_no = #{deviceNo} </if>
+				<if test="drugName != null and drugName != ''"> and drug.drug_name like '%#{dtrugName}%'  </if>
+				<if test="type != null and type != ''"> and ac.type = #{type}</if>
+			</where>
+
+	</select>
+
+	<select id="list" resultType="map">
+		<include refid="base"></include>
+		<!--&#45;&#45; 		select `id`,`drug_id`,`antiepidemic_date`,`antiepidemic_period`,`device_id`,-->
+		<!--&#45;&#45; 		`description`,`type`,`area_id`,`org_id`,`protector`,`create_date`,-->
+		<!--&#45;&#45; 		`update_date`,`dog_id`-->
+		<!--&#45;&#45; 		from antiepidemic-->
+		<where>
+			<!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+			<!--<if test="drugId != null and drugId != ''"> and drug_id = #{drugId} </if>-->
+			<!--<if test="antiepidemicDate != null and antiepidemicDate != ''"> and antiepidemic_date = #{antiepidemicDate} </if>-->
+			<!--<if test="antiepidemicPeriod != null and antiepidemicPeriod != ''"> and antiepidemic_period = #{antiepidemicPeriod} </if>-->
+			<!--<if test="deviceId != null and deviceId != ''"> and device_id = #{deviceId} </if>-->
+			<!--<if test="description != null and description != ''"> and description = #{description} </if>-->
+			<if test="type != null and type != ''"> and type = #{type} </if>
+			<!--<if test="areaId != null and areaId != ''"> and area_id = #{areaId} </if>-->
+			<if test="orgId != null and orgId != ''"> and org_id in (#{orgId}) </if>
+			<!--<if test="protector != null and protector != ''"> and protector = #{protector} </if>-->
+			<!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+			<!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+			<!--<if test="dogId != null and dogId != ''"> and dog_id = #{dogId} </if>-->
+		</where>
+	</select>
+
+	<select id="pagelist" resultType="com.epmanagement.vo.AntiepidemicVO">
+		<include refid="base"></include>
+        <where>
+					<if test="string != null and string != ''">
+						and (
+								ac.trace_id = #{string} or drd.device_no = #{string} or
+								dow.card_num = #{string} or dow.name like "%"#{string}"%" or
+								dow.phone_num = #{string}
+							)
+					</if>
+		  		    <if test="type != null and type != ''"> and ac.type = #{type} </if>
+		  		  <!--<if test="areaId != null and areaId != ''"> and area_id = #{areaId} </if>-->
+					<if test="lists != null and lists.size != ''">
+						and ac.org_id in
+						<foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+							#{item}
+						</foreach>
+					</if>
+		  		  <if test="protector != null and protector != ''"> and ac.protector = #{protector} </if>
+				  <if test="startTime !=null and startTime !=''">
+					  <if test="endTime ==null or endTime ==''">
+						  and date_format(ac.antiepidemic_date, '%Y-%m')=#{startTime}
+					  </if>
+				  </if>
+				<if test="endTime !=null and endTime !='' ">
+				  <if test="startTime =='' or startTime ==null">
+					  and date_format(ac.antiepidemic_date, '%Y-%m')=#{endTime}
+				  </if>
+				</if>
+				<if test="startTime !=null and startTime !=''  ">
+					<if test="endTime !=null and endTime !=''">
+						and date_format(ac.antiepidemic_date, '%Y-%m') BETWEEN #{startTime} AND #{endTime}
+					</if>
+				</if>
+		  		</where>
+				GROUP  BY  ac.id
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ac.id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM
+		antiepidemic ac
+		LEFT JOIN t_dog_info di
+		ON ac.`dog_id` = di.`id`
+		LEFT JOIN t_dog_owner dow
+		ON di.`owner` = dow.`id`
+		LEFT JOIN t_device_ref_dog drd
+		ON  di.trace_id=drd.trace_id
+		<where>
+				<if test="string != null and string != ''">
+					and (
+					ac.trace_id = #{string} or drd.device_no = #{string} or
+					dow.card_num = #{string} or dow.name like "%"#{string}"%" or
+					dow.phone_num = #{string}
+					)
+				</if>
+			    <if test="type != null and type != ''"> and ac.type = #{type} </if>
+				 <if test="lists != null and lists.size != ''">
+					 and ac.org_id in
+					 <foreach collection="lists" index="index" item="item" open="(" separator="," close=")">
+						 #{item}
+					 </foreach>
+				 </if>
+			 <if test="protector != null and protector != ''"> and ac.protector = #{protector} </if>
+			<if test="startTime !=null and startTime !=''">
+				<if test="endTime ==null or endTime ==''">
+					and date_format(ac.antiepidemic_date, '%Y-%m')=#{startTime}
+				</if>
+			</if>
+			<if test="endTime !=null and endTime !='' ">
+				<if test="startTime =='' or startTime ==null">
+					and date_format(ac.antiepidemic_date, '%Y-%m')=#{endTime}
+				</if>
+			</if>
+			<if test="startTime !=null and startTime !=''  ">
+				<if test="endTime !=null and endTime !=''">
+					and date_format(ac.antiepidemic_date, '%Y-%m') BETWEEN #{startTime} AND #{endTime}
+				</if>
+			</if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.Antiepidemic" useGeneratedKeys="true" keyProperty="id">
+		insert into antiepidemic
+		(
+			`drug_id`, 
+			`antiepidemic_date`, 
+			`antiepidemic_period`, 
+			`trace_id`,
+			`description`, 
+			`type`, 
+			`area_id`, 
+			`org_id`, 
+			`protector`, 
+			`create_date`, 
+			`update_date`, 
+			`dog_id`
+		)
+		values
+		(
+			#{drugId}, 
+			#{antiepidemicDate}, 
+			#{antiepidemicPeriod}, 
+			#{traceId},
+			#{description}, 
+			#{type}, 
+			#{areaId}, 
+			#{orgId}, 
+			#{protector}, 
+			#{createDate}, 
+			#{updateDate}, 
+			#{dogId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.Antiepidemic">
+		update antiepidemic 
+		<set>
+			<if test="drugId != null">`drug_id` = #{drugId}, </if>
+			<if test="antiepidemicPeriod != null">`antiepidemic_period` = #{antiepidemicPeriod}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
+			<if test="dogId != null">`dog_id` = #{dogId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete antiepidemic,t_media_ref,t_media_info from antiepidemic
+		left join t_media_ref on antiepidemic.id = t_media_ref.ref_id
+		left join t_media_info on t_media_ref.media_id  = t_media_info.id
+		where antiepidemic.id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from antiepidemic where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	
+	<select id="findDrug" parameterType="int" resultType="java.util.HashMap">
+			SELECT id,drug_name name FROM t_drug_info WHERE `type`=#{tt}
+	</select>
+
+</mapper>

@@ -1,0 +1,5 @@
+<i-cell-group>
+    <i-cell title="语言设置" is-link bind:click="handleOpen"></i-cell>
+</i-cell-group>
+
+<i-action-sheet visible="{{ visible }}" actions="{{ languages.langArray }}" show-cancel bind:cancel="handleCancel" bind:click="handleClickItem" />

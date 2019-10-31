@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.statisanalysis.dao.MediaInfoDao">
+    <insert id="insertMediaBatch" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_media_info(name,title,url,size,image_ext,thumbnail_url,thumbnail_size,create_date,update_date)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.name,jdbcType=VARCHAR},
+            #{item.title,jdbcType=VARCHAR},
+            #{item.url,jdbcType=VARCHAR},
+            #{item.size,jdbcType=VARCHAR},
+            #{item.imageExt,jdbcType=VARCHAR},
+            #{item.thumbnailUrl,jdbcType=VARCHAR},
+            #{item.thumbnailSize,jdbcType=VARCHAR},
+            #{item.createDate,jdbcType=TIMESTAMP},
+            #{item.updateDate,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertMediaRefBatch" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into t_media_ref(media_id,type,ref_id,is_video,create_date)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.mediaId,jdbcType=VARCHAR},
+            #{item.type,jdbcType=VARCHAR},
+            #{item.refId,jdbcType=VARCHAR},
+            #{item.isVideo,jdbcType=VARCHAR},
+            #{item.createDate,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

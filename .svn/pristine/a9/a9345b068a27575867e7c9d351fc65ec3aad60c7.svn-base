@@ -1,0 +1,112 @@
+<view class='container'>
+  <view class='search'>
+    <view class='search-input'>
+      <picker mode="date" bindchange='bindDataChange' name="birthday" fields="month">
+        <view class='picker'>
+          <view>{{ defaultDate }}</view>
+          <image src='{{ dataIcon }}'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='search-button' bindtap='searchEvent'>
+      <!-- <view class='button'>查询</view> -->
+      <view class='button'>{{ LG.get(L,"chaxun") }}</view>
+    </view>
+  </view>
+  <view class='body'>
+    <view class='items'>
+      <view class='item background-blue'>
+        <view class='left'>
+          <!-- <text>犬只存栏数量</text> -->
+          <text>{{ LG.get(L,"quanzhicunlanshuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.dogLiveNum }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <!-- <text>新增犬只数量</text> -->
+          <text>{{ LG.get(L,"xinzengquanzhishuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.dogNewNum }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <!-- <text>注销犬只数量</text> -->
+          <text>{{ LG.get(L,"zhuxiaoquanzhishuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.dogCancelNum }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <!-- <text>新增犬主数量</text> -->
+          <text>{{ LG.get(L,"xinzengquanzhushuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.ownerNewNum }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <!-- <text>防疫次数</text> -->
+          <text>{{ LG.get(L,"fangyicishu") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.antiepidemicTimes }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <!-- <text>犬尸处理数量</text> -->
+          <text>{{ LG.get(L,"quanshichulishuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.dogCorpseNum  }}</text>
+        </view>
+      </view>
+      <view class='item background-blue'>
+        <view class='left'>
+          <!-- <text>粪便处理次数</text> -->
+          <text>{{ LG.get(L,"fengbianchulicishu") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.manureNum }}</text>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'>
+          <!-- <text>流浪犬处理数量</text> -->
+          <text>{{ LG.get(L,"liulangquanchulishuliang") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.llqNum }}</text>
+        </view>
+      </view>
+      <!-- <view class='item'>
+        <view class='left'>
+          <text>犬主更换次数</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.qzghTimes }}</text>
+        </view>
+      </view> -->
+      <view class='item background-blue'>
+        <view class='left'>
+          <!-- <text>项圈更换次数</text> -->
+          <text>{{ LG.get(L,"xiangquangenghuancishu") }}</text>
+        </view>
+        <view class='right'>
+          <text>{{ statistics.xqghTimes }}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../utils/lang.wxs" />

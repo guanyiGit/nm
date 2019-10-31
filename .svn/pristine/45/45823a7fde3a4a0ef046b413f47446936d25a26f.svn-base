@@ -1,0 +1,157 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <!--犬主-->
+      <view class='dog_owner item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>犬主 :</text> -->
+            <text>{{ LG.get(L,"quanzhu") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindOwnerChange' value='{{ owner.ownerArray[owner.ownerIndex].id }}' range='{{ owner.ownerArray }}' range-key="name" name="owner">
+            <view class='picker drop-down'>
+              {{ dogInfo.ownerName?dogInfo.ownerName:owner.ownerArray[owner.ownerIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--犬名：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>犬名：</text> -->
+            <text>{{ LG.get(L,"quanming") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="dogName" value="{{ dogInfo.dogName||'' }}"></input>
+        </view>
+      </view>
+
+      <!--品种-->
+      <view class='dog_breed item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>犬种：</text> -->
+            <text>{{ LG.get(L,"quanzhong") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindBreedChange' value='{{ breed.breedArray[breed.breedIndex].id }}' range='{{ breed.breedArray }}' range-key="name" name="breedId">
+            <view class='picker drop-down'>
+              {{ dogInfo.breed?dogInfo.breed:breed.breedArray[breed.breedIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--年龄：-->
+      <view class='dog_age item'>
+        <view class='left'>
+          <view>
+            <!-- <text>犬龄：</text> -->
+            <text>{{ LG.get(L,"quanling") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="age" placeholder='{{ LG.get(L,"sui") }}' placeholder-style='text-align: right;color: #999999;'        value='{{ dogInfo.age }}'  ></input>
+        </view>
+      </view>
+
+      <!--性别：-->
+      <view class='dog_sex item'>
+        <view class='left'>
+          <view class=''>
+            <!-- <text>性别：</text> -->
+            <text>{{ LG.get(L,"xingbie") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindSexChange' value='{{ sex.sexIndex }}' range='{{ sex.sexArray }}' name="sex">
+            <view class='picker drop-down'>
+              {{ sex.sexArray[sex.sexIndex] }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--毛色-->
+      <view class='dog_color item'>
+        <view class='left'>
+          <view class=''>
+            <!-- <text>毛色 :</text> -->
+            <text>{{ LG.get(L,"maose") }} :</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="hairColor" value='{{ dogInfo.hairColor }}'></input>
+        </view>
+      </view>
+      <!--体重-->
+      <view class='dog_weight item'>
+        <view class='left'>
+          <view>
+            <!-- <text>体重(公斤):</text> -->
+            <text>{{ LG.get(L,"tizhong") }}({{ LG.get(L,"gongjin") }})：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <input name="weight" value='{{ dogInfo.weight }}'></input>
+        </view>
+      </view>
+
+      <!--电子围栏-->
+      <view class='fence item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>电子围栏：</text> -->
+            <text>{{ LG.get(L,"dianziweilan") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindFenceChange' value='{{ fence.fenceArray[fence.fenceIndex].id }}' range='{{ fence.fenceArray }}' range-key="name" name="fenceId">
+            <view class='picker drop-down'>
+              {{ dogInfo.fenceName?dogInfo.fenceName:fence.fenceArray[fence.fenceIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item dog_pic'>
+        <view class='left'>
+          <view>
+            <!-- <text>照片：</text> -->
+             <text>{{ LG.get(L,"zhaopian") }}：</text>
+          </view>
+        </view>
+        <view class='right '>
+          <image-upload id="image-upload" image-list="{{ dogPicList }}"></image-upload>
+        </view>
+      </view>
+
+      <!--描述：-->
+      <view class='dog_description item'>
+        <view class='left'>
+          <view>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description" value='{{ dogInfo.description }}'></textarea>
+        </view>
+      </view>
+      
+      <view class='submit_button'>
+        <button class='submit' form-type='submit'>{{ LG.get(L,"submit") }}</button>
+        <button class='reset' formType="reset">{{ LG.get(L,"reset") }}</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

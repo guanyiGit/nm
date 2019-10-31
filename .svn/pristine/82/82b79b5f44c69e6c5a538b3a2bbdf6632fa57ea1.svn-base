@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<view class="container">
+    <view class='scanning'>
+       <image src='{{ icon.scanning }}' bindtap='scanCode'></image> 
+    </view>
+    <!-- 首页头部 -->
+    <view class='header'>
+        <!-- <view class='setUp' bindtap='toUserInfoPage'>
+          <image src='{{ icon.setUp }}'></image>
+        </view> -->
+        <view class='userIcon' bindtap='toSetUpPage'>
+          <image src='{{ userIcon }}'></image>
+        </view>
+        <view class='name'>
+          <text>{{ name }}</text>
+        </view>
+        <view class='roleName'>
+          <text>{{ roleName }}</text>
+        </view>
+    </view>
+    <view class='body'>
+        <navigator class='owner_info body_item' url='/pages/home/ownerInfo/ownerInfo'>
+            <image src='{{ icon.ownerInfo }}'></image>
+            <text>犬主信息</text>
+        </navigator>
+        <navigator  class='dog_info body_item' url='/pages/home/dogInfo/dogInfo'>
+            <image src='{{ icon.dogInfo }}'></image>
+            <text>犬只信息</text>
+        </navigator>
+        <navigator class='dog_antiepidemic body_item' url='/pages/home/antiepidemic/antiepidemic'>
+            <image src='{{ icon.antiepidemic }}'></image>
+            <text>犬只防疫</text>
+        </navigator>
+        <navigator class='dog_feaces body_item' url='/pages/home/manure/manure'>
+            <image src='{{ icon.feaces }}'></image>
+            <text>粪便处理</text>
+        </navigator>
+         <navigator class='dog_corpse body_item' url='/pages/home/corpse/corpse'>
+            <image src='{{ icon.corpse }}'></image>
+            <text>犬尸处理</text>
+        </navigator>
+         <navigator class='dog_stray body_item' url='/pages/home/strayDog/strayDog'>
+            <image src='{{ icon.stray }}'></image>
+            <text>流浪犬处理</text>
+        </navigator>
+         <navigator class='dog_owner_change body_item' url='/pages/home/ownerChange/ownerChange'>
+            <image src='{{ icon.dogOwnerChange }}'></image>
+            <text>犬主更换</text>
+        </navigator>
+         <navigator class='dog_device_change body_item' url='/pages/home/neckletChange/neckletChange'>
+            <image src='{{ icon.dogDeviceChange }}'></image>
+            <text>项圈更换</text>
+        </navigator>
+         <navigator class='owner_log_off body_item' url='/pages/home/dogCancel/dogCancel'>
+            <image src='{{ icon.ownerLogOff }}'></image>
+            <text>犬只注销</text>
+        </navigator>
+        <navigator class='statistics body_item' url='/pages/home/statistics/statistics'>
+            <image src='{{ icon.statistics }}'></image>
+            <text>统计信息</text>
+        </navigator>
+        <navigator class='location body_item' url='/pages/home/location/location'>
+            <image src='{{ icon.location }}'></image>
+            <text>定位轨迹</text>
+        </navigator>
+        <navigator class='message body_item' url='/pages/home/message/message'>
+            <image src='{{ icon.message }}'></image>
+            <text>我的消息</text>
+            <text class="{{ messageLength>0?'messageLength':'' }}" wx:if="{{ messageLength>0 }}">{{ messageLength }}</text>
+        </navigator>
+    </view>
+</view>

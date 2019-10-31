@@ -1,0 +1,47 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <view class='item'>
+        <view class='left'>
+            <text>原项圈：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.oldNeckletNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>原项圈：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.newNeckletNo }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换原因：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.changeReasons }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>更换时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.createtime }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ neckletChange.description }}</text>
+        </view>
+    </view>
+</view>

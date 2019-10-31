@@ -1,0 +1,53 @@
+Page {
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.container image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.item {
+  display: flex;
+  width: 90%;
+  height: 80rpx;
+  /* line-height: 80rpx; */
+  margin-left: 40rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.left {
+  width: 230rpx;
+  font-size: 14px;
+  color: #999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+}
+
+.right {
+  width: 400rpx;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+}
+
+.right image {
+  margin-right: 20rpx;
+}
+
+.right video {
+  width: 180rpx;
+  height: 180rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}

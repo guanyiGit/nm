@@ -1,0 +1,11 @@
+var lang_util = {
+  get_by_key: function(self, key) {
+    if (self && self.locales && self.locale) {
+      return self.locales[self.locale][key]
+    }
+    return key
+  }
+}
+module.exports = {
+  get: lang_util.get_by_key
+}

@@ -1,0 +1,138 @@
+<view class='container'>
+  <view class='container_body'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>溯源ID：</text> -->
+             <text>{{ LG.get(L,"suyuan_ID") }}：</text>
+          </view>
+        </view>
+        <view class='right scan'>
+          <input name="traceId" value='{{ traceId }}' disabled></input>
+        </view>
+      </view>
+      <view class='item'>
+        <view class='left'></view>
+        <view class='right dog-info'>
+          <!-- <view class='texthide'>犬名: {{ dogInfo.dogName}}</view> -->
+          <view class='texthide'>{{ LG.get(L,"quanming") }}: {{ dogInfo.dogName}}</view>
+          <!-- <view class='texthide'>犬主: {{ dogInfo.ownerName}}</view> -->
+          <view class='texthide'>{{ LG.get(L,"quanzhu") }}: {{ dogInfo.ownerName}}</view>
+        </view>
+      </view>
+
+      <!--死亡原因：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>死亡原因：</text> -->
+            <text>{{ LG.get(L,"siwangshijian") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <picker bindchange='bindCauseOfDeathChange' range='{{ causeOfDeath.causeOfDeathArray }}' range-key='name' value='{{ causeOfDeath.causeOfDeathArray[causeOfDeath.causeOfDeathIndex].value }}'  name="causeOfDeath">
+            <view class='picker drop-down'>
+              {{ causeOfDeath.causeOfDeathArray[causeOfDeath.causeOfDeathIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--处理方法：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>处理方法：</text> -->
+            <text>{{ LG.get(L,"chulifnagfa") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <picker bindchange='bindCorpsehandleChange' range='{{ corpsehandle.corpsehandleArray }}' range-key='name' value='{{ corpsehandle.corpsehandleArray[corpsehandle.corpsehandleIndex].value }}'  name="processingMethod">
+            <view class='picker drop-down'>
+              {{ corpsehandle.corpsehandleArray[corpsehandle.corpsehandleIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <!--项圈处理：-->
+      <view class='item'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>项圈处理：</text> -->
+            <text>{{ LG.get(L,"xiangquanchuli") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+           <picker bindchange='bindReasonChange' value='{{ deviceDeal.deviceDealArray[deviceDeal.deviceDealIndex].value }}' range='{{ deviceDeal.deviceDealArray }}' range-key='name' name="deviceDealWay">
+            <view class='picker drop-down'>
+              {{ deviceDeal.deviceDealArray[deviceDeal.deviceDealIndex].name }}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+
+      <!--方法说明：-->
+      <view class='item methodDescription'>
+        <view class='left'>
+          <view class='must'>
+            <!-- <text>方法说明：</text> -->
+            <text>{{ LG.get(L,"fangfashuoming") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+         <textarea name="methodDescription" class='methodDescription'></textarea>
+        </view>
+      </view>
+
+      <!--照片：-->
+      <view class='item corpse-image'>
+        <view class='left'>
+          <view>
+            <!-- <text>照片：</text> -->
+            <text>{{ LG.get(L,"zhaopian") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <image-upload id="image-upload"></image-upload>
+        </view>
+      </view>
+
+     <!--视频：-->
+      <view class='item corpse-image'>
+        <view class='left'>
+          <view>
+            <!-- <text>视频：</text> -->
+            <text>{{ LG.get(L,"shipin") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <video-upload id="video-upload"></video-upload>
+        </view>
+      </view>
+
+       <!--描述：-->
+      <view class='description item'>
+        <view class='left'>
+          <view>
+            <!-- <text>描述：</text> -->
+            <text>{{ LG.get(L,"miaoshu") }}：</text>
+          </view>
+        </view>
+        <view class='right'>
+          <textarea name="description"></textarea>
+        </view>
+      </view>
+      <view class='submit_button'>
+        <!-- <button class='submit' form-type='submit'>提交</button> -->
+        <button class='submit' form-type='submit'>{{ LG.get(L,"submit") }}</button>
+        <!-- <button class='reset' formType="reset">重置</button> -->
+        <button class='reset' formType="reset">{{ LG.get(L,"reset") }}</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

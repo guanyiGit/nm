@@ -1,0 +1,38 @@
+<!--pages/home/dogInfo/dogInfo.wxml-->
+<view wx:if="{{ ishasData }}">
+  <search placeholder-text="{{ component.placeholderText }}" bind:searchEvent="searchDog" is-show="{{ component.isShow }}"></search>
+  <search-box bind:dataEvent="searchDogByBox"></search-box>
+  <view class='container'>
+    <view class='container_body'>
+      <block wx:for="{{ dogInfos }}" wx:key="index" wx:if="{{ index<maxLength }}">
+        <view class='container_item drop-right' bindtap='toDogPage' data-index='{{ index }}'>
+          <view class='left'>
+            <image src='{{ item.dogSmallUrl }}'></image>
+          </view>
+          <view class='right'>
+            <view class="right_headle {{ item.isExpire?'expire':'normal' }}">
+              <view>{{ item.deviceNo?item.deviceNo:"未知" }}</view>
+            </view>
+            <view class='right_body'>
+              <view>{{ item.dogName?item.dogName:"未知" }}</view><!-- 犬主 -->
+              <view>{{ item.breed?item.breed:"未知" }}</view>
+              <view>{{ item.age?item.age:"未知" }}岁</view>
+              <view>{{ item.sex ==0?"公":"母" }}</view>
+              <view>{{ item.hairColor?item.hairColor:"未知" }}</view>
+            </view>
+            <view class='right_foot'>
+              <view>犬主：{{ item.ownerName?item.ownerName:"未知" }}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view  class='nodata' wx:if="{{ !ishasData }}">
+    <image src='/assets/image/nodata.png'></image>
+</view>
+<!-- <view class='add_dog' bindtap='toDogAddPage'></view> -->
+<view class='more' wx:if="{{ ishasData }}">
+  <text>上拉查看更多</text>
+</view>

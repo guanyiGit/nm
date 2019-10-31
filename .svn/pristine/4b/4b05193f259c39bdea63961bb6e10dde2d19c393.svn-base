@@ -1,0 +1,450 @@
+<view class='container'>
+  <view class='dog'>
+    <view class='dog-title'>
+      <text>犬只信息</text>
+    </view>
+    <view class='owner-info'>
+      <!--犬只详情-->
+      <view class='info'>
+        <!--犬只信息下半部分-->
+        <view class='foot_body'>
+          <view class='dog_name foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>溯源ID：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.deviceNo }}</text>
+            </view>
+          </view>
+          <!--品种-->
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>犬名：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.dogName }}</text>
+            </view>
+          </view>
+          <!--品种-->
+          <view class='dog_sex foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>犬种：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.breed }}</text>
+            </view>
+          </view>
+          <!--犬龄：-->
+          <view class='dog_birthday foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>犬龄：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.age?dogInfo.age+"岁":"未知" }}</text>
+            </view>
+          </view>
+          <!--性别-->
+          <view class='dog_sex foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>性别：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.sex==0?"公":"母" }}</text>
+            </view>
+          </view>
+
+          <!--毛色-->
+          <view class='dog_nation foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>毛色：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <text>{{ dogInfo.hairColor }}</text>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left '>
+              <text>体重(公斤)：</text>
+            </view>
+            <!--未定id-->
+            <view class='foot_body_item_right texthide'>
+              <text>{{ dogInfo.weight }}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>电子围栏：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ dogInfo.fenceNo?dogInfo.fenceNo:'未定'}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>防疫员：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ dogInfo.name1}}</text>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>录入时间：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ dogInfo.createDate}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>照片：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <block wx:for="{{ dogPicList }}" wx:key="index">
+                <image src='{{ dogPicList[index].url }}' bindtap='previewImageDog' data-index='{{ index }}'></image>
+              </block>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>描述：</text>
+            </view>
+            <view class="foot_body_item_right ttt {{ dogInfo.isShowDogDes?'wordbreak':'texthide'}}" bindtap='isShowDogDes' >
+              <text>{{ dogInfo.description?dogInfo.description:''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 犬主 -->
+  <view class='owner'>
+    <view class='owner-title'>
+      <text>犬主信息</text>
+    </view>
+    <view class='owner-info'>
+      <!--犬主详情-->
+      <view class='info'>
+        <!--犬主信息下半部分-->
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>所属牧委会：</text>
+          </view>
+          <!--未定id-->
+          <view class='foot_body_item_right texthide'>
+            <text>{{ dogInfo.pname }}</text>
+          </view>
+        </view>
+
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>犬主姓名：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.ownerName }}</text>
+          </view>
+        </view>
+        <!--性别-->
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>性别：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.ownersex==0?"男":"女" }}</text>
+          </view>
+        </view>
+        <!--出生日期-->
+        <view class='dog_birthday foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>出生日期：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.birthDay }}</text>
+          </view>
+        </view>
+        <!--民族-->
+        <view class='dog_nation foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>名族：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.nation }}</text>
+          </view>
+        </view>
+        <!--文化程度：-->
+        <view class='dog_degreeOfEducation foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>文化程度：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.degree_of_education }}</text>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>联系电话：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.ownerPhone}}</text>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>证件类型：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.cardType==0?"居民身份证":"居民户口簿" }}</text>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>证件号码：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.cardNum}}</text>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>草场面积：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.grass_land_area }}亩</text>
+          </view>
+        </view>
+
+        <!--暂无数据-->
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>所属乡镇：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.town }}</text>
+          </view>
+        </view>
+
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>所属村委会：</text>
+          </view>
+          <!--未定id-->
+          <view class='foot_body_item_right texthide'>
+            <text>{{ dogInfo.pname }}</text>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>门牌号：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.no }}</text>
+          </view>
+        </view>
+
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>防疫员：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.name1 }}</text>
+          </view>
+        </view>
+
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>录入时间：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <text>{{ dogInfo.dowcreateDate }}</text>
+          </view>
+        </view>
+        <!--暂未循环展示 -->
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>照片：</text>
+          </view>
+          <view class='foot_body_item_right'>
+            <block wx:for="{{ ownerPicList }}" wx:key="index">
+              <image src='{{ ownerPicList[index].url }}' bindtap='previewImageOwner' data-index='{{ index }}'></image>
+            </block>
+          </view>
+        </view>
+        <view class='foot_body_item'>
+          <view class='foot_body_item_left'>
+            <text>描述：</text>
+          </view>
+          <view class="foot_body_item_right ttt {{ dogInfo.isShowDogOwnerDes?'wordbreak':'texthide'}}" bindtap='isShowDogOwnerDes' >
+            <text>{{ dogInfo.dowdiscription?dogInfo.dowdiscription:'' }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 防疫信息 -->
+<view class='antiepidemic'>
+  <view class='antiepidemic-title'>
+    <text>防疫信息</text>
+  </view>
+  <view class='antiepidemic-info'>
+    <view class='info'>
+      <black wx:for="{{ antiepidemicArray }}" wx:key="index" wx:if="{{ index < antiepidemicLength }}">
+        <!--犬只信息下半部分-->
+        <view class="foot_body antiepidemic-item {{ index==antiepidemicLength-1?'last-item':'' }}">
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left '>
+              <text>防疫时间：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.antiepidemicDate }}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>防疫药品：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.drugName}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>防疫周期(月)：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.antiepidemicPeriod}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>防疫员：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.name2}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>图片：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <block wx:for="{{ item.picList }}" wx:for-item="picItem" wx:for-index="picIndex" wx:key="picIndex">
+
+                <image src='{{ picItem.url }}' bindtap='previewImageAntiepidemic' data-index='{{ picIndex }}' data-antiepidemicIndex='{{ index }}'></image>
+              </block>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>视频：</text>
+            </view>
+            <view class='foot_body_item_right' wx:if="{{ item.vedioList }}">
+              <block wx:for="{{ item.vedioList }}" wx:for-item="videoItem" wx:for-index="videoIndex" wx:key="picIndex">
+                <video src='{{ videoItem }}' objectFit="contain"></video>
+              </block>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>描述：</text>
+            </view>
+            <view class="foot_body_item_right ttt {{ item.isShowDes?'wordbreak':'texthide'}}" bindtap='isShowMicDesForMic' data-index='{{ index }}'>
+              <text>{{ item.description?item.description:''}}</text>
+            </view>
+          </view>
+        </view>
+      </black>
+    </view>
+  </view>
+</view>
+
+<!-- 粪便处理 -->
+<view class='antiepidemic'>
+  <view class='antiepidemic-title'>
+    <text>粪便处理信息</text>
+  </view>
+  <view class='antiepidemic-info'>
+    <view class='info'>
+      <black wx:for="{{ manureArray }}" wx:key="index" wx:if="{{ index < manureLength }}">
+        <view class="foot_body antiepidemic-item {{ index==manureLength-1?'last-item':'' }}">
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left '>
+              <text>处理时间：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.dealTime }}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>处理方法：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.mode}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>方法说明：</text>
+            </view>
+            <view class="foot_body_item_right  ttt {{ item.isShowModeDes?'wordbreak':'texthide'}}" bindtap='isShowModeDesForManure' data-index='{{index}}'>
+              <text>{{ item.methodDes}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>防疫员：</text>
+            </view>
+            <view class='foot_body_item_right texthide'>
+              <text>{{ item.name}}</text>
+            </view>
+          </view>
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>图片：</text>
+            </view>
+            <view class='foot_body_item_right'>
+              <block wx:for="{{ item.urlList }}" wx:for-item="picItem" wx:for-index="picIndex" wx:key="picIndex">
+                <image src='{{ picItem.url }}' bindtap='previewImageManure' data-index='{{ picIndex }}' data-manureIndex='{{ index }}'></image>
+              </block>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>视频：</text>
+            </view>
+            <view class='foot_body_item_right' wx:if="{{ item.vedioList }}">
+             <block wx:for="{{ item.vedioList }}" wx:for-item="videoItem" wx:for-index="videoIndex" wx:key="picIndex">
+                <video src='{{ videoItem }}' objectFit="contain"></video>
+              </block>
+            </view>
+          </view>
+
+          <view class='foot_body_item'>
+            <view class='foot_body_item_left'>
+              <text>描述：</text>
+            </view>
+            <view class="foot_body_item_right ttt {{ item.isShowDes?'wordbreak':'texthide'}}" bindtap='isShowDesForManure' data-index='{{ index }}'>
+              <text>{{ item.description?item.description:''}}</text>
+            </view>
+          </view>
+        </view>
+      </black>
+    </view>
+  </view>
+</view>
+<view class='foot'>
+  <text>到底啦</text>
+</view>
+
+<!-- <view class='antiepidemic-add' bindtap='toAntiepidemicAddPage'></view>
+<view class='manure-add' bindtap='toManureAddPage'></view> -->
+<!-- <view class='owner-change' bindtap='toOwnerChangeAddPage'></view>
+<view class='device-change' bindtap='toDeviceChangePage'></view> -->
+<!-- <view class='corpse-add' bindtap='toCorpseAddPage'></view> -->

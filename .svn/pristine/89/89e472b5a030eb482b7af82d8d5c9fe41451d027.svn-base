@@ -1,0 +1,52 @@
+Page{
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.container image{
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.item {
+  display: flex;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 40rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.left {
+  width: 180rpx;
+  font-size: 14px;
+  color: #999999
+}
+
+.right{
+  width: 500rpx;
+
+  font-size: 14px;
+}
+.right image {
+  margin-right: 20rpx;
+}
+
+.right video {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.textarea {
+  word-wrap:break-word;
+}
+
+.describe {
+  border-bottom: 0rpx solid #ddd;
+  word-break: break-all;
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goodsmanagement.dao.DeviceDistributionDao">
+
+	<select id="get" resultType="com.goodsmanagement.vo.DeviceDistributionVO">
+		select distribution.`id`,distribution.`distributor_org_id`,distribution.`receive_org`,distribution.`receiver`,distribution.`receiver_name`,distribution.`amount`,
+				distribution.`distribute_date`,distribution.`create_date`,distribution.`update_date`,distribution.`operator_id`,distribution.`remark`
+				,org.depart_name distributeOrgName,org2.depart_name receiveOrgName,u.name receivorName
+		from t_device_distribution distribution
+		left join t_org_info org on org.id = distribution.distributor_org_id
+		left join t_org_info org2 on org2.id = distribution.receive_org
+		left join t_user_info u on u.id = distribution.receiver
+		where distribution.id = #{value}
+	</select>
+
+	<select id="list" resultType="com.goodsmanagement.vo.DeviceDistributionVO">
+		select distribution.`id`,distribution.`distributor_org_id`,distribution.`receive_org`,distribution.`receiver`,distribution.`amount`,
+		distribution.`distribute_date`,distribution.`create_date`,distribution.`update_date`,distribution.`operator_id`,distribution.remark,distribution.receiver_name,
+		org.depart_name distributeOrgName,org2.depart_name receiveOrgName,u.name receivorName
+		from t_device_distribution distribution
+		left join t_org_info org on org.id = distribution.distributor_org_id
+		left join t_org_info org2 on org2.id = distribution.receive_org
+		left join t_user_info u on u.id = distribution.receiver
+        <where>  
+		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  <!--<if test="distributorOrgId != null and distributorOrgId != ''"> and distributor_org_id = #{distributorOrgId} </if>-->
+		  <!--<if test="receiveOrg != null and receiveOrg != ''"> and receive_org = #{receiveOrg} </if>-->
+			<if test="departName != null and departName.trim() != ''">
+				and distribution.receiveOrg = (
+					select id from t_org_info where depart_name like concat(concat('%',#{departName}),'%')
+				)
+			</if>
+		  <if test="receiver != null and receiver != ''"> and distribution.receiver = #{receiver} </if>
+		  <!--<if test="amount != null and amount != ''"> and amount = #{amount} </if>-->
+		  <!--<if test="distributeDate != null and distributeDate != ''"> and distribute_date = #{distributeDate} </if>-->
+		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+			<if test="startDate != null and startDate != ''"> and distribution.create_date <![CDATA[>]]> #{startDate}  </if>
+			<if test="endDate != null and endDate != ''"> and distribution.create_date <![CDATA[<]]> #{endDate}  </if>
+		  <!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		  <!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+			<if test="deptIdList != null and deptIdList.size > 0">
+				and distribution.distributor_org_id in
+				<foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by distribution.id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*)
+		from t_device_distribution distribution
+-- 		left join t_org_info org on org.id = distribution.distributor_org_id
+-- 		left join t_org_info org2 on org.id = distribution.receive_org
+-- 		left join t_protector protector on protector.id = distribution.receiver
+		 <where>  
+		  <!--<if test="id != null and id != ''"> and id = #{id} </if>-->
+		  <!--<if test="distributorOrgId != null and distributorOrgId != ''"> and distributor_org_id = #{distributorOrgId} </if>-->
+		  <!--<if test="receiveOrg != null and receiveOrg != ''"> and receive_org = #{receiveOrg} </if>-->
+			 <if test="departName != null and departName.trim() != ''">
+				 and distribution.receiveOrg = (
+				 select id from t_org_info where depart_name like concat(concat('%',#{departName}),'%')
+				 )
+			 </if>
+		  <if test="receiver != null and receiver != ''"> and distribution.receiver = #{receiver} </if>
+		  <!--<if test="amount != null and amount != ''"> and amount = #{amount} </if>-->
+		  <!--<if test="distributeDate != null and distributeDate != ''"> and distribute_date = #{distributeDate} </if>-->
+		  <!--<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>-->
+		  <!--<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>-->
+		  <!--<if test="operatorId != null and operatorId != ''"> and operator_id = #{operatorId} </if>-->
+			 <if test="deptIdList != null and deptIdList.size > 0">
+				 and distribution.distributor_org_id in
+				 <foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+					 #{item}
+				 </foreach>
+			 </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.DeviceDistributionDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_device_distribution
+		(
+			`distributor_org_id`, 
+			`receive_org`, 
+			`receiver`,
+			`receiver_name`,
+			`amount`, 
+			`distribute_date`, 
+			`create_date`, 
+			`update_date`, 
+			`operator_id`,
+			`remark`
+		)
+		values
+		(
+			#{distributorOrgId}, 
+			#{receiveOrg}, 
+			#{receiver},
+			#{receiverName},
+			#{amount}, 
+			#{distributeDate}, 
+			#{createDate}, 
+			#{updateDate}, 
+			#{operatorId},
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.DeviceDistributionDO">
+		update t_device_distribution 
+		<set>
+			<!--<if test="distributorOrgId != null">`distributor_org_id` = #{distributorOrgId}, </if>-->
+			<if test="receiveOrg != null">`receive_org` = #{receiveOrg}, </if>
+			<if test="receiver != null">`receiver` = #{receiver}, </if>
+			<if test="receiverName != null">`receiver_name` = #{receiverName}, </if>
+			<if test="amount != null">`amount` = #{amount}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<!--<if test="distributeDate != null">`distribute_date` = #{distributeDate}, </if>-->
+			<!--<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
+			<if test="operatorId != null">`operator_id` = #{operatorId}</if>-->
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_device_distribution where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_device_distribution where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

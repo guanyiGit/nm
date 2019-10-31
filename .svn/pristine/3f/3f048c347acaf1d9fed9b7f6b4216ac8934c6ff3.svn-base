@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "owner-other": "/components/searchBox/other/owner/ownerOther",
+    "antiepidemic-other": "/components/searchBox/other/antiepidemic/antiepidemicOther"
+  }
+}

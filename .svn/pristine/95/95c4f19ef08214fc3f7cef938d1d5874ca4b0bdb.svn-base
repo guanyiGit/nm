@@ -1,0 +1,220 @@
+<view class='owner_title'>
+  <!-- <text>犬主信息</text> -->
+  <text>{{ lang.get(L,"quanzhu_xinxi") }}：</text>
+</view>
+<view class='container'>
+  <!--犬主详情-->
+  <view class='info'>
+    <!--犬主信息下半部分-->
+    <view class='foot_body'>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>犬主姓名：</text> -->
+          <text>{{ lang.get(L,"quanzhu_xingming") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.name?ownerInfo.name:"" }}</text>
+        </view>
+      </view>
+      <!--性别-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>性别：</text> -->
+          <text>{{ lang.get(L,"xingbie") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <!-- <text>{{ ownerInfo.sex==0?"男":"女" }}</text> -->
+          <text>{{ ownerInfo.sex==0?lang.get(L,"nan"):lang.get(L,"nv") }}</text>
+        </view>
+      </view>
+      <!--出生日期-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>出生日期：</text> -->
+          <text>{{ lang.get(L,"chushengriqi") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.birthDay?ownerInfo.birthDay:"" }}</text>
+        </view>
+      </view>
+      <!--民族-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>名族：</text> -->
+          <text>{{ lang.get(L,"mingzu") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.nation?ownerInfo.nation:"" }}</text>
+        </view>
+      </view>
+      <!--文化程度：-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>文化程度：</text> -->
+          <text>{{ lang.get(L,"wenhuachengdu") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.degreeOfEducation?ownerInfo.degreeOfEducation:"" }}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>联系电话：</text> -->
+          <text>{{ lang.get(L,"lianxidianhua") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.phoneNum?ownerInfo.phoneNum:""}}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>证件类型：</text> -->
+          <text>{{ lang.get(L,"zhengjian_leix") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <!-- <text>{{ ownerInfo.cardType==0?"居民身份证":"居民户口簿" }}</text> -->
+          <text>{{ ownerInfo.cardType==0?  lang.get(L,"qumingshengfengzheng")  :  lang.get(L,"juminghukoubo")  }}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>证件号码：</text> -->
+          <text>{{ lang.get(L,"zhengjian_haoma") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.cardNum?ownerInfo.cardNum:""}}</text>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>草场面积：</text> -->
+          <text>{{ lang.get(L,"caochangmianji") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.grassLandArea?ownerInfo.grassLandArea:"" }}{{ ownerInfo.grassLandArea?lang.get(L,"mu"):"" }}</text>
+        </view>
+      </view>
+
+      <!--暂无数据-->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>所属乡镇：</text> -->
+          <text>{{ lang.get(L,"suoshuxiangzhen") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.town?ownerInfo.town:"" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>所属村委会：</text> -->
+          <text>{{ lang.get(L,"suoshucunweihui") }}：</text>
+        </view>
+        <!--未定id-->
+        <view class='foot_body_item_right texthide'>
+          <text>{{ ownerInfo.tCommittee.name?ownerInfo.tCommittee.name:"" }}</text>
+        </view>
+      </view>
+
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>门牌号：</text> -->
+          <text>{{ lang.get(L,"menpaihao") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.no?ownerInfo.no:"" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>防疫员：</text> -->
+          <text>{{ lang.get(L,"fangyiyuan") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.protectorName?ownerInfo.protectorName:"" }}</text>
+        </view>
+      </view>
+
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>录入时间：</text> -->
+          <text>{{ lang.get(L,"lvrushijian") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.createDate?ownerInfo.createDate:"" }}</text>
+        </view>
+      </view>
+      <!--暂未循环展示 -->
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>照片：</text> -->
+          <text>{{ lang.get(L,"tupian") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <block wx:for="{{ ownerInfo.imageList }}" wx:key="index">
+            <image src='{{ ownerInfo.imageList[index].url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+          </block>
+        </view>
+      </view>
+      <view class='foot_body_item'>
+        <view class='foot_body_item_left'>
+          <!-- <text>描述：</text> -->
+          <text>{{ lang.get(L,"miaoshu") }}：</text>
+        </view>
+        <view class='foot_body_item_right'>
+          <text>{{ ownerInfo.discription?ownerInfo.discription:'' }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ ishasDog }}">
+    <view class="dogInfo">
+      <!-- <text>犬只信息</text> -->
+      <text>{{ lang.get(L,"quanzhi_xinxi") }}：</text>
+    </view>
+    <!--犬只列表-->
+    <view>
+      <view class='container_body'>
+        <block wx:for="{{ dogInfos }}" wx:key="index">
+          <view class='container_item drop-right' bindtap='toDogPage' data-index='{{ index }}'>
+            <view class='left'>
+              <image src='{{ item.dogSmallUrl }}'></image>
+            </view>
+            <view class='right'>
+              <view class="right_headle {{ item.isExpire?'expire':'normal' }}">
+                <!-- <view>{{ item.dogName||'未知' }}</view> -->
+                <view>{{ item.dogName||lang.get(L,"weizhi") }}</view>
+                <!-- 犬主 -->
+                <view class='breed'>{{ item.breed||lang.get(L,"weizhi") }}</view>
+              </view>
+              <view class='right_body'>
+                <!-- <view>犬主：</view> -->
+                <view>{{ lang.get(L,"quanzhu") }}：</view>
+                <view class='ownerName'>{{ ownerInfo.name||lang.get(L,"weizhi") }}</view>
+              </view>
+              <view class="right_foot">
+                <block wx:if="{{ item.deviceNo }}">
+                  <view>{{ item.deviceNo }}</view>
+                </block>
+                <block wx:else>
+                  <!-- <view style='color:red'>未绑定项圈</view> -->
+                  <text>{{ lang.get(L,"weibangdxiangquan") }}：</text>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部 -->
+<view class="foot">
+  <text>{{ lang.get(L,"daodile") }}</text>
+</view>
+
+<wxs module="lang" src="../../../../../utils/lang.wxs" />
+<lang/>

@@ -1,0 +1,87 @@
+Page {
+  background-color: #EEEEEE
+}
+
+.input-placeholder {
+  font-size: 14px;
+}
+
+.container_body text{
+  margin-left: 28rpx;
+  font-size: 15px;
+}
+
+.texthide2 {
+  white-space: nowrap;
+  overflow: hidden;
+}
+picker,input{
+  padding-left: 5rpx;
+}
+
+.left {
+  width: 40%;
+  line-height: 70rpx;
+}
+
+.right {
+  width: 59%;
+  border: 1rpx solid black;
+  background-color: white;
+  font-size: 16px;
+  line-height: 70rpx;
+}
+
+.right textarea{
+  width: 100%;
+  height: 100%;
+}
+
+.item {
+  display: flex;
+  margin-top: 20rpx;
+  height: 70rpx;
+}
+
+.owner_pic {
+  height: 230rpx;
+}
+
+
+.submit_button {
+  display: flex;
+  width: 80%;
+  height: 200rpx;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.submit {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: #3545A6;
+  color: white;
+}
+
+.reset {
+  width: 236rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  background-color: white;
+}
+
+.area {
+  text-align: right;
+  font-size: 16px;
+}
+.no {
+  font-size: 14px;
+  color: #999999;
+}
+
+.description {
+  height: 170rpx;
+}

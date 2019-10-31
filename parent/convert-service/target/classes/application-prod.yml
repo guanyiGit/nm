@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: all@shl
+    password: all@@shl
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/warehouse?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+logging:
+  level:
+    root: info
+    org.apache.http: DEBUG
+    com.soholy.cb: DEBUG

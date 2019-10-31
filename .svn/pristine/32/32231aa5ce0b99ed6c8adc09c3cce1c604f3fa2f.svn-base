@@ -1,0 +1,102 @@
+Page {
+  background-color: #eee;
+}
+
+.container_body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.container_item {
+  display: flex;
+  height: 200rpx;
+  background-color: white;
+  align-items: center;
+  border-bottom: 1rpx solid #ccc;
+  border-left: 1rpx solid #ccc;
+  border-right: 1rpx solid #ccc;
+}
+
+.left {
+  margin-left: 20rpx;
+}
+
+.left image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.right {
+  margin-left: 40rpx;
+  height: 160rpx;
+  width: 440rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right_headle {
+  font-size: 16px;
+ 
+}
+.right_headle>view {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.right_body{
+  display: flex;
+  color: #999999;
+  font-size: 23rpx;
+}
+
+.right_body view{
+  width: 300rpx;
+}
+
+
+
+.right_foot {
+  color: #999;
+  font-size: 14px;
+}
+
+.more {
+  width: 100%;
+  height: 68rpx;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 68rpx;
+  text-align: center;
+}
+
+.manure_add {
+  /*子绝父相*/
+}
+
+/* .manure_add::after */
+.fbcl_element {
+  /*通过伪元素设置一像素的右边框*/
+  content: "粪便处理";
+  /*定位，不占位置*/
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  right: 10rpx;
+  bottom: 10rpx;
+  font-size: 14px;
+  background-color: #ff9a68;
+  color: white;
+  border-radius: 60rpx;
+  box-sizing: border-box;
+  padding: 25rpx 20rpx;
+  line-height: 30rpx;
+  white-space: pre-wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,50 @@
+package com.soholy.pojo.aep.em;
+
+public enum CmdType_lwM2M {
+
+    STARTING_UP(0), PATTERN_CHCKD(1), SET_INTERVAL(2);
+
+    private Integer type;
+
+    public Integer getType() {
+        return type;
+    }
+
+
+    private CmdType_lwM2M(Integer type) {
+        this.type = type;
+    }
+
+    public static enum PATTERN_VAL {
+
+        COMMON(0), POWER_SAVING(1), VAL(-1);
+
+        /**
+         * 实际值
+         */
+        String __val;
+
+        public String get__val() {
+            return __val;
+        }
+
+        public void set__val(String __val) {
+            this.__val = __val;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+
+        PATTERN_VAL(int val) {
+            this.val = val;
+        }
+
+        private int val;
+
+        public int getVal() {
+            return val;
+        }
+    }
+
+}

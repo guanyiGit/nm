@@ -1,0 +1,175 @@
+<view class="container">
+  <!-- <view class='scanning'>
+    <image src='{{ icon.scanning }}' bindtap='scanCode'></image>
+  </view> -->
+  <!-- 首页头部 -->
+  <view class='header'>
+    <view class='setUp' bindtap='toMessagePage'>
+      <image src='{{ icon.messageIcon }}'></image>
+    </view>
+    <view class='userIcon' bindtap='toUserInfoPage'>
+      <image src='{{ userIcon }}'></image>
+    </view>
+    <view class='name'>
+      <text>{{ name }}</text>
+    </view>
+    <view class='roleName'>
+      <text>{{ roleName }}</text>
+    </view>
+  </view>
+  <view class='body'>
+    <!-- 犬只犬主 -->
+    <view class='dogAndOwner body-after'>
+      <view class='title'>
+        <image src='{{ icon.dogAndOwner }}'></image>
+        <!-- <text>犬只犬主</text> -->
+        <text>{{ lang.get(L,"quanzhi_quanzhu") }}</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/ownerInfo/ownerInfo'>
+          <image src='{{ icon.ownerIcon }}'></image>
+          <!-- <text>犬主管理</text> -->
+          <text class='item_text'>{{ lang.get(L,"quanzhu_guanli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/dogInfo/dogInfo'>
+          <image src='{{ icon.dogIcon }}'></image>
+          <!-- <text>犬只管理</text> -->
+         <text>{{ lang.get(L,"quanzhi_guanli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/strayDog/strayDog'>
+          <image src='{{ icon.strayDogIcon }}'></image>
+          <!-- <text>流浪犬管理</text> -->
+          <text>{{ lang.get(L,"liulangquan_guanli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/dogStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <!-- <text>统计信息</text> -->
+          <text>{{ lang.get(L,"tongji_xinxi") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/logout/logout'>
+          <image src='{{ icon.logoutIcon }}'></image>
+          <!-- <text>犬只注销</text> -->
+           <text>{{ lang.get(L,"quanzhizhuxiao") }}</text>
+        </navigator>
+
+        <navigator class='item' url='/pages/admin/home/location/location'>
+          <image src='{{ icon.locationIcon }}'></image>
+          <!-- <text>周边犬只</text> -->
+           <text>{{ lang.get(L,"quanzhi_zhoubian") }}</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 防疫管理 -->
+    <view class='epidemicManager body-after'>
+      <view class='title'>
+        <image src='{{ icon.eqidemicManager }}'></image>
+        <!-- <text>防治管理</text> -->
+        <text>{{ lang.get(L,"fangzhi_guanli") }}</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/antiepidemic/antiepidemic'>
+          <image src='{{ icon.epidemicIcon }}'></image>
+          <!-- <text>犬只防疫</text> -->
+          <text>{{ lang.get(L,"quanzhi_fangyi") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/manure/manure'>
+          <image src='{{ icon.manureIcon }}'></image>
+          <!-- <text>犬粪处理</text> -->
+          <text>{{ lang.get(L,"quanfen_chuli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/corpse/corpse'>
+          <image src='{{ icon.corpseIcon }}'></image>
+          <!-- <text>犬尸处理</text> -->
+          <text>{{ lang.get(L,"quanshi_chuli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/antigen/antigen' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.antigenIcon }}'></image>
+          <!-- <text>犬粪抗原检测</text> -->
+          <text>{{ lang.get(L,"quanfenkangyuan_jiance") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/anatomy/anatomy' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.anatomyIcon }}'></image>
+          <!-- <text>犬只解剖</text> -->
+          <text>{{ lang.get(L,"quanhzi_jiepao") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/cattleandsheepAntigen/cattleandsheepAntigen' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.CattleandsheepAntigen }}'></image>
+          <!-- <text>牛羊抗体检测</text> -->
+          <text>{{ lang.get(L,"niuyangkangti_jiance") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/visceraOfCattleAndSheep/visceraOfCattleAndSheep' wx:if="{{ !isTownshipAdmin }}">
+          <image src='{{ icon.VisceraOfCattleAndSheep }}'></image>
+          <!-- <text>牛羊脏器处理</text> -->
+          <text>{{ lang.get(L,"niuyangzangqi_chuli") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/epidemicStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <!-- <text>统计信息</text> -->
+          <text>{{ lang.get(L,"tongji_xinxi") }}</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 物资管理 -->
+    <view class='materialManager body-after'>
+      <view class='title'>
+        <image src='{{ icon.materialManager }}'></image>
+        <!-- <text>物资管理</text> -->
+        <text>{{ lang.get(L,"wuzi_guanli") }}</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/material/material'>
+          <image src='{{ icon.materialIcon }}'></image>
+          <!-- <text>防护物资</text> -->
+          <text>{{ lang.get(L,"fanghuwuzi") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/deviceDistribution/deviceDistribution'>
+          <image src='{{ icon.deviceIcon }}'></image>
+          <!-- <text>犬只项圈</text> -->
+          <text>{{ lang.get(L,"quanzhu_xianquan") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/materialStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <!-- <text>统计信息</text> -->
+          <text>{{ lang.get(L,"tongji_xinxi") }}</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 宣传培训 -->
+    <view class='propaganda body-after'>
+      <view class='title'>
+        <image src='{{ icon.propagandaManager }}'></image>
+        <!-- <text>宣传培训</text> -->
+        <text>{{ lang.get(L,"xuanchuan_peixun") }}</text>
+      </view>
+      <view class='items'>
+        <navigator class='item' url='/pages/admin/home/publicityActivity/publicityActivity'>
+          <image src='{{ icon.propagandaIcon }}'></image>
+          <!-- <text>宣传活动</text> -->
+          <text>{{ lang.get(L,"xuanchuan_huodong") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/trainActivity/trainActivity'>
+          <image src='{{ icon.trainIcon }}'></image>
+          <!-- <text>培训活动</text> -->
+          <text>{{ lang.get(L,"peixunhuodong") }}</text>
+        </navigator>
+        <navigator class='item' url='/pages/admin/home/pubAndTrainStatistics/statistics'>
+          <image src='{{ icon.statisticsIcon }}'></image>
+          <!-- <text>统计信息</text> -->
+          <text>{{ lang.get(L,"tongji_xinxi") }}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>
+<view class='foot'>
+  <text>{{ lang.get(L,"daodile") }}</text>
+</view>
+
+<wxs module="lang" src="../../../utils/lang.wxs" />
+<lang/>

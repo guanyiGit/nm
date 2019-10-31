@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head th:include="include :: header">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=9"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>TITLE</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<!--[if lt IE 9]>
+<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false"> 
+<!--wrap-->
+<div class="wrap">
+
+<!--内容栏-->
+<div class="section2">
+	<!--面包屑-->
+	<div class="tit pdl50">
+		<ul class="ul03 ovh">
+			<li class="fl"><a href="###" th:text="#{propagandaTraining}">宣传培训</a>></li>
+			<li class="fl"><a href="/biz/activityInfo/conductActivity" th:text="#{propagandaTraining.campaign}">宣传活动</a>></li>
+			<li class="fl" th:text="#{binformation.add}">新增</li>
+		</ul>
+	</div>
+	<!--面包屑END-->
+	
+	<!--内容区-->
+	<div class="pdt20 pdb75">
+		<form id="saveForm" action="#">
+			<div class="pdl30 pdr30">
+				<div class="ovh mgt10">
+					<div class="fl w100 cor3 h50 lh50 t-r">*<span th:text="#{time}">时间</span></div>
+					<div class="mgl120">
+						<input type="text" id="activityTime" name="activityTime" class="ww92 h50 lh50 bore ras4 pdl30 pc23">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w100 cor3 h50 lh50 t-r">*<span th:text="#{place}">地点</span></div>
+					<div class="mgl120">
+						<input type="text" name="activityAddress" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w100 cor3 h50 lh50 t-r">*<span th:text="#{theTheme}">主题</span></div>
+					<div class="mgl120">
+						<input name="activitySubject" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w100 cor3 h50 lh50 t-r">*<span th:text="#{propagandaTraining.issueLiteratureNum}">发放宣传品数</span></div>
+					<div class="mgl120">
+						<input name="amount" class="ww92 h50 lh50 bore ras4 pdl30" placeholder="">
+					</div>
+				</div>
+				<div class="ovh mgt10">
+					<div class="fl w100 cor3 h50 lh50 t-r">*<span th:text="#{contentt}">内容</span></div>
+					<div class="mgl120">
+						<textarea id="activityContent" name="activityContent"  style="height: 190px;" class="ww92 h100 lh50 bore ras4 pdl30" placeholder="">
+						</textarea>
+					</div>
+				</div>
+				<!--<div class="ovh mgt10">-->
+					<!--<div class="fl w100 cor3 h50 lh50 t-r">照片</div>-->
+					<!--<div class="mgl90 ww87">-->
+						<!--<div class="ovh">-->
+							<!--<div class="file rel">-->
+								<!--<input id="file-1" name="files" type="file" multiple="multiple" class="file">-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+                <div class="ovh mgt10">
+                    <div class="fl w100 cor3 h50 lh50 t-r" th:text="#{binformation.photo}">照片</div>
+                    <div class="mgl120 ww85 ">
+                        <div class="pdt20 pdb20">
+                            <input id="file-1" name="files" type="file" multiple="multiple" class="file" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ovh mgt10">
+                    <div class="fl w100 cor3 h50 lh50 t-r" th:text="#{videoo}">视频</div>
+                    <div class="mgl120 ww85 ">
+                        <div class="pdt20 pdb20">
+                            <input id="file-2" name="videos" type="file" multiple="multiple" class="file" >
+                        </div>
+                    </div>
+                </div>
+				<div class="ovh mgt40">
+					<div class="mgl120">
+						<input id="savee" class="a6 dinb bort hov8" type="submit" value="保存">
+						<a href="javascript:window.history.back(-1);" class="a6 dinb hov8" th:text="#{binformation.cancel}">取消</a>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+	<!--内容区END-->
+	
+</div>
+<!--内容栏END-->
+	
+</div>
+<div th:include="include::footer"></div>
+<script th:inline="javascript">
+    var save = [[#{binformation.save}]];
+    $("#savee").val(save)
+    var operationSuccess = [[#{materialManage.operationSuccess}]];
+    var pleaseInputNumber = [[#{materialManage.pleaseInputNumber}]];
+    var onlyInputPosInt = [[#{materialManage.onlyInputPosInt}]];
+    var pleaseInputGoodsName = [[#{materialManage.pleaseInputGoodsName}]];
+    var determine = [[#{determine}]];
+    var pleaseEnterLocation = [[#{propagandaTraining.pleaseEnterLocation}]];
+    var pleaseEnterSubject = [[#{propagandaTraining.pleaseEnterSubject}]];
+    var pleaseInputPublicityPlay = [[#{propagandaTraining.pleaseInputPublicityPlay}]];
+    var pleaseEnterActivityContent = [[#{propagandaTraining.pleaseEnterActivityContent}]];
+    var pleaseEnterActiveObject = [[#{propagandaTraining.pleaseEnterActiveObject}]];
+    var pleaseEnterNumberParticipants = [[#{propagandaTraining.pleaseEnterNumberParticipants}]];
+</script>
+<script src="/publicitytraining/conductActivityAdd.js"></script>
+<!--wrap End-->
+</body>
+</html>

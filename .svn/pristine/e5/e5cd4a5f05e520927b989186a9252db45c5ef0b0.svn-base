@@ -1,0 +1,82 @@
+<view class='page' wx:if="{{ ishasData }}">
+  <statistics-box bind:dataEvent="bindDataEvent" bind:monthEvent="bindMonthEvent"></statistics-box>
+  <view class='container'>
+    <view class='item'>
+      <view class='title'>
+        <view class="title-content {{ dog.isOpen?'drop-upArrow':'drop-downArrow'}}" bindtap='openEvent' data-type='1'>犬只存栏数量 </view>
+      </view>
+      <view class='table' hidden='{{ !dog.isOpen }}'>
+        <view class='table-header'>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+          <view class='table-heade-th'>数量</view>
+        </view>
+        <view class='table-body'>
+          <block wx:for="{{ dog.dogArray }}" wx:key="index">
+            <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == dog.length-1?'last-tr':''  }} ">
+              <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+              <view class='table-body-td'>{{ item.count }}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class='item'>
+      <view class='title'>
+        <view class="title-content {{ dogOwner.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='2'>犬主数量 </view>
+      </view>
+      <view class='table' hidden='{{ !dogOwner.isOpen }}'>
+        <view class='table-header'>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡</view>
+          <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+          <view class='table-heade-th'>数量</view>
+        </view>
+        <view class='table-body'>
+          <block wx:for="{{ dogOwner.dogOwnerArray }}" wx:key="index">
+            <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == dog.length-1?'last-tr':''  }} ">
+              <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+              <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+              <view class='table-body-td'>{{ item.count }}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='item'>
+    <view class='title'>
+      <view class="title-content {{ strayDog.isOpen?'drop-upArrow':'drop-downArrow' }}" bindtap='openEvent' data-type='3'> 流浪犬处理数量 </view>
+    </view>
+    <view class='table' hidden='{{ !strayDog.isOpen }}'>
+      <view class='table-header'>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.stateIsShow }}">所属州</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.countyIsShow }}">所属县</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.townIsShow }}">所属乡</view>
+        <view class='table-heade-th right-line' wx:if="{{ isShow.epidemicerIsShow }}">所属防疫员</view>
+        <view class='table-heade-th'>数量</view>
+      </view>
+      <view class='table-body'>
+        <block wx:for="{{ strayDog.strayDogArray }}" wx:key="index">
+          <view class="table-body-tr {{ (index + 1)%2==0?'even-tr':'odd-tr' }} {{ index == dog.length-1?'last-tr':''  }} ">
+            <view class='table-body-td right-line' wx:if="{{ isShow.stateIsShow }}">{{ item.stateName?item.stateName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.countyIsShow }}">{{ item.countyName?item.countyName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.townIsShow }}">{{ item.villageName?item.villageName:'-' }}</view>
+            <view class='table-body-td right-line' wx:if="{{ isShow.epidemicerIsShow }}">{{ item.protectorName?item.protectorName:'-' }}</view>
+            <view class='table-body-td'>{{ item.count }}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

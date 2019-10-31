@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head  th:include="include :: header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=9">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>A4-防疫管理-春防信息</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<style type="text/css">
+	.tree-title{
+		font-size: 14px;
+	}
+	.textbox .textbox-text{
+		font-size: 14px;
+	}
+</style>
+<!--wrap-->
+<div class="wrap">
+
+	<!--查看大图-->
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
+	<!--内容栏-->
+	<div class="section2">
+		<!--面包屑-->
+		<div class="tit pdl50">
+			<ul class="ul03 ovh">
+				<li class="fl"><a href="###" th:text="#{propagandaTraining}">宣传培训</a>></li>
+				<li class="fl" th:text="#{propagandaTraining.campaign}">宣传活动</li>
+			</ul>
+		</div>
+		<!--面包屑END-->
+
+		<!--内容区-->
+		<div class="pdl0 pdr50 pdt20 pdb75">
+			<div class="h40 pdl0 pdr0">
+				<ul class="ul04 fl">
+					<li class="fl t-c w280 h40 lh40 mgr30" style="margin-left: -5px;" shiro:hasPermission="biz:activityInfo:initOrg">
+						<input id="orgSelect" name="deptId" style="height: 27px;width: 150px;">
+					</li>
+
+					<!--<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+                        <a href="###" class="db corw"><img class="mgr10 dinb" src="images/8-2.png" alt="">导入</a>
+                    </li>
+
+                    <li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4">
+                        <a href="###" class="db corw"><img class="mgr10 dinb" src="images/8-4.png" alt="">实时定位</a>
+                    </li>-->
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="biz:activityInfo:add">
+						<a href="/biz/activityInfo/add" class="db corw"><img class="mgr10 dinb" src="/images/8-1.png" alt=""><span th:text="#{binformation.add}">新增</span></a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="biz:activityInfo:export">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-3.png" alt=""><span th:text="#{binformation.export}">导出</span></a>
+					</li>
+					<li class="fl t-c pc4 w127 h40 lh40 hov9 mgr4" shiro:hasPermission="biz:activityInfo:search">
+						<a href="###" class="db corw"><img class="mgr10 dinb" src="/images/8-5.png" alt=""><span th:text="#{binformation.accurateSearch}">精确搜索</span></a>
+					</li>
+				</ul>
+				<div class="fr ovh">
+					<div class="mgr0 db ovh">
+						<input type="text" id="activitySubject" style="width: 250px" class="db input1 w310 h40 lh40 pdl15 fl" placeholder="主题">
+						<input type="button" onclick="reLoad()" class="db fl pc5 hov8" >
+					</div>
+				</div>
+			</div>
+			<table id="exampleTable" data-mobile-responsive="true"></table>
+		</div>
+	</div>
+	<!--内容栏END-->
+
+</div>
+
+<!--wrap End-->
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/easyui/js/jquery.easyui.min.js"></script>
+<script th:inline="javascript">
+    let type = [[${user.roles[0].type}]];
+    var materialType = [[#{materialManage.materialType}]];
+    var issueNumber = [[#{materialManage.issueNumber}]];
+    var issuingUnit = [[#{materialManage.issuingUnit}]];
+    var outTime = [[#{materialManage.outTime}]];
+    var receiving = [[#{materialManage.receiving}]];
+    var Sort = [[#{materialManage.Sort}]];
+    var parentNumber = [[#{materialManage.parentNumber}]];
+    var theCreator = [[#{materialManage.theCreator}]];
+    var creatorTime = [[#{materialManage.creatorTime}]];
+    var updateThe = [[#{materialManage.updateThe}]];
+    var updateTime = [[#{materialManage.updateTime}]];
+    var remarkInfo = [[#{materialManage.remarkInfo}]];
+    var deleteFlag = [[#{materialManage.deleteFlag}]];
+    var operation = [[#{binformation.operation}]];
+    var checkk = [[#{binformation.check}]];
+    var updatee = [[#{binformation.update}]];
+    var deletee = [[#{binformation.delete}]];
+    var sureDeleteSelectedRecord = [[#{sureDeleteSelectedRecord}]];
+    var cancel = [[#{binformation.cancel}]];
+    var determine = [[#{determine}]];
+    var photo = [[#{binformation.photo}]];
+    var time = [[#{time}]];
+    var place = [[#{place}]];
+    var theTheme = [[#{theTheme}]];
+    var hostUnits = [[#{propagandaTraining.hostUnits}]];
+    var issueLiteratureNum = [[#{propagandaTraining.issueLiteratureNum}]];
+    var operationSuccess = [[#{operationSuccess}]];//操作成功
+    var operationFailure = [[#{operationFailure}]];//操作失败
+    $("#activitySubject").attr("placeholder",theTheme)
+</script>
+<script src="/publicitytraining/conductActivity.js"></script>
+</body>
+</html>

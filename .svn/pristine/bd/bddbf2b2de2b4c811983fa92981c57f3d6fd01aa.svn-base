@@ -1,0 +1,29 @@
+<view class='page'>
+<!--溯源ID：-->
+  <view class=' item'>
+    <view class='left'>
+      <view class=''>
+        <text>项圈编号：</text>
+      </view>
+    </view>
+    <view class='right scan'>
+      <input name="deviceNo" value='{{ deviceNo }}' bindblur='deviceNoBlur'></input>
+      <view class='scanIcon' bindtap='scanEvent'>
+        <image src='{{ scanIcon }}'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='item remarks'>
+    <view class='left'></view>
+    <view class='remark'>
+      <view>请扫描二维码绑定项圈</view>
+    </view>
+  </view>
+
+  <view class='button-group'>
+      <view class='button' bindtap='unbind'>暂不绑定</view>
+      <view class='button' bindtap='bind'>确认绑定</view>
+  </view>
+
+</view>

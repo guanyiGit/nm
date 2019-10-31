@@ -1,0 +1,61 @@
+<view class="page">
+  <!-- 所属区域/下拉框-->
+  <view class="nav">
+    <view class='nav-search'>
+      <search placeholder-text="{{ placeholderText }}" bind:searchEvent="searchActivity"  is-show="{{ isShow }}"></search>
+    </view>
+    <view class='nav-searchBox'>
+      <view class='nav-son borders' wx:if="{{ !isTownAdmin }}">
+        <picker range="{{ org.orgArray }}" range-key="departName" bindchange='changeEvent' class='picker'>
+          <!-- <view wx:if="{{ !org.isChoose }}" class='content'>举办单位</view> -->
+          <view wx:if="{{ !org.isChoose }}" class='content'>{{ LG.get(L,"jubanshijian") }}</view>
+          <view wx:else class='org texthide'>{{ org.orgArray[org.orgIndex].departName }}</view>
+          <view class="icon" wx:if="{{ !org.isChoose }}"></view>
+        </picker>
+      </view>
+      <view class="borders {{ isTownAdmin?'nav-date':'nav-son' }}">
+        <block wx:if="{{ !date.isChoose }}">
+          <!-- <view class='content' bindtap='checkDate'>举办时间</view> -->
+          <view class='content' bindtap='checkDate'>{{ LG.get(L,"jubanshijian") }}</view>
+          <view class="icon"></view>
+        </block>
+        <block wx:else>
+          <view class='content' bindtap='checkDate'>{{ date.dateString }}</view>
+          <view class="icon"></view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="selector-container temp {{dateshow ? 'slidown' : 'slidup'}}  {{ !dateshow ? 'disappear':''}}">
+    <!-- <view class='selector-title'>举办时间</view> -->
+    <view class='selector-title'>{{ LG.get(L,"jubanshijian") }}</view>
+    <view class='selector-body'>
+      <picker mode="date" bindchange='bindStartDateChange'>
+        <view class='selector-picker'>
+          <view>{{ startDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker> —
+      <picker mode="date" bindchange='bindEndDateChange'>
+        <view class='selector-picker'>
+          <view>{{ endDate }}</view>
+          <image src='/assets/icon/message/date.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='button-line'></view>
+    <view class='selector-foot'>
+      <view class='button-group'>
+        <!-- <view class='reset' bindtap='reset'>重置</view> -->
+        <view class='reset' bindtap='reset'>{{ LG.get(L,"reset") }}</view>
+        <!-- <view class='confirm' bindtap='confirm'>确定</view> -->
+        <view class='confirm' bindtap='confirm'>{{ LG.get(L,"quedin") }}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class=" {{isfull ?'fullbg':''}}" bindtap="hidebg"></view>
+</view>
+
+<wxs module="LG" src="../../utils/lang.wxs" />

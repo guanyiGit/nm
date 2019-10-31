@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.orgmanagement.dao.AreaInfoDao">
+
+	<select id="get" resultType="com.entities.AreaInfo">
+		select `id`,`name`,`pid`,`type`,`area_lev_status`,`create_date`,`update_date` from t_area_info where id = #{value}
+	</select>
+
+	<!--查询列表-->
+	<select id="getList" resultType="com.entities.AreaInfo">
+		select `id`,`name`,`pid`,`type`,`area_lev_status`,`create_date`,`update_date` from t_area_info
+	</select>
+
+	<select id="list" resultType="com.entities.AreaInfo">
+		select `id`,`name`,`pid`,`type`,`area_lev_status`,`create_date`,`update_date` from t_area_info
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="areaLevStatus != null and areaLevStatus != ''"> and area_lev_status = #{areaLevStatus} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_area_info
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="areaLevStatus != null and areaLevStatus != ''"> and area_lev_status = #{areaLevStatus} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.entities.AreaInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into t_area_info
+		(
+			`name`, 
+			`pid`, 
+			`type`, 
+			`area_lev_status`, 
+			`create_date`, 
+			`update_date`
+		)
+		values
+		(
+			#{name}, 
+			#{pid}, 
+			#{type}, 
+			#{areaLevStatus}, 
+			#{createDate}, 
+			#{updateDate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.entities.AreaInfo">
+		update t_area_info 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="pid != null">`pid` = #{pid}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="areaLevStatus != null">`area_lev_status` = #{areaLevStatus}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_area_info where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_area_info where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 根据当前区域id查找直接子级区域 -->
+	<select id="getChildrenList" resultType="com.entities.AreaInfo">
+		select `id`,`name`,`pid`,`type`,`area_lev_status`,`create_date`,`update_date` from t_area_info where `pid` = #{pId}
+	</select>
+
+
+
+	<!-- 根据当前区域id查找直接子级区域 -->
+	<select id="findCityList" resultType="com.entities.AreaInfo">
+		select `id`,`name`,`pid`,`type`,`area_lev_status`,`create_date`,`update_date` from t_area_info where `type` = #{level}
+	</select>
+
+	<!--初始化区域下拉框-->
+	<select id="initAreaSelect" resultType="com.entities.AreaInfo">
+		SELECT *from t_area_info area
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="pid != null and pid != ''"> and pid = #{pid} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+			<if test="areaLevStatus != null and areaLevStatus != ''"> and area_lev_status = #{areaLevStatus} </if>
+			<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+			<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		</where>
+
+	</select>
+
+</mapper>

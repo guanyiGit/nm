@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据调试</title>
+
+<!--    <link rel="stylesheet" href="/static/layui/css/layui.css">-->
+<!--    <link rel="stylesheet" href="/static/zTree_v3/css/zTreeStyle/zTreeStyle.css">-->
+<!--    <script src="/static/jquery-1.12.1.js"></script>-->
+<!--    <script src="/static/layui/layui.all.js"></script>-->
+<!--    <script src="/static/zTree_v3/js/jquery.ztree.core.min.js"></script>-->
+<!--    <script src="/static/axios.js"></script>-->
+
+
+    <link rel="stylesheet" href="/nm/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/nm/static/zTree_v3/css/zTreeStyle/zTreeStyle.css">
+    <script src="/nm/static/jquery-1.12.1.js"></script>
+    <script src="/nm/static/layui/layui.all.js"></script>
+    <script src="/nm/static/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="/nm/static/axios.js"></script>
+</head>
+<body>
+<div class="layui-container ltu-tcnt">
+    <div class="layui-row">
+        <div class="layui-col-md12" style="text-align: center; margin: 20px 0;">
+            <h2>测试数据查询</h2>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title"></fieldset>
+    <div class="layui-row">
+        <div class="layui-col-md6">
+            <i>imei筛选：</i>
+            <select name="city" lay-verify="required" class="seelct_changd"
+                    style="height: 35px;width: 200px;cursor: pointer;">
+                <option value="">全选</option>
+                <option th:value="${item.id}" th:each="item:${deviceList}" key="${item.id}"
+                        th:text="${item.imei}"></option>
+            </select>
+        </div>
+        <div class="layui-col-md5">
+            <input type="text" name="title" required lay-verify="required" placeholder="输入内容查找" autocomplete="off"
+                   class="layui-input ele-serch-input">
+        </div>
+        <div class="layui-col-md1">
+            <button type="button" class="layui-btn layui-btn-normal ele-serch">搜索</button>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title"></fieldset>
+    <div class="layui-row ">
+        <table class="layui-table">
+            <colgroup>
+                <col width="50">
+                <col width="500">
+                <col width="80">
+                <col width="30">
+                <col width="150">
+                <col width="50">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>原数据</th>
+                <th>数据类型</th>
+                <th>type</th>
+                <th>保存时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="data-tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="layui-row">
+        <fieldset class="layui-elem-field layui-field-title"></fieldset>
+        <div id="demo1"></div>
+    </div>
+</div>
+</body>
+<script>
+    // let baseurl = '/'
+    let baseurl = '/nm'
+
+    const params = {
+        imei: '',
+        format: 'true',
+        pageNo: '1',
+        pageSize: '8'
+    }
+
+    $(document).ready(function () {
+        //lists
+        initList()
+
+        //options
+        axios.get(baseurl+"/view/devs").then(res => {
+            const eles = res.data.obj.filter(x=>x && x.imei).map(x => {
+                return `<option value="${x.id}">${x.imei}</option>`;
+            })
+            $(".seelct_changd").append(eles)
+        })
+
+        //select changd
+        $(".seelct_changd").change(function () {
+            let imei = $(".seelct_changd option:selected").text();
+            if (imei == '全选') imei = ''
+            params.imei = imei;
+            initList()
+        })
+        //search
+        $(".ele-serch").click(function () {
+            let input = $(".ele-serch-input").val();
+            if (input) {
+                input = input.trim();
+                params.imei = input;
+                initList()
+            } else {
+                layer.msg('没有输入内容');
+            }
+        })
+
+        //information detail
+        //触发事件
+        let alt_content = '';
+        let active = {
+            notice: function(){
+                //示范一个公告层
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '500px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,btn: ['ok', 'clean']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    // ,content:alt_content
+                    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">内容！<br><br>'+alt_content+'<br><br></div>'
+                    ,success: function(layero){
+                        var btn = layero.find('.layui-layer-btn');
+                    }
+                });
+            }
+        };
+        $('.ltu-tcnt').on('click','.layui-btn',function () {
+            alt_content = $($(this).parent().parent().children(".content")[0]).text()
+            let method = $(this).data('method');
+            active[method] ? active[method].call(this, $(this)) : '';
+            // var setting = {    };
+            // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            //.children(".content")
+            console.log($($(this).parent().parent().children(".content")[0]).text())
+            // $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        })
+
+
+    })
+
+    function initList() {
+        axios.get(baseurl+"/view/datas", {params}).then(res => {
+            $(".data-tbody").html("")
+            let tb_html = '<p style=" width: 100px;">暂无内容！！！<p>'
+            if (res.data.obj.records && res.data.obj.records.length > 0) {
+                tb_html = res.data.obj.records.map(x => {
+                    const type = x.content ? (
+                        x.content.type === '0' ? '混合数据':
+                        x.content.type === '1' ? 'gps':
+                        x.content.type === '2' ? 'wifi':
+                        x.content.type === '3' ? '设备开机':
+                        x.content.type === '4' ? '心跳数据':
+                        x.content.type === '5' ? '电量告警 ':'-'
+                    ):'-';
+                    const data_type = x.content.common ? "上报": x.content.modes ? "指令":"-";
+                    const btn = '<button data-method="notice" class="layui-btn">查看详情</button>';
+                    // console.log(type)
+                    return '<tr >'
+                        + '<td>' + x.seq_id + '</td>'
+                        + '<td class="content">' + JSON.stringify(x.content) + '</td>'
+                        + '<td>' + type + '</td>'
+                        + '<td>' + data_type + '</td>'
+                        + '<td>' + x.cretion_time + '</td>'
+                        + '<td>' + btn+ '</td>'
+                        + '</tr>';
+                })
+            }
+            $(".data-tbody").html(tb_html)
+
+
+            let total = res.data.obj.total;
+            layui.use(['laypage', 'layer'], function () {
+                const laypage = layui.laypage
+                //总页数大于页码总数
+                laypage.render({
+                    elem: 'demo1',
+                    curr: params.pageNo,
+                    count: total, //数据总数
+                    limit: params.pageSize,
+                    jump: function (obj, first) {
+                        if (!first) {
+                            params.pageNo = obj.curr
+                            initList()
+                        }
+                    }
+                });
+
+            });
+        })
+    }
+
+</script>
+</html>

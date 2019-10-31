@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="callback:war">
+    <output-path>$PROJECT_DIR$/../callback/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>callback</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="callback.war">
+      <element id="artifact" artifact-name="callback:war exploded" />
+    </root>
+  </artifact>
+</component>

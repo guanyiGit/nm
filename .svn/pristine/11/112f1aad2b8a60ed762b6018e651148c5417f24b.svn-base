@@ -1,0 +1,14 @@
+<!--components/lang/lang.wxml-->
+ <view class='lang_container'>
+    <!-- <text class='lang_titile'>请选择语言</text> -->
+    <view>
+      <picker class='lang_picker' bindchange="langChanged" value="{{LANG.array[LANG.index]}}" range="{{LANG.array}}">
+        <view >
+          {{ lang.get(L,"language") }}：<text class='lang_code'>{{ LANG.array[LANG.index] }}</text>  
+        </view>
+      </picker>
+    </view>
+  </view>
+
+ 
+ <wxs module="lang" src="../../utils/lang.wxs" />

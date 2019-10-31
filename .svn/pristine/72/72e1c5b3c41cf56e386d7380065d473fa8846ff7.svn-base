@@ -1,0 +1,44 @@
+<!--components/searchBox/other/dogInfo.wxml-->
+<view class='container-or'>
+  <view>
+    <!-- <view class='title'>性别</view> -->
+    <view class='title'>{{ LG.get(L,"xingbie") }}</view>
+    <view class='seitem'>
+      <text class='cjeck {{index == sexRange.index ? "checkSex":""}}' bindtap="checkdSexHandel" wx:for="{{sexRange.array}}" data-index='{{index}}' wx:key="{{index}}">{{item}}</text>
+    </view>
+  </view>
+  <view>
+    <!-- <view class='title'>年龄</view> -->
+    <view class='title'>{{ LG.get(L,"nianling") }}</view>
+    <view class='seitem input'>
+      <input class="input-or" type="number" placeholder='岁' placeholder-style="text-align:right;" value="{{ageRange.start}}" bindblur="startInputChange"></input>
+      <text class='input-line'>—</text>
+      <input class="input-or" type="number" placeholder='岁' placeholder-style="text-align:right;" value="{{ageRange.end}}" bindblur="endInputChange"></input>
+    </view>
+  </view>
+  <view>
+    <!-- <view class='title'>录入时间</view> -->
+    <view class='title'>{{ LG.get(L,"lvrushijian") }}</view>
+    <view class='seitem input'>
+      <picker class='picker-or' mode="date" value="{{selectDate.start}}" bindchange="dateChange_start">
+        <view class="picker">
+          {{selectDate.start}}
+        </view>
+      </picker>
+      <text class='input-line'>—</text>
+      <picker class='picker-or' mode="date" value="{{selectDate.end}}" bindchange="dateChange_end">
+        <view class="picker">
+          {{selectDate.end}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='btns'>
+    <!-- <view class='reset'>重 置</view> -->
+    <view class='reset'>{{ LG.get(L,"reset") }}</view>
+    <!-- <view class='confirm'>确 定</view> -->
+    <view class='confirm'>{{ LG.get(L,"quedin") }}</view>
+  </view>
+</view>
+
+<wxs module="LG" src="../../../../utils/lang.wxs" />

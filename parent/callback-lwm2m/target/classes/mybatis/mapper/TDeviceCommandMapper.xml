@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soholy.mapper.TDeviceCommandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.soholy.entity.TDeviceCommand">
+        <id column="device_command_id" property="deviceCommandId" />
+        <result column="device_no" property="deviceNo" />
+        <result column="cmd_type" property="cmdType" />
+        <result column="cmd_value" property="cmdValue" />
+        <result column="operator_id" property="operatorId" />
+        <result column="cmd_issued_time" property="cmdIssuedTime" />
+        <result column="cmd_mid" property="cmdMid" />
+        <result column="cmd_status" property="cmdStatus" />
+        <result column="cmd_rsp_time" property="cmdRspTime" />
+        <result column="creation_time" property="creationTime" />
+        <result column="iot_command_id" property="iotCommandId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        device_command_id, device_no, cmd_type, cmd_value, operator_id, cmd_issued_time, cmd_mid, cmd_status, cmd_rsp_time, creation_time, iot_command_id
+    </sql>
+
+</mapper>

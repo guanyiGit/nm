@@ -1,0 +1,106 @@
+<!--pages/home/antiepidemic/info/info.wxml-->
+<view class='container'> 
+    <!-- <view class='item'>
+        <view class='left'>
+            <text>流浪犬编号：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.no }}</text>
+        </view>
+    </view> -->
+
+    <view class='item'>
+        <view class='left'>
+            <text>品种：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.breed||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>性别：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.sex==0?"公":"母" }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>犬龄：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.age||'未知' }}{{ strayDog.age?'岁':'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>毛色：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.hairColor?strayDog.hairColor:'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>体重：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.weight||'未知' }}{{ strayDog.weight?'kg':'' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理时间：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.dealTime||'未知' }}</text>
+        </view>
+    </view>
+
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理方式：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.processMode||'未知' }}</text>
+        </view>
+    </view>
+
+    <view class='item'>
+        <view class='left'>
+            <text>处理人</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.dealName||'未知' }}</text>
+        </view>
+    </view>
+
+
+    <view class='adaptive-height'>
+        <view class='left'>
+            <text>图片：</text>
+        </view>
+        <view class='right'>
+            <block wx:for="{{ picList }}" wx:key="index">
+               <image src='{{ item.url }}' bindtap='previewImage' data-index='{{ index }}'></image>
+           </block>
+        </view>
+    </view>
+
+
+    <view class='item describe'>
+        <view class='left'>
+            <text>描述：</text>
+        </view>
+        <view class='right'>
+            <text>{{ strayDog.description||'' }}</text>
+        </view>
+    </view>
+</view>

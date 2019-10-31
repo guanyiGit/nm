@@ -1,0 +1,377 @@
+package com.soholy.service.activemq.consumer;
+
+import com.alibaba.fastjson.JSON;
+import com.soholy.common.ApplicationContextProvider;
+import com.soholy.pojo.aep.rq.BaseAepRq;
+import com.soholy.pojo.aep.rq.EntiretyAepRq;
+import com.soholy.pojo.aep.vo_v2.*;
+import com.soholy.service.AepCbService;
+import lombok.extern.java.Log;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Log
+public class AmqConsumer implements Runnable {
+
+    private static final Logger logger = LoggerFactory.getLogger(AmqConsumer.class);
+
+    private EntiretyAepRq input;
+    private AepCbService aepCbService;
+
+    public AmqConsumer(String message) {
+        try {
+            this.input = JSON.parseObject(message, EntiretyAepRq.class);
+            this.aepCbService = ApplicationContextProvider.getBean(AepCbService.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.warning("mq consumer init convert msg err !");
+        }
+
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (null == this.input || input.getDevice() == null) {
+                return;
+            }
+
+            //转置
+            this.reverseData();
+
+            //數據入口前處理
+            TData tData = this.dataHandle();
+
+            //保存数据
+            aepCbService.saveDatas(Arrays.asList(tData));
+
+            //数据检验（禁养区域检测和低电量 告警）
+            checkFence(tData);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.warn(e.getMessage());
+        }
+    }
+
+    private void checkFence(TData tData) {
+
+    }
+
+    private TData dataHandle() {
+        BaseAepRq.AepDevice device = input.getDevice();
+        TData d = new TData();
+
+
+        d.setMode(input.getMode());
+        d.setDeviceNo(device.getImei());
+        d.setCreateDate(LocalDateTime.now());
+        d.setDataTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(device.getTime()), ZoneId.systemDefault()));
+        d.setId(UUID.randomUUID().toString());
+        Float elec_val = device.getElec_val() != null ? device.getElec_val() : 0f;
+        d.setQuantity(Double.valueOf(elec_val));
+        d.setInfo_type(input.getInfo_type());
+        d.setVoltage_int(input.getDevice().getVoltage());
+        d.setUploadTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(input.getDevice().getTime()), ZoneId.systemDefault()));
+
+        //默认值
+        d.setLat(0d);
+        d.setLng(0d);
+
+        //0gps,1wifi,2省电模式数据(心跳)，3告警数据，4开机数据，5基站定位 6计步
+        int dataType = 2;
+        List<EntiretyAepRq.Aeplocation> locations = this.input.getLocations();
+        List<EntiretyAepRq.AepWifi> wifis = this.input.getWifis();
+        List<EntiretyAepRq.AepStation> stations = this.input.getStations();
+        List<EntiretyAepRq.AepStepNum> step_nums = this.input.getStep_nums();
+
+        Double lat = d.getLat();
+        Double lng = d.getLng();
+        if (locations != null && locations.size() > 0) {
+            if (lat == 0f && lng == 0f) {
+                dataType = 0;
+            }
+            this.gpsHandle(locations, d);
+        }
+
+        if (wifis != null && wifis.size() > 0) {
+            if (lat == 0f && lng == 0f) {
+                dataType = 1;
+            }
+            this.wifiHandle(wifis, d);
+        }
+
+        if (stations != null && stations.size() > 0) {
+            if (lat == 0f && lng == 0f) {
+                dataType = 5;
+            }
+            this.stationHandle(stations, d);
+        }
+
+        if (step_nums != null && step_nums.size() > 0) {
+            if (lat == 0f && lng == 0f) {
+                dataType = 6;
+            }
+
+            this.stepNumHandle(step_nums, d);
+        }
+
+        if (lat == 0f && lng == 0f) {
+            dataType = 2;
+            this.heartbeatNumHandle(d);
+        }
+
+        d.setDataType(dataType);
+        return d;
+    }
+
+    private void heartbeatNumHandle(TData d) {
+        logger.info("设备上传细心跳信息");
+    }
+
+    private void stepNumHandle(List<EntiretyAepRq.AepStepNum> step_nums, TData d) {
+        if (step_nums == null || step_nums.size() == 0) return;
+        List<TDataStep> list = step_nums.stream()
+                .filter(x -> x != null)
+                .map(x -> {
+                    TDataStep step = new TDataStep();
+                    step.setCretion_time(Calendar.getInstance().getTime());
+                    step.setData_time(Date.from(d.getDataTime().atZone(ZoneId.systemDefault()).toInstant()));
+//                    step.setDevice_id(String.valueOf(d.getDeviceId()));
+                    Date startTime = x.getStart_time() != null ? new Date(x.getTime()) : null;
+                    step.setStart_time(startTime);
+                    Date endTime = x.getTime() != null ? new Date(x.getTime()) : null;
+                    step.setEnd_time(endTime);
+                    step.setStep_num(x.getVal());
+                    step.setStep_record_id(UUID.randomUUID().toString());
+                    return step;
+                }).collect(Collectors.toList());
+
+//        if (list != null && list.size() > 0) {
+//            boolean bl = dataService_l2.saveSteps(list);
+//            if (!bl) {
+//                logger.warn("计步信息保存失败！");
+//            }
+//        }
+    }
+
+    private void stationHandle(List<EntiretyAepRq.AepStation> stations, TData d) {
+        if (stations == null || stations.size() == 0) return;
+        List<TDataStation> s1 = stations.stream()
+                .filter(x -> x != null)
+                .map(x -> {
+                    TDataStation station = new TDataStation();
+                    station.setCretion_time(Calendar.getInstance().getTime());
+//                    station.setDevice_date_id(d.getDeviceDateId());
+//                    station.setDevice_id(String.valueOf(d.getDeviceId()));
+                    Date dataTime = x.getTime() != null ? new Date(x.getTime()) : null;
+                    station.setData_time(dataTime);
+                    station.setStation_record_id(UUID.randomUUID().toString());
+                    station.setCi(x.getCi());
+                    station.setLac(x.getLac());
+                    station.setMnc(x.getMnc());
+
+                    station.setMark(0);
+                    return station;
+                }).collect(Collectors.toList());
+
+        //地址转换   0未转换，1已成功转换，2转换失败
+        if ((d.getLng() == null || d.getLng() == 0) && (d.getLat() == null || d.getLat() == 0) &&
+                //还没有一条转换就启用转换
+                !s1.stream()
+                        .filter(blb -> blb != null)
+                        .anyMatch(blb -> 1 == blb.getMark())) {
+
+            s1.stream()
+                    .filter(x -> x != null)
+                    .forEach(x -> {
+                        try {
+                            String mnc = x.getMnc();
+                            String lac = x.getLac();
+                            String ci = x.getCi();
+                            x.setMark(2);
+//                            ConvertResult conver = stationConvertService.stationConverToGps(mnc, lac, ci);
+//
+//                            //0 待处理  1 成功  2 无结果
+//                            if (conver != null && conver.getMake() != null) {
+//                                int make = conver.getMake();
+//                                x.setMark(make);
+//                                if (1 == make) {
+//                                    d.setLongitude(conver.getLongitude().floatValue());
+//                                    d.setLatitude(conver.getLatitude().floatValue());
+//                                }
+//                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
+//        boolean bl = dataService_l2.saveStations(s1);
+//        if (!bl) {
+//            logger.warn("站点信息保存失败！");
+//        }
+
+    }
+
+    private void wifiHandle(final List<EntiretyAepRq.AepWifi> wifis, final TData d) {
+        if (wifis == null || wifis.size() == 0) return;
+        List<TDataWifi> w1 = wifis.stream()
+                .filter(x -> x != null)
+                .map(x -> {
+                    TDataWifi wifi = new TDataWifi();
+                    Date dataTime = x.getTime() != null ? new Date(x.getTime()) : null;
+                    wifi.setDataTime(dataTime);
+                    wifi.setCreationTime(LocalDateTime.now());
+                    wifi.setDeviceDataWifiId(UUID.randomUUID().toString());
+                    wifi.setDeviceDataId(d.getId());
+                    wifi.setDeviceNo(d.getDeviceNo());
+                    wifi.setBssid(x.getBssid());
+                    wifi.setRssi(x.getRssi());
+
+                    wifi.setMark(0);
+                    return wifi;
+                }).collect(Collectors.toList());
+
+        //wifi转换   0未转换，1已成功转换，2转换失败
+        if ((d.getLng() == null || d.getLng() == 0) && (d.getLat() == null || d.getLat() == 0) &&
+                //还没有一条转换就启用转换
+                !w1.stream()
+                        .filter(blb -> blb != null)
+                        .anyMatch(blb -> 1 == blb.getMark())) {
+            w1.stream()
+                    .filter(x -> x != null)
+                    .filter(x -> 0 == x.getMark())
+                    .forEach(x -> {
+                        try {
+                            //转换成功重新赋值   只转换一条
+                            String bssid = x.getBssid();
+                            Float rssi = x.getRssi();
+                            //原始：A80CCA0D270F
+                            if (StringUtils.isBlank(bssid) || bssid.trim().length() != 12) {
+                                return;
+                            }
+                            bssid = bssid.trim();
+                            StringBuffer sb = new StringBuffer();
+                            //每2个一次，添加冒号
+                            for (int i = 0; i < bssid.length(); i += 2) {
+                                sb.append(bssid.substring(i, i + 2)).append(":");
+                            }
+                            bssid = sb.toString().substring(0, sb.toString().length() - 1);
+
+                            //例：A8:0C:CA:0D:27:0F
+                            if (bssid.length() != 17) {
+                                return;
+                            }
+                            x.setMark(2);
+                            //wifi bssid转gps信息
+//                            ConvertResult conver = wifiConvertService.wifiConverToGps(bssid, rssi);
+//                            if (conver != null && null != conver.getMake()) {
+//                                //0未转换，1已成功转换，2转换失败
+//                                int mark = conver.getMake();
+//                                x.setMark(mark);//0未转换，1已成功转换，2转换失败
+//                                if (mark == 1) {
+//                                    d.setLongitude(conver.getLongitude().floatValue());
+//                                    d.setLatitude(conver.getLatitude().floatValue());
+//                                }
+//                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
+        boolean bl = aepCbService.saveWifis(w1);
+        if (!bl) {
+            logger.warn("wifi数据保存失败！");
+        }
+
+    }
+
+
+    private void gpsHandle(List<EntiretyAepRq.Aeplocation> locations, TData d) {
+        if (locations == null || locations.size() == 0) return;
+        List<TDataGps> gs = locations.stream()
+                .filter(x -> x != null)
+                .map(x -> {
+                    if (x.getLan() == null) {
+                        x.setLan(0f);
+                    }
+                    if (x.getLng() == null) {
+                        x.setLng(0f);
+                    }
+                    return x;
+                })
+                .map(x -> {
+                    TDataGps gps = new TDataGps();
+                    try {
+                        gps.setCretion_time(Calendar.getInstance().getTime());
+                        Date dataTime = x.getTime() != null ? new Date(x.getTime()) : null;
+                        gps.setData_time(dataTime);
+//                        gps.setDevice_date_id(d.getDeviceDateId());
+//                        gps.setDevice_id(String.valueOf(d.getDeviceId()));
+                        gps.setGps_record_id(UUID.randomUUID().toString());
+
+                        gps.setLan(x.getLan().doubleValue());
+                        gps.setLng(x.getLng().doubleValue());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                    return gps;
+                }).collect(Collectors.toList());
+
+
+        //gps赋值数据处理
+        if ((d.getLat() == null || d.getLat() == 0) && (d.getLng() == null || d.getLng() == 0)) {
+            Optional<TDataGps> first = gs.stream()
+                    .filter(x -> x != null)
+                    .filter(x -> x.getLan() != null && x.getLan() > 0 && x.getLng() != null && x.getLng() > 0)
+                    .findFirst();
+
+            TDataGps orD = first.orElseGet(() -> {
+                TDataGps id = new TDataGps();
+                id.setLan(0d);
+                id.setLng(0d);
+                return id;
+            });
+            d.setLng(orD.getLng().doubleValue());
+            d.setLat(orD.getLan().doubleValue());
+        }
+
+//        boolean bl = dataService_l2.saveGpss(gs);
+//        if (!bl) {
+//
+//            logger.warn("wifi数据保存失败！");
+//        }
+
+    }
+
+    /**
+     * 转置
+     */
+    private void reverseData() {
+        List<EntiretyAepRq.Aeplocation> locations = input.getLocations();
+        if (locations != null && locations.size() > 0) {
+            Collections.reverse(locations);
+        }
+        List<EntiretyAepRq.AepStation> stations = input.getStations();
+        if (stations != null && stations.size() > 0) {
+            Collections.reverse(stations);
+        }
+        List<EntiretyAepRq.AepStepNum> step_nums = input.getStep_nums();
+        if (step_nums != null && step_nums.size() > 0) {
+            Collections.reverse(step_nums);
+        }
+        List<EntiretyAepRq.AepWifi> wifis = input.getWifis();
+        if (wifis != null && wifis.size() > 0) {
+            Collections.reverse(wifis);
+        }
+
+    }
+
+}
